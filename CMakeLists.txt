@@ -46,7 +46,7 @@ elseif (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
     )
 endif ()
 
-add_executable (${CMAKE_PROJECT_NAME} WIN32)
+add_executable (${CMAKE_PROJECT_NAME} ) #WIN32) #remove this to close terminal
 
 add_subdirectory (include)
 add_subdirectory (src)
