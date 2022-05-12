@@ -5,6 +5,6 @@ int main()
 {
 	Controller game;
 	game.run();
-	std::cout << "hi";
+	std::cout << "hiiiiiiiii";
 	return 0;
 }
