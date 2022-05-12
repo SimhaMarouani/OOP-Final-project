@@ -1,0 +1,25 @@
+﻿target_sources (${CMAKE_PROJECT_NAME} PRIVATE 
+                                              "staticSrc/StaticObjects.cpp"
+                                              "staticSrc/Ork.cpp"
+                                              "staticSrc/Gift.cpp"
+                                              "staticSrc/GiftKillDwarves.cpp"
+                                              "staticSrc/BadGift.cpp"
+                                              "staticSrc/GiftTime.cpp"
+
+                                              "movingSrc/MovingObjects.cpp"
+                                              "movingSrc/Dwarf.cpp"
+                                              "movingSrc/King.cpp"
+                                              "movingSrc/Mage.cpp"
+                                              "movingSrc/Thief.cpp"
+                                              "movingSrc/Warrior.cpp"
+                                              "movingSrc/Player.cpp"
+
+                                              "Controller.cpp"
+                                              "GameObject.cpp"
+                                              "Window.cpp"
+                                              "Button.cpp"
+                                              "Board.cpp"
+                                              "Menu.cpp"
+                                              "Bar.cpp"
+                                              "main.cpp"
+                                              )
