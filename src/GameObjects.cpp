@@ -1,6 +1,6 @@
 #include "Macros.h"
 #include "GameObjects.h"
-#include "resourcesManager.cpp"
+#include "GameObjects.h"
 
 GameObjects::GameObjects()
 {

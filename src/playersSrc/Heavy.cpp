@@ -1,5 +1,5 @@
 #include "playersInclude/Heavy.h"
 
-Player::Player()
+Heavy::Heavy()
 {
 }

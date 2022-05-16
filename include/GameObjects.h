@@ -8,7 +8,9 @@ class GameObjects
 public:
     GameObjects();
 
-    virtual ~GameObject() = default;
+    virtual ~GameObjects() = default;
+
+//    void draw(sf::RenderWindow& window) = 0;
 
 protected:
 

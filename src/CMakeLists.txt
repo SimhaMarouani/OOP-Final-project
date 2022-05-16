@@ -1,4 +1,25 @@
 ﻿target_sources (${CMAKE_PROJECT_NAME} PRIVATE "main.cpp"
                                               "Controller.cpp"
-                                    
+                                              "Board.cpp"
+                                              "Window.cpp"
+                                              "DataDisplay.cpp"
+                                              "Animation.cpp"
+                                              "Audio.cpp"
+                                              "Button.cpp"
+                                              "GameObjects.cpp"
+                                              "LevelMenu.cpp"
+                                              "Menu.cpp"
+                                              "ResourcesManager.cpp"
+                                              "Timer.cpp"
+
+                                              "playersSrc/Players.cpp"
+                                              "playersSrc/Heavy.cpp"
+                                              "playersSrc/Light.cpp"
+                                              "playersSrc/Simple.cpp"
+                                              
+                                              "objectsSrc/Box.cpp"
+                                              "objectsSrc/Stairs.cpp"
+                                              "objectsSrc/StaticObjects.cpp"
+                                              "objectsSrc/Stick.cpp"
+                                              "objectsSrc/Switch.cpp"
                                               )

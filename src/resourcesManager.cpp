@@ -1,5 +1,4 @@
-#include "resourcesManager.h"
-#include <fstream>
+#include "ResourcesManager.h"
 
 ResourcesManager::ResourcesManager()
 {

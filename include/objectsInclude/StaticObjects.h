@@ -1,15 +1,14 @@
 #pragma once
 #include "GameObjects.h"
-//#include "Controller.h"
+#include "Controller.h"
 
-
-class Players : public GameObjects
+class StaticObjects : public GameObjects
 {
 public:
-	Players();
-
+	StaticObjects();
+	
 //	void move(Controller& controller) {};
 
 private:
-	
+
 };

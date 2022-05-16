@@ -1,7 +1,7 @@
 #include "Menu.h"
 #include "Macros.h"
 #include "Window.h"
-#include "resourcesManager.h"
+#include "Menu.h"
 
 Menu::Menu()
 {
