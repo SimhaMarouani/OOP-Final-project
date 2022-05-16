@@ -3,8 +3,8 @@
 
 int main()
 {
-	Controller game;
-	game.run();
-	std::cout << "hiiiiiiiii";
+	//Controller game;
+	//game.run();
+	std::cout << "hi";
 	return 0;
 }
