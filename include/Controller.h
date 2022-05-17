@@ -13,8 +13,6 @@
 
 class Controller
 {
-friend Window; //Noga: I tried that window will know all the private members of controller so we wont need to always send them or add 
-			   //'get' functions because its too much . OK?
 public:
 	Controller();
 
@@ -30,7 +28,7 @@ private:
 	void render();
 	void drawCurrPage();
 private:
-	Page m_currPage;// = Page::HomePage;
+	Page m_currPage;
 	Menu m_homePage;
 	
 	//	Board m_board;
