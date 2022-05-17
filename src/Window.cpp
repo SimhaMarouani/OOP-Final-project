@@ -2,43 +2,48 @@
 #include "Window.h"
 
 Window::Window()
-    : m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Ice Adventures", sf::Style::Close | sf::Style::Titlebar)
+    : m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), GAME_TITLE, sf::Style::Close | sf::Style::Titlebar)
 {
-}
-
-void Window::processEvents(Controller& controller)//, Board& board)
-{
-	if (auto event = sf::Event{}; m_window.pollEvent(event))
-	{
-		if (event.type == sf::Event::Closed)
-			m_window.close();
-
-		/*switch (m_currPage)
-		{
-		case Page::GameBoard:
-			gameBoardProcesEvents(event, window, gameBoard);
-			break;
-		case Page::UserWin:
-		case Page::UserLose:
-		default:
-			emmptyPageProcessEvents(event);
-			break;
-		}*/
-	}
 }
 
 void Window::update()
 {
 }
 
-void Window::render()
-{
-	m_window.clear(sf::Color(224, 235, 229));
-	//drawCurrPage(window, gameBoard);
-	m_window.display();
-}
-
 bool Window::isOpen()
 {
     return m_window.isOpen();
+}
+
+bool Window::pollEvent(sf::Event& event)
+{
+	return m_window.pollEvent(event);
+}
+
+void Window::close()
+{
+	m_window.close();
+}
+
+void Window::clear(sf::Color color)
+{
+	m_window.clear(color);
+}
+
+void Window::display()
+{
+	m_window.display();
+}
+
+void Window::drawHomePage(Menu& homePage)
+{
+	homePage.draw(m_window);
+}
+
+void Window::drawLevelMenuPage()
+{
+}
+
+void Window::drawGame()
+{
 }

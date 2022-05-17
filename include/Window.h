@@ -1,19 +1,27 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-//#include "Menu.h"
 #include "Board.h"
 
+#include "Utilities.h"
+
 class Controller;
+class Menu;
 
 class Window
 {
 public:
     Window();
 
-    void processEvents(Controller& controller);//, Board& board);
     void update();
-    void render();
     bool isOpen();
+    bool pollEvent(sf::Event& event);
+    void close();
+    void clear(sf::Color color = sf::Color::Color::White);
+    void display();
+    void drawHomePage(Menu &homePage); //Noga: first page
+    void drawLevelMenuPage(); //Noga: after click start the user choose level
+    void drawGame(); //Noga: the game game like the level you know
+private:
 
 private:
     sf::RenderWindow m_window;
