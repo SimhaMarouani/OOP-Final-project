@@ -17,6 +17,10 @@ public:
 	void run();
 	
 private:
+	void processEvents();
+	void update();
+	void render();
+private:
 //	Board m_board;
 	Window m_window;
 	DataDisplay m_dataDisplay;
