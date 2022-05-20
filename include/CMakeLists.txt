@@ -10,7 +10,7 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE
                                               "GameObjects.h"
                                               "LevelMenu.h"
                                               "Menu.h"
-                                              "ResourcesManager.h"
+                                              "Resources.h"
                                               "Timer.h"
 
                                               "playersInclude/Players.h"
