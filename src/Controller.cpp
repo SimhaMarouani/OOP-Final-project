@@ -2,8 +2,9 @@
 
 
 Controller::Controller() 
-	: m_window(), m_homePage(), m_currPage(Page::HomePage)
-{}
+	: m_window(), m_homePage(), m_dataDisplay(), m_currPage(Page::HomePage)
+{
+}
 
 void Controller::run()
 {
@@ -94,7 +95,7 @@ void Controller::drawCurrPage()
 		m_window.drawLevelMenuPage();
 		break;
 	case Page::Game:
-		m_window.drawGame();
+		m_window.drawGame(m_dataDisplay);
 		break;
 	default:
 		break;

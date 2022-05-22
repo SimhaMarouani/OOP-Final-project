@@ -49,6 +49,8 @@ void Window::drawLevelMenuPage()
 {
 }
 
-void Window::drawGame()
+void Window::drawGame(DataDisplay& dataDisplay)
 {
+	dataDisplay.draw(m_window);
 }
+
