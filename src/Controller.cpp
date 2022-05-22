@@ -12,6 +12,8 @@ void Controller::run()
 	//setGameIcon(window);
 	//GameBoard gameBoard(MAX_BLOCK_TILES);
 
+	m_dataDisplay.updateLevel(1);
+	
 	while (m_window.isOpen())
 	{
 		processEvents();

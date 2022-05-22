@@ -10,13 +10,13 @@ DataDisplay::DataDisplay()
 
 	this->m_levelText.setFont(*Resources::instance().getFont());
 	this->m_levelText.setCharacterSize(CHAR_SIZE);
-	this->m_levelText.setPosition(100, 140);
-	this->m_levelText.setColor(sf::Color::White);
+	this->m_levelText.setPosition(100, 50);
+	this->m_levelText.setFillColor(sf::Color::Black);
 
 	this->m_stageTimeText.setFont(*Resources::instance().getFont());
 	this->m_stageTimeText.setCharacterSize(CHAR_SIZE);
-	this->m_stageTimeText.setPosition(45, 245);
-	this->m_stageTimeText.setColor(sf::Color::White);
+	this->m_stageTimeText.setPosition(250, 50);
+	this->m_stageTimeText.setFillColor(sf::Color::Black);
 }
 
 DataDisplay::~DataDisplay()
@@ -44,7 +44,7 @@ void DataDisplay::draw(sf::RenderWindow& window)
 	window.draw(m_stageTimeText);
 }
 
-void DataDisplay::updateLevel(int time, int level)
+void DataDisplay::updateLevel(int level)
 {
 	m_stageTimeSec = 0;
 	m_stageTimeSec++;

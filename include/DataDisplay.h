@@ -13,7 +13,7 @@ public:
     DataDisplay();
 	~DataDisplay();
 	void draw(sf::RenderWindow& window);
-	void updateLevel(int time, int level);
+	void updateLevel(int level);
 	void decreaseTime();
 	void stopTimer();
 	void continueTimer();
