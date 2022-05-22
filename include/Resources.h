@@ -7,6 +7,7 @@
 #include <SFML/Audio.hpp>
 
 #include "Macros.h"
+#include "Utilities.h"
 
 
 class Resources
@@ -16,7 +17,9 @@ public:
 	static Resources& instance();
 
 	//Access Functions
-	//sf::Font* getFont();
+	sf::Font* getFont();
+	sf::Texture* getBackground(Backgrounds index);
+
 	//sf::Texture* getBtnTexture(Btns button);
 	//sf::Texture* getCatSpriteSheet();
 	//sf::Texture* getWinPageTexture();
@@ -31,7 +34,7 @@ private:
 	Resources& operator=(const Resources&) = default;
 
 	//Load Functions
-	//void loadFont();
+	void loadFont();
 	//void loadBtnTextures();
 	//void loadCatSpriteSheet();
 	//void loadWinPageTexture();
@@ -43,8 +46,8 @@ private:
 
 	//======Members==========
 
-	////Fonts
-	//sf::Font m_font;
+	//Fonts
+	sf::Font m_font;
 
 	////Textures
 	//sf::Texture m_catSpriteSheet;
@@ -52,6 +55,8 @@ private:
 	//sf::Texture m_losePageTexture;
 	//sf::Image m_gameIcon;
 	std::vector<sf::Texture> m_players;
+	sf::Texture m_backgroundTextures[NUM_OF_TEXTURES];
+	std::string m_fileBackground[NUM_OF_TEXTURES]{ "Menu-background.jpg", "GameBackground.png", "win.png", "Lose.png", "Help.png" };
 
 	//std::vector<sf::Texture> m_btnTextures;
 

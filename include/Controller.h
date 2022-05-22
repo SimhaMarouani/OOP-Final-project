@@ -27,6 +27,8 @@ private:
 	void update();
 	void render();
 	void drawCurrPage();
+
+
 private:
 	Page m_currPage;
 	Menu m_homePage;
@@ -34,6 +36,4 @@ private:
 	Board m_board;
 	Window m_window;
 	DataDisplay m_dataDisplay;
-
-
 };

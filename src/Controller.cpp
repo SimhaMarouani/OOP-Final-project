@@ -2,8 +2,9 @@
 
 
 Controller::Controller() 
-	: m_window(), m_homePage(), m_currPage(Page::HomePage)
-{}
+	: m_window(), m_homePage(), m_dataDisplay(), m_currPage(Page::HomePage)
+{
+}
 
 void Controller::run()
 {
@@ -11,6 +12,8 @@ void Controller::run()
 	//setGameIcon(window);
 	//GameBoard gameBoard(MAX_BLOCK_TILES);
 
+	m_dataDisplay.updateLevel(1);
+	
 	while (m_window.isOpen())
 	{
 		processEvents();
@@ -94,7 +97,7 @@ void Controller::drawCurrPage()
 		m_window.drawLevelMenuPage();
 		break;
 	case Page::Game:
-		m_window.drawGame(&m_board);
+		m_window.drawGame(m_dataDisplay, &m_board);
 		break;
 	default:
 		break;

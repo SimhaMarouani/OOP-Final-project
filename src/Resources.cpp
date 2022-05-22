@@ -4,8 +4,8 @@
 
 Resources::Resources()
 {
-	/*loadFont();
-	loadBtnTextures();
+	loadFont();
+	/*loadBtnTextures();
 	loadCatSpriteSheet();
 	loadAudioClick();
 	loadWinPageTexture();
@@ -29,18 +29,24 @@ Resources& Resources::instance()
 	return inst;
 }
 
-//
-////===============================================================//
-////							 GET DATA
-////===============================================================//
-//
-//
-//sf::Font* Resources::getFont()
-//{
-//	return &m_font;
-//}
-//
-////-----------------------------------------------------------------
+
+//===============================================================//
+//							 GET DATA
+//===============================================================//
+
+sf::Font* Resources::getFont()
+{
+	return &m_font;
+}
+
+//-----------------------------------------------------------------
+	
+sf::Texture* Resources::getBackground(Backgrounds index)
+{
+	return &m_backgroundTextures[int(index)];
+}
+
+//-----------------------------------------------------------------
 //
 //sf::Texture* Resources::getBtnTexture(Btns button)
 //{
@@ -85,20 +91,20 @@ sf::Texture* Resources::getPlayerTexture(Player player)
 {
 	return &m_players[(int)player];
 }
-//
-////===============================================================//
-////							 LOAD DATA
-////===============================================================//
-//
-//
-//void Resources::loadFont()
-//{
-//	if (!m_font.loadFromFile("YatraOne.ttf"))
-//	{
-//		std::cerr << "error loading font from file";
-//	}
-//}
-//
+
+//===============================================================//
+//							 LOAD DATA
+//===============================================================//
+
+
+void Resources::loadFont()
+{
+	if (!m_font.loadFromFile("Font.ttf"))
+	{
+		std::cerr << "error loading font from file";
+	}
+}
+
 ////-----------------------------------------------------------------
 //
 //void Resources::loadBtnTextures()

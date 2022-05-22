@@ -4,6 +4,9 @@
 Window::Window()
     : m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), GAME_TITLE, sf::Style::Close | sf::Style::Titlebar)
 {
+	m_menuBackground.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
+	m_menuBackground.setTexture(Resources::instance().getBackground(Backgrounds::menu));
+
 }
 
 void Window::update()
@@ -37,6 +40,7 @@ void Window::display()
 
 void Window::drawHomePage(Menu& homePage)
 {
+	m_window.draw(m_menuBackground);
 	homePage.draw(m_window);
 }
 
@@ -44,7 +48,9 @@ void Window::drawLevelMenuPage()
 {
 }
 
-void Window::drawGame(Board* board)
+void Window::drawGame(DataDisplay& dataDisplay, Board* board)
 {
+	dataDisplay.draw(m_window);
 	board->draw(m_window);
 }
+
