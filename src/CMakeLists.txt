@@ -9,7 +9,7 @@
                                               "GameObjects.cpp"
                                               "LevelMenu.cpp"
                                               "Menu.cpp"
-                                              "ResourcesManager.cpp"
+                                              "Resources.cpp"
                                               "Timer.cpp"
 
                                               "playersSrc/Players.cpp"

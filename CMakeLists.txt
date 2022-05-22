@@ -51,7 +51,7 @@ add_executable (${CMAKE_PROJECT_NAME} ) #WIN32) #remove this to close terminal
 add_subdirectory (include)
 add_subdirectory (src)
 add_subdirectory (external/box2d/src)
-#add_subdirectory (resources)
+add_subdirectory (resources)
 
 if (MSVC)
 	set (SFML_STATIC_LIBRARIES TRUE)
