@@ -3,3 +3,4 @@
 Simple::Simple()
 	:Players(Player::Deer)
 {}
+

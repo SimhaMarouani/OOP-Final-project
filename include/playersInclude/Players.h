@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObjects.h"
+#include "Macros.h"
 //#include "Controller.h"
 
 
@@ -13,12 +14,16 @@ public:
 	void setDirection(sf::Keyboard::Key key);
 
 	void draw(sf::RenderWindow& window);
-	//virtual void move(float deltaTime) = 0;
+	void move(float deltaTime);
 
+	//virtual void move(float deltaTime) = 0;
 //	void move(Controller& controller) {};
 
 private:
 	sf::Sprite m_icon;
 
 	sf::Vector2f m_direction;
+
+	float m_speedPerSecond = BASE_SPEED;
+
 };

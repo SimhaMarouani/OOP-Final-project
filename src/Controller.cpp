@@ -5,8 +5,6 @@ const b2Vec2 gravity = b2Vec2(0.0f, 10.0f);
 Controller::Controller() 
 	: m_window(), m_homePage(), m_dataDisplay(), m_currPage(Page::HomePage), m_currPlayer(0)
 {
-	// Construct a world object, which will hold and simulate the rigid bodies.
-	// Use dynamic allocation as this is a big object, and allocating it on the stack
 	auto world = std::make_unique<b2World>(gravity);
 
 	m_groundBodyDef.position.Set(0.0f, -10.0f);
@@ -14,22 +12,20 @@ Controller::Controller()
 
 void Controller::run()
 {
+
 	srand(time(NULL));
-	//setGameIcon(window);
-	//GameBoard gameBoard(MAX_BLOCK_TILES);
 
 	m_dataDisplay.updateLevel(1);
+
+	//setGameIcon(window);
+	//GameBoard gameBoard(MAX_BLOCK_TILES);
 	
 	while (m_window.isOpen())
 	{
 		processEvents(); //events
 		update(); //updates of data
 		render(); //draw
-		handleKey(); //Noga: should be in ProcessEvents
-
-		/*m_playersVec[m_currPlayer]->setDirection(handleKey());
-		const auto deltaTime = clock.restart();
-		m_playersVec[m_currPlayer]->move(deltaTime.asSeconds());*/
+		
 	}
 }
 
@@ -45,6 +41,8 @@ void Controller::exit()
 
 void Controller::processEvents()
 {
+	sf::Clock clock;
+	
 	if (auto event = sf::Event{}; m_window.pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
@@ -63,6 +61,10 @@ void Controller::processEvents()
 			break;
 		}
 	}
+	handleKey();
+	/*m_playersVec[m_currPlayer]->setDirection(handleKey());
+		const auto deltaTime = clock.restart();
+		m_playersVec[m_currPlayer]->move(deltaTime.asSeconds())*/;
 }
 
 void Controller::processEventsHome(sf::Event event)

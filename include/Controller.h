@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <vector>
+#include <typeinfo>
 
 #include "box2d/box2d.h"
 
