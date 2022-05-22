@@ -6,6 +6,11 @@
 const int WINDOW_WIDTH = 1600;
 const int WINDOW_HEIGHT = 900;
 
+const int DATA_DISPLAY_WIDTH = 1600;
+const int DATA_DISPLAY_HEIGHT = 150;
+
+const int CHAR_SIZE = 30;
+
 //Game title
 const std::string GAME_TITLE = "Ice Adventures";
 
