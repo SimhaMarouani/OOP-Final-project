@@ -15,11 +15,11 @@ class Board
 public:
 	Board();
 
-//	void draw(sf::RenderWindow& window);
+	void draw(sf::RenderWindow& window);
 //	void createBoard();
 
 private:
-	int m_level;
+	//int m_level;
 
 	
 	b2BodyDef m_groundBodyDef;		// Define the ground body

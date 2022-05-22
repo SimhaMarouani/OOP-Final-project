@@ -33,7 +33,7 @@ private:
 	Page m_currPage;
 	Menu m_homePage;
 	
-	//	Board m_board;
+	Board m_board;
 	Window m_window;
 	DataDisplay m_dataDisplay;
 };

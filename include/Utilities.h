@@ -18,3 +18,12 @@ enum class HomeButtonType
 	Exit,
 	None
 };
+
+enum class Backgrounds
+{
+	menu,
+	game,
+	win,
+	lose,
+	help
+};

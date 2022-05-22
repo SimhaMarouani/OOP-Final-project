@@ -19,11 +19,11 @@ public:
     void display();
     void drawHomePage(Menu &homePage); //Noga: first page
     void drawLevelMenuPage(); //Noga: after click start the user choose level
-    void drawGame(DataDisplay& dataDisplay); //Noga: the game game like the level you know
+    void drawGame(DataDisplay& dataDisplay, Board* board); //Noga: the game game like the level you know
 
 private:
     sf::RenderWindow m_window;
-    //sf::RectangleShape m_gameBackground;
+    sf::RectangleShape m_menuBackground;
     //sf::RectangleShape m_winBackground;
     //sf::RectangleShape m_loseBackground;
 };
