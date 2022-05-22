@@ -5,6 +5,7 @@
 Resources::Resources()
 {
 	loadFont();
+	loadBackgroundTextures();
 	/*loadBtnTextures();
 	loadCatSpriteSheet();
 	loadAudioClick();
@@ -96,12 +97,22 @@ sf::Texture* Resources::getPlayerTexture(Player player)
 //							 LOAD DATA
 //===============================================================//
 
-
 void Resources::loadFont()
 {
 	if (!m_font.loadFromFile("Font.ttf"))
 	{
 		std::cerr << "error loading font from file";
+	}
+}
+
+//-----------------------------------------------------------------
+
+void Resources::loadBackgroundTextures()
+{
+	for (int i = 0; i < NUM_OF_TEXTURES; ++i)
+	{
+		if (!m_backgroundTextures[i].loadFromFile(m_fileBackground[i]))
+			exit(EXIT_FAILURE);
 	}
 }
 

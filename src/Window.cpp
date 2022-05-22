@@ -6,7 +6,6 @@ Window::Window()
 {
 	m_menuBackground.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
 	m_menuBackground.setTexture(Resources::instance().getBackground(Backgrounds::menu));
-
 }
 
 void Window::update()

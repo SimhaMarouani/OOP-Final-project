@@ -8,15 +8,15 @@ DataDisplay::DataDisplay()
 	m_barBackground.setSize(sf::Vector2f(DATA_DISPLAY_WIDTH, DATA_DISPLAY_HEIGHT));
 	m_barBackground.setFillColor(sf::Color::White);
 
-	this->m_levelText.setFont(*Resources::instance().getFont());
-	this->m_levelText.setCharacterSize(CHAR_SIZE);
-	this->m_levelText.setPosition(100, 50);
-	this->m_levelText.setColor(sf::Color::Black);
+	m_levelText.setFont(*Resources::instance().getFont());
+	m_levelText.setCharacterSize(CHAR_SIZE);
+	m_levelText.setPosition(100, 50);
+	m_levelText.setColor(sf::Color::Black);
 
-	this->m_stageTimeText.setFont(*Resources::instance().getFont());
-	this->m_stageTimeText.setCharacterSize(CHAR_SIZE);
-	this->m_stageTimeText.setPosition(350, 50);
-	this->m_stageTimeText.setColor(sf::Color::Black);
+	m_stageTimeText.setFont(*Resources::instance().getFont());
+	m_stageTimeText.setCharacterSize(CHAR_SIZE);
+	m_stageTimeText.setPosition(350, 50);
+	m_stageTimeText.setColor(sf::Color::Black);
 
 }
 
