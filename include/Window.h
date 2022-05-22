@@ -20,7 +20,7 @@ public:
     void display();
     void drawHomePage(Menu &homePage); //Noga: first page
     void drawLevelMenuPage(); //Noga: after click start the user choose level
-    void drawGame(); //Noga: the game game like the level you know
+    void drawGame(Board* board); //Noga: the game game like the level you know
 private:
 
 private:

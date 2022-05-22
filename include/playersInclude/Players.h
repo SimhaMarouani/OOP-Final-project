@@ -10,6 +10,7 @@ public:
 	Players(Player type);
 
 	void draw(sf::RenderWindow& window);
+	void setPostition(sf::Vector2f pos);
 
 //	void move(Controller& controller) {};
 

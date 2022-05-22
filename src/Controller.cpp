@@ -94,7 +94,7 @@ void Controller::drawCurrPage()
 		m_window.drawLevelMenuPage();
 		break;
 	case Page::Game:
-		m_window.drawGame();
+		m_window.drawGame(&m_board);
 		break;
 	default:
 		break;

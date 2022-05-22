@@ -44,6 +44,7 @@ void Window::drawLevelMenuPage()
 {
 }
 
-void Window::drawGame()
+void Window::drawGame(Board* board)
 {
+	board->draw(m_window);
 }
