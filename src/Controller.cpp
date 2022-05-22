@@ -22,10 +22,11 @@ void Controller::run()
 	
 	while (m_window.isOpen())
 	{
-		processEvents();
-		update();
-		render();
-		handleKey();
+		processEvents(); //events
+		update(); //updates of data
+		render(); //draw
+		handleKey(); //Noga: should be in ProcessEvents
+
 		/*m_playersVec[m_currPlayer]->setDirection(handleKey());
 		const auto deltaTime = clock.restart();
 		m_playersVec[m_currPlayer]->move(deltaTime.asSeconds());*/
@@ -120,7 +121,7 @@ sf::Keyboard::Key Controller::handleKey()
 	{
 		m_dataDisplay.stopTimer();
 		m_currPage = Page::HomePage;
-		drawCurrPage();
+		drawCurrPage(); // Noga: i think when we update the curr page it will go to render so we can remove it from here
 	}
 
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))

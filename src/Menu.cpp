@@ -57,6 +57,7 @@ void Menu::draw(sf::RenderWindow& window)
 	window.draw(m_exitText);
 }
 
+//Noga: we can delete the return and change this function to void
 HomeButtonType Menu::handleClick(sf::Event event, Controller &controller)
 {
 	if (m_buttons[(int)HomeButtonType::Start].isContain(event))
