@@ -4,8 +4,8 @@
 
 Resources::Resources()
 {
-	/*loadFont();
-	loadBtnTextures();
+	loadFont();
+	/*loadBtnTextures();
 	loadCatSpriteSheet();
 	loadAudioClick();
 	loadWinPageTexture();
@@ -38,8 +38,15 @@ sf::Font* Resources::getFont()
 {
 	return &m_font;
 }
-//
-////-----------------------------------------------------------------
+
+//-----------------------------------------------------------------
+	
+sf::Texture* Resources::getBackground(Backgrounds index)
+{
+	return &m_backgroundTextures[int(index)];
+}
+
+//-----------------------------------------------------------------
 //
 //sf::Texture* Resources::getBtnTexture(Btns button)
 //{

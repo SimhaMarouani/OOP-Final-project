@@ -23,7 +23,7 @@ public:
 
 private:
     sf::RenderWindow m_window;
-    //sf::RectangleShape m_gameBackground;
+    sf::RectangleShape m_menuBackground;
     //sf::RectangleShape m_winBackground;
     //sf::RectangleShape m_loseBackground;
 };

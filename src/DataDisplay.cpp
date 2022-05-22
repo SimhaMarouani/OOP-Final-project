@@ -11,12 +11,13 @@ DataDisplay::DataDisplay()
 	this->m_levelText.setFont(*Resources::instance().getFont());
 	this->m_levelText.setCharacterSize(CHAR_SIZE);
 	this->m_levelText.setPosition(100, 50);
-	this->m_levelText.setFillColor(sf::Color::Black);
+	this->m_levelText.setColor(sf::Color::Black);
 
 	this->m_stageTimeText.setFont(*Resources::instance().getFont());
 	this->m_stageTimeText.setCharacterSize(CHAR_SIZE);
-	this->m_stageTimeText.setPosition(250, 50);
-	this->m_stageTimeText.setFillColor(sf::Color::Black);
+	this->m_stageTimeText.setPosition(350, 50);
+	this->m_stageTimeText.setColor(sf::Color::Black);
+
 }
 
 DataDisplay::~DataDisplay()
