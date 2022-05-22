@@ -3,7 +3,7 @@
 const b2Vec2 gravity = b2Vec2(0.0f, 10.0f);
 
 Controller::Controller() 
-	: m_window(), m_homePage(), m_dataDisplay(), m_currPage(Page::HomePage)
+	: m_window(), m_homePage(), m_dataDisplay(), m_currPage(Page::HomePage), m_currPlayer(0)
 {
 	// Construct a world object, which will hold and simulate the rigid bodies.
 	// Use dynamic allocation as this is a big object, and allocating it on the stack
@@ -25,10 +25,10 @@ void Controller::run()
 		processEvents();
 		update();
 		render();
-
-		m_playersVec[m_currPlayer]->setDirection(handleKey());
+		handleKey();
+		/*m_playersVec[m_currPlayer]->setDirection(handleKey());
 		const auto deltaTime = clock.restart();
-		m_movingObj[m_currPlayer]->move(deltaTime.asSeconds());
+		m_playersVec[m_currPlayer]->move(deltaTime.asSeconds());*/
 	}
 }
 
@@ -139,7 +139,7 @@ sf::Keyboard::Key Controller::handleKey()
 
 void Controller::createPlayersVec(char type, sf::Vector2f position, sf::Vector2f size)
 {
-	m_playersVec[int(Elements::)] = (std::make_unique<King>(position, size, m_board));
-	m_playersVec[int(Elements::mage)] = (std::make_unique<Mage>(position, size, m_board));
-	m_playersVec[int(Elements::thief)] = (std::make_unique<Thief>(position, size, m_board));
+	m_playersVec[int(Elements::simplePlayer)] = (std::make_unique<Simple>(/*position, size, m_board*/));
+	m_playersVec[int(Elements::heavyPlayer)] = (std::make_unique<Heavy>(/*position, size, m_board*/));
+	m_playersVec[int(Elements::lightPlayer)] = (std::make_unique<Light>(/*position, size, m_board*/));
 }

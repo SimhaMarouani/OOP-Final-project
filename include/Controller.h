@@ -50,5 +50,5 @@ private:
 
 	std::unique_ptr<Players> m_playersVec[3];
 
-
+	int m_currPlayer;
 };
