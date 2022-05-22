@@ -35,6 +35,11 @@ void Window::display()
 	m_window.display();
 }
 
+// add template T = Menu LevelMenu Game
+// in header file:
+//template <class T>
+//void Window::drawHomePage(T& homePage) { t.draw() }
+
 void Window::drawHomePage(Menu& homePage)
 {
 	homePage.draw(m_window);
