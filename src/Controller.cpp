@@ -1,9 +1,15 @@
 #include "Controller.h"
 
+const b2Vec2 gravity = b2Vec2(0.0f, 10.0f);
 
 Controller::Controller() 
 	: m_window(), m_homePage(), m_dataDisplay(), m_currPage(Page::HomePage)
 {
+	// Construct a world object, which will hold and simulate the rigid bodies.
+	// Use dynamic allocation as this is a big object, and allocating it on the stack
+	auto world = std::make_unique<b2World>(gravity);
+
+	m_groundBodyDef.position.Set(0.0f, -10.0f);
 }
 
 void Controller::run()
@@ -19,6 +25,10 @@ void Controller::run()
 		processEvents();
 		update();
 		render();
+
+		m_playersVec[m_currPlayer]->setDirection(handleKey());
+		const auto deltaTime = clock.restart();
+		m_movingObj[m_currPlayer]->move(deltaTime.asSeconds());
 	}
 }
 
@@ -102,4 +112,34 @@ void Controller::drawCurrPage()
 	default:
 		break;
 	}
+}
+
+sf::Keyboard::Key Controller::handleKey()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	{
+		m_dataDisplay.stopTimer();
+		m_currPage = Page::HomePage;
+		drawCurrPage();
+	}
+
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		return sf::Keyboard::Left;
+
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		return sf::Keyboard::Right;
+
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		return sf::Keyboard::Down;
+
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		return sf::Keyboard::Up;
+}
+
+
+void Controller::createPlayersVec(char type, sf::Vector2f position, sf::Vector2f size)
+{
+	m_playersVec[int(Elements::)] = (std::make_unique<King>(position, size, m_board));
+	m_playersVec[int(Elements::mage)] = (std::make_unique<Mage>(position, size, m_board));
+	m_playersVec[int(Elements::thief)] = (std::make_unique<Thief>(position, size, m_board));
 }
