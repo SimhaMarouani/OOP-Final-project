@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <string>
-#include "ResourcesManager.h"
+#include "Resources.h"
 #include "Macros.h"
 
 //class Controller;
@@ -14,9 +14,7 @@ public:
 	~DataDisplay();
 	void draw(sf::RenderWindow& window);
 	void updateLevel(int time, int level);
-	bool timeOut() const;
 	void decreaseTime();
-	void increaseTime();
 	void stopTimer();
 	void continueTimer();
 	bool isTimerStopped() const;
@@ -30,8 +28,6 @@ private:
 
 	float m_stageTimeSec;
 
-	bool m_timelessLevel;
-	bool m_timeEnd;
 	bool m_stopTimer;
 
 	sf::RectangleShape m_barBackground;
