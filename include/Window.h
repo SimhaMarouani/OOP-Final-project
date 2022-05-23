@@ -6,6 +6,7 @@
 
 class Controller;
 class HomePageScreen;
+class GameScreen;
 
 class Window
 {
@@ -19,7 +20,7 @@ public:
     void display();
     void drawHomePage(HomePageScreen &homePage); //Noga: first page
     void drawLevelMenuPage(); //Noga: after click start the user choose level
-    void drawGame(DataDisplay& dataDisplay, Board* board); //Noga: the game game like the level you know
+    void drawGame(GameScreen & gameScreen); //Noga: the game game like the level you know
 
 private:
     sf::RenderWindow m_window;

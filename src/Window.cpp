@@ -53,9 +53,8 @@ void Window::drawLevelMenuPage()
 {
 }
 
-void Window::drawGame(DataDisplay& dataDisplay, Board* board)
+void Window::drawGame(GameScreen& gameScreen)
 {
-	dataDisplay.draw(m_window);
-	board->draw(m_window);
+	gameScreen.draw(m_window);
 }
 

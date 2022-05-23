@@ -3,7 +3,7 @@
 const b2Vec2 gravity = b2Vec2(0.0f, 10.0f);
 
 Controller::Controller() 
-	: m_window(), m_homePage(), m_dataDisplay(), m_currPage(Page::HomePage), m_currPlayer(0)
+	: m_window(), m_homePage(), m_currPage(Page::HomePage), m_currPlayer(0)
 {
 	auto world = std::make_unique<b2World>(gravity);
 
@@ -14,7 +14,7 @@ void Controller::run()
 {
 	srand(time(NULL));
 
-	m_dataDisplay.updateLevel(1);
+	//m_dataDisplay.updateLevel(1);
 
 	//setGameIcon(window);
 	
@@ -85,6 +85,7 @@ void Controller::processEventsHome(sf::Event event)
 
 void Controller::processEventsGame(sf::Event event)
 {
+	m_gameScreen.processEvents(event);
 }
 
 void Controller::update()
@@ -112,36 +113,11 @@ void Controller::drawCurrPage()
 		m_window.drawLevelMenuPage();
 		break;
 	case Page::Game:
-		m_window.drawGame(m_dataDisplay, &m_board);
+		m_window.drawGame(m_gameScreen);
 		break;
 	default:
 		break;
 	}
-}
-
-//move to board
-sf::Keyboard::Key Controller::handleKey()
-{
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-	{
-		m_dataDisplay.stopTimer();
-		m_currPage = Page::HomePage;
-		drawCurrPage(); // Noga: i think when we update the curr page it will go to render so we can remove it from here
-	}
-
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		return sf::Keyboard::Left;
-
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		return sf::Keyboard::Right;
-
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-		return sf::Keyboard::Down;
-
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-		return sf::Keyboard::Up;
-
-	return sf::Keyboard::T;
 }
 
 //T:move to board

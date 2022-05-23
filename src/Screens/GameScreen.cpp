@@ -1,36 +1,43 @@
-#include "GameBoard.h"
+#include "Screens/GameScreen.h"
 
 
-GameBoard::GameBoard()
+GameScreen::GameScreen()
+    : m_activePlayer(PlayerType::Heavy)
 {
 }
 
 //-----------------------------------------------------------------
 
-void GameBoard::draw(sf::RenderWindow& window)
+void GameScreen::draw(sf::RenderWindow& window)
 {
 	m_board.draw(window);
 	m_dataDisplay.draw(window);
 }
 
-//-----------------------------------------------------------------
-
-Btns GameBoard::handleClick(const sf::Event& event, GameStatus& status)
+void GameScreen::processEvents(sf::Event event)
 {
-
+    switch (event.type)
+    {
+    case sf::Event::KeyReleased:
+    {
+        if (event.key.code == sf::Keyboard::P)
+        {
+            m_activePlayer = PlayerType((int(m_activePlayer) + 1) % 3);
+            //std::cout <<"active: " <<  int(m_activePlayer) << std::endl;
+        }
+        break;
+    }
+    case sf::Event::MouseButtonReleased:
+        //m_dataDisplay.handleClick();
+        break;
+    default:
+        break;
+    }
 }
 
 //-----------------------------------------------------------------
 
-void GameBoard::handleHover(sf::Vector2f location)
-{
-
-}
-
-
-//-----------------------------------------------------------------
-
-void GameBoard::update(float deltaTime)
+void GameScreen::update(float deltaTime)
 {
 
 }

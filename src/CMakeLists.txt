@@ -9,6 +9,9 @@
                                               "GameObjects.cpp"
                                               "LevelMenu.cpp"
                                               "Screens/HomePageScreen.cpp"
+                                              "Screens/GameScreen.cpp"
+                                              "Screens/LevelMenuScreen.cpp"
+
                                               "Resources.cpp"
                                               "Timer.cpp"
 

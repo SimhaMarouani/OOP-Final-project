@@ -2,10 +2,9 @@
 
 #include "box2d/box2d.h"
 
-#include "Board.h"
 #include "Window.h"
 #include "Screens/HomePageScreen.h"
-#include "DataDisplay.h"
+#include "Screens/GameScreen.h"
 
 #include "Utilities.h"
 #include "Macros.h"
@@ -35,7 +34,6 @@ private:
 	void update();
 	void render();
 	void drawCurrPage();
-	sf::Keyboard::Key handleKey();
 
 private:
 	int m_currPlayer; //TODO: move to gameScreen
@@ -49,8 +47,7 @@ private:
 	//=== Screens
 	HomePageScreen m_homePage;
 	//Noga: add gameScreen
-	Board m_board;
-	DataDisplay m_dataDisplay;
+	GameScreen m_gameScreen;
 
 	//TODO: create levelMenuScreen
 

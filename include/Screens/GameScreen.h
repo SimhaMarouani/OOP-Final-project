@@ -5,16 +5,24 @@
 
 #include "DataDisplay.h"
 
-class GameBoard {
+class GameScreen {
 public:
-	GameBoard();
+	GameScreen();
 	void draw(sf::RenderWindow& window);
-	Btns handleClick(const sf::Event& event, GameStatus& status);
-	void handleHover(sf::Vector2f location);
+	void processEvents(sf::Event event);
+
 	void update(float deltaTime);
 
 private:
+
+	enum class PlayerType
+	{
+		Heavy = 0,
+		Simple,
+		Light
+	};
+
 	Board m_board;
 	DataDisplay m_dataDisplay;
-
+	PlayerType m_activePlayer;
 };
