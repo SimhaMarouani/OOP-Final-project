@@ -1,18 +1,18 @@
 #pragma once
-#include <memory>
-#include <vector>
-#include <typeinfo>
 
 #include "box2d/box2d.h"
 
 #include "Board.h"
 #include "Window.h"
-#include "Menu.h"
+#include "Screens/HomePageScreen.h"
 #include "DataDisplay.h"
 
 #include "Utilities.h"
 #include "Macros.h"
 
+#include <memory>
+#include <vector>
+#include <typeinfo>
 
 class Controller
 {
@@ -30,26 +30,31 @@ public:
 private:
 	void processEvents();
 	void processEventsHome(sf::Event event);
+	void processEventsGame(sf::Event event);
 
 	void update();
 	void render();
 	void drawCurrPage();
-
-
-private:
 	sf::Keyboard::Key handleKey();
 
+private:
+	int m_currPlayer; //TODO: move to gameScreen
+	Window m_window;
+	b2BodyDef m_groundBodyDef; // Define the ground body
+
+	sf::Clock m_timer;
 
 	Page m_currPage;
-	Menu m_homePage;
-	
+
+	//=== Screens
+	HomePageScreen m_homePage;
+	//Noga: add gameScreen
 	Board m_board;
-	Window m_window;
 	DataDisplay m_dataDisplay;
 
-	b2BodyDef m_groundBodyDef;		// Define the ground body
+	//TODO: create levelMenuScreen
 
-	std::unique_ptr<Players> m_playersVec[3];
+	//TODO: move to gameScreen
+	//std::unique_ptr<Players> m_playersVec[3];
 
-	int m_currPlayer;
 };

@@ -9,7 +9,7 @@ enum class Page
 	Game
 };
 
-//buttons in home page = Menu
+//buttons in home page = HomePageScreen
 enum class HomeButtonType
 {
 	Start = 0,

@@ -5,7 +5,7 @@
 #include "Utilities.h"
 
 class Controller;
-class Menu;
+class HomePageScreen;
 
 class Window
 {
@@ -17,7 +17,7 @@ public:
     void close();
     void clear(sf::Color color = sf::Color::Color::White);
     void display();
-    void drawHomePage(Menu &homePage); //Noga: first page
+    void drawHomePage(HomePageScreen &homePage); //Noga: first page
     void drawLevelMenuPage(); //Noga: after click start the user choose level
     void drawGame(DataDisplay& dataDisplay, Board* board); //Noga: the game game like the level you know
 

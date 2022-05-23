@@ -10,7 +10,6 @@
 
 class Controller;
 
-
 class Board 
 {
 public:

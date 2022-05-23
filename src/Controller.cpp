@@ -12,20 +12,17 @@ Controller::Controller()
 
 void Controller::run()
 {
-
 	srand(time(NULL));
 
 	m_dataDisplay.updateLevel(1);
 
 	//setGameIcon(window);
-	//GameBoard gameBoard(MAX_BLOCK_TILES);
 	
 	while (m_window.isOpen())
 	{
 		processEvents(); //events
-		update(); //updates of data
+		update(); //updates of data CLOCK AND DELTA TIME HERE
 		render(); //draw
-		
 	}
 }
 
@@ -41,8 +38,8 @@ void Controller::exit()
 
 void Controller::processEvents()
 {
-	sf::Clock clock;
-	
+	sf::Clock clock; //T: I think timer needs to be member
+
 	if (auto event = sf::Event{}; m_window.pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
@@ -56,13 +53,11 @@ void Controller::processEvents()
 		case Page::LevelMenu:
 
 		case Page::Game:
-			//handleKey();
-			m_playersVec[m_currPlayer]->setDirection(handleKey());
-			const auto deltaTime = clock.restart();
-			m_playersVec[m_currPlayer]->move(deltaTime.asSeconds());
+			processEventsGame(event);
+			
 			break;
-		/*default:
-			break;*/
+		default:
+			break;
 		}
 	}
 }
@@ -88,8 +83,15 @@ void Controller::processEventsHome(sf::Event event)
 	}
 }
 
+void Controller::processEventsGame(sf::Event event)
+{
+}
+
 void Controller::update()
 {
+	sf::Time deltaTime = m_timer.restart();
+	//move, update etc.
+	//gameBoard.update(deltaTime.asSeconds());
 }
 
 void Controller::render()
@@ -117,6 +119,7 @@ void Controller::drawCurrPage()
 	}
 }
 
+//move to board
 sf::Keyboard::Key Controller::handleKey()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -141,10 +144,10 @@ sf::Keyboard::Key Controller::handleKey()
 	return sf::Keyboard::T;
 }
 
-
+//T:move to board
 void Controller::createPlayersVec(/*char type, sf::Vector2f position, sf::Vector2f size*/)
 {
-	m_playersVec[int(Elements::simplePlayer)] = (std::make_unique<Simple>(sf::Vector2f(300, 600)/*, m_board*/));
-	m_playersVec[int(Elements::heavyPlayer )] = (std::make_unique<Heavy	>(sf::Vector2f(500, 600)/*, m_board*/));
-	m_playersVec[int(Elements::lightPlayer )] = (std::make_unique<Light	>(sf::Vector2f(1000, 600)/*, m_board*/));
+	//m_playersVec[int(Elements::simplePlayer)] = (std::make_unique<Simple>(sf::Vector2f(300, 600)/*, m_board*/));
+	//m_playersVec[int(Elements::heavyPlayer )] = (std::make_unique<Heavy	>(sf::Vector2f(500, 600)/*, m_board*/));
+	//m_playersVec[int(Elements::lightPlayer )] = (std::make_unique<Light	>(sf::Vector2f(1000, 600)/*, m_board*/));
 }

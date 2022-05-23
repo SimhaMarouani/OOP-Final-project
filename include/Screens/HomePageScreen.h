@@ -12,10 +12,10 @@
 class Window;
 
 //HomeMenu
-class Menu 
+class HomePageScreen
 {
 public:
-	Menu();
+	HomePageScreen();
 	void draw(sf::RenderWindow &window);
 	HomeButtonType handleClick(sf::Event event, Controller& controller);
 

@@ -1,7 +1,7 @@
-#include "Menu.h"
+#include "Screens/HomePageScreen.h"
 #include "Controller.h"
 
-Menu::Menu()
+HomePageScreen::HomePageScreen()
 {
 	//m_buttons.resize(int(ButtonType::Exit) + 1);
 	m_buttons.emplace_back(Button(HOME_BTN_SIZE));
@@ -43,7 +43,7 @@ Menu::Menu()
 	//--------------------------------------------------
 }
 
-void Menu::draw(sf::RenderWindow& window)
+void HomePageScreen::draw(sf::RenderWindow& window)
 {
 	for (auto& b : m_buttons)
 	{
@@ -58,7 +58,7 @@ void Menu::draw(sf::RenderWindow& window)
 }
 
 //Noga: we can delete the return and change this function to void
-HomeButtonType Menu::handleClick(sf::Event event, Controller &controller)
+HomeButtonType HomePageScreen::handleClick(sf::Event event, Controller &controller)
 {
 	if (m_buttons[(int)HomeButtonType::Start].isContain(event))
 	{

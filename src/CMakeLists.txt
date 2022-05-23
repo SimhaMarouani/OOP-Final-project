@@ -8,7 +8,7 @@
                                               "Button.cpp"
                                               "GameObjects.cpp"
                                               "LevelMenu.cpp"
-                                              "Menu.cpp"
+                                              "Screens/HomePageScreen.cpp"
                                               "Resources.cpp"
                                               "Timer.cpp"
 

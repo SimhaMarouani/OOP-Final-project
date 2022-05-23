@@ -4,6 +4,7 @@
 Window::Window()
     : m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), GAME_TITLE, sf::Style::Close | sf::Style::Titlebar)
 {
+	m_window.setFramerateLimit(60);
 	m_menuBackground.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
 	m_menuBackground.setTexture(Resources::instance().getBackground(Backgrounds::menu));
 }
@@ -37,12 +38,12 @@ void Window::display()
 	m_window.display();
 }
 
-// add template T = Menu LevelMenu Game
+// add template T = HomePageScreen LevelMenu Game
 // in header file:
 //template <class T>
 //void Window::drawHomePage(T& homePage) { t.draw() }
 
-void Window::drawHomePage(Menu& homePage)
+void Window::drawHomePage(HomePageScreen& homePage)
 {
 	m_window.draw(m_menuBackground);
 	homePage.draw(m_window);
