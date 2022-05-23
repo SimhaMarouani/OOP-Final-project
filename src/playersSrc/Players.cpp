@@ -39,9 +39,9 @@ void Players::setDirection(sf::Keyboard::Key key)
         m_direction = sf::Vector2f(0, 1);
         break;
 
-  /*  default:
+    default:
         m_direction = sf::Vector2f(0, 0);
-        break;*/
+        break;
     }
 }
 

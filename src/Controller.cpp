@@ -56,15 +56,15 @@ void Controller::processEvents()
 		case Page::LevelMenu:
 
 		case Page::Game:
-
-		default:
+			//handleKey();
+			m_playersVec[m_currPlayer]->setDirection(handleKey());
+			const auto deltaTime = clock.restart();
+			m_playersVec[m_currPlayer]->move(deltaTime.asSeconds());
 			break;
+		/*default:
+			break;*/
 		}
 	}
-	handleKey();
-	/*m_playersVec[m_currPlayer]->setDirection(handleKey());
-		const auto deltaTime = clock.restart();
-		m_playersVec[m_currPlayer]->move(deltaTime.asSeconds())*/;
 }
 
 void Controller::processEventsHome(sf::Event event)
@@ -137,12 +137,14 @@ sf::Keyboard::Key Controller::handleKey()
 
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		return sf::Keyboard::Up;
+
+	return sf::Keyboard::T;
 }
 
 
-void Controller::createPlayersVec(char type, sf::Vector2f position, sf::Vector2f size)
+void Controller::createPlayersVec(/*char type, sf::Vector2f position, sf::Vector2f size*/)
 {
-	m_playersVec[int(Elements::simplePlayer)] = (std::make_unique<Simple>(/*position, size, m_board*/));
-	m_playersVec[int(Elements::heavyPlayer)] = (std::make_unique<Heavy>(/*position, size, m_board*/));
-	m_playersVec[int(Elements::lightPlayer)] = (std::make_unique<Light>(/*position, size, m_board*/));
+	m_playersVec[int(Elements::simplePlayer)] = (std::make_unique<Simple>(sf::Vector2f(300, 600)/*, m_board*/));
+	m_playersVec[int(Elements::heavyPlayer )] = (std::make_unique<Heavy	>(sf::Vector2f(500, 600)/*, m_board*/));
+	m_playersVec[int(Elements::lightPlayer )] = (std::make_unique<Light	>(sf::Vector2f(1000, 600)/*, m_board*/));
 }

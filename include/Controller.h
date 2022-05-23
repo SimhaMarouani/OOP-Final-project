@@ -24,7 +24,7 @@ public:
 	void updatePage(Page page);
 	void exit();
 
-	void createPlayersVec(char type, sf::Vector2f position, sf::Vector2f size);
+	void createPlayersVec(/*char type, sf::Vector2f position, sf::Vector2f size*/);
 
 
 private:

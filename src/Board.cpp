@@ -1,4 +1,5 @@
 #include "Board.h"
+#include "Controller.h"
 
 
 Board::Board() 
@@ -16,7 +17,7 @@ void Board::draw(sf::RenderWindow& window)
 	m_simplePlayer.draw(window);
 }
 
-//void Board::createObject(Controller& controller)
-//{
-//	controller.createPlayersVec();
-//}
+void Board::createObject(Controller& controller)
+{
+	controller.createPlayersVec();
+}
