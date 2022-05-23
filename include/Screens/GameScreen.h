@@ -24,5 +24,5 @@ private:
 
 	Board m_board;
 	DataDisplay m_dataDisplay;
-	PlayerType m_activePlayer;
+	Player m_activePlayer;
 };

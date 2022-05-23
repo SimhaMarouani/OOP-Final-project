@@ -181,9 +181,9 @@ void Resources::loadBackgroundTextures()
 void Resources::loadPlayers()
 {
 	m_players.resize(NUM_OF_PLAYERS);
-	if (!m_players[(int)Player::PolarBear].loadFromFile("polar-bear.png")
-				|| !m_players[(int)Player::Penguin].loadFromFile("penguin.png")
-				|| !m_players[(int)Player::Deer].loadFromFile("deer.png"))
+	if (!m_players[(int)Player::Heavy].loadFromFile("polar-bear.png")
+				|| !m_players[(int)Player::Light].loadFromFile("penguin.png")
+				|| !m_players[(int)Player::Simple].loadFromFile("deer.png"))
 			{
 				std::cerr << "error loading player textures from file";
 			}

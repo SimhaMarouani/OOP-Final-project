@@ -1,11 +1,11 @@
 #include "playersInclude/Heavy.h"
 
 Heavy::Heavy()
-	:Players(Player::PolarBear)
+	:Players(Player::Heavy)
 {
 }
 
 Heavy::Heavy(sf::Vector2f position/*, Board& board*/)
-	:Players(Player::PolarBear)
+	:Players(Player::Heavy)
 {
 }

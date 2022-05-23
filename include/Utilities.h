@@ -28,9 +28,9 @@ enum class Backgrounds
 	help
 };
 
-enum class Elements
+enum class Player
 {
-	simplePlayer,
-	heavyPlayer,
-	lightPlayer,
+	Heavy = 0,
+	Simple,
+	Light
 };

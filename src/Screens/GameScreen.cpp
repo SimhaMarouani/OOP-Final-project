@@ -2,7 +2,7 @@
 
 
 GameScreen::GameScreen()
-    : m_activePlayer(PlayerType::Heavy)
+    : m_activePlayer(Player::Heavy)
 {
 }
 
@@ -22,7 +22,7 @@ void GameScreen::processEvents(sf::Event event)
     {
         if (event.key.code == sf::Keyboard::P)
         {
-            m_activePlayer = PlayerType((int(m_activePlayer) + 1) % 3);
+            m_activePlayer = Player((int(m_activePlayer) + 1) % 3);
             //std::cout <<"active: " <<  int(m_activePlayer) << std::endl;
         }
         break;
