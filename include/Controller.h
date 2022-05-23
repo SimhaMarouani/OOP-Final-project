@@ -23,9 +23,6 @@ public:
 	void updatePage(Page page);
 	void exit();
 
-	void createPlayersVec(/*char type, sf::Vector2f position, sf::Vector2f size*/);
-
-
 private:
 	void processEvents();
 	void processEventsHome(sf::Event event);
@@ -45,13 +42,9 @@ private:
 	Page m_currPage;
 
 	//=== Screens
-	HomePageScreen m_homePage;
-	//Noga: add gameScreen
+	HomePageScreen m_homePageScreen;
 	GameScreen m_gameScreen;
 
 	//TODO: create levelMenuScreen
-
-	//TODO: move to gameScreen
-	//std::unique_ptr<Players> m_playersVec[3];
 
 };

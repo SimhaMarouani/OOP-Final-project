@@ -16,7 +16,6 @@ public:
 	Board();
 
 	void draw(sf::RenderWindow& window);
-	void createObject(Controller& controller);
 
 //	void createBoard();
 

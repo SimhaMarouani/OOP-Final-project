@@ -2,7 +2,7 @@
 #include "Controller.h"
 
 
-Board::Board() 
+Board::Board()
 {
 	//init players positions (function in gameObject?)
 	m_heavyPlayer.setPostition(sf::Vector2f(300, 600));
@@ -15,9 +15,4 @@ void Board::draw(sf::RenderWindow& window)
 	m_heavyPlayer.draw(window);
 	m_lightPlayer.draw(window);
 	m_simplePlayer.draw(window);
-}
-
-void Board::createObject(Controller& controller)
-{
-	controller.createPlayersVec();
 }

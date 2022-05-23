@@ -3,7 +3,7 @@
 const b2Vec2 gravity = b2Vec2(0.0f, 10.0f);
 
 Controller::Controller() 
-	: m_window(), m_homePage(), m_currPage(Page::HomePage), m_currPlayer(0)
+	: m_window(), m_homePageScreen(), m_currPage(Page::HomePage), m_currPlayer(0)
 {
 	auto world = std::make_unique<b2World>(gravity);
 
@@ -51,7 +51,7 @@ void Controller::processEvents()
 			processEventsHome(event);
 			break;
 		case Page::LevelMenu:
-
+			break;
 		case Page::Game:
 			processEventsGame(event);
 			
@@ -64,11 +64,12 @@ void Controller::processEvents()
 
 void Controller::processEventsHome(sf::Event event)
 {
+
 	switch (event.type)
 	{
 	case sf::Event::MouseButtonReleased:
 	{
-		m_homePage.handleClick(event, *this);
+		m_homePageScreen.handleClick(event, *this);
 		break;
 	}
 	case sf::Event::MouseMoved:
@@ -107,7 +108,7 @@ void Controller::drawCurrPage()
 	switch (m_currPage)
 	{
 	case Page::HomePage:
-		m_window.drawHomePage(m_homePage);
+		m_window.drawHomePage(m_homePageScreen);
 		break;
 	case Page::LevelMenu:
 		m_window.drawLevelMenuPage();
@@ -118,12 +119,4 @@ void Controller::drawCurrPage()
 	default:
 		break;
 	}
-}
-
-//T:move to board
-void Controller::createPlayersVec(/*char type, sf::Vector2f position, sf::Vector2f size*/)
-{
-	//m_playersVec[int(Elements::simplePlayer)] = (std::make_unique<Simple>(sf::Vector2f(300, 600)/*, m_board*/));
-	//m_playersVec[int(Elements::heavyPlayer )] = (std::make_unique<Heavy	>(sf::Vector2f(500, 600)/*, m_board*/));
-	//m_playersVec[int(Elements::lightPlayer )] = (std::make_unique<Light	>(sf::Vector2f(1000, 600)/*, m_board*/));
 }
