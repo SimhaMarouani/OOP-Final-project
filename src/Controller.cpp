@@ -36,6 +36,11 @@ void Controller::exit()
 	m_window.close();
 }
 
+void Controller::resetTimer()
+{
+	m_gameScreen.resetTimer();
+}
+
 void Controller::processEvents()
 {
 	sf::Clock clock; //T: I think timer needs to be member

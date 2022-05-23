@@ -1,6 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <string>
+
+#include "Timer.h"
+
 #include "Resources.h"
 #include "Macros.h"
 
@@ -13,26 +16,20 @@ public:
     DataDisplay();
 	~DataDisplay();
 	void draw(sf::RenderWindow& window);
-	void updateLevel(int level);
-	void decreaseTime();
-	void stopTimer();
-	void continueTimer();
-	bool isTimerStopped() const;
-	void startTimer();
+
+	//Time functiona
+	void resetTimer();
 
 private:
-	void updateTime();
 
-	sf::Clock m_Timer;
-	sf::Time m_stageTime;
+	void calcTime(int& sec, int& min)const;
 
-	float m_stageTimeSec;
+	void drawTime(sf::RenderWindow& window);
+	Timer m_timer;
 
-	bool m_stopTimer;
-
-	sf::RectangleShape m_barBackground;
+	sf::RectangleShape m_barBackground; //Noga: still not in use
 
 	sf::Text m_scoreText;
-	sf::Text m_stageTimeText;
+	sf::Text m_timerText;
 	sf::Text m_levelText;
 };

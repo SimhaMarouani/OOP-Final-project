@@ -57,33 +57,29 @@ void HomePageScreen::draw(sf::RenderWindow& window)
 	window.draw(m_exitText);
 }
 
-//Noga: we can delete the return and change this function to void
-HomeButtonType HomePageScreen::handleClick(sf::Event event, Controller &controller)
+void HomePageScreen::handleClick(sf::Event event, Controller &controller)
 {
 	if (m_buttons[(int)HomeButtonType::Start].isContain(event))
 	{
 		std::cout << "Button clicked: start\n";
 		controller.updatePage(Page::Game);
-		//controller.startGame();
-		return HomeButtonType::Start;
+		controller.resetTimer();
+		
 	}
 	else if (m_buttons[(int)HomeButtonType::Help].isContain(event))
 	{
 		std::cout << "Button clicked: help\n";
 		//controller.openHelp()
-		return HomeButtonType::Help;
+		
 	}
 	else if (m_buttons[(int)HomeButtonType::Settings].isContain(event))
 	{
 		std::cout << "Button clicked: settings\n";
 		//controller.openSettings();
-		return HomeButtonType::Settings;
 	}
 	else if (m_buttons[(int)HomeButtonType::Exit].isContain(event))
 	{
 		std::cout << "Button clicked: exit byeeeeeeeeeeeeeeee\n";
 		controller.exit();
-		return HomeButtonType::Exit;
 	}
-	else return HomeButtonType::None;
 }

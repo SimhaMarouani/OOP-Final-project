@@ -41,3 +41,8 @@ void GameScreen::update(float deltaTime)
 {
 
 }
+
+void GameScreen::resetTimer()
+{
+    m_dataDisplay.resetTimer();
+}

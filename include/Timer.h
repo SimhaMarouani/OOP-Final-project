@@ -8,7 +8,7 @@
 class Timer
 {
 public:
-	Timer(int time);
+	Timer();
 	~Timer() = default;
 
 	//Set Functions
@@ -19,11 +19,9 @@ public:
 	//Access Functions
 	sf::Time getElapsed()const;
 	float getTime()const;
-	//timer_type getType()const;
 
 private:
 	sf::Clock m_clock;
 	sf::Time m_time;
-	//timer_type m_timerType;
 };
 

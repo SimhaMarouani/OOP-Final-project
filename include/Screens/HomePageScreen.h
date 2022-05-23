@@ -17,8 +17,7 @@ class HomePageScreen
 public:
 	HomePageScreen();
 	void draw(sf::RenderWindow &window);
-	HomeButtonType handleClick(sf::Event event, Controller& controller);
-
+	void handleClick(sf::Event event, Controller& controller);
 
 private:
 	std::vector<Button> m_buttons;

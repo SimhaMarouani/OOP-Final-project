@@ -13,6 +13,7 @@ public:
 
 	void update(float deltaTime);
 
+	void resetTimer();
 private:
 
 	enum class PlayerType

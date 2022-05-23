@@ -23,6 +23,9 @@ public:
 	void updatePage(Page page);
 	void exit();
 
+	void resetTimer();
+
+
 private:
 	void processEvents();
 	void processEventsHome(sf::Event event);
