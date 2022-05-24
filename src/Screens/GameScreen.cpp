@@ -1,3 +1,4 @@
+#include "..\..\include\Screens\GameScreen.h"
 #include "Screens/GameScreen.h"
 
 
@@ -60,6 +61,11 @@ void GameScreen::resetTimer()
 bool GameScreen::isEscPressed()
 {
     return m_escPressed;
+}
+
+void GameScreen::loadLevel(int level)
+{
+    //TODO: load level from file or something
 }
 
 void GameScreen::setDirection(Direction dir)

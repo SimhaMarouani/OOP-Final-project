@@ -26,6 +26,12 @@ void Controller::run()
 	}
 }
 
+void Controller::startGame(Page page, int level)
+{
+	m_gameScreen.loadLevel(level);
+	updatePage(page);
+}
+
 void Controller::updatePage(Page page)
 {
 	m_currPage = page;
@@ -54,6 +60,7 @@ void Controller::processEvents()
 			processEventsHome(event);
 			break;
 		case Page::LevelMenu:
+			processEventsLevelMenu(event);
 			break;
 		case Page::Game:
 			processEventsGame(event);
@@ -90,14 +97,36 @@ void Controller::processEventsHome(sf::Event event)
 	}
 }
 
+void Controller::processEventsLevelMenu(sf::Event event)
+{
+	switch (event.type)
+	{
+	case sf::Event::MouseButtonReleased:
+	{
+		m_levelMenuScreen.handleClick(event, *this);
+		break;
+	}
+	case sf::Event::MouseMoved:
+	{
+		/*sf::Vector2f location = window.mapPixelToCoords(
+			{ event.mouseMove.x, event.mouseMove.y });
+		gameBoard.handleHover(location);*/
+		break;
+	}
+	default:
+		break;
+	}
+}
+
 void Controller::processEventsGame(sf::Event event)
 {
 	m_gameScreen.processEvents(event);
 
+	//Noga: maybe we can move this to m_gameScreen.processEvents?
 	if (m_gameScreen.isEscPressed())
 	{
 		m_currPage = Page::HomePage;
-		drawCurrPage();
+		//drawCurrPage(); //Noga: we can put this in comments because here we just update the page and after that its already calls to 'render' = draw all
 	}
 }
 
@@ -134,7 +163,7 @@ void Controller::drawCurrPage()
 		m_window.drawHomePage(m_homePageScreen);
 		break;
 	case Page::LevelMenu:
-		m_window.drawLevelMenuPage();
+		m_window.drawLevelMenuPage(m_levelMenuScreen);
 		break;
 	case Page::Game:
 		m_window.drawGame(m_gameScreen);

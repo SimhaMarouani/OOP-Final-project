@@ -49,8 +49,9 @@ void Window::drawHomePage(HomePageScreen& homePage)
 	homePage.draw(m_window);
 }
 
-void Window::drawLevelMenuPage()
+void Window::drawLevelMenuPage(LevelMenuScreen & levelMenuScreen)
 {
+	levelMenuScreen.draw(m_window);
 }
 
 void Window::drawGame(GameScreen& gameScreen)

@@ -4,6 +4,7 @@
 
 #include "Window.h"
 #include "Screens/HomePageScreen.h"
+#include "Screens/LevelMenuScreen.h"
 #include "Screens/GameScreen.h"
 
 #include "Utilities.h"
@@ -20,6 +21,7 @@ public:
 
 	void run();
 	
+	void startGame(Page page, int level);
 	void updatePage(Page page);
 	void exit();
 
@@ -29,6 +31,7 @@ public:
 private:
 	void processEvents();
 	void processEventsHome(sf::Event event);
+	void processEventsLevelMenu(sf::Event event);
 	void processEventsGame(sf::Event event);
 
 	void update();
@@ -49,6 +52,7 @@ private:
 
 	//=== Screens
 	HomePageScreen m_homePageScreen;
+	LevelMenuScreen m_levelMenuScreen;
 	GameScreen m_gameScreen;
 
 	//TODO: create levelMenuScreen

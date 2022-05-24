@@ -14,7 +14,7 @@ public:
 
 	void resetTimer();
 	bool isEscPressed();
-
+	void loadLevel(int level);
 	void setDirection(Direction dir);
 
 private:

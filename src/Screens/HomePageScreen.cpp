@@ -62,7 +62,7 @@ void HomePageScreen::handleClick(sf::Event event, Controller &controller)
 	if (m_buttons[(int)HomeButtonType::Start].isContain(event))
 	{
 		std::cout << "Button clicked: start\n";
-		controller.updatePage(Page::Game);
+		controller.updatePage(Page::LevelMenu);
 		controller.resetTimer();
 		
 	}

@@ -6,6 +6,7 @@
 
 class Controller;
 class HomePageScreen;
+class LevelMenuScreen;
 class GameScreen;
 
 class Window
@@ -19,7 +20,7 @@ public:
     void clear(sf::Color color = sf::Color::Color::White);
     void display();
     void drawHomePage(HomePageScreen &homePage); //Noga: first page
-    void drawLevelMenuPage(); //Noga: after click start the user choose level
+    void drawLevelMenuPage(LevelMenuScreen &levelMenuScreen); //Noga: after click start the user choose level
     void drawGame(GameScreen & gameScreen); //Noga: the game game like the level you know
 
 private:
