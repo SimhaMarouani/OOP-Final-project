@@ -5,9 +5,7 @@
 Board::Board()
 {
 	//init players positions based on level file
-	m_heavyPlayer.setPostition(sf::Vector2f(0, 625));
-	m_lightPlayer.setPostition(sf::Vector2f(150, 625));
-	m_simplePlayer.setPostition(sf::Vector2f(250, 625));
+	initPlayers();
 
 	//init objects and their positions based on level file
 	m_leftblock.setSize(sf::Vector2f(400, 150));
@@ -21,20 +19,36 @@ Board::Board()
 
 void Board::draw(sf::RenderWindow& window)
 {
-	m_heavyPlayer.draw(window);
-	m_lightPlayer.draw(window);
-	m_simplePlayer.draw(window);
-
+	for (auto& movable : m_players)
+	{
+		movable.draw(window);
+	}
 	window.draw(m_leftblock);
 	window.draw(m_rightblock);
 }
 
-void Board::setActiveDirection(Direction dir)
+void Board::setActiveDirection(Direction dir, Player active)
 {
-	m_heavyPlayer.setDirection(dir);
+	m_players[(int)active].setDirection(dir);
 }
 
-void Board::moveActive(float deltaTime)
+void Board::moveActive(float deltaTime, Player active)
 {
-	m_heavyPlayer.move(deltaTime);
+	m_players[(int)active].move(deltaTime);
+}
+
+void Board::initPlayers()
+{
+	Heavy heavy;
+	Simple simple;
+	Light light;
+
+	heavy.setPostition(sf::Vector2f(0, 625));
+	light.setPostition(sf::Vector2f(150, 625));
+	simple.setPostition(sf::Vector2f(250, 625));
+
+	m_players.emplace_back(heavy);
+	m_players.emplace_back(simple);
+	m_players.emplace_back(light);
+	
 }

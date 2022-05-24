@@ -49,7 +49,7 @@ void GameScreen::processEvents(sf::Event event)
 
 void GameScreen::update(float deltaTime)
 {
-    m_board.moveActive(deltaTime);
+    m_board.moveActive(deltaTime, m_activePlayer);
 }
 
 void GameScreen::resetTimer()
@@ -64,6 +64,6 @@ bool GameScreen::isEscPressed()
 
 void GameScreen::setDirection(Direction dir)
 {
-    m_board.setActiveDirection(dir);
+    m_board.setActiveDirection(dir, m_activePlayer);
 }
 

@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "Macros.h"
-
+#include "playersInclude/Players.h"
 #include "playersInclude/Light.h"
 #include "playersInclude/Heavy.h"
 #include "playersInclude/Simple.h"
@@ -21,9 +21,11 @@ public:
 	void draw(sf::RenderWindow& window);
 
 //	void createBoard();
-	void setActiveDirection(Direction dir);
-	void moveActive(float deltaTime);
+	void setActiveDirection(Direction dir, Player active);
+	void moveActive(float deltaTime, Player active);
 private:
+
+	void initPlayers();
 	//int m_level;
 	//will change to static object vector
 	sf::RectangleShape m_leftblock;
@@ -34,7 +36,8 @@ private:
 	that we can work on them individually and
 	make sure things work
 	*/
-	Light m_lightPlayer;
+	std::vector<Players> m_players;
+	/*Light m_lightPlayer;
 	Heavy m_heavyPlayer;
-	Simple m_simplePlayer;
+	Simple m_simplePlayer;*/
 };
