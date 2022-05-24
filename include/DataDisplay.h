@@ -13,7 +13,7 @@
 class DataDisplay
 {
 public:
-    DataDisplay();
+	DataDisplay();
 	~DataDisplay();
 	void draw(sf::RenderWindow& window);
 
@@ -24,7 +24,7 @@ private:
 
 	void calcTime(int& sec, int& min)const;
 
-	void drawTime(sf::RenderWindow& window);
+	void setTimeText();
 	Timer m_timer;
 
 	sf::RectangleShape m_barBackground; //Noga: still not in use

@@ -14,6 +14,8 @@ public:
 	void update(float deltaTime);
 
 	void resetTimer();
+	bool isEscPressed();
+
 private:
 
 	enum class PlayerType
@@ -26,4 +28,6 @@ private:
 	Board m_board;
 	DataDisplay m_dataDisplay;
 	Player m_activePlayer;
+
+	bool m_escPressed;
 };

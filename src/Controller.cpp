@@ -92,6 +92,12 @@ void Controller::processEventsHome(sf::Event event)
 void Controller::processEventsGame(sf::Event event)
 {
 	m_gameScreen.processEvents(event);
+
+	if (m_gameScreen.isEscPressed())
+	{
+		m_currPage = Page::HomePage;
+		drawCurrPage();
+	}
 }
 
 void Controller::update()
