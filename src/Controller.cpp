@@ -43,8 +43,6 @@ void Controller::resetTimer()
 
 void Controller::processEvents()
 {
-	sf::Clock clock; //T: I think timer needs to be member
-
 	if (auto event = sf::Event{}; m_window.pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
@@ -65,11 +63,14 @@ void Controller::processEvents()
 			break;
 		}
 	}
+	if (m_currPage == Page::Game)
+	{
+		handleKeyboardPress();
+	}
 }
 
 void Controller::processEventsHome(sf::Event event)
 {
-
 	switch (event.type)
 	{
 	case sf::Event::MouseButtonReleased:
@@ -104,7 +105,18 @@ void Controller::update()
 {
 	sf::Time deltaTime = m_timer.restart();
 	//move, update etc.
-	//gameBoard.update(deltaTime.asSeconds());
+	switch (m_currPage)
+	{
+	case Page::HomePage:
+		break;
+	case Page::LevelMenu:
+		break;
+	case Page::Game:
+		m_gameScreen.update(deltaTime.asSeconds());
+		break;
+	default:
+		break;
+	}
 }
 
 void Controller::render()
@@ -129,5 +141,25 @@ void Controller::drawCurrPage()
 		break;
 	default:
 		break;
+	}
+}
+
+void Controller::handleKeyboardPress()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		m_gameScreen.setDirection(Direction::Left);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		m_gameScreen.setDirection(Direction::Right);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) //Tali: Up will have to be in poll event, boop
+	{
+		m_gameScreen.setDirection(Direction::Up);
+	}
+	else
+	{
+		m_gameScreen.setDirection(Direction::None);
 	}
 }

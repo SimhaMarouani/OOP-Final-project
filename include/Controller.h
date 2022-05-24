@@ -35,6 +35,9 @@ private:
 	void render();
 	void drawCurrPage();
 
+	void handleKeyboardPress();
+
+
 private:
 	int m_currPlayer; //TODO: move to gameScreen
 	Window m_window;

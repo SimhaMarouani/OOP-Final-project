@@ -34,3 +34,11 @@ enum class Player
 	Simple,
 	Light
 };
+
+enum class Direction
+{
+	Up,
+	Right,
+	Left,
+	None
+};

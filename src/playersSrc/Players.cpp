@@ -6,7 +6,7 @@ Players::Players()
 Players::Players(Player type)
 {
 	m_icon.setTexture(*Resources::instance().getPlayerTexture(type));
-	m_icon.setScale(sf::Vector2f(0.7, 0.7));
+	m_icon.setScale(sf::Vector2f(0.5, 0.5));
 }
 
 void Players::draw(sf::RenderWindow& window)
@@ -19,33 +19,27 @@ void Players::setPostition(sf::Vector2f pos)
 	m_icon.setPosition(pos);
 }
 
-void Players::setDirection(sf::Keyboard::Key key)
+sf::Vector2f Players::getDirection()
 {
-    switch (key)
+    switch (m_direction)
     {
-    case sf::Keyboard::Key::Left:
-        m_direction = sf::Vector2f(-1, 0);
-        break;
-
-    case sf::Keyboard::Key::Right:
-        m_direction = sf::Vector2f(1, 0);
-        break;
-
-    case sf::Keyboard::Key::Up:
-        m_direction = sf::Vector2f(0, -1);
-        break;
-
-    case sf::Keyboard::Key::Down:
-        m_direction = sf::Vector2f(0, 1);
-        break;
-
+    case Direction::Left:
+        return sf::Vector2f(-1, 0);
+    case Direction::Right:
+        return sf::Vector2f(1, 0);
+    case Direction::Up:
+        return sf::Vector2f(0, -1);
     default:
-        m_direction = sf::Vector2f(0, 0);
-        break;
+        return sf::Vector2f(0, 0);
     }
 }
 
 void Players::move(float deltaTime)
 {
-    m_icon.move(m_direction * m_speedPerSecond * deltaTime);
+    m_icon.move(getDirection() * m_speedPerSecond * deltaTime);
+}
+
+void Players::setDirection(Direction dir)
+{
+    m_direction = dir;
 }

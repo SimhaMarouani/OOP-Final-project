@@ -2,7 +2,6 @@
 #include <SFML/Graphics.hpp>
 
 #include "Board.h"
-
 #include "DataDisplay.h"
 
 class GameScreen {
@@ -16,14 +15,10 @@ public:
 	void resetTimer();
 	bool isEscPressed();
 
+	void setDirection(Direction dir);
+
 private:
 
-	enum class PlayerType
-	{
-		Heavy = 0,
-		Simple,
-		Light
-	};
 
 	Board m_board;
 	DataDisplay m_dataDisplay;

@@ -1,14 +1,16 @@
 #pragma once
 #include "GameObjects.h"
-#include "Controller.h"
+
 
 class StaticObjects : public GameObjects
 {
 public:
 	StaticObjects();
-	
-//	void move(Controller& controller) {};
+
+	void setPostition(sf::Vector2f pos);
+	void draw(sf::RenderWindow& window);
 
 private:
+	sf::RectangleShape m_shape;
 
 };

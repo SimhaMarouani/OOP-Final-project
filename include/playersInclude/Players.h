@@ -1,9 +1,7 @@
 #pragma once
 #include "GameObjects.h"
 #include "Macros.h"
-//#include "Utilities.h"
-//#include "Controller.h"
-
+#include "Utilities.h"
 
 class Players : public GameObjects
 {
@@ -12,7 +10,8 @@ public:
 	Players(Player type);
 
 	void setPostition(sf::Vector2f pos);
-	void setDirection(sf::Keyboard::Key key);
+	sf::Vector2f getDirection();
+	void setDirection(Direction dir);
 
 	void draw(sf::RenderWindow& window);
 	void move(float deltaTime);
@@ -21,10 +20,12 @@ public:
 //	void move(Controller& controller) {};
 
 private:
-	sf::Sprite m_icon;
+	sf::Sprite m_icon; //Tali: Move to GameObjects? then will have to make access functions
 
-	sf::Vector2f m_direction;
+	//sf::Vector2f m_direction;
 
 	float m_speedPerSecond = BASE_SPEED;
+
+	Direction m_direction;
 
 };
