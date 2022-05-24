@@ -28,6 +28,7 @@ void Controller::run()
 
 void Controller::startGame(Page page, int level)
 {
+	m_gameScreen.resetTimer();
 	m_gameScreen.loadLevel(level);
 	updatePage(page);
 }
@@ -42,6 +43,7 @@ void Controller::exit()
 	m_window.close();
 }
 
+//Noga: not in use - i think we can delete it maybe (?? ? ?    :|   ? )
 void Controller::resetTimer()
 {
 	m_gameScreen.resetTimer();
