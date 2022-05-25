@@ -94,6 +94,7 @@ void DataDisplay::handleClick(sf::Event event)
 		if (m_players[i].isContain(event))
 		{
 			m_players[i].setOutline(sf::Color::Black, 4);
+			m_pressedPlayer = i;
 			std::cout << "pressed player " << i << std::endl;
 		}
 		else
@@ -101,6 +102,11 @@ void DataDisplay::handleClick(sf::Event event)
 			m_players[i].setOutline(sf::Color::White, 0);
 		}
 	}
+}
+
+int DataDisplay::getCurrPlayer()
+{
+	return m_pressedPlayer;
 }
 //
 //void DataDisplay::handleHover(const sf::Vector2f& location)

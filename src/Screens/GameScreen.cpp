@@ -39,6 +39,7 @@ void GameScreen::processEvents(sf::Event event)
     }
     case sf::Event::MouseButtonReleased:
         m_dataDisplay.handleClick(event);
+        m_activePlayer = Player(m_dataDisplay.getCurrPlayer());
         break;
 
     default:

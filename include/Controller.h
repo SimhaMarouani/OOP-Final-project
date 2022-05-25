@@ -33,15 +33,17 @@ private:
 	void processEventsHome(sf::Event event);
 	void processEventsLevelMenu(sf::Event event);
 	void processEventsGame(sf::Event event);
-
 	void update();
 	void render();
 	void drawCurrPage();
 
 	void handleKeyboardPress();
+	
+	void setWorld();
+	float m_timeStep = 1.0f / 60.0f;
+	int32 m_velocityIterations = 8;
+	int32 m_positionIterations = 3;
 
-
-private:
 	int m_currPlayer; //TODO: move to gameScreen
 	Window m_window;
 	b2BodyDef m_groundBodyDef; // Define the ground body
@@ -49,7 +51,7 @@ private:
 	sf::Clock m_timer;
 
 	Page m_currPage;
-
+	std::unique_ptr<b2World> m_world;
 	//=== Screens
 	HomePageScreen m_homePageScreen;
 	LevelMenuScreen m_levelMenuScreen;

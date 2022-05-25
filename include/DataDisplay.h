@@ -11,7 +11,6 @@
 
 //class Controller;
 
-
 class DataDisplay
 {
 public:
@@ -19,8 +18,8 @@ public:
 	~DataDisplay();
 	void draw(sf::RenderWindow& window);
 	void handleClick(sf::Event event);
-	void handleHover(const sf::Vector2f& location);
-
+	//void handleHover(const sf::Vector2f& location);
+	int getCurrPlayer();
 
 	//Time functiona
 	void resetTimer();
@@ -44,4 +43,5 @@ private:
 	Button m_lightPlayerButton;
 
 	std::vector<Button> m_players;
+	int m_pressedPlayer;
 };

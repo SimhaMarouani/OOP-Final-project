@@ -1,13 +1,10 @@
 #include "Controller.h"
 
-const b2Vec2 gravity = b2Vec2(0.0f, 10.0f);
 
 Controller::Controller() 
 	: m_window(), m_homePageScreen(), m_currPage(Page::HomePage), m_currPlayer(0)
 {
-	auto world = std::make_unique<b2World>(gravity);
-
-	m_groundBodyDef.position.Set(0.0f, -10.0f);
+	setWorld();
 }
 
 void Controller::run()
@@ -26,6 +23,12 @@ void Controller::run()
 	}
 }
 
+void Controller::setWorld()
+{
+	b2Vec2 gravity(0.0f, 10.0f);
+	m_world = std::make_unique<b2World>(gravity);
+}
+//_______________________________________
 void Controller::startGame(Page page, int level)
 {
 	m_gameScreen.resetTimer();
