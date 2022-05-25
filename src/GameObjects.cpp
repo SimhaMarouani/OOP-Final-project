@@ -11,7 +11,7 @@ void GameObjects::setBox2d(std::unique_ptr<b2World> &world, b2BodyType bodyType)
     b2BodyDef bodyDef;
     bodyDef.type = bodyType;
 
-    bodyDef.position.Set(getPosition().x, getPosition().y);
+    //bodyDef.position.Set(getPosition().x, getPosition().y);
 
     m_body = world->CreateBody(&bodyDef);
 

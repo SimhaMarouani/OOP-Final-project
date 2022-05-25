@@ -20,6 +20,7 @@ public:
 	void handleClick(sf::Event event);
 	//void handleHover(const sf::Vector2f& location);
 	int getCurrPlayer();
+	void setCurrPlayer(int activePlayer);
 
 	//Time functiona
 	void resetTimer();

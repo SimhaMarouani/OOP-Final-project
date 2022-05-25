@@ -6,6 +6,8 @@ DataDisplay::DataDisplay(/*int level*/)
 {
 	createPlayersButtons();
 	createTexts();
+	m_players[0].setOutline(sf::Color::Black, 4);
+	m_pressedPlayer = 0;
 }
 
 DataDisplay::~DataDisplay()
@@ -107,6 +109,20 @@ void DataDisplay::handleClick(sf::Event event)
 int DataDisplay::getCurrPlayer()
 {
 	return m_pressedPlayer;
+}
+
+void DataDisplay::setCurrPlayer(int activePlayer)
+{
+	for (int i = 0; i < m_players.size(); i++)
+	{
+		if (i == activePlayer)
+		{
+			m_players[activePlayer].setOutline(sf::Color::Black, 4);
+			m_pressedPlayer = activePlayer;
+		}
+		else
+			m_players[i].setOutline(sf::Color::White, 0);
+	}
 }
 //
 //void DataDisplay::handleHover(const sf::Vector2f& location)
