@@ -6,12 +6,12 @@ GameObjects::GameObjects()
 }
 
 void GameObjects::setBox2d(std::unique_ptr<b2World> &world, b2BodyType bodyType)
-{
+{ 
     // BodyDef
     b2BodyDef bodyDef;
     bodyDef.type = bodyType;
 
-    //bodyDef.position.Set(getPosition().x, getPosition().y);
+    bodyDef.position.Set(getPosition().x, getPosition().y);
 
     m_body = world->CreateBody(&bodyDef);
 
@@ -35,4 +35,9 @@ float GameObjects::getWidth()
 float GameObjects::getHeight()
 {
     return m_sprite.getGlobalBounds().height;
+}
+
+sf::Vector2f GameObjects::getPosition()
+{
+    return m_sprite.getPosition();
 }

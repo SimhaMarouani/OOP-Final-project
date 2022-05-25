@@ -17,6 +17,7 @@ public:
 private:
     float getWidth();
     float getHeight();
+    sf::Vector2f getPosition();
     void setBox2d(std::unique_ptr<b2World> &world, b2BodyType);
     b2Body* m_body = nullptr;
    
