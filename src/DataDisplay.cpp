@@ -2,12 +2,11 @@
 #include "Controller.h"
 
 DataDisplay::DataDisplay(/*int level*/)
-	: m_players(3, Button(sf::Vector2f(60.f, 60.f)))
+	: m_players(3, Button(sf::Vector2f(60.f, 60.f))), m_pressedPlayer(0)
 {
 	createPlayersButtons();
 	createTexts();
-	m_players[0].setOutline(sf::Color::Black, 4);
-	m_pressedPlayer = 0;
+	m_players[m_pressedPlayer].setOutline(sf::Color::Black, 4);
 }
 
 DataDisplay::~DataDisplay()
