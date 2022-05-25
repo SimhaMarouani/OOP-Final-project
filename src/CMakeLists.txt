@@ -6,6 +6,7 @@
                                               "Animation.cpp"
                                               "Audio.cpp"
                                               "Button.cpp"
+                                              "TitledButton.cpp"
                                               "GameObjects.cpp"
                                               "LevelMenu.cpp"
                                               "Screens/HomePageScreen.cpp"

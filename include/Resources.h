@@ -36,6 +36,7 @@ private:
 	//Load Functions
 	void loadFont();
 	void loadBackgroundTextures();
+
 	//void loadBtnTextures();
 	//void loadCatSpriteSheet();
 	//void loadWinPageTexture();
@@ -59,7 +60,7 @@ private:
 
 	sf::Texture m_backgroundTextures[NUM_OF_TEXTURES];
 	std::string m_fileBackground[NUM_OF_TEXTURES]{ "Menu-background.jpg"/*, "GameBackground.png", "win.png", "Lose.png", "Help.png"*/ };
-
+	
 	//std::vector<sf::Texture> m_btnTextures;
 
 	////Audio

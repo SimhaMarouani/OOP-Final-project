@@ -26,3 +26,15 @@ void Button::setColor(sf::Color color)
 {
 	m_button.setFillColor(color);
 }
+
+void Button::setSize(sf::Vector2f size)
+{
+	m_button.setSize(size);
+}
+
+void Button::setOutline(sf::Color color, float thickness)
+{
+	m_button.setOutlineThickness(thickness);
+	m_button.setOutlineColor(color);
+}
+

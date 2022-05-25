@@ -38,8 +38,9 @@ void GameScreen::processEvents(sf::Event event)
         break;
     }
     case sf::Event::MouseButtonReleased:
-        //m_dataDisplay.handleClick();
+        m_dataDisplay.handleClick(event);
         break;
+
     default:
         break;
     }
