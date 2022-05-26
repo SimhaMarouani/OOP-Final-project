@@ -3,6 +3,8 @@
 Button::Button(/*sf::Texture &texture,*/ sf::Vector2f size)
 	: m_button(size)
 {
+	
+	//m_button.setScale(size.x / m_button.getTexture()->getSize().x, size.y / m_button.getTexture()->getSize().y); //Noga: when we use sprite - send size in px and calc the right scale
 	//m_button.setTexture(&texture);
 	//m_button.setScale(sf::Vector2f(1, 1));
 }

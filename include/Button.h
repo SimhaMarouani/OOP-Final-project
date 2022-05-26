@@ -8,9 +8,9 @@
 
 class Button {
 public:
-	Button(/*sf::Texture &texture, */sf::Vector2f size);
+	Button(/*sf::Texture &texture, */sf::Vector2f size); //Noga: we need to use the tecture here after we replace the rectangle with sprite
 	Button() {};
-	~Button() {};
+	virtual ~Button() = default;
 	void draw(sf::RenderWindow& window);
 
 	//get

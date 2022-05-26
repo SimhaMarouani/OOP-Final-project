@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "Window.h"
-#include "Button.h"
+#include "TitledButton.h"
 
 #include "Macros.h"
 #include "Utilities.h"
@@ -20,6 +20,6 @@ public:
 	void handleClick(sf::Event event, Controller& controller);
 
 private:
-	std::vector<Button> m_levels;
+	std::vector<TitledButton> m_levels;
 
 };

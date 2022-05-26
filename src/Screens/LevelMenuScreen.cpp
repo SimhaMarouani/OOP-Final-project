@@ -2,8 +2,9 @@
 #include "Controller.h" // Noga: I dont know why but if I put this line to header file bad things happened
 
 LevelMenuScreen::LevelMenuScreen()
-	: m_levels(10 , Button(sf::Vector2f(150.f, 150.f)))
+	: m_levels(10 , TitledButton(sf::Vector2f(150.f, 150.f), "level1", 40.f, sf::Vector2f(0.f,0.f), *Resources::instance().getFont()))
 {
+
 	//TODO: move to const and init function
 	float size = 150.f;
 	float margin = 80.f;
@@ -19,7 +20,10 @@ LevelMenuScreen::LevelMenuScreen()
 
 		std::cout << (size + margin) * float(x) << " , " << (size + margin) * float(y) << std::endl;
 		m_levels[i].setPosition({ offset_x + (size + margin) * float(x), offset_y + (size + margin) * float(y) });
-		m_levels[i].setColor(sf::Color(30, 30 , 30));
+		m_levels[i].setTextPosition({ offset_x + (size + margin) * float(x), offset_y + (size + margin) * float(y) });
+		m_levels[i].setColor(sf::Color(30, 30, 30));
+		m_levels[i].setTextColor(sf::Color(130, 200, 130));
+		m_levels[i].setTextString("level" + std::to_string(i + 1));
 	}
 }
 
