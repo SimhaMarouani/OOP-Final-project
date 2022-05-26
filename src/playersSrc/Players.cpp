@@ -7,6 +7,7 @@ Players::Players(Player type)
 {
 	m_icon.setTexture(*Resources::instance().getPlayerTexture(type));
 	m_icon.setScale(sf::Vector2f(0.5, 0.5));
+	m_icon.setOrigin(m_icon.getGlobalBounds().width, m_icon.getGlobalBounds().height);
 }
 
 void Players::draw(sf::RenderWindow& window)
@@ -57,9 +58,11 @@ void Players::createBody(b2World* world/*, b2BodyType bodyType*/)
 	// BodyDef
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
-
-	bodyDef.position.Set(/*10.0f, 10.0f*/getPosition().x, getPosition().y);
-
+	float x = getPosition().x;
+	float y = getPosition().y;
+	
+	bodyDef.position.Set(/*10.0f, 10.0f*/x, y);
+	//m_body->ApplyLinearImpulseToCenter(b2Vec2(x / 100, y / 100), true);
 	m_body = world->CreateBody(&bodyDef);
 
 	b2PolygonShape BoxShape;

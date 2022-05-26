@@ -79,9 +79,9 @@ void World::initPlayers()
 	Simple simple;
 	Light light;
 
-	heavy.setPostition(sf::Vector2f(0, 625));
-	light.setPostition(sf::Vector2f(150, 625));
-	simple.setPostition(sf::Vector2f(250, 625));
+	heavy.setPostition(sf::Vector2f(100, 600));
+	light.setPostition(sf::Vector2f(200, 600));
+	simple.setPostition(sf::Vector2f(300, 600));
 
 	heavy.createBody(&m_box2dWorld);
 	light.createBody(&m_box2dWorld);
