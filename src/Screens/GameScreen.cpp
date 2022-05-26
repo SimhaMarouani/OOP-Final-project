@@ -40,7 +40,6 @@ void GameScreen::processEvents(sf::Event event)
         else if (event.key.code == sf::Keyboard::Escape)
         {
             m_escPressed = true;
-            //simha: Need to pause the timer
         }
 
         break;

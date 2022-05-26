@@ -45,17 +45,8 @@ private:
 	sf::RectangleShape m_rightblock;
 
 	b2World m_box2dWorld;
-	/*
-	Tali: for now i didnt put in vector so
-	that we can work on them individually and
-	make sure things work
-	*/
+
 	std::vector<Players> m_players;
-	/*Light m_lightPlayer;
-	Heavy m_heavyPlayer;
-	Simple m_simplePlayer;*/
-
-
 
 	b2Body* groundBody;
 	sf::RectangleShape ground;
