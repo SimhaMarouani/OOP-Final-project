@@ -34,7 +34,7 @@ protected:
 
 	float m_speedPerSecond = BASE_SPEED;
 
-	//Direction m_direction;
+	Direction m_direction;
 	b2Vec2 getDirection(Direction dir);
 
 };
