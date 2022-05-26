@@ -11,8 +11,15 @@ GameScreen::GameScreen()
 
 void GameScreen::draw(sf::RenderWindow& window)
 {
-	m_board.draw(window);
+	m_world.draw(window);
 	m_dataDisplay.draw(window);
+
+    DebugDraw d(&window);
+    uint32 flags = b2Draw::e_shapeBit;
+    d.SetFlags(flags);
+    m_world.getWorld()->SetDebugDraw(&d);
+    m_world.getWorld()->DebugDraw();
+    
 }
 
 void GameScreen::processEvents(sf::Event event)
@@ -53,7 +60,7 @@ void GameScreen::processEvents(sf::Event event)
 
 void GameScreen::update(float deltaTime)
 {
-    m_board.moveActive(deltaTime, m_activePlayer);
+    m_world.moveActive(deltaTime, m_activePlayer);
 }
 
 void GameScreen::resetTimer()
@@ -73,6 +80,6 @@ void GameScreen::loadLevel(int level)
 
 void GameScreen::setDirection(Direction dir)
 {
-    m_board.setActiveDirection(dir, m_activePlayer);
+    m_world.setActiveDirection(dir, m_activePlayer);
 }
 

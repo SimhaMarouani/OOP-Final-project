@@ -1,7 +1,7 @@
 ﻿target_include_directories (${CMAKE_PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR})
 target_sources (${CMAKE_PROJECT_NAME} PRIVATE 
                                               "Controller.h"
-                                              "Board.h"
+                                              "World.h"
                                               "Window.h"
                                               "DataDisplay.h"
                                               "Animation.h"
@@ -28,4 +28,5 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE
                                               "objectsInclude/Switch.h"
                                                 
                                               "Macros.h"
+                                              "DebugDraw.h"
                                               )

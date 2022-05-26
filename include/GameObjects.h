@@ -11,15 +11,15 @@ public:
     GameObjects();
 
     virtual ~GameObjects() = default;
-
+    sf::Vector2f  convertB2VecToVec2f(b2Vec2 vec2f) const;
 //    void draw(sf::RenderWindow& window) = 0;
 
-private:
+protected:
+    void setBox2d(std::unique_ptr<b2World> &world, b2BodyType);
+    b2Body* m_body = nullptr;
     float getWidth();
     float getHeight();
     sf::Vector2f getPosition();
-    void setBox2d(std::unique_ptr<b2World> &world, b2BodyType);
-    b2Body* m_body = nullptr;
    
     sf::Sprite m_sprite;
 };

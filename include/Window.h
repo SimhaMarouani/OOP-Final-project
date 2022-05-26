@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Board.h"
+#include "World.h"
 #include "DataDisplay.h"
 #include "Utilities.h"
 
@@ -23,6 +23,11 @@ public:
     void drawLevelMenuPage(LevelMenuScreen &levelMenuScreen); //Noga: after click start the user choose level
     void drawGame(GameScreen & gameScreen); //Noga: the game game like the level you know
 
+
+    sf::RenderWindow* PTRW()
+    {
+        return &m_window;
+    }
 private:
     sf::RenderWindow m_window;
     sf::RectangleShape m_menuBackground;

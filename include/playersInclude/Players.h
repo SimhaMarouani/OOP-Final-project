@@ -10,7 +10,6 @@ public:
 	Players(Player type);
 
 	void setPostition(sf::Vector2f pos);
-	sf::Vector2f getDirection();
 	void setDirection(Direction dir);
 
 	void draw(sf::RenderWindow& window);
@@ -19,13 +18,23 @@ public:
 	//virtual void move(float deltaTime) = 0;
 //	void move(Controller& controller) {};
 
-private:
+	void createBody(b2World* world);
+	
+	
+
+protected:
 	sf::Sprite m_icon; //Tali: Move to GameObjects? then will have to make access functions
+	b2Body* m_body = nullptr;	//simha: Move to game object
+
+	float getWidth();
+	float getHeight();
+	sf::Vector2f getPosition();
 
 	//sf::Vector2f m_direction;
 
 	float m_speedPerSecond = BASE_SPEED;
 
-	Direction m_direction;
+	//Direction m_direction;
+	b2Vec2 getDirection(Direction dir);
 
 };

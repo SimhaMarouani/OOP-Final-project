@@ -20,3 +20,4 @@ const sf::Vector2f HOME_BTN_SIZE(300, 100);
 const int NUM_OF_PLAYERS = 3;
 const int NUM_OF_TEXTURES = 1;
 const float BASE_SPEED = 130.0;
+

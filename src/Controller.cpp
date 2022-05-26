@@ -4,7 +4,7 @@
 Controller::Controller() 
 	: m_window(), m_homePageScreen(), m_currPage(Page::HomePage), m_currPlayer(0)
 {
-	setWorld();
+	//setWorld();
 }
 
 void Controller::run()
@@ -14,6 +14,7 @@ void Controller::run()
 	//m_dataDisplay.updateLevel(1);
 
 	//setGameIcon(window);
+
 	
 	while (m_window.isOpen())
 	{
@@ -22,13 +23,13 @@ void Controller::run()
 		render(); //draw
 	}
 }
+//
+//void Controller::setWorld()
+//{
+//	b2Vec2 gravity(0.0f, 10.0f);
+//	m_world = std::make_unique<b2World>(gravity);
+//}
 
-void Controller::setWorld()
-{
-	b2Vec2 gravity(0.0f, 10.0f);
-	m_world = std::make_unique<b2World>(gravity);
-}
-//_______________________________________
 void Controller::startGame(Page page, int level)
 {
 	m_gameScreen.resetTimer();
@@ -74,10 +75,9 @@ void Controller::processEvents()
 		default:
 			break;
 		}
-	}
-	if (m_currPage == Page::Game)
-	{
-		handleKeyboardPress();
+
+		if (m_currPage == Page::Game)
+			handleKeyboardPress();
 	}
 }
 
@@ -133,11 +133,14 @@ void Controller::processEventsGame(sf::Event event)
 		m_currPage = Page::HomePage;
 		//drawCurrPage(); //Noga: we can put this in comments because here we just update the page and after that its already calls to 'render' = draw all
 	}
+
 }
 
 void Controller::update()
 {
-	sf::Time deltaTime = m_timer.restart();
+	
+	//sf::Clock clock;
+	float deltaTime = m_timer.restart().asSeconds();
 	//move, update etc.
 	switch (m_currPage)
 	{
@@ -146,7 +149,8 @@ void Controller::update()
 	case Page::LevelMenu:
 		break;
 	case Page::Game:
-		m_gameScreen.update(deltaTime.asSeconds());
+		m_gameScreen.update(deltaTime);
+		//m_world.getWorld()->DebugDraw();
 		break;
 	default:
 		break;
@@ -162,6 +166,7 @@ void Controller::render()
 
 void Controller::drawCurrPage()
 {
+
 	switch (m_currPage)
 	{
 	case Page::HomePage:

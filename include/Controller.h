@@ -40,18 +40,18 @@ private:
 	void handleKeyboardPress();
 	
 	void setWorld();
-	float m_timeStep = 1.0f / 60.0f;
+	/*float m_timeStep = 1.0f / 60.0f;
 	int32 m_velocityIterations = 8;
-	int32 m_positionIterations = 3;
+	int32 m_positionIterations = 3;*/
 
 	int m_currPlayer; //TODO: move to gameScreen
 	Window m_window;
-	b2BodyDef m_groundBodyDef; // Define the ground body
-
+	//b2BodyDef m_groundBodyDef; // Define the ground body
+	//sf::RenderWindow 
 	sf::Clock m_timer;
-
+	World m_world;
 	Page m_currPage;
-	std::unique_ptr<b2World> m_world;
+	//std::unique_ptr<b2World> m_world;
 	//=== Screens
 	HomePageScreen m_homePageScreen;
 	LevelMenuScreen m_levelMenuScreen;

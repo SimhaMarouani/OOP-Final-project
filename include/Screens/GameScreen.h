@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-#include "Board.h"
+#include "World.h"
 #include "DataDisplay.h"
 
 class GameScreen {
@@ -20,7 +20,7 @@ public:
 private:
 
 
-	Board m_board;
+	World m_world;
 	DataDisplay m_dataDisplay;
 	Player m_activePlayer;
 
