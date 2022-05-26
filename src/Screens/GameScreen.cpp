@@ -1,5 +1,5 @@
-#include "..\..\include\Screens\GameScreen.h"
 #include "Screens/GameScreen.h"
+#include "Controller.h"
 
 
 GameScreen::GameScreen()
@@ -22,7 +22,7 @@ void GameScreen::draw(sf::RenderWindow& window)
     
 }
 
-void GameScreen::processEvents(sf::Event event)
+void GameScreen::processEvents(sf::Event event, Controller &controller)
 {
     m_escPressed = false;
 
@@ -39,7 +39,7 @@ void GameScreen::processEvents(sf::Event event)
 
         else if (event.key.code == sf::Keyboard::Escape)
         {
-            m_escPressed = true;
+            controller.updatePage(Page::HomePage);
         }
 
         break;

@@ -10,11 +10,6 @@ Controller::Controller()
 void Controller::run()
 {
 	srand(time(NULL));
-
-	//m_dataDisplay.updateLevel(1);
-
-	//setGameIcon(window);
-
 	
 	while (m_window.isOpen())
 	{
@@ -23,7 +18,7 @@ void Controller::run()
 		render(); //draw
 	}
 }
-//
+
 //void Controller::setWorld()
 //{
 //	b2Vec2 gravity(0.0f, 10.0f);
@@ -47,12 +42,6 @@ void Controller::exit()
 	m_window.close();
 }
 
-//Noga: not in use - i think we can delete it maybe (?? ? ?    :|   ? )
-void Controller::resetTimer()
-{
-	m_gameScreen.resetTimer();
-}
-
 void Controller::processEvents()
 {
 	if (auto event = sf::Event{}; m_window.pollEvent(event))
@@ -63,14 +52,13 @@ void Controller::processEvents()
 		switch (m_currPage)
 		{
 		case Page::HomePage:
-			processEventsHome(event);
+			m_homePageScreen.processEvents(event, *this);
 			break;
 		case Page::LevelMenu:
-			processEventsLevelMenu(event);
+			m_levelMenuScreen.processEvents(event, *this);
 			break;
 		case Page::Game:
-			processEventsGame(event);
-			
+			m_gameScreen.processEvents(event, *this);
 			break;
 		default:
 			break;
@@ -81,65 +69,21 @@ void Controller::processEvents()
 	}
 }
 
-void Controller::processEventsHome(sf::Event event)
-{
-	switch (event.type)
-	{
-	case sf::Event::MouseButtonReleased:
-	{
-		m_homePageScreen.handleClick(event, *this);
-		break;
-	}
-	case sf::Event::MouseMoved:
-	{
-		/*sf::Vector2f location = window.mapPixelToCoords(
-			{ event.mouseMove.x, event.mouseMove.y });
-		gameBoard.handleHover(location);*/
-		break;
-	}
-	default:
-		break;
-	}
-}
-
-void Controller::processEventsLevelMenu(sf::Event event)
-{
-	switch (event.type)
-	{
-	case sf::Event::MouseButtonReleased:
-	{
-		m_levelMenuScreen.handleClick(event, *this);
-		break;
-	}
-	case sf::Event::MouseMoved:
-	{
-		/*sf::Vector2f location = window.mapPixelToCoords(
-			{ event.mouseMove.x, event.mouseMove.y });
-		gameBoard.handleHover(location);*/
-		break;
-	}
-	default:
-		break;
-	}
-}
-
-void Controller::processEventsGame(sf::Event event)
-{
-	m_gameScreen.processEvents(event);
-
-	//Noga: maybe we can move this to m_gameScreen.processEvents?
-	if (m_gameScreen.isEscPressed())
-	{
-		m_currPage = Page::HomePage;
-		//drawCurrPage(); //Noga: we can put this in comments because here we just update the page and after that its already calls to 'render' = draw all
-	}
-
-}
+//void Controller::processEventsHome(sf::Event event)
+//{
+//	
+//}
+//
+//void Controller::processEventsLevelMenu(sf::Event event)
+//{
+//}
+//
+//void Controller::processEventsGame(sf::Event event)
+//{
+//}
 
 void Controller::update()
 {
-	
-	//sf::Clock clock;
 	float deltaTime = m_timer.restart().asSeconds();
 	//move, update etc.
 	switch (m_currPage)
@@ -166,7 +110,6 @@ void Controller::render()
 
 void Controller::drawCurrPage()
 {
-
 	switch (m_currPage)
 	{
 	case Page::HomePage:

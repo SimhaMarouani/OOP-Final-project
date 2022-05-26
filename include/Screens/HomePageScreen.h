@@ -17,6 +17,7 @@ class HomePageScreen
 public:
 	HomePageScreen();
 	void draw(sf::RenderWindow &window);
+	void processEvents(sf::Event event, Controller& controller);
 	void handleClick(sf::Event event, Controller& controller);
 
 private:

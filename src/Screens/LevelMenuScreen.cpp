@@ -31,6 +31,27 @@ void LevelMenuScreen::draw(sf::RenderWindow& window)
 	}
 }
 
+void LevelMenuScreen::processEvents(sf::Event event, Controller& controller)
+{
+	switch (event.type)
+	{
+	case sf::Event::MouseButtonReleased:
+	{
+		handleClick(event, controller);
+		break;
+	}
+	case sf::Event::MouseMoved:
+	{
+		/*sf::Vector2f location = window.mapPixelToCoords(
+			{ event.mouseMove.x, event.mouseMove.y });
+		gameBoard.handleHover(location);*/
+		break;
+	}
+	default:
+		break;
+	}
+}
+
 void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)
 {
 	for (int i = 0; i < m_levels.size(); i++)

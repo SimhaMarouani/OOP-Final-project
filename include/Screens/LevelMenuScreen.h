@@ -16,6 +16,7 @@ class LevelMenuScreen
 public:
 	LevelMenuScreen();
 	void draw(sf::RenderWindow& window);
+	void processEvents(sf::Event event, Controller& controller);
 	void handleClick(sf::Event event, Controller& controller);
 
 private:

@@ -57,6 +57,27 @@ void HomePageScreen::draw(sf::RenderWindow& window)
 	window.draw(m_exitText);
 }
 
+void HomePageScreen::processEvents(sf::Event event, Controller& controller)
+{
+	switch (event.type)
+	{
+	case sf::Event::MouseButtonReleased:
+	{
+		handleClick(event, controller);
+		break;
+	}
+	case sf::Event::MouseMoved:
+	{
+		/*sf::Vector2f location = window.mapPixelToCoords(
+			{ event.mouseMove.x, event.mouseMove.y });
+		gameBoard.handleHover(location);*/
+		break;
+	}
+	default:
+		break;
+	}
+}
+
 void HomePageScreen::handleClick(sf::Event event, Controller &controller)
 {
 	if (m_buttons[(int)HomeButtonType::Start].isContain(event))

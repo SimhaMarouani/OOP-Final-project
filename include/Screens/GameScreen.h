@@ -8,7 +8,7 @@ class GameScreen {
 public:
 	GameScreen();
 	void draw(sf::RenderWindow& window);
-	void processEvents(sf::Event event);
+	void processEvents(sf::Event event, Controller& controller);
 
 	void update(float deltaTime);
 
