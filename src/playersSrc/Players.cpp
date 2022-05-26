@@ -24,10 +24,10 @@ void Players::move(float deltaTime)
 {
 	//if (getDirection() != b2Vec2(0, 0))
 	{
-		//m_body->ApplyLinearImpulseToCenter(getDirection(), true);
 		auto pos = m_body->GetTransform();
 		//m_body->SetTransform(b2Vec2(pos * deltaTime * m_speedPerSecond), 0);
 		m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
+		//m_body->ApplyLinearImpulseToCenter(getDirection(m_dire), true);
 		//m_icon.setPosition(float(m_body->GetPosition().x / 100), float(m_body->GetPosition().y / 100));
 		//m_icon.move(convertB2VecToVec2f(getDirection()) * m_speedPerSecond * deltaTime);
 	}
