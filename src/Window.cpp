@@ -5,8 +5,8 @@ Window::Window()
     : m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), GAME_TITLE, sf::Style::Close | sf::Style::Titlebar)
 {
 	m_window.setFramerateLimit(60);
-	m_menuBackground.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
-	m_menuBackground.setTexture(Resources::instance().getBackground(Backgrounds::menu));
+	//m_menuBackground.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
+	//m_menuBackground.setTexture(Resources::instance().getBackground(Backgrounds::menu));
 }
 
 void Window::update()
@@ -38,24 +38,19 @@ void Window::display()
 	m_window.display();
 }
 
-// add template T = HomePageScreen LevelMenu Game
-// in header file:
-//template <class T>
-//void Window::drawHomePage(T& homePage) { t.draw() }
-
-void Window::drawHomePage(HomePageScreen& homePage)
-{
-	m_window.draw(m_menuBackground);
-	homePage.draw(m_window);
-}
-
-void Window::drawLevelMenuPage(LevelMenuScreen & levelMenuScreen)
-{
-	levelMenuScreen.draw(m_window);
-}
-
-void Window::drawGame(GameScreen& gameScreen)
-{
-	gameScreen.draw(m_window);
-}
-
+//Noga: we can delete those draw functions and use the template function
+//void Window::drawHomePage(HomePageScreen& homePage)
+//{
+//	//m_window.draw(m_menuBackground);
+//	homePage.draw(m_window);
+//}
+//
+//void Window::drawLevelMenuPage(LevelMenuScreen & levelMenuScreen)
+//{
+//	levelMenuScreen.draw(m_window);
+//}
+//
+//void Window::drawGame(GameScreen& gameScreen)
+//{
+//	gameScreen.draw(m_window);
+//}

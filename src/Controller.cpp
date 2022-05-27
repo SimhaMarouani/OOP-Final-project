@@ -110,16 +110,20 @@ void Controller::render()
 
 void Controller::drawCurrPage()
 {
+	//Noga: maybe we can put all the screens class in vector or something and then we wont need all the switch case ? 
 	switch (m_currPage)
 	{
 	case Page::HomePage:
-		m_window.drawHomePage(m_homePageScreen);
+		m_window.drawScreen(m_homePageScreen); //Noga: this is the template function - works. 
+		//m_window.drawHomePage(m_homePageScreen);
 		break;
 	case Page::LevelMenu:
-		m_window.drawLevelMenuPage(m_levelMenuScreen);
+		m_window.drawScreen(m_levelMenuScreen); 
+		//m_window.drawLevelMenuPage(m_levelMenuScreen);
 		break;
 	case Page::Game:
-		m_window.drawGame(m_gameScreen);
+		m_window.drawScreen(m_gameScreen); 
+		//m_window.drawGame(m_gameScreen);
 		break;
 	default:
 		break;

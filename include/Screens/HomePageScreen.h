@@ -30,6 +30,8 @@ private:
 	sf::Text m_exitText;
 	//--------------------------
 
+	sf::RectangleShape m_background;
+
 	/*sf::RectangleShape m_startGameBtn;
 	sf::RectangleShape m_helpBtn;
 	sf::RectangleShape m_settingsBtn;

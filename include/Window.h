@@ -19,18 +19,21 @@ public:
     void close();
     void clear(sf::Color color = sf::Color::Color::White);
     void display();
-    void drawHomePage(HomePageScreen &homePage); 
-    void drawLevelMenuPage(LevelMenuScreen &levelMenuScreen);
-    void drawGame(GameScreen & gameScreen);
+    //void drawHomePage(HomePageScreen &homePage); 
+    //void drawLevelMenuPage(LevelMenuScreen &levelMenuScreen);
+    //void drawGame(GameScreen & gameScreen);
 
+    template <class T>
+    void drawScreen(T& t) { t.draw(m_window); }
 
+    //Noga: ? what what 
     sf::RenderWindow* PTRW()
     {
         return &m_window;
     }
 private:
     sf::RenderWindow m_window;
-    sf::RectangleShape m_menuBackground;
+    //sf::RectangleShape m_menuBackground;
     //sf::RectangleShape m_winBackground;
     //sf::RectangleShape m_loseBackground;
 };

@@ -3,6 +3,9 @@
 
 HomePageScreen::HomePageScreen()
 {
+	m_background.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
+	m_background.setTexture(Resources::instance().getBackground(Backgrounds::menu));
+	// 
 	//m_buttons.resize(int(ButtonType::Exit) + 1);
 	m_buttons.emplace_back(Button(HOME_BTN_SIZE));
 	m_buttons.emplace_back(Button(HOME_BTN_SIZE));
@@ -45,6 +48,8 @@ HomePageScreen::HomePageScreen()
 
 void HomePageScreen::draw(sf::RenderWindow& window)
 {
+	window.draw(m_background);
+
 	for (auto& b : m_buttons)
 	{
 		b.draw(window);
