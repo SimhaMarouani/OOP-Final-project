@@ -14,6 +14,7 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE
                                               "Screens/HomePageScreen.h"
                                               "Screens/GameScreen.h"
                                               "Screens/LevelMenuScreen.h"
+                                              "Screens/SettingsScreen.h"
 
                                               "Resources.h"
                                               "Timer.h"

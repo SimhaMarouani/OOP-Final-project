@@ -2,7 +2,10 @@
 #include "Controller.h"
 
 HomePageScreen::HomePageScreen()
+	: m_pageStatus(PageStatus::Menu), m_helpBackground(sf::Vector2f(HELP_WIDTH, HELP_HEIGHT))
 {
+	setHelpScreen();
+
 	m_background.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
 	m_background.setTexture(Resources::instance().getBackground(Backgrounds::menu));
 	// 
@@ -50,16 +53,19 @@ void HomePageScreen::draw(sf::RenderWindow& window)
 {
 	window.draw(m_background);
 
-	for (auto& b : m_buttons)
+	switch (m_pageStatus)
 	{
-		b.draw(window);
+	case PageStatus::Help:
+		window.draw(m_helpBackground);
+		break;
+	case PageStatus::Settings:
+		m_settingsScreen.draw(window);
+		break;
+	case PageStatus::Menu:
+	default:
+		drawMenu(window);
+		break;
 	}
-	
-	//------- Temp
-	window.draw(m_startText);
-	window.draw(m_helpText);
-	window.draw(m_setText);
-	window.draw(m_exitText);
 }
 
 void HomePageScreen::processEvents(sf::Event event, Controller& controller)
@@ -85,25 +91,58 @@ void HomePageScreen::processEvents(sf::Event event, Controller& controller)
 
 void HomePageScreen::handleClick(sf::Event event, Controller &controller)
 {
-	if (m_buttons[(int)HomeButtonType::Start].isContain(event))
+	switch (m_pageStatus)
 	{
-		std::cout << "Button clicked: start\n";
-		controller.updatePage(Page::LevelMenu);
-	}
-	else if (m_buttons[(int)HomeButtonType::Help].isContain(event))
+	case HomePageScreen::PageStatus::Menu:
 	{
-		std::cout << "Button clicked: help\n";
-		//controller.openHelp()
+		if (m_buttons[(int)HomeButtonType::Start].isContain(event))
+			controller.updatePage(Page::LevelMenu);
+	
+		else if (m_buttons[(int)HomeButtonType::Help].isContain(event))
+		{
+			m_pageStatus = PageStatus::Help;
+		}
+		else if (m_buttons[(int)HomeButtonType::Settings].isContain(event))
+			m_pageStatus = PageStatus::Settings;
 		
+		else if (m_buttons[(int)HomeButtonType::Exit].isContain(event))
+			controller.exit();
+		break;
 	}
-	else if (m_buttons[(int)HomeButtonType::Settings].isContain(event))
+	case HomePageScreen::PageStatus::Help:
 	{
-		std::cout << "Button clicked: settings\n";
-		//controller.openSettings();
+		if (!m_helpBackground.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
+			m_pageStatus = PageStatus::Menu;
+		break;
 	}
-	else if (m_buttons[(int)HomeButtonType::Exit].isContain(event))
+	case HomePageScreen::PageStatus::Settings:
 	{
-		std::cout << "Button clicked: exit byeeeeeeeeeeeeeeee\n";
-		controller.exit();
+		if (!m_settingsScreen.isContain(event))
+			m_pageStatus = PageStatus::Menu;
+		break;
 	}
+	default:
+		break;
+	}
+}
+
+void HomePageScreen::setHelpScreen()
+{
+	auto offset_x = (WINDOW_HEIGHT - HELP_HEIGHT) / 2;
+	auto offset_y = (WINDOW_WIDTH - HELP_WIDTH) / 2;
+	m_helpBackground.setPosition(offset_y, offset_x);
+	m_helpBackground.setFillColor(sf::Color(164, 220, 224, 250));
+}
+
+void HomePageScreen::drawMenu(sf::RenderWindow& window)
+{
+	for (auto& b : m_buttons)
+	{
+		b.draw(window);
+	}
+	//------- Temp
+	window.draw(m_startText);
+	window.draw(m_helpText);
+	window.draw(m_setText);
+	window.draw(m_exitText);
 }

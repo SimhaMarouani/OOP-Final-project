@@ -52,11 +52,11 @@ private:
 	World m_world;
 	Page m_currPage;
 	//std::unique_ptr<b2World> m_world;
+	// 
 	//=== Screens
 	HomePageScreen m_homePageScreen;
 	LevelMenuScreen m_levelMenuScreen;
 	GameScreen m_gameScreen;
 
-	//TODO: create levelMenuScreen
 
 };

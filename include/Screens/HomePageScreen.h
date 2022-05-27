@@ -5,6 +5,7 @@
 
 #include "Button.h"
 #include "Window.h"
+#include "SettingsScreen.h"
 
 #include "Macros.h"
 #include "Utilities.h"
@@ -21,7 +22,11 @@ public:
 	void handleClick(sf::Event event, Controller& controller);
 
 private:
-	std::vector<Button> m_buttons;
+	void setHelpScreen();
+	void drawMenu(sf::RenderWindow& window);
+	SettingsScreen m_settingsScreen;
+	sf::RectangleShape m_helpBackground;
+	std::vector<Button> m_buttons; //Noga: unique ptr?
 
 	//--------Temporarley-------
 	sf::Text m_startText;
@@ -32,6 +37,14 @@ private:
 
 	sf::RectangleShape m_background;
 
+	enum class PageStatus
+	{
+		Menu,
+		Help,
+		Settings
+	};
+
+	PageStatus m_pageStatus;
 	/*sf::RectangleShape m_startGameBtn;
 	sf::RectangleShape m_helpBtn;
 	sf::RectangleShape m_settingsBtn;

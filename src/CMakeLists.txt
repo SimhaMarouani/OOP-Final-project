@@ -12,6 +12,7 @@
                                               "Screens/HomePageScreen.cpp"
                                               "Screens/GameScreen.cpp"
                                               "Screens/LevelMenuScreen.cpp"
+                                              "Screens/SettingsScreen.cpp"
 
                                               "Resources.cpp"
                                               "Timer.cpp"
