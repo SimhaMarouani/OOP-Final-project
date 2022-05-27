@@ -24,12 +24,15 @@ public:
 
 protected:
 	sf::Sprite m_icon; //Tali: Move to GameObjects? then will have to make access functions
-	b2Body* m_body = nullptr;	//simha: Move to game object
-
+	
+	//---- simha: Move to game object -----
+	b2Body* m_body = nullptr;	
 	float getWidth();
 	float getHeight();
 	sf::Vector2f getPosition();
-
+	//-------------------------------------
+	 
+	
 	//sf::Vector2f m_direction;
 
 	float m_speedPerSecond = BASE_SPEED;

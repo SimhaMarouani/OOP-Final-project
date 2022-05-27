@@ -93,6 +93,16 @@ sf::Texture* Resources::getPlayerTexture(Player player)
 	return &m_players[(int)player];
 }
 
+sf::Texture* Resources::getArrowTexture()
+{
+	if (!m_arrow.loadFromFile("arrow.png"))
+	{
+		std::cerr << "error loading arrow from file";
+	}
+
+	return &m_arrow;
+}
+
 //===============================================================//
 //							 LOAD DATA
 //===============================================================//

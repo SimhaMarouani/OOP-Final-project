@@ -14,15 +14,13 @@ const int OFFSET = 37;
 World::World()
 	:m_box2dWorld(gravity)
 {
-	//init objects and their positions based on level file
-	/*m_leftblock.setSize(sf::Vector2f(400, 150));
-	m_rightblock.setSize(sf::Vector2f(400, 150));
-	m_leftblock.setPosition(sf::Vector2f(0, WINDOW_HEIGHT - 150));
-	m_rightblock.setPosition(sf::Vector2f(WINDOW_WIDTH - 400, WINDOW_HEIGHT - 150));
-	m_leftblock.setFillColor(sf::Color::Blue);
-	m_rightblock.setFillColor(sf::Color::Blue);*/
+	m_arrow.setTexture(*Resources::instance().getArrowTexture());
+	m_arrow.setScale(sf::Vector2f(0.04, 0.04));
+	m_arrow.setOrigin(m_arrow.getGlobalBounds().width, m_arrow.getGlobalBounds().height);
+	m_arrow.setPosition(50, 50);		//Simha: i'll set the position according to the active player later
 
-		// Define the ground body.
+
+	// Define the ground body.
 	b2BodyDef groundBodyDef;
 	groundBodyDef.position.Set(0.f, WINDOW_HEIGHT - 150);
 
@@ -46,14 +44,11 @@ World::World()
 
 void World::draw(sf::RenderWindow& window)
 {
-	/*window.draw(m_leftblock);
-	window.draw(m_rightblock);*/
 	for (auto& movable : m_players)
 	{
 		movable.draw(window);
 	}
-
-	//m_box2dWorld.DebugDraw();
+	window.draw(m_arrow);
 }
 
 void World::setActiveDirection(Direction dir, Player active)
@@ -92,11 +87,3 @@ void World::initPlayers()
 	m_players.emplace_back(light);
 	
 }
-//
-//void Board::setWorld()
-//{
-//	b2Vec2 gravity(0.0f, 10.0f);
-//	m_world = std::make_unique<b2World>(gravity);
-//}
-
-//

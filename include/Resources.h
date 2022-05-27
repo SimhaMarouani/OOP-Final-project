@@ -27,6 +27,7 @@ public:
 	//sf::Image* getGameIcon();
 	//sf::SoundBuffer* getAudioClick();
 	sf::Texture* getPlayerTexture(Player player);
+	sf::Texture* getArrowTexture();
 
 private:
 	Resources();
@@ -52,7 +53,7 @@ private:
 	sf::Font m_font;
 
 	////Textures
-	//sf::Texture m_catSpriteSheet;
+	sf::Texture m_arrow;;
 	//sf::Texture m_winPageTexture;
 	//sf::Texture m_losePageTexture;
 	//sf::Image m_gameIcon;

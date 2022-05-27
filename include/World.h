@@ -45,6 +45,7 @@ private:
 	sf::RectangleShape m_rightblock;
 
 	b2World m_box2dWorld;
+	sf::Sprite m_arrow;
 
 	std::vector<Players> m_players;
 
