@@ -22,16 +22,31 @@ void Players::setPostition(sf::Vector2f pos)
 
 void Players::move(float deltaTime)
 {
-	//if (getDirection() != b2Vec2(0, 0))
+	if (getDirection(m_direction) == b2Vec2(0, 5))
 	{
-		//auto pos = m_body->GetTransform();
-		//m_body->SetTransform(b2Vec2(pos * deltaTime * m_speedPerSecond), 0);
-	//	m_body->ApplyLinearImpulseToCenter(getDirection(m_direction), true);
-		m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
-	m_body->ApplyLinearImpulseToCenter(getDirection(m_direction), true);
-		//m_icon.setPosition(float(m_body->GetPosition().x / 100), float(m_body->GetPosition().y / 100));
-		//m_icon.move(convertB2VecToVec2f(getDirection()) * m_speedPerSecond * deltaTime);
+		auto impulse = m_body->GetMass() * 5;
+		m_body->ApplyLinearImpulse(b2Vec2(0, impulse), m_body->GetWorldCenter(), true);
 	}
+	/*else
+	{*/
+		auto step = (deltaTime * m_speedPerSecond * getDirection(m_direction));
+		m_body->SetTransform(m_body->GetPosition() + step, 0);
+		m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
+		
+		
+		
+		//auto pos = m_body->GetTransform();
+		//m_body->ApplyLinearImpulseToCenter(getDirection(m_direction), true);
+		
+		//m_body->SetTransform(b2Vec2(m_icon.getPosition().x, m_icon.getPosition().y), 0);
+		//m_icon.move(convertB2VecToVec2f(getDirection(m_direction)) * m_speedPerSecond * deltaTime);
+		//m_icon.setPosition(float(m_body->GetPosition().x * 100), float(m_body->GetPosition().y * 100));
+		//m_body->ApplyLinearImpulse()
+		
+		
+		//m_body->SetTransform(b2Vec2(getDirection(m_direction) * deltaTime * m_speedPerSecond), 0);
+		//m_icon.move(convertB2VecToVec2f(getDirection()) * m_speedPerSecond * deltaTime);
+	//}
 }
 
 void Players::setDirection(Direction dir)
@@ -48,7 +63,7 @@ b2Vec2 Players::getDirection(Direction dir)
     case Direction::Right:
         return b2Vec2(1, 0);
     case Direction::Up:
-        return b2Vec2(0, -20);
+        return b2Vec2(0, -10);
     default:
         return b2Vec2(0, 0);
     }

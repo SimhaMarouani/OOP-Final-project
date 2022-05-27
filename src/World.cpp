@@ -63,11 +63,11 @@ void World::setActiveDirection(Direction dir, Player active)
 
 void World::moveActive(float deltaTime, Player active)
 {
+	
 	for (int i = 0; i < m_players.size(); i++)
 	{
 		m_box2dWorld.Step(timeStep, velocityIterations, positionIterations);
 		m_players[i].move(deltaTime);
-
 	}
 	/*m_box2dWorld.Step(timeStep, velocityIterations, positionIterations);
 	m_players[(int)active].move(deltaTime);*/

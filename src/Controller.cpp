@@ -63,10 +63,9 @@ void Controller::processEvents()
 		default:
 			break;
 		}
-
-		if (m_currPage == Page::Game)
-			handleKeyboardPress();
 	}
+	if (m_currPage == Page::Game)
+		handleKeyboardPress();
 }
 
 //void Controller::processEventsHome(sf::Event event)
