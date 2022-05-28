@@ -32,4 +32,5 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE
                                                 
                                               "Macros.h"
                                               "DebugDraw.h"
+                                              "Factory.h"
                                               )

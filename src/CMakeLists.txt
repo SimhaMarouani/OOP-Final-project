@@ -27,4 +27,6 @@
                                               "objectsSrc/StaticObjects.cpp"
                                               "objectsSrc/Stick.cpp"
                                               "objectsSrc/Switch.cpp"
+
+                                              "Factory.cpp"
                                               )

@@ -3,6 +3,7 @@
 #include "Macros.h"
 #include "Utilities.h"
 
+
 class Players : public GameObjects
 {
 public:
@@ -15,14 +16,9 @@ public:
 	void draw(sf::RenderWindow& window);
 	void move(float deltaTime);
 
-	//virtual void move(float deltaTime) = 0;
-//	void move(Controller& controller) {};
-
 	void createBody(b2World* world);
-	
-	
 
-protected:
+protected: //Tali: why protected? need change all protected members in other classes as well
 	sf::Sprite m_icon; //Tali: Move to GameObjects? then will have to make access functions
 	
 	//---- simha: Move to game object -----

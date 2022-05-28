@@ -39,21 +39,22 @@ World::World()
 	groundBody->CreateFixture(&groundBox, 0.0f);
  
 	//init players positions based on level file
-	initPlayers();
+	//initPlayers();
+	loadLevel();
 }
 
 void World::draw(sf::RenderWindow& window)
 {
 	for (auto& movable : m_players)
 	{
-		movable.draw(window);
+		movable->draw(window);
 	}
 	window.draw(m_arrow);
 }
 
 void World::setActiveDirection(Direction dir, Player active)
 {
-	m_players[(int)active].setDirection(dir);
+	m_players[(int)active]->setDirection(dir);
 }
 
 void World::moveActive(float deltaTime, Player active)
@@ -62,28 +63,60 @@ void World::moveActive(float deltaTime, Player active)
 	for (int i = 0; i < m_players.size(); i++)
 	{
 		m_box2dWorld.Step(timeStep, velocityIterations, positionIterations);
-		m_players[i].move(deltaTime);
+		m_players[i]->move(deltaTime);
 	}
 	/*m_box2dWorld.Step(timeStep, velocityIterations, positionIterations);
 	m_players[(int)active].move(deltaTime);*/
 }
 
-void World::initPlayers()
+//void World::initPlayers()
+//{
+//	Heavy heavy;
+//	Simple simple;
+//	Light light;
+//
+//	heavy.setPostition(sf::Vector2f(100, 600));
+//	light.setPostition(sf::Vector2f(250, 600));
+//	simple.setPostition(sf::Vector2f(400, 600));
+//
+//	heavy.createBody(&m_box2dWorld);
+//	light.createBody(&m_box2dWorld);
+//	simple.createBody(&m_box2dWorld);
+//
+//	m_players.emplace_back(heavy);
+//	m_players.emplace_back(simple);
+//	m_players.emplace_back(light);
+//	
+//}
+
+void World::loadLevel()
 {
-	Heavy heavy;
-	Simple simple;
-	Light light;
+	std::ifstream levelFile;
+	std::string line;
+	int counter = 0;
 
-	heavy.setPostition(sf::Vector2f(100, 600));
-	light.setPostition(sf::Vector2f(250, 600));
-	simple.setPostition(sf::Vector2f(400, 600));
+	levelFile.open("Level1.txt");
+	if (!levelFile.is_open())
+		std::cerr << "Could not open level file\n";
 
-	heavy.createBody(&m_box2dWorld);
-	light.createBody(&m_box2dWorld);
-	simple.createBody(&m_box2dWorld);
+	while (!levelFile.eof())
+	{
+		getline(levelFile, line);
+		auto p = Factory::create(line);
+		if (p)
+		{
+			//Tali: Temporary
+			if (line == "Heavy")
+				p->setPostition(sf::Vector2f(100, 600));
+			if (line == "Simple")
+				p->setPostition(sf::Vector2f(250, 600));
+			if (line == "Light")
+				p->setPostition(sf::Vector2f(400, 600));
 
-	m_players.emplace_back(heavy);
-	m_players.emplace_back(simple);
-	m_players.emplace_back(light);
-	
+			p->createBody(&m_box2dWorld);
+			m_players.emplace_back(move(p));
+
+		}
+		//Tali: maybe exception instead of if (including opening file)
+	}
 }
