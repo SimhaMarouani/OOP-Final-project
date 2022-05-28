@@ -19,6 +19,7 @@ void Players::draw(sf::RenderWindow& window)
 
 void Players::setPostition(sf::Vector2f pos)
 {
+	//Tali: add exception to vector
 	m_icon.setPosition(pos);
 }
 

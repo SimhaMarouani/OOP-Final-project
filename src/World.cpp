@@ -39,6 +39,7 @@ World::World()
 	groundBody->CreateFixture(&groundBox, 0.0f);
  
 	//init players positions based on level file
+	initPlayers();
 	try {
 		loadLevel();
 	}
@@ -81,10 +82,17 @@ void World::moveActive(float deltaTime, Player active)
 	m_players[(int)active].move(deltaTime);*/
 }
 
+void World::initPlayers()
+{
+	//add exeption if unsuccessful
+	for (int i = 0; i < NUM_OF_PLAYERS; i++)
+		m_players.emplace_back(PlayerFactory::create(PLAYERS[i]));
+}
+
 void World::loadLevel()
 {
 	std::ifstream levelFile;
-	std::string line, locX, locY;
+	std::string line, objType, locX, locY;
 	std::stringstream ssline;
 
 	levelFile.exceptions(std::ifstream::badbit);
@@ -96,19 +104,42 @@ void World::loadLevel()
 		getline(levelFile, line);
 		ssline.clear();
 		ssline.str(line);
-		ssline >> line;
+		ssline >> objType;
+		ssline >> locX >> locY;
 
-		auto p = PlayerFactory::create(line);
-		if (p)
+		if (isPlayer(objType))
 		{
-			ssline >> locX >> locY;
-
-			p->setPostition(sf::Vector2f(std::stoi(locX), std::stoi(locY)));
-			p->createBody(&m_box2dWorld);
-			m_players.emplace_back(move(p));
+			m_players[getIndPlayer(objType)]->setPostition(sf::Vector2f(std::stoi(locX), std::stoi(locY)));
+			m_players[getIndPlayer(objType)]->createBody(&m_box2dWorld);
 		}
 		else
-			throw std::invalid_argument("");
+		{
+			auto o = ObjectFactory::create(objType);
+			if (o)
+			{
+				o->setPostition(sf::Vector2f(std::stoi(locX), std::stoi(locY)));
+				//o->createBody(&m_box2dWorld);
+				m_objects.emplace_back(move(o));
+			}
+			else
+				throw std::invalid_argument("");
+		}
 	}
 	levelFile.close();
+}
+
+bool World::isPlayer(std::string type)
+{
+	//Tali: change to more generic
+	return type == PLAYERS[0]
+			|| type == PLAYERS[1]
+			|| type == PLAYERS[2];
+}
+
+int World::getIndPlayer(std::string player)
+{
+	for (int i = 0; i < NUM_OF_PLAYERS; i++)
+		if (PLAYERS[i] == player)
+			return i;
+	return 0; //Tali: maybe change to -1 or exception?
 }

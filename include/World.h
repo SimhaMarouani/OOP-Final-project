@@ -36,8 +36,10 @@ public:
 	b2World* getWorld() { return &m_box2dWorld; }
 
 private:
-
+	void initPlayers();
 	void loadLevel();
+	bool isPlayer(std::string type);
+	int getIndPlayer(std::string player);
 	
 	//will change to static object vector
 	sf::RectangleShape m_leftblock;
@@ -47,6 +49,8 @@ private:
 	sf::Sprite m_arrow;
 
 	std::vector<std::unique_ptr<Players>> m_players;
+	std::vector<std::unique_ptr<StaticObjects>> m_objects;
+
 
 	b2Body* groundBody;
 	sf::RectangleShape ground;
