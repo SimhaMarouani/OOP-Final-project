@@ -39,8 +39,20 @@ World::World()
 	groundBody->CreateFixture(&groundBox, 0.0f);
  
 	//init players positions based on level file
-	//initPlayers();
-	loadLevel();
+	try {
+		loadLevel();
+	}
+	catch (const std::ifstream::failure& e) //catches fstream error and sstream
+	{
+		std::cerr << "There was an error opening level file OR reading input\n";
+		exit(EXIT_FAILURE);
+	}
+	catch (const std::invalid_argument& e)
+	{
+		std::cerr << "There was an error opening level file\n";
+		exit(EXIT_FAILURE);
+
+	}
 }
 
 void World::draw(sf::RenderWindow& window)
@@ -69,54 +81,34 @@ void World::moveActive(float deltaTime, Player active)
 	m_players[(int)active].move(deltaTime);*/
 }
 
-//void World::initPlayers()
-//{
-//	Heavy heavy;
-//	Simple simple;
-//	Light light;
-//
-//	heavy.setPostition(sf::Vector2f(100, 600));
-//	light.setPostition(sf::Vector2f(250, 600));
-//	simple.setPostition(sf::Vector2f(400, 600));
-//
-//	heavy.createBody(&m_box2dWorld);
-//	light.createBody(&m_box2dWorld);
-//	simple.createBody(&m_box2dWorld);
-//
-//	m_players.emplace_back(heavy);
-//	m_players.emplace_back(simple);
-//	m_players.emplace_back(light);
-//	
-//}
-
 void World::loadLevel()
 {
 	std::ifstream levelFile;
-	std::string line;
-	int counter = 0;
+	std::string line, locX, locY;
+	std::stringstream ssline;
+
+	levelFile.exceptions(std::ifstream::badbit);
+	ssline.exceptions(ssline.failbit |  ssline.badbit);
 
 	levelFile.open("Level1.txt");
-	if (!levelFile.is_open())
-		std::cerr << "Could not open level file\n";
-
 	while (!levelFile.eof())
 	{
 		getline(levelFile, line);
-		auto p = Factory::create(line);
+		ssline.clear();
+		ssline.str(line);
+		ssline >> line;
+
+		auto p = PlayerFactory::create(line);
 		if (p)
 		{
-			//Tali: Temporary
-			if (line == "Heavy")
-				p->setPostition(sf::Vector2f(100, 600));
-			if (line == "Simple")
-				p->setPostition(sf::Vector2f(250, 600));
-			if (line == "Light")
-				p->setPostition(sf::Vector2f(400, 600));
+			ssline >> locX >> locY;
 
+			p->setPostition(sf::Vector2f(std::stoi(locX), std::stoi(locY)));
 			p->createBody(&m_box2dWorld);
 			m_players.emplace_back(move(p));
-
 		}
-		//Tali: maybe exception instead of if (including opening file)
+		else
+			throw std::invalid_argument("");
 	}
+	levelFile.close();
 }

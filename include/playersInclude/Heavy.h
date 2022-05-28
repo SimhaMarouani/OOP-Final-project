@@ -14,6 +14,6 @@ private:
 	//static bool m_registerit;
 
 };
-//bool Heavy::m_registerit = Factory::registerit("Heavy", []()-> std::unique_ptr<Players> {return std::make_unique<Heavy>(); });
+//bool Heavy::m_registerit = PlayerFactory::registerit("Heavy", []()-> std::unique_ptr<Players> {return std::make_unique<Heavy>(); });
 
 

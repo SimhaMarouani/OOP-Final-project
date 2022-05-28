@@ -3,6 +3,7 @@
 #include "box2d/box2d.h"
 #include <vector>
 #include <fstream>
+#include <exception>
 
 #include "Macros.h"
 #include "playersInclude/Players.h"
@@ -36,7 +37,6 @@ public:
 
 private:
 
-	//void initPlayers();
 	void loadLevel();
 	
 	//will change to static object vector

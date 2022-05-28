@@ -1,7 +1,7 @@
 #include "Factory.h"
 
 
-std::unique_ptr<Players> Factory::create(const std::string& name) {
+std::unique_ptr<Players> PlayerFactory::create(const std::string& name) {
 	static bool initial = true;
 	if (initial) {
 
@@ -12,12 +12,36 @@ std::unique_ptr<Players> Factory::create(const std::string& name) {
 		initial = false;
 	}
 
-	auto it = Factory::getMap().find(name);
-	if (it == Factory::getMap().end())
+	auto it = PlayerFactory::getMap().find(name);
+	if (it == PlayerFactory::getMap().end())
 		return nullptr;
 	return it->second();
 }
 
-void Factory::registerit(const std::string& name, pFnc f) {
-	Factory::getMap().emplace(name, f);
+void PlayerFactory::registerit(const std::string& name, pFnc f) {
+	PlayerFactory::getMap().emplace(name, f);
+}
+
+
+//=======================================================================
+		//STATIC OBJECTS FACTORY
+//=======================================================================
+
+
+std::unique_ptr<StaticObjects> ObjectFactory::create(const std::string& name) {
+	static bool initial = true;
+	if (initial) {
+
+		//registerit("Heavy", []() -> std::unique_ptr<StaticObjects> { return std::make_unique<Heavy>(); });
+		initial = false;
+	}
+
+	auto it = ObjectFactory::getObjMap().find(name);
+	if (it == ObjectFactory::getObjMap().end())
+		return nullptr;
+	return it->second();
+}
+
+void ObjectFactory::registerit(const std::string& name, pFnc f) {
+	ObjectFactory::getObjMap().emplace(name, f);
 }
