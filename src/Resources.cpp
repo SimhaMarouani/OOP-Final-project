@@ -6,13 +6,8 @@ Resources::Resources()
 {
 	loadFont();
 	loadBackgroundTextures();
-	/*loadBtnTextures();
-	loadCatSpriteSheet();
-	loadAudioClick();
-	loadWinPageTexture();
-	loadLosePageTexture();
-	loadGameIcon();*/
 	loadPlayers();
+	loadObjects();
 }
 
 
@@ -47,40 +42,6 @@ sf::Texture* Resources::getBackground(Backgrounds index)
 	return &m_backgroundTextures[int(index)];
 }
 
-//-----------------------------------------------------------------
-//
-//sf::Texture* Resources::getBtnTexture(Btns button)
-//{
-//	return &m_btnTextures[(int)button];
-//}
-//
-////-----------------------------------------------------------------
-//
-//sf::Texture* Resources::getCatSpriteSheet()
-//{
-//	return &m_catSpriteSheet;
-//}
-//
-////-----------------------------------------------------------------
-//
-//sf::Texture* Resources::getWinPageTexture()
-//{
-//	return &m_winPageTexture;
-//}
-//
-////-----------------------------------------------------------------
-//
-//sf::Texture* Resources::getLosePageTexture()
-//{
-//	return &m_losePageTexture;
-//}
-//
-//sf::Image* Resources::getGameIcon()
-//{
-//	return &m_gameIcon;
-//}
-//
-////-----------------------------------------------------------------
 //
 //sf::SoundBuffer* Resources::getAudioClick()
 //{
@@ -95,12 +56,17 @@ sf::Texture* Resources::getPlayerTexture(Player player)
 
 sf::Texture* Resources::getArrowTexture()
 {
-	if (!m_arrow.loadFromFile("arrow.png"))
+	if (!m_arrow.loadFromFile("arrow.png")) //Todo: move to load function
 	{
 		std::cerr << "error loading arrow from file";
 	}
 
 	return &m_arrow;
+}
+
+sf::Texture* Resources::getObjectTexture(Objects obj)
+{
+	return &m_objects[(int)obj];
 }
 
 //===============================================================//
@@ -126,68 +92,6 @@ void Resources::loadBackgroundTextures()
 	}
 }
 
-////-----------------------------------------------------------------
-//
-//void Resources::loadBtnTextures()
-//{
-//	m_btnTextures.resize(NUM_OF_BTNS);
-//
-//	if (!m_btnTextures[(int)Btns::NewGame].loadFromFile("new_game_btn.png")
-//		|| !m_btnTextures[(int)Btns::Undo].loadFromFile("undo_btn.png")
-//		|| !m_btnTextures[(int)Btns::Reset].loadFromFile("resart_btn.png"))
-//	{
-//		std::cerr << "error loading button textures from file";
-//	}
-//}
-//
-////-----------------------------------------------------------------
-//
-//void Resources::loadCatSpriteSheet()
-//{
-//	if (!m_catSpriteSheet.loadFromFile("cat.png"))
-//	{
-//		std::cerr << "error loading cat textures from file";
-//	}
-//}
-//
-////-----------------------------------------------------------------
-//
-//void Resources::loadWinPageTexture()
-//{
-//	if (!m_winPageTexture.loadFromFile("win_page.png"))
-//	{
-//		std::cerr << "error loading cat textures from file";
-//	}
-//}
-//
-////-----------------------------------------------------------------
-//
-//void Resources::loadLosePageTexture()
-//{
-//	if (!m_losePageTexture.loadFromFile("lose_page.png"))
-//	{
-//		std::cerr << "error loading cat textures from file";
-//	}
-//}
-//
-////-----------------------------------------------------------------
-//
-//void Resources::loadAudioClick()
-//{
-//	if (!m_audioClick.loadFromFile("click.wav"))
-//	{
-//		std::cerr << "error loading game music from file";
-//	}
-//}
-//
-//void Resources::loadGameIcon()
-//{
-//	if (!m_gameIcon.loadFromFile("GameIcon.png"))
-//	{
-//		std::cerr << "error loading game icon from file";
-//	}
-//}
-
 void Resources::loadPlayers()
 {
 	m_players.resize(NUM_OF_PLAYERS);
@@ -197,4 +101,14 @@ void Resources::loadPlayers()
 			{
 				std::cerr << "error loading player textures from file";
 			}
+}
+
+void Resources::loadObjects()
+{
+	m_objects.resize(NUM_OF_OBJS);
+
+	if (!m_objects[(int)Objects::Hay].loadFromFile("hay.png"))
+	{
+		std::cerr << "error loading player textures from file";
+	}
 }

@@ -13,6 +13,8 @@
 #include "playersInclude/Simple.h"
 #include "playersInclude/Light.h"
 #include "objectsInclude/StaticObjects.h"
+#include "objectsInclude/Box.h"
+
 
 
 class PlayerFactory {

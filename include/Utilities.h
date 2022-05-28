@@ -42,3 +42,8 @@ enum class Direction
 	Left,
 	None
 };
+
+enum class Objects
+{
+	Hay
+};

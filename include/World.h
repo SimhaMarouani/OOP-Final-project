@@ -7,9 +7,9 @@
 
 #include "Macros.h"
 #include "playersInclude/Players.h"
-#include "playersInclude/Light.h"
-#include "playersInclude/Heavy.h"
-#include "playersInclude/Simple.h"
+//#include "playersInclude/Light.h"
+//#include "playersInclude/Heavy.h"
+//#include "playersInclude/Simple.h"
 #include "objectsInclude/StaticObjects.h" //Tali: will change to appropriate object header files
 
 #include "Factory.h"
@@ -37,13 +37,9 @@ public:
 
 private:
 	void initPlayers();
-	void loadLevel();
+	void loadLevel(int levelNum);
 	bool isPlayer(std::string type);
 	int getIndPlayer(std::string player);
-	
-	//will change to static object vector
-	sf::RectangleShape m_leftblock;
-	sf::RectangleShape m_rightblock;
 
 	b2World m_box2dWorld;
 	sf::Sprite m_arrow;
@@ -53,5 +49,5 @@ private:
 
 
 	b2Body* groundBody;
-	sf::RectangleShape ground;
+	//sf::RectangleShape ground;
 };

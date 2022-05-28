@@ -41,7 +41,7 @@ World::World()
 	//init players positions based on level file
 	initPlayers();
 	try {
-		loadLevel();
+		loadLevel(1); //Tali: change to const
 	}
 	catch (const std::ifstream::failure& e) //catches fstream error and sstream
 	{
@@ -58,10 +58,15 @@ World::World()
 
 void World::draw(sf::RenderWindow& window)
 {
+	for (auto& object : m_objects)
+	{
+		object->draw(window);
+	}
 	for (auto& movable : m_players)
 	{
 		movable->draw(window);
 	}
+	
 	window.draw(m_arrow);
 }
 
@@ -86,11 +91,15 @@ void World::initPlayers()
 {
 	//add exeption if unsuccessful
 	for (int i = 0; i < NUM_OF_PLAYERS; i++)
+	{
 		m_players.emplace_back(PlayerFactory::create(PLAYERS[i]));
+		//m_players[i]->createBody(&m_box2dWorld); //Tali: if its here, positions arent updated when reading file, simha maybe you know why?
+	}
 }
 
-void World::loadLevel()
+void World::loadLevel(int levelNum)
 {
+	std::string levelName = "Level" + std::to_string(levelNum) + ".txt";
 	std::ifstream levelFile;
 	std::string line, objType, locX, locY;
 	std::stringstream ssline;
@@ -98,21 +107,21 @@ void World::loadLevel()
 	levelFile.exceptions(std::ifstream::badbit);
 	ssline.exceptions(ssline.failbit |  ssline.badbit);
 
-	levelFile.open("Level1.txt");
+	levelFile.open(levelName);
 	while (!levelFile.eof())
 	{
 		getline(levelFile, line);
 		ssline.clear();
 		ssline.str(line);
-		ssline >> objType;
+		ssline >> objType;		//reads type of game obj then location
 		ssline >> locX >> locY;
 
 		if (isPlayer(objType))
 		{
 			m_players[getIndPlayer(objType)]->setPostition(sf::Vector2f(std::stoi(locX), std::stoi(locY)));
-			m_players[getIndPlayer(objType)]->createBody(&m_box2dWorld);
+			m_players[getIndPlayer(objType)]->createBody(&m_box2dWorld); //Tali: maybe have to change this for opening other level files
 		}
-		else
+		else //create the object and then set location
 		{
 			auto o = ObjectFactory::create(objType);
 			if (o)
@@ -121,7 +130,7 @@ void World::loadLevel()
 				//o->createBody(&m_box2dWorld);
 				m_objects.emplace_back(move(o));
 			}
-			else
+			else //wasnt able to create object
 				throw std::invalid_argument("");
 		}
 	}
@@ -136,7 +145,7 @@ bool World::isPlayer(std::string type)
 			|| type == PLAYERS[2];
 }
 
-int World::getIndPlayer(std::string player)
+int World::getIndPlayer(std::string player) //might not need in future
 {
 	for (int i = 0; i < NUM_OF_PLAYERS; i++)
 		if (PLAYERS[i] == player)

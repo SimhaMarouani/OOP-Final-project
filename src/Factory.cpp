@@ -32,7 +32,7 @@ std::unique_ptr<StaticObjects> ObjectFactory::create(const std::string& name) {
 	static bool initial = true;
 	if (initial) {
 
-		//registerit("Heavy", []() -> std::unique_ptr<StaticObjects> { return std::make_unique<Heavy>(); });
+		registerit("Hay", []() -> std::unique_ptr<StaticObjects> { return std::make_unique<Box>(); });
 		initial = false;
 	}
 

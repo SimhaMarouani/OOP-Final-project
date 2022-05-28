@@ -1,3 +1,4 @@
 Heavy 100 600
 Simple 250 600
 Light 400 600
+Hay 800 600

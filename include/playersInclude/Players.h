@@ -1,7 +1,5 @@
 #pragma once
 #include "GameObjects.h"
-#include "Macros.h"
-#include "Utilities.h"
 
 
 class Players : public GameObjects

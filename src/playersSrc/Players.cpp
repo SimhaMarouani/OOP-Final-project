@@ -5,8 +5,6 @@ Players::Players()
 
 Players::Players(Player type)
 {
-	
-
 	m_icon.setTexture(*Resources::instance().getPlayerTexture(type));
 	m_icon.setScale(sf::Vector2f(0.5, 0.5));
 	m_icon.setOrigin(m_icon.getGlobalBounds().width, m_icon.getGlobalBounds().height);

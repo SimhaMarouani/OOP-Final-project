@@ -28,3 +28,7 @@ const int NUM_OF_TEXTURES = 1;
 const float BASE_SPEED = 130.0;
 const std::string PLAYERS[NUM_OF_PLAYERS] = { "Heavy", "Simple", "Light" };
 
+//objects
+const int NUM_OF_OBJS = 1;
+
+
