@@ -13,13 +13,11 @@ StaticObjects::StaticObjects(Objects type)
 
 void StaticObjects::setPostition(sf::Vector2f pos)
 {
-	//m_shape.setPosition(pos);
-	m_icon.setPosition(pos);
 
+	m_icon.setPosition(pos);
 }
 
 void StaticObjects::draw(sf::RenderWindow & window)
 {
-	//window.draw(m_shape);  //remove
 	window.draw(m_icon);
 }

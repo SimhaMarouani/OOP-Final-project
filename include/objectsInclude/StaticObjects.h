@@ -13,6 +13,5 @@ public:
 	void draw(sf::RenderWindow& window);
 
 private:
-	sf::RectangleShape m_shape;
 	sf::Sprite m_icon;
 };

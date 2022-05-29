@@ -101,7 +101,8 @@ void World::loadLevel(int levelNum)
 {
 	std::string levelName = "Level" + std::to_string(levelNum) + ".txt";
 	std::ifstream levelFile;
-	std::string line, objType, locX, locY;
+	std::string line, objType;
+	int locX, locY;
 	std::stringstream ssline;
 
 	levelFile.exceptions(std::ifstream::badbit);
@@ -113,20 +114,18 @@ void World::loadLevel(int levelNum)
 		getline(levelFile, line);
 		ssline.clear();
 		ssline.str(line);
-		ssline >> objType;		//reads type of game obj then location
-		ssline >> locX >> locY;
+		ssline >> objType >> locX >> locY;
 
 		if (isPlayer(objType))
 		{
-			m_players[getIndPlayer(objType)]->setPostition(sf::Vector2f(std::stoi(locX), std::stoi(locY)));
+			m_players[getIndPlayer(objType)]->setPostition(sf::Vector2f(locX, locY));
 			m_players[getIndPlayer(objType)]->createBody(&m_box2dWorld); //Tali: maybe have to change this for opening other level files
 		}
 		else //create the object and then set location
 		{
-			auto o = ObjectFactory::create(objType);
+			auto o = ObjectFactory::create(objType, sf::Vector2f(locX, locY));
 			if (o)
 			{
-				o->setPostition(sf::Vector2f(std::stoi(locX), std::stoi(locY)));
 				//o->createBody(&m_box2dWorld);
 				m_objects.emplace_back(move(o));
 			}
