@@ -20,7 +20,7 @@ public:
 	sf::Font* getFont();
 	sf::Texture* getBackground(Backgrounds index);
 	sf::Texture* getPlayerTexture(Player player);
-	sf::Texture* getArrowTexture();
+	sf::Texture* getPlayerArrowTexture();
 	sf::Texture* getObjectTexture(Objects obj);
 
 private:
@@ -30,10 +30,15 @@ private:
 
 	//Load Functions
 	void loadFont();
-	void loadBackgroundTextures();
+
+	//Textures
 	void loadPlayers();
 	void loadObjects();
-
+	void loadPlayerArrow();
+	void loadBackgroundTextures();
+	
+	//Audio 
+	
 
 	//======Members==========
 
@@ -41,7 +46,7 @@ private:
 	sf::Font m_font;
 
 	////Textures
-	sf::Texture m_arrow;;
+	sf::Texture m_playerArrow;;
 	std::vector<sf::Texture> m_players;
 	std::vector<sf::Texture> m_objects;
 

@@ -14,7 +14,7 @@ const int OFFSET = 37;
 World::World()
 	:m_box2dWorld(gravity)
 {
-	m_arrow.setTexture(*Resources::instance().getArrowTexture());
+	m_arrow.setTexture(*Resources::instance().getPlayerArrowTexture());
 	m_arrow.setScale(sf::Vector2f(0.04, 0.04));
 	m_arrow.setOrigin(m_arrow.getGlobalBounds().width, m_arrow.getGlobalBounds().height);
 	m_arrow.setPosition(50, 50);		//Simha: i'll set the position according to the active player later
