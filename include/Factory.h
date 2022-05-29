@@ -31,8 +31,8 @@ private:
 
 class ObjectFactory {
 public:
-	using pFnc = std::unique_ptr<StaticObjects>(*)();
-	static std::unique_ptr<StaticObjects> create(const std::string& name);
+	using pFnc = std::unique_ptr<StaticObjects>(*)(sf::Vector2f pos);
+	static std::unique_ptr<StaticObjects> create(const std::string& name, sf::Vector2f pos);
 	static void registerit(const std::string& name, pFnc);
 private:
 	static auto& getObjMap() {

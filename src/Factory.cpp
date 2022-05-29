@@ -28,18 +28,18 @@ void PlayerFactory::registerit(const std::string& name, pFnc f) {
 //=======================================================================
 
 
-std::unique_ptr<StaticObjects> ObjectFactory::create(const std::string& name) {
+std::unique_ptr<StaticObjects> ObjectFactory::create(const std::string& name, sf::Vector2f pos) {
 	static bool initial = true;
 	if (initial) {
 
-		registerit("Hay", []() -> std::unique_ptr<StaticObjects> { return std::make_unique<Box>(); });
+		registerit("Hay", [](sf::Vector2f pos) -> std::unique_ptr<StaticObjects> { return std::make_unique<Box>(pos); });
 		initial = false;
 	}
 
 	auto it = ObjectFactory::getObjMap().find(name);
 	if (it == ObjectFactory::getObjMap().end())
 		return nullptr;
-	return it->second();
+	return it->second(pos);
 }
 
 void ObjectFactory::registerit(const std::string& name, pFnc f) {
