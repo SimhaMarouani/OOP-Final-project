@@ -10,7 +10,6 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE
                                               "TitledButton.h"
 
                                               "GameObjects.h"
-                                              "LevelMenu.h"
                                               "Screens/HomePageScreen.h"
                                               "Screens/GameScreen.h"
                                               "Screens/LevelMenuScreen.h"

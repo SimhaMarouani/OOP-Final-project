@@ -20,6 +20,7 @@ public:
 	void handleClick(sf::Event event, Controller& controller);
 
 private:
+	void initBtns();
 	int m_numOfLevelsCompleted = 3; //Noga: change to read from file which levels the user already complete and the time it took - to know for the level score....
 									// maybe we need to save this in different class but for now, you know
 

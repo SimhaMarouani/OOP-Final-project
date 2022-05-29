@@ -17,6 +17,10 @@ const int HELP_HEIGHT = WINDOW_HEIGHT - (WINDOW_HEIGHT / 8);
 
 const int CHAR_SIZE = 40;
 
+// Level Menu 
+const int LEVEL_MENU_COLS = 5;
+
+
 //Game title
 const std::string GAME_TITLE = "Ice Adventures";
 

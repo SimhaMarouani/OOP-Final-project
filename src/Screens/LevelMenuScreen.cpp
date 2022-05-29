@@ -4,27 +4,7 @@
 LevelMenuScreen::LevelMenuScreen()
 	: m_levels(10 , TitledButton(sf::Vector2f(150.f, 150.f), "level1", 40.f, sf::Vector2f(0.f,0.f), *Resources::instance().getFont()))
 {
-	//TODO: move to const and init function
-	float size = 150.f;
-	float margin = 80.f;
-	int num_of_cols = 5;
-	int num_of_rows = floor(int(m_levels.size()) / num_of_cols);
-	auto offset_x = (WINDOW_WIDTH - (size + margin) * num_of_cols) / 2;
-	auto offset_y = (WINDOW_HEIGHT - (size + margin)*  num_of_rows) / 2;
-
-
-	for (int i = 0; i < m_levels.size(); i++)
-	{
-		auto y = floor(i / num_of_cols);
-		auto x = i % num_of_cols;
-
-		std::cout << (size + margin) * float(x) << " , " << (size + margin) * float(y) << std::endl;
-		m_levels[i].setPosition({ offset_x + (size + margin) * float(x), offset_y + (size + margin) * float(y) });
-		m_levels[i].setTextPosition({ offset_x + (size + margin) * float(x), offset_y + (size + margin) * float(y) });
-		m_levels[i].setColor(i < m_numOfLevelsCompleted ? sf::Color(30, 30, 30) : sf::Color(200, 200, 200));
-		m_levels[i].setTextColor(sf::Color(130, 200, 130));
-		m_levels[i].setTextString("level" + std::to_string(i + 1));
-	}
+	initBtns();	
 }
 
 void LevelMenuScreen::draw(sf::RenderWindow& window)
@@ -64,5 +44,28 @@ void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)
 		{
 			controller.startGame(Page::Game, i+1);
 		}
+	}
+}
+
+void LevelMenuScreen::initBtns()
+{
+	const float size = 150.f;
+	const float margin = 80.f;
+
+	int num_of_rows = floor(int(m_levels.size()) / LEVEL_MENU_COLS);
+	auto offset_x = (WINDOW_WIDTH - (size + margin) * LEVEL_MENU_COLS) / 2;
+	auto offset_y = (WINDOW_HEIGHT - (size + margin) * num_of_rows) / 2;
+
+
+	for (int i = 0; i < m_levels.size(); i++)
+	{
+		auto y = floor(i / LEVEL_MENU_COLS);
+		auto x = i % LEVEL_MENU_COLS;
+
+		m_levels[i].setPosition({ offset_x + (size + margin) * float(x), offset_y + (size + margin) * float(y) });
+		m_levels[i].setTextPosition({ offset_x + (size + margin) * float(x), offset_y + (size + margin) * float(y) });
+		m_levels[i].setColor(i < m_numOfLevelsCompleted ? sf::Color(30, 30, 30) : sf::Color(200, 200, 200)); //if level complete = different color
+		m_levels[i].setTextColor(sf::Color(130, 200, 130));
+		m_levels[i].setTextString("level" + std::to_string(i + 1));
 	}
 }
