@@ -1,8 +1,8 @@
 #include "TitledButton.h"
 
 
-TitledButton::TitledButton(sf::Vector2f ButtonSize, std::string str, float textSize, sf::Vector2f textPos, sf::Font &font)
-	: Button(ButtonSize)
+TitledButton::TitledButton(sf::Texture texture, sf::Vector2f ButtonSize, std::string str, float textSize, sf::Vector2f textPos, sf::Font &font)
+	: Button(texture, ButtonSize)
 {
 	setTextAttributes(str, textSize, textPos, font);
 }

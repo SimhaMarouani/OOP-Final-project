@@ -20,8 +20,11 @@ public:
 	sf::Font* getFont();
 	sf::Texture* getBackground(Backgrounds index);
 	sf::Texture* getPlayerTexture(Player player);
+	sf::Texture* getPlayerFaceTexture(Player player);
 	sf::Texture* getPlayerArrowTexture();
 	sf::Texture* getObjectTexture(Objects obj);
+	sf::Texture* getLevelMenuTexture(LevelState l);
+	sf::Texture* getHomePageBtnsTexture(HomeButtonType b);
 
 private:
 	Resources();
@@ -33,9 +36,13 @@ private:
 
 	//Textures
 	void loadPlayers();
+	void loadPlayersFace();
 	void loadObjects();
 	void loadPlayerArrow();
 	void loadBackgroundTextures();
+	void loadLevelMenuIcons();
+	void loadHomePageBtnsTexture();
+
 	
 	//Audio 
 	
@@ -48,10 +55,13 @@ private:
 	////Textures
 	sf::Texture m_playerArrow;;
 	std::vector<sf::Texture> m_players;
+	std::vector<sf::Texture> m_playersFace;
 	std::vector<sf::Texture> m_objects;
+	std::vector<sf::Texture> m_levelMenuTexture;
+	std::vector<sf::Texture> m_homePageBtnsTexture;
 
-	sf::Texture m_backgroundTextures[NUM_OF_TEXTURES];
-	std::string m_fileBackground[NUM_OF_TEXTURES]{ "Menu-background.jpg"/*, "GameBackground.png", "win.png", "Lose.png", "Help.png"*/ };
+	sf::Texture m_backgroundTextures[NUM_OF_BG_TEXTURES];
+	std::string m_fileBackground[NUM_OF_BG_TEXTURES]{ "home_screen_bg.jpg", "game_background.png", /*"win.png", "Lose.png", "Help.png"*/ };
 	
 	
 

@@ -21,11 +21,12 @@ enum class HomeButtonType
 
 enum class Backgrounds
 {
-	menu,
+	menu = 0,
+	levelmenu,
 	game,
 	win,
 	lose,
-	help
+	help,
 };
 
 enum class Player
@@ -46,4 +47,10 @@ enum class Direction
 enum class Objects
 {
 	Hay
+};
+
+enum class LevelState
+{
+	Lock = 0,
+	Unlock
 };

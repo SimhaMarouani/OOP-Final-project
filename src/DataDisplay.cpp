@@ -2,7 +2,7 @@
 #include "Controller.h"
 
 DataDisplay::DataDisplay(/*int level*/)
-	: m_players(3, Button(sf::Vector2f(60.f, 60.f))), m_pressedPlayer(0)
+	: m_players(3, Button(*Resources::instance().getPlayerFaceTexture(Player::Heavy) , sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE))), m_pressedPlayer(0)
 {
 	createPlayersButtons();
 	createTexts();
@@ -33,7 +33,7 @@ void DataDisplay::createPlayersButtons()
 	for (int i = 0; i < m_players.size(); i++)
 	{
 		//Need to change buttons to sprite and set the texture of the buttons
-		//m_players[i].setTexture(*Resources::instance().getPlayerTexture(type));
+		m_players[i].setTexture(Resources::instance().getPlayerFaceTexture(Player(i)));
 	}
 }
 
@@ -94,15 +94,17 @@ void DataDisplay::handleClick(sf::Event event)
 	{
 		if (m_players[i].isContain(event))
 		{
-			m_players[i].setOutline(sf::Color::Black, 4);
 			m_pressedPlayer = i;
 			std::cout << "pressed player " << i << std::endl;
 		}
 		else
 		{
-			m_players[i].setOutline(sf::Color::White, 0);
+			m_players[i].setColor(sf::Color(255, 255, 255, 190));
+			m_players[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
 		}
 	}
+	m_players[m_pressedPlayer].setColor(sf::Color(sf::Color::White));
+	m_players[m_pressedPlayer].setSize(sf::Vector2f(PLAYER_FACE_SIZE + 10, PLAYER_FACE_SIZE + 10));
 }
 
 int DataDisplay::getCurrPlayer()

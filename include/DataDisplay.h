@@ -33,15 +33,11 @@ private:
 	void setTimeText();
 	Timer m_timer;
 
-	sf::RectangleShape m_barBackground; //Noga: still not in use
+	//sf::RectangleShape m_barBackground; //Noga: still not in use
 
 	sf::Text m_scoreText;
 	sf::Text m_timerText;
 	sf::Text m_levelText;
-
-	Button m_simplePlayerButton;
-	Button m_heavyPlayerButton;
-	Button m_lightPlayerButton;
 
 	std::vector<Button> m_players;
 	int m_pressedPlayer;
