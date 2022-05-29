@@ -54,14 +54,9 @@ sf::Texture* Resources::getPlayerTexture(Player player)
 	return &m_players[(int)player];
 }
 
-sf::Texture* Resources::getArrowTexture()
+sf::Texture* Resources::getPlayerArrowTexture()
 {
-	if (!m_arrow.loadFromFile("arrow.png")) //Todo: move to load function
-	{
-		std::cerr << "error loading arrow from file";
-	}
-
-	return &m_arrow;
+	return &m_playerArrow;
 }
 
 sf::Texture* Resources::getObjectTexture(Objects obj)
@@ -110,5 +105,13 @@ void Resources::loadObjects()
 	if (!m_objects[(int)Objects::Hay].loadFromFile("hay.png"))
 	{
 		std::cerr << "error loading player textures from file";
+	}
+}
+
+void Resources::loadPlayerArrow()
+{
+	if (!m_playerArrow.loadFromFile("arrow.png")) //Todo: move to load function
+	{
+		std::cerr << "error loading arrow from file";
 	}
 }

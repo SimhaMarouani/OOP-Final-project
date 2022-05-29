@@ -25,14 +25,14 @@ public:
 	void updatePage(Page page);
 	void exit();
 
-	void resetTimer();
+	//void resetTimer();
 
 
 private:
 	void processEvents();
-	void processEventsHome(sf::Event event);
-	void processEventsLevelMenu(sf::Event event);
-	void processEventsGame(sf::Event event);
+	//void processEventsHome(sf::Event event);
+	//void processEventsLevelMenu(sf::Event event);
+	//void processEventsGame(sf::Event event);
 	void update();
 	void render();
 	void drawCurrPage();
