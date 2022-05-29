@@ -1,6 +1,5 @@
 #pragma once
 
-#include "box2d/box2d.h"
 
 #include "Window.h"
 #include "Screens/HomePageScreen.h"
@@ -10,9 +9,12 @@
 #include "Utilities.h"
 #include "Macros.h"
 
+#include "box2d/box2d.h"
 #include <memory>
 #include <vector>
 #include <typeinfo>
+
+//class GameScreen;
 
 class Controller
 {

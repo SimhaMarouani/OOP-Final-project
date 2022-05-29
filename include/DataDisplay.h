@@ -1,6 +1,4 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <string>
 
 #include "Timer.h"
 //#include "TitledButton.h"
@@ -9,7 +7,9 @@
 #include "Resources.h"
 #include "Macros.h"
 
-//class Controller;
+#include <SFML/Graphics.hpp>
+#include <string>
+
 
 class DataDisplay
 {
