@@ -24,6 +24,7 @@ private:
 	int m_numOfLevelsCompleted = 3; //Noga: change to read from file which levels the user already complete and the time it took - to know for the level score....
 									// maybe we need to save this in different class but for now, you know
 
+	sf::RectangleShape m_background;
 	std::vector<TitledButton> m_levels;
 
 };

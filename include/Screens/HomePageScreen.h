@@ -29,10 +29,10 @@ private:
 	std::vector<Button> m_buttons; //Noga: unique ptr?
 
 	//--------Temporarley-------
-	sf::Text m_startText;
-	sf::Text m_helpText;
-	sf::Text m_setText;
-	sf::Text m_exitText;
+	//sf::Text m_startText;
+	//sf::Text m_helpText;
+	//sf::Text m_setText;
+	//sf::Text m_exitText;
 	//--------------------------
 
 	sf::RectangleShape m_background;
