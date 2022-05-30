@@ -1,6 +1,4 @@
 #include "Resources.h"
-#include "macros.h"
-
 
 Resources::Resources()
 {
@@ -8,6 +6,7 @@ Resources::Resources()
 	loadBackgroundTextures();
 	loadPlayers();
 	loadPlayersFace();
+	loadPlayerArrow();
 	loadObjects();
 	loadLevelMenuIcons();
 	loadHomePageBtnsTexture();

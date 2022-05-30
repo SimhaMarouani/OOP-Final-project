@@ -12,6 +12,10 @@ Players::Players(Player type)
 
 void Players::draw(sf::RenderWindow& window)
 {
+	//auto step = (deltaTime * m_speedPerSecond * getDirection(m_direction));
+	//m_body->SetTransform(m_body->GetPosition() + step, 0);
+	//m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
+
 	window.draw(m_icon);
 }
 
