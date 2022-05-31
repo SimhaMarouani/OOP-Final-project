@@ -40,10 +40,10 @@ void Button::setSize(sf::Vector2f size)
 	//m_button.setSize(size);
 }
 
-void Button::setOutline(sf::Color color, float thickness)
-{
-	//m_button.setColor(sf::Color(sf::Color::White));
-	//m_button.setOutlineThickness(thickness);
-	//m_button.setOutlineColor(color);
-}
+//void Button::setOutline(sf::Color color, float thickness)
+//{
+//	//m_button.setColor(sf::Color(sf::Color::White));
+//	//m_button.setOutlineThickness(thickness);
+//	//m_button.setOutlineColor(color);
+//}
 

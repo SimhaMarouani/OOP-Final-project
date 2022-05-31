@@ -19,7 +19,10 @@ configure_file ("images/simple_player_face.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/light_player_face.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/lock_level.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/unlock_level.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/retry_button.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/pause_button.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
+# home page buttons
 configure_file ("images/start.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/help.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/settings.png" ${CMAKE_BINARY_DIR} COPYONLY)

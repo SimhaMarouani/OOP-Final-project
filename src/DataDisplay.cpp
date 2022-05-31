@@ -2,11 +2,20 @@
 #include "Controller.h"
 
 DataDisplay::DataDisplay(/*int level*/)
-	: m_players(3, Button(*Resources::instance().getPlayerFaceTexture(Player::Heavy) , sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE))), m_pressedPlayer(0)
+	: m_players(NUM_OF_PLAYERS, Button(*Resources::instance().getPlayerFaceTexture(Player::Heavy), sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE))), 
+	  m_pressedPlayer(0),
+	  m_levelActions(2, Button(*Resources::instance().getLevelActionButtonTexture(LevelActions::Pause), sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE)))
+
 {
 	createPlayersButtons();
 	createTexts();
-	m_players[m_pressedPlayer].setOutline(sf::Color::Black, 4);
+	//m_players[m_pressedPlayer].setOutline(sf::Color::Black, 4);
+	
+	m_levelActions[int(LevelActions::Retry)].setPosition(sf::Vector2f(30, 30));
+	m_levelActions[int(LevelActions::Retry)].setTexture(Resources::instance().getLevelActionButtonTexture(LevelActions::Retry));
+
+	m_levelActions[int(LevelActions::Pause)].setPosition(sf::Vector2f(130, 30));
+	m_levelActions[int(LevelActions::Pause)].setTexture(Resources::instance().getLevelActionButtonTexture(LevelActions::Pause));
 }
 
 DataDisplay::~DataDisplay()
@@ -54,12 +63,16 @@ void DataDisplay::createTexts()
 void DataDisplay::draw(sf::RenderWindow& window)
 {
 	setTimeText();
-	window.draw(m_levelText);
+	//window.draw(m_levelText); //Noga: we need to decide if we neet this text and where to place it on the window
 	window.draw(m_timerText);
 
 	for (auto& player : m_players)
 	{
 		player.draw(window);
+	}
+	for (auto& la : m_levelActions)
+	{
+		la.draw(window);
 	}
 }
 
@@ -95,7 +108,6 @@ void DataDisplay::handleClick(sf::Event event)
 		if (m_players[i].isContain(event))
 		{
 			m_pressedPlayer = i;
-			std::cout << "pressed player " << i << std::endl;
 		}
 		else
 		{
@@ -118,14 +130,16 @@ void DataDisplay::setCurrPlayer(int activePlayer)
 	{
 		if (i == activePlayer)
 		{
-			m_players[activePlayer].setOutline(sf::Color::Black, 4);
 			m_pressedPlayer = activePlayer;
+			m_players[m_pressedPlayer].setColor(sf::Color(sf::Color::White));
+			m_players[m_pressedPlayer].setSize(sf::Vector2f(PLAYER_FACE_SIZE + 10, PLAYER_FACE_SIZE + 10));
 		}
 		else
-			m_players[i].setOutline(sf::Color::White, 0);
+			m_players[i].setColor(sf::Color(255, 255, 255, 190));
+			m_players[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
 	}
 }
-//
+
 //void DataDisplay::handleHover(const sf::Vector2f& location)
 //{
 //	for (int i = 0; i < m_players.size(); i++)

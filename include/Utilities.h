@@ -54,3 +54,9 @@ enum class LevelState
 	Lock = 0,
 	Unlock
 };
+
+enum class LevelActions 
+{ 
+	Retry = 0,
+	Pause 
+};

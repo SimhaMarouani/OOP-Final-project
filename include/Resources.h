@@ -25,6 +25,7 @@ public:
 	sf::Texture* getObjectTexture(Objects obj);
 	sf::Texture* getLevelMenuTexture(LevelState l);
 	sf::Texture* getHomePageBtnsTexture(HomeButtonType b);
+	sf::Texture* getLevelActionButtonTexture(LevelActions la);
 
 private:
 	Resources();
@@ -42,6 +43,7 @@ private:
 	void loadBackgroundTextures();
 	void loadLevelMenuIcons();
 	void loadHomePageBtnsTexture();
+	void loadLevelActionButtonTexture();
 
 	
 	//Audio 
@@ -59,6 +61,7 @@ private:
 	std::vector<sf::Texture> m_objects;
 	std::vector<sf::Texture> m_levelMenuTexture;
 	std::vector<sf::Texture> m_homePageBtnsTexture;
+	std::vector<sf::Texture> m_levelActionButtonsTexture;
 
 	sf::Texture m_backgroundTextures[NUM_OF_BG_TEXTURES];
 	std::string m_fileBackground[NUM_OF_BG_TEXTURES]{ "home_screen_bg.jpg", "game_background.png", /*"win.png", "Lose.png", "Help.png"*/ };

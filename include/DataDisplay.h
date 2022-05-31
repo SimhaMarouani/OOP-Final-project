@@ -40,5 +40,7 @@ private:
 	sf::Text m_levelText;
 
 	std::vector<Button> m_players;
+	std::vector<Button> m_levelActions;
+
 	int m_pressedPlayer;
 };
