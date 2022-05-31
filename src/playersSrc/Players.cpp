@@ -29,15 +29,15 @@ void Players::move(float deltaTime)
 {
 	////----- 1st Version
 	////if (getDirection(m_direction) == b2Vec2(0, 5))
-	//auto impulse = m_body->GetMass() * 3;
-	//m_body->ApplyLinearImpulse(b2Vec2(0, impulse), m_body->GetWorldCenter(), true);
-	//auto step = (deltaTime * m_speedPerSecond * getDirection(m_direction));
-	//m_body->SetTransform(m_body->GetPosition() + step, 0);
-	//m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
+	/*auto impulse = m_body->GetMass() * 3;
+	m_body->ApplyLinearImpulse(b2Vec2(0, impulse), m_body->GetWorldCenter(), true);
+	auto step = (deltaTime * m_speedPerSecond * getDirection(m_direction));
+	m_body->SetTransform(m_body->GetPosition() + step, 0);
+	m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));*/
 		
 
 	//-------- 2nd Version
-	m_body->ApplyForce(b2Vec2(0, 5), m_body->GetWorldCenter(), true);
+	m_body->ApplyForce(b2Vec2(0, -1), m_body->GetWorldCenter(), true);
 	auto step = (deltaTime * m_speedPerSecond * getDirection(m_direction));
 	m_body->SetTransform(m_body->GetPosition() + step, 0);
 	m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
