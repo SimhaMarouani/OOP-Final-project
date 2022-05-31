@@ -15,6 +15,8 @@ public:
 	void move(float deltaTime);
 
 	void createBody(b2World* world);
+	sf::Vector2f getPosition();
+	float getHeight();
 
 protected: //Tali: why protected? need change all protected members in other classes as well
 	sf::Sprite m_icon; //Tali: Move to GameObjects? then will have to make access functions
@@ -22,8 +24,6 @@ protected: //Tali: why protected? need change all protected members in other cla
 	//---- simha: Move to game object -----
 	b2Body* m_body = nullptr;	
 	float getWidth();
-	float getHeight();
-	sf::Vector2f getPosition();
 	//-------------------------------------
 	 
 	

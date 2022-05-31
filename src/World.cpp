@@ -87,6 +87,13 @@ void World::moveActive(float deltaTime, Player active)
 	m_players[(int)active].move(deltaTime);*/
 }
 
+void World::moveArrow(Player active)
+{
+	float x = m_players[(int)active]->getPosition().x;
+	float y = m_players[(int)active]->getPosition().y - m_players[(int)active]->getHeight();
+	m_arrow.setPosition(x, y);
+}
+
 void World::initPlayers()
 {
 	//add exeption if unsuccessful

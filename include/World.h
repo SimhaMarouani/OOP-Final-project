@@ -26,6 +26,7 @@ public:
 	void draw(sf::RenderWindow& window);
 	void setActiveDirection(Direction dir, Player active);
 	void moveActive(float deltaTime, Player active);
+	void moveArrow(Player active);
 
 	void SetDebugDraw(DebugDraw* d)
 	{
