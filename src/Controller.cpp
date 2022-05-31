@@ -19,12 +19,6 @@ void Controller::run()
 	}
 }
 
-//void Controller::setWorld()
-//{
-//	b2Vec2 gravity(0.0f, 10.0f);
-//	m_world = std::make_unique<b2World>(gravity);
-//}
-
 void Controller::startGame(Page page, int level)
 {
 	m_gameScreen.resetTimer();

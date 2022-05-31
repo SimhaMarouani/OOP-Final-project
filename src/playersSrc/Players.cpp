@@ -27,14 +27,20 @@ void Players::setPostition(sf::Vector2f pos)
 
 void Players::move(float deltaTime)
 {
-	//if (getDirection(m_direction) == b2Vec2(0, 5))
-	auto impulse = m_body->GetMass() * 3;
-	m_body->ApplyLinearImpulse(b2Vec2(0, impulse), m_body->GetWorldCenter(), true);
+	////----- 1st Version
+	////if (getDirection(m_direction) == b2Vec2(0, 5))
+	//auto impulse = m_body->GetMass() * 3;
+	//m_body->ApplyLinearImpulse(b2Vec2(0, impulse), m_body->GetWorldCenter(), true);
+	//auto step = (deltaTime * m_speedPerSecond * getDirection(m_direction));
+	//m_body->SetTransform(m_body->GetPosition() + step, 0);
+	//m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
+		
 
+	//-------- 2nd Version
+	m_body->ApplyForce(b2Vec2(0, 5), m_body->GetWorldCenter(), true);
 	auto step = (deltaTime * m_speedPerSecond * getDirection(m_direction));
 	m_body->SetTransform(m_body->GetPosition() + step, 0);
 	m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
-		
 }
 
 void Players::setDirection(Direction dir)
@@ -62,7 +68,6 @@ void Players::createBody(b2World* world/*, b2BodyType bodyType*/)
 	// BodyDef
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
-	/*bodyDef.type = b2_staticBody;		// for the static objects*/
 	
 	bodyDef.position.Set(getPosition().x, getPosition().y);
 	m_body = world->CreateBody(&bodyDef);

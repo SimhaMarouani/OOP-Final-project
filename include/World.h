@@ -38,6 +38,7 @@ public:
 
 private:
 	void initPlayers();
+	void initArrow();
 	void loadLevel(int levelNum);
 	bool isPlayer(std::string type);
 	int getIndPlayer(std::string player);

@@ -14,9 +14,12 @@ public:
 	void draw(sf::RenderWindow& window);
 	void move(float deltaTime);
 
-	void createBody(b2World* world);
+	//---- simha: Move to game object -----
+	void createBody(b2World* world /*, b2BodyType bodyType*/);
 	sf::Vector2f getPosition();
 	float getHeight();
+	//-------------------------------------
+
 
 protected: //Tali: why protected? need change all protected members in other classes as well
 	sf::Sprite m_icon; //Tali: Move to GameObjects? then will have to make access functions
