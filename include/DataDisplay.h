@@ -19,7 +19,7 @@ public:
 	void draw(sf::RenderWindow& window);
 	void handleClick(sf::Event event);
 	//void handleHover(const sf::Vector2f& location);
-	int getCurrPlayer();
+	//int getCurrPlayer();
 	void setCurrPlayer(int activePlayer);
 
 	//Time functiona
@@ -30,7 +30,7 @@ private:
 	void createTexts();
 	void calcTime(int& sec, int& min)const;
 
-	void isClickPlayersBtns(sf::Event e);
+	//void isClickPlayersBtns(sf::Event e);
 	void setTimeText();
 	Timer m_timer;
 
@@ -47,5 +47,5 @@ private:
 
 	sf::RectangleShape m_pauseWindow; //change to class or struct maybe?
 
-	int m_pressedPlayer;
+	//int m_pressedPlayer;
 };
