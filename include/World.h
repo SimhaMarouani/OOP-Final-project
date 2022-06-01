@@ -44,7 +44,7 @@ private:
 
 	b2World m_box2dWorld;
 	sf::Sprite m_arrow;
-
+	
 	std::vector<std::unique_ptr<Players>> m_players;
 	std::vector<std::unique_ptr<StaticObjects>> m_objects;
 

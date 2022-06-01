@@ -26,7 +26,7 @@ public:
     template <class T>
     void drawScreen(T& t) { t.draw(m_window); }
 
-    //Noga: ? what what 
+    //Noga: ? what what Tali: what seriously lol
     sf::RenderWindow* PTRW()
     {
         return &m_window;

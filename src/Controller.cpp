@@ -2,9 +2,8 @@
 
 
 Controller::Controller() 
-	: m_window(), m_homePageScreen(), m_currPage(Page::HomePage), m_currPlayer(0)
+	: m_window(), m_homePageScreen(), m_currPage(Page::HomePage)
 {
-	//setWorld();
 }
 
 void Controller::run()
@@ -18,12 +17,6 @@ void Controller::run()
 		render(); //draw
 	}
 }
-
-//void Controller::setWorld()
-//{
-//	b2Vec2 gravity(0.0f, 10.0f);
-//	m_world = std::make_unique<b2World>(gravity);
-//}
 
 void Controller::startGame(Page page, int level)
 {
@@ -68,21 +61,10 @@ void Controller::processEvents()
 		handleKeyboardPress();
 }
 
-//void Controller::processEventsHome(sf::Event event)
-//{
-//	
-//}
-//
-//void Controller::processEventsLevelMenu(sf::Event event)
-//{
-//}
-//
-//void Controller::processEventsGame(sf::Event event)
-//{
-//}
 
 void Controller::update()
 {
+	//Tali:maybe here step
 	float deltaTime = m_timer.restart().asSeconds();
 	//move, update etc.
 	switch (m_currPage)

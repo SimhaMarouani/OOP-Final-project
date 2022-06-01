@@ -51,7 +51,7 @@ b2Vec2 Players::getDirection(Direction dir)
     case Direction::Right:
         return b2Vec2(1, 0);
     case Direction::Up:
-        return b2Vec2(0, -10);
+        return b2Vec2(0, -5);
     default:
         return b2Vec2(0, 0);
     }
@@ -65,6 +65,7 @@ void Players::createBody(b2World* world/*, b2BodyType bodyType*/)
 	/*bodyDef.type = b2_staticBody;		// for the static objects*/
 	
 	bodyDef.position.Set(getPosition().x, getPosition().y);
+	bodyDef.fixedRotation = true;
 	m_body = world->CreateBody(&bodyDef);
 
 	b2PolygonShape BoxShape;
@@ -73,8 +74,10 @@ void Players::createBody(b2World* world/*, b2BodyType bodyType*/)
 	// FixtureDef
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &BoxShape;
-	fixtureDef.density = 1.0f;
+	fixtureDef.density = 15.0f;
 	fixtureDef.friction = 1.0f;
+	//fixtureDef.restitution = 0.5f;
+
 
 	m_body->CreateFixture(&fixtureDef);
 }
