@@ -153,9 +153,9 @@ void Resources::loadLevelActionButtonTexture()
 void Resources::loadPlayers()
 {
 	m_players.resize(NUM_OF_PLAYERS);
-	if (!m_players[(int)Player::Heavy].loadFromFile("polar-bear.png")
-		|| !m_players[(int)Player::Light].loadFromFile("penguin.png")
-		|| !m_players[(int)Player::Simple].loadFromFile("deer.png"))
+	if (!m_players[(int)Player::Heavy].loadFromFile("heavy.png")
+		|| !m_players[(int)Player::Light].loadFromFile("light.png")
+		|| !m_players[(int)Player::Simple].loadFromFile("simple.png"))
 	{
 		std::cerr << "error loading player textures from file";
 	}
