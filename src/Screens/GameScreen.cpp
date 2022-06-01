@@ -34,7 +34,7 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
         {
             m_activePlayer = Player((int(m_activePlayer) + 1) % 3);
             m_dataDisplay.setCurrPlayer(int(m_activePlayer));
-            std::cout <<"active: " <<  int(m_activePlayer) << std::endl;
+            //std::cout <<"active: " <<  int(m_activePlayer) << std::endl;
         }
 
         else if (event.key.code == sf::Keyboard::Escape)
@@ -46,7 +46,7 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
     }
     case sf::Event::MouseButtonReleased:
         m_dataDisplay.handleClick(event);
-        m_activePlayer = Player(m_dataDisplay.getCurrPlayer());
+        //m_activePlayer = Player(m_dataDisplay.getCurrPlayer());
         break;
 
     default:

@@ -3,7 +3,7 @@
 
 DataDisplay::DataDisplay(/*int level*/)
 	: m_players(NUM_OF_PLAYERS, Button(*Resources::instance().getPlayerFaceTexture(Player::Heavy), sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE))), 
-	  m_pressedPlayer(0),
+	  //m_pressedPlayer(0),
 	  m_levelActions(2, Button(*Resources::instance().getLevelActionButtonTexture(LevelActions::Pause), sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE))),
 	  m_pageStatus(LevelActions::None),
 	  m_pauseWindow(sf::Vector2f(800, 500))
@@ -29,7 +29,6 @@ DataDisplay::~DataDisplay()
 
 void DataDisplay::createPlayersButtons()
 {
-	float size = 70.f;
 	float margin = 20.f;
 
 	auto offset_x = 900;
@@ -39,9 +38,11 @@ void DataDisplay::createPlayersButtons()
 	{
 		auto y = floor(i / m_players.size());
 		auto x = i % m_players.size();
+		float size = (i == int(Player::Heavy)) ? PLAYER_FACE_SIZE + 10 : PLAYER_FACE_SIZE;
 
 		m_players[i].setPosition({ offset_x + (size + margin) * float(x), offset_y + (size + margin) * float(y) });
-		m_players[i].setColor(sf::Color::White);
+		m_players[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
+		m_players[i].setColor(i == (int)Player::Heavy ? sf::Color::White : sf::Color(255, 255, 255, 100));
 	}
 
 	for (int i = 0; i < m_players.size(); i++)
@@ -115,23 +116,23 @@ void DataDisplay::calcTime(int& sec, int& min) const
 //
 //}
 
-void DataDisplay::isClickPlayersBtns(sf::Event event)
-{
-	for (int i = 0; i < m_players.size(); i++)
-	{
-		if (m_players[i].isContain(event))
-		{
-			m_pressedPlayer = i;
-		}
-		else
-		{
-			m_players[i].setColor(sf::Color(255, 255, 255, 190));
-			m_players[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
-		}
-	}
-	m_players[m_pressedPlayer].setColor(sf::Color(sf::Color::White));
-	m_players[m_pressedPlayer].setSize(sf::Vector2f(PLAYER_FACE_SIZE + 10, PLAYER_FACE_SIZE + 10));
-}
+//void DataDisplay::isClickPlayersBtns(sf::Event event)
+//{
+//	for (int i = 0; i < m_players.size(); i++)
+//	{
+//		if (m_players[i].isContain(event))
+//		{
+//			m_pressedPlayer = i;
+//		}
+//		else
+//		{
+//			m_players[i].setColor(sf::Color(255, 255, 255, 190));
+//			m_players[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
+//		}
+//	}
+//	m_players[m_pressedPlayer].setColor(sf::Color(sf::Color::White));
+//	m_players[m_pressedPlayer].setSize(sf::Vector2f(PLAYER_FACE_SIZE + 10, PLAYER_FACE_SIZE + 10));
+//}
 
 void DataDisplay::setTimeText()
 {
@@ -156,7 +157,7 @@ void DataDisplay::handleClick(sf::Event event)
 		break;
 	case LevelActions::None:
 	{
-		isClickPlayersBtns(event);
+		//isClickPlayersBtns(event);
 		//Noga: move to function
 		for (int i = 0; i < m_levelActions.size() && m_pageStatus == LevelActions::None; i++)
 		{
@@ -177,10 +178,10 @@ void DataDisplay::handleClick(sf::Event event)
 	
 }
 
-int DataDisplay::getCurrPlayer()
-{
-	return m_pressedPlayer;
-}
+//int DataDisplay::getCurrPlayer()
+//{
+//	return m_pressedPlayer;
+//}
 
 void DataDisplay::setCurrPlayer(int activePlayer)
 {
@@ -188,12 +189,12 @@ void DataDisplay::setCurrPlayer(int activePlayer)
 	{
 		if (i == activePlayer)
 		{
-			m_pressedPlayer = activePlayer;
-			m_players[m_pressedPlayer].setColor(sf::Color(sf::Color::White));
-			m_players[m_pressedPlayer].setSize(sf::Vector2f(PLAYER_FACE_SIZE + 10, PLAYER_FACE_SIZE + 10));
+			//m_pressedPlayer = activePlayer;
+			m_players[activePlayer].setColor(sf::Color(sf::Color::White));
+			m_players[activePlayer].setSize(sf::Vector2f(PLAYER_FACE_SIZE + 10, PLAYER_FACE_SIZE + 10));
 		}
 		else
-			m_players[i].setColor(sf::Color(255, 255, 255, 190));
+			m_players[i].setColor(sf::Color(255, 255, 255, 100));
 			m_players[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
 	}
 }
