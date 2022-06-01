@@ -19,7 +19,6 @@ public:
 	void draw(sf::RenderWindow& window);
 	void handleClick(sf::Event event);
 	//void handleHover(const sf::Vector2f& location);
-	//int getCurrPlayer();
 	void setCurrPlayer(int activePlayer);
 
 	//Time functiona
@@ -27,11 +26,13 @@ public:
 
 private:
 	void createPlayersButtons();
+	void initActionsButtons();
 	void createTexts();
 	void calcTime(int& sec, int& min)const;
-
-	//void isClickPlayersBtns(sf::Event e);
+	void drawBtns(sf::RenderWindow& window);
 	void setTimeText();
+
+private:
 	Timer m_timer;
 
 	//sf::RectangleShape m_barBackground; //Noga: still not in use
