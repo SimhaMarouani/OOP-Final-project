@@ -22,4 +22,6 @@ private:
 	World m_world;
 	DataDisplay m_dataDisplay;
 	Player m_activePlayer;
+
+	sf::RectangleShape m_background;
 };

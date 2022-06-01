@@ -41,7 +41,7 @@ sf::Font* Resources::getFont()
 
 //-----------------------------------------------------------------
 	
-sf::Texture* Resources::getBackground(Backgrounds index)
+sf::Texture* Resources::getBackground(Screen index)
 {
 	return &m_backgroundTextures[int(index)];
 }
@@ -109,10 +109,12 @@ void Resources::loadFont()
 
 void Resources::loadBackgroundTextures()
 {
-	for (int i = 0; i < NUM_OF_BG_TEXTURES; ++i)
+	m_backgroundTextures.resize(NUM_OF_BG_TEXTURES);
+	if (!m_backgroundTextures[(int)Screen::HomePage].loadFromFile("home_background.jpg")
+		|| !m_backgroundTextures[(int)Screen::LevelMenu].loadFromFile("levelmenu_background.png")
+		|| !m_backgroundTextures[(int)Screen::Game].loadFromFile("game_background.png"))
 	{
-		if (!m_backgroundTextures[i].loadFromFile(m_fileBackground[i]))
-			exit(EXIT_FAILURE);
+		std::cerr << "error loading bg textures from file\n";
 	}
 }
 

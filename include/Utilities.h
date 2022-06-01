@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-enum class Page
+enum class Screen
 {
 	HomePage = 0,
 	LevelMenu,
@@ -17,16 +17,6 @@ enum class HomeButtonType
 	Settings,
 	Exit,
 	None
-};
-
-enum class Backgrounds
-{
-	menu = 0,
-	levelmenu,
-	game,
-	win,
-	lose,
-	help,
 };
 
 enum class Player

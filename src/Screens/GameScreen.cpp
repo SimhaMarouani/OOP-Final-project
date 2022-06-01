@@ -3,14 +3,17 @@
 
 
 GameScreen::GameScreen()
-    : m_activePlayer(Player::Heavy)
+    : m_activePlayer(Player::Heavy),
+      m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT))
 {
+    m_background.setTexture(Resources::instance().getBackground(Screen::Game));
 }
 
 //-----------------------------------------------------------------
 
 void GameScreen::draw(sf::RenderWindow& window)
 {
+    window.draw(m_background);
 	m_world.draw(window);
 	m_dataDisplay.draw(window);
 
@@ -34,7 +37,7 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
         }
         else if (event.key.code == sf::Keyboard::Escape)
         {
-            controller.updatePage(Page::HomePage);
+            controller.updatePage(Screen::HomePage);
         }
         break;
     }

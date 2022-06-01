@@ -18,7 +18,7 @@ public:
 
 	//Access Functions
 	sf::Font* getFont();
-	sf::Texture* getBackground(Backgrounds index);
+	sf::Texture* getBackground(Screen index);
 	sf::Texture* getPlayerTexture(Player player);
 	sf::Texture* getPlayerFaceTexture(Player player);
 	sf::Texture* getPlayerArrowTexture();
@@ -66,10 +66,11 @@ private:
 	std::vector<sf::Texture> m_levelMenuTexture;
 	std::vector<sf::Texture> m_homePageBtnsTexture;
 	std::vector<sf::Texture> m_levelActionButtonsTexture;
+	std::vector<sf::Texture> m_backgroundTextures;
 
-	sf::Texture m_backgroundTextures[NUM_OF_BG_TEXTURES];
-	std::string m_fileBackground[NUM_OF_BG_TEXTURES]{ "home_screen_bg.jpg", "game_background.png", /*"win.png", "Lose.png", "Help.png"*/ };
-	
+	//sf::Texture m_backgroundTextures[NUM_OF_BG_TEXTURES];
+	//std::string m_fileBackground[NUM_OF_BG_TEXTURES]{ "home_screen_bg.jpg", "game_background.png", /*"win.png", "Lose.png", "Help.png"*/ };
+	//
 	
 
 	////Audio

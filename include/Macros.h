@@ -31,7 +31,7 @@ const sf::Vector2f HOME_BTN_SIZE(350, 150);
 
 //players
 const int NUM_OF_PLAYERS = 3;
-const int NUM_OF_BG_TEXTURES = 2;
+const int NUM_OF_BG_TEXTURES = 3;
 const float BASE_SPEED = 130.0;
 const std::string PLAYERS[NUM_OF_PLAYERS] = { "Heavy", "Simple", "Light" };
 

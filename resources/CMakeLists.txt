@@ -14,8 +14,12 @@ configure_file ("images/right_floor_L3.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/destination.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 # bg
-configure_file ("images/home_screen_bg.jpg" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/home_background.jpg" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/game_background.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/levelmenu_background.png" ${CMAKE_BINARY_DIR} COPYONLY) #dont forget to remove
+
+
+
 
 # icons
 configure_file ("arrow.png" ${CMAKE_BINARY_DIR} COPYONLY)

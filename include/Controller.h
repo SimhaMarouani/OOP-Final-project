@@ -22,8 +22,8 @@ public:
 
 	void run();
 	
-	void startGame(Page page, int level);
-	void updatePage(Page page);
+	void startGame(Screen page, int level);
+	void updatePage(Screen page);
 	void exit();
 
 private:
@@ -37,7 +37,7 @@ private:
 
 	Window m_window;
 	sf::Clock m_timer;
-	Page m_currPage;
+	Screen m_currPage;
 	
 	//=== Screens
 	HomePageScreen m_homePageScreen;
