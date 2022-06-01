@@ -3,10 +3,7 @@
 Button::Button(sf::Texture &texture, sf::Vector2f size)
 	: m_button(texture)
 {
-	
-	m_button.setScale(size.x / m_button.getTexture()->getSize().x, size.y / m_button.getTexture()->getSize().y); //Noga: when we use sprite - send size in px and calc the right scale
-	//m_button.setTexture(&texture);
-	//m_button.setScale(sf::Vector2f(1, 1));
+	m_button.setScale(size.x / m_button.getTexture()->getSize().x, size.y / m_button.getTexture()->getSize().y);
 }
 
 void Button::draw(sf::RenderWindow& window)
@@ -37,13 +34,4 @@ void Button::setColor(sf::Color color)
 void Button::setSize(sf::Vector2f size)
 {
 	m_button.setScale(size.x / m_button.getTexture()->getSize().x, size.y / m_button.getTexture()->getSize().y);
-	//m_button.setSize(size);
 }
-
-//void Button::setOutline(sf::Color color, float thickness)
-//{
-//	//m_button.setColor(sf::Color(sf::Color::White));
-//	//m_button.setOutlineThickness(thickness);
-//	//m_button.setOutlineColor(color);
-//}
-

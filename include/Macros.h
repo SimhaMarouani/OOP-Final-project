@@ -22,7 +22,7 @@ const int LEVEL_MENU_COLS = 5;
 const float LEVEL_MENU_BTN_SIZE = 220.f;
 
 // DataDisplay
-const float PLAYER_FACE_SIZE = 80.f;
+const float PLAYER_FACE_SIZE = 100.f;
 
 //Game title
 const std::string GAME_TITLE = "Ice Adventures";

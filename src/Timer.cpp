@@ -2,10 +2,9 @@
 
 //create timer if time == -1 and else countdown
 Timer::Timer()
-	: m_time(sf::seconds(-1)), m_clock()/*, m_timerType(TIMER)*/
+	: m_time(sf::seconds(-1)), m_clock()
 {
 	setTime(-1);
-	//m_timerType = time == MINUS_ONE ? TIMER : COUNTDOWN;
 }
 
 //-----------------------------------------------------------------

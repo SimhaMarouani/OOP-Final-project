@@ -15,16 +15,11 @@ public:
 	void update(float deltaTime);
 
 	void resetTimer();
-	bool isEscPressed();
 	void loadLevel(int level);
 	void setDirection(Direction dir);
 
 private:
-
-
 	World m_world;
 	DataDisplay m_dataDisplay;
 	Player m_activePlayer;
-
-	bool m_escPressed;
 };
