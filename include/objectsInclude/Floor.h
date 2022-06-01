@@ -9,6 +9,6 @@ public:
 	Floor(sf::Vector2f pos, Grounds type);
 
 private:
-
+	void setAsGround();
 };
 
