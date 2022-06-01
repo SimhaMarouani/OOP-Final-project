@@ -46,7 +46,16 @@ enum class Direction
 
 enum class Objects
 {
-	Hay
+	Hay,
+};
+
+enum class Grounds
+{
+	Left_l1,
+	Right_l1,
+	l2,
+	Left_l3,
+	Right_l3,
 };
 
 enum class LevelState

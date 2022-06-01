@@ -8,6 +8,7 @@ Resources::Resources()
 	loadPlayersFace();
 	loadPlayerArrow();
 	loadObjects();
+	loadGrounds();
 	loadLevelMenuIcons();
 	loadHomePageBtnsTexture();
 	loadLevelActionButtonTexture();
@@ -70,6 +71,11 @@ sf::Texture* Resources::getPlayerArrowTexture()
 sf::Texture* Resources::getObjectTexture(Objects obj)
 {
 	return &m_objects[(int)obj];
+}
+
+sf::Texture* Resources::getGroundTexture(Grounds obj)
+{
+	return &m_grounds[(int)obj];
 }
 
 sf::Texture* Resources::getLevelMenuTexture(LevelState l)
@@ -146,11 +152,11 @@ void Resources::loadPlayers()
 {
 	m_players.resize(NUM_OF_PLAYERS);
 	if (!m_players[(int)Player::Heavy].loadFromFile("polar-bear.png")
-				|| !m_players[(int)Player::Light].loadFromFile("penguin.png")
-				|| !m_players[(int)Player::Simple].loadFromFile("deer.png"))
-			{
-				std::cerr << "error loading player textures from file";
-			}
+		|| !m_players[(int)Player::Light].loadFromFile("penguin.png")
+		|| !m_players[(int)Player::Simple].loadFromFile("deer.png"))
+	{
+		std::cerr << "error loading player textures from file";
+	}
 }
 
 void Resources::loadPlayersFace()
@@ -158,8 +164,7 @@ void Resources::loadPlayersFace()
 	m_playersFace.resize(NUM_OF_PLAYERS);
 	if (!m_playersFace[(int)Player::Heavy].loadFromFile("heavy_player_face.png")
 		|| !m_playersFace[(int)Player::Simple].loadFromFile("simple_player_face.png")
-		|| !m_playersFace[(int)Player::Light].loadFromFile("light_player_face.png")
-		)
+		|| !m_playersFace[(int)Player::Light].loadFromFile("light_player_face.png"))
 	{
 		std::cerr << "error loading player textures from file";
 	}
@@ -171,7 +176,21 @@ void Resources::loadObjects()
 
 	if (!m_objects[(int)Objects::Hay].loadFromFile("hay.png"))
 	{
-		std::cerr << "error loading player textures from file";
+		std::cerr << "error loading object textures from file";
+	}
+}
+
+void Resources::loadGrounds()
+{
+	m_grounds.resize(NUM_OF_GROUNDS);
+
+	if (!m_grounds[(int)Grounds::Left_l1].loadFromFile("left_floor_L1.png") ||
+		!m_grounds[(int)Grounds::Right_l1].loadFromFile("right_floor_L1.png") ||
+		!m_grounds[(int)Grounds::l2].loadFromFile("floor_L2.png") ||
+		!m_grounds[(int)Grounds::Left_l3].loadFromFile("left_floor_L3.png") ||
+		!m_grounds[(int)Grounds::Right_l3].loadFromFile("right_floor_L3.png"))
+	{
+		std::cerr << "error loading ground textures from file";
 	}
 }
 
@@ -182,3 +201,4 @@ void Resources::loadPlayerArrow()
 		std::cerr << "error loading arrow from file";
 	}
 }
+

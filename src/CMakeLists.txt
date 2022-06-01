@@ -22,7 +22,7 @@
                                               "playersSrc/Simple.cpp"
                                               
                                               "objectsSrc/Box.cpp"
-                                              "objectsSrc/Stairs.cpp"
+                                              "objectsSrc/Floor.cpp"
                                               "objectsSrc/StaticObjects.cpp"
                                               "objectsSrc/Stick.cpp"
                                               "objectsSrc/Switch.cpp"

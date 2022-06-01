@@ -26,11 +26,12 @@ public:
     template <class T>
     void drawScreen(T& t) { t.draw(m_window); }
 
-    //Noga: ? what what Tali: what seriously lol
+    //Noga: ? what what     Tali: what seriously lol    Simha: Its for the debugger of box2d (:
     sf::RenderWindow* PTRW()
     {
         return &m_window;
     }
+
 private:
     sf::RenderWindow m_window;
     //sf::RectangleShape m_menuBackground;

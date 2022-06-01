@@ -1,7 +1,8 @@
 #include "Factory.h"
 
 
-std::unique_ptr<Players> PlayerFactory::create(const std::string& name) {
+std::unique_ptr<Players> PlayerFactory::create(const std::string& name) 
+{
 	static bool initial = true;
 	if (initial) {
 
@@ -18,7 +19,8 @@ std::unique_ptr<Players> PlayerFactory::create(const std::string& name) {
 	return it->second();
 }
 
-void PlayerFactory::registerit(const std::string& name, pFnc f) {
+void PlayerFactory::registerit(const std::string& name, pFnc f) 
+{
 	PlayerFactory::getMap().emplace(name, f);
 }
 
@@ -28,11 +30,16 @@ void PlayerFactory::registerit(const std::string& name, pFnc f) {
 //=======================================================================
 
 
-std::unique_ptr<StaticObjects> ObjectFactory::create(const std::string& name, sf::Vector2f pos) {
+std::unique_ptr<StaticObjects> ObjectFactory::create(const std::string& name, sf::Vector2f pos) 
+{
 	static bool initial = true;
 	if (initial) {
 
-		registerit("Hay", [](sf::Vector2f pos) -> std::unique_ptr<StaticObjects> { return std::make_unique<Box>(pos); });
+		registerit("Hay",	  [](sf::Vector2f pos) -> std::unique_ptr<StaticObjects> { return std::make_unique<Box>(pos); });
+		registerit("l_floor", [](sf::Vector2f pos) -> std::unique_ptr<StaticObjects> { return std::make_unique<Floor>(pos, Grounds::Left_l1); });
+		registerit("r_floor", [](sf::Vector2f pos) -> std::unique_ptr<StaticObjects> { return std::make_unique<Floor>(pos, Grounds::Right_l1); });
+		registerit("floor",	  [](sf::Vector2f pos) -> std::unique_ptr<StaticObjects> { return std::make_unique<Floor>(pos, Grounds::l2); });
+		
 		initial = false;
 	}
 
@@ -42,6 +49,7 @@ std::unique_ptr<StaticObjects> ObjectFactory::create(const std::string& name, sf
 	return it->second(pos);
 }
 
-void ObjectFactory::registerit(const std::string& name, pFnc f) {
+void ObjectFactory::registerit(const std::string& name, pFnc f) 
+{
 	ObjectFactory::getObjMap().emplace(name, f);
 }

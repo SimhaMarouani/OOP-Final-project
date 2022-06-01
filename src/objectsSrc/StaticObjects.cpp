@@ -7,13 +7,19 @@ StaticObjects::StaticObjects()
 StaticObjects::StaticObjects(Objects type)
 {
 	m_icon.setTexture(*Resources::instance().getObjectTexture(type));
-	m_icon.setScale(sf::Vector2f(0.6, 0.6));
+	m_icon.setScale(sf::Vector2f(0.4, 0.4));
+	m_icon.setOrigin(m_icon.getGlobalBounds().width, m_icon.getGlobalBounds().height);
+}
+
+StaticObjects::StaticObjects(Grounds type)
+{
+	m_icon.setTexture(*Resources::instance().getGroundTexture(type));
+	m_icon.setScale(sf::Vector2f(0.7, 0.7));
 	m_icon.setOrigin(m_icon.getGlobalBounds().width, m_icon.getGlobalBounds().height);
 }
 
 void StaticObjects::setPostition(sf::Vector2f pos)
 {
-
 	m_icon.setPosition(pos);
 }
 

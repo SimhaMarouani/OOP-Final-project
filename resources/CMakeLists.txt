@@ -6,6 +6,12 @@ configure_file ("Font.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/deer.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/penguin.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/polar-bear.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/floor_L2.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/left_floor_L1.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/right_floor_L1.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/left_floor_L3.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/right_floor_L3.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/destination.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 # bg
 configure_file ("images/home_screen_bg.jpg" ${CMAKE_BINARY_DIR} COPYONLY)
@@ -33,6 +39,7 @@ configure_file ("images/exit.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 # files
 configure_file ("files/Level1.txt" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("files/Level2.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 
 
 # audio

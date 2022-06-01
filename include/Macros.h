@@ -37,5 +37,6 @@ const std::string PLAYERS[NUM_OF_PLAYERS] = { "Heavy", "Simple", "Light" };
 
 //objects
 const int NUM_OF_OBJS = 1;
+const int NUM_OF_GROUNDS = 5;
 
 

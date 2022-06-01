@@ -12,16 +12,20 @@
 #include "playersInclude/Heavy.h"
 #include "playersInclude/Simple.h"
 #include "playersInclude/Light.h"
+
 #include "objectsInclude/StaticObjects.h"
 #include "objectsInclude/Box.h"
+#include "objectsInclude/Floor.h"
 
 
 
-class PlayerFactory {
+class PlayerFactory 
+{
 public:
 	using pFnc = std::unique_ptr<Players>(*)();
 	static std::unique_ptr<Players> create(const std::string& name);
 	static void registerit(const std::string& name, pFnc);
+
 private:
 	static auto& getMap() {
 		static std::map<std::string, pFnc> map;
@@ -29,11 +33,13 @@ private:
 	}
 };
 
-class ObjectFactory {
+class ObjectFactory 
+{
 public:
 	using pFnc = std::unique_ptr<StaticObjects>(*)(sf::Vector2f pos);
 	static std::unique_ptr<StaticObjects> create(const std::string& name, sf::Vector2f pos);
 	static void registerit(const std::string& name, pFnc);
+
 private:
 	static auto& getObjMap() {
 		static std::map<std::string, pFnc> objMap;

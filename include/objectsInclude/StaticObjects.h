@@ -8,6 +8,7 @@ class StaticObjects : public GameObjects
 public:
 	StaticObjects();
 	StaticObjects(Objects type);
+	StaticObjects(Grounds type);
 
 	void setPostition(sf::Vector2f pos);
 	void draw(sf::RenderWindow& window);

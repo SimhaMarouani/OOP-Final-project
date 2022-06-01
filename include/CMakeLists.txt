@@ -24,7 +24,7 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE
                                               "playersInclude/Simple.h"
                                               
                                               "objectsInclude/Box.h"
-                                              "objectsInclude/Stairs.h"
+                                              "objectsInclude/Floor.h"
                                               "objectsInclude/StaticObjects.h"
                                               "objectsInclude/Stick.h"
                                               "objectsInclude/Switch.h"

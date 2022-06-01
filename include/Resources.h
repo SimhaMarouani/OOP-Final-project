@@ -26,6 +26,7 @@ public:
 	sf::Texture* getLevelMenuTexture(LevelState l);
 	sf::Texture* getHomePageBtnsTexture(HomeButtonType b);
 	sf::Texture* getLevelActionButtonTexture(LevelActions la);
+	sf::Texture* getGroundTexture(Grounds obj);
 
 private:
 	Resources();
@@ -44,6 +45,8 @@ private:
 	void loadLevelMenuIcons();
 	void loadHomePageBtnsTexture();
 	void loadLevelActionButtonTexture();
+	void loadGrounds();
+
 
 	
 	//Audio 
@@ -59,6 +62,7 @@ private:
 	std::vector<sf::Texture> m_players;
 	std::vector<sf::Texture> m_playersFace;
 	std::vector<sf::Texture> m_objects;
+	std::vector<sf::Texture> m_grounds;
 	std::vector<sf::Texture> m_levelMenuTexture;
 	std::vector<sf::Texture> m_homePageBtnsTexture;
 	std::vector<sf::Texture> m_levelActionButtonsTexture;
