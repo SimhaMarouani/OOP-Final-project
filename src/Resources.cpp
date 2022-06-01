@@ -110,7 +110,7 @@ void Resources::loadFont()
 void Resources::loadBackgroundTextures()
 {
 	m_backgroundTextures.resize(NUM_OF_BG_TEXTURES);
-	if (!m_backgroundTextures[(int)Screen::HomePage].loadFromFile("home_background.jpg")
+	if (!m_backgroundTextures[(int)Screen::HomePage].loadFromFile("home_background.png")
 		|| !m_backgroundTextures[(int)Screen::LevelMenu].loadFromFile("levelmenu_background.png")
 		|| !m_backgroundTextures[(int)Screen::Game].loadFromFile("game_background.png"))
 	{
