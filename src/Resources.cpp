@@ -10,6 +10,7 @@ Resources::Resources()
 	loadObjects();
 	loadLevelMenuIcons();
 	loadHomePageBtnsTexture();
+	loadLevelActionButtonTexture();
 }
 
 
@@ -81,6 +82,11 @@ sf::Texture* Resources::getHomePageBtnsTexture(HomeButtonType b)
 	return &m_homePageBtnsTexture[(int)b];
 }
 
+sf::Texture* Resources::getLevelActionButtonTexture(LevelActions la)
+{
+	return &m_levelActionButtonsTexture[int(la)];
+}
+
 //===============================================================//
 //							 LOAD DATA
 //===============================================================//
@@ -121,6 +127,16 @@ void Resources::loadHomePageBtnsTexture()
 		|| !m_homePageBtnsTexture[(int)HomeButtonType::Help].loadFromFile("help.png")
 		|| !m_homePageBtnsTexture[(int)HomeButtonType::Settings].loadFromFile("settings.png")
 		|| !m_homePageBtnsTexture[(int)HomeButtonType::Exit].loadFromFile("exit.png"))
+	{
+		std::cerr << "error loading btns textures from file";
+	}
+}
+
+void Resources::loadLevelActionButtonTexture()
+{
+	m_levelActionButtonsTexture.resize(2);
+	if (!m_levelActionButtonsTexture[(int)LevelActions::Pause].loadFromFile("pause_button.png")
+		|| !m_levelActionButtonsTexture[(int)LevelActions::Retry].loadFromFile("retry_button.png"))
 	{
 		std::cerr << "error loading btns textures from file";
 	}

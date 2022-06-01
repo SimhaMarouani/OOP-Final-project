@@ -14,17 +14,13 @@ const int OFFSET = 37;
 World::World()
 	:m_box2dWorld(gravity)
 {
-	m_arrow.setTexture(*Resources::instance().getPlayerArrowTexture());
-	m_arrow.setScale(sf::Vector2f(0.04, 0.04));
-	m_arrow.setOrigin(m_arrow.getGlobalBounds().width, m_arrow.getGlobalBounds().height);
-	m_arrow.setPosition(50, 50);		//Simha: i'll set the position according to the active player later
-
+	initArrow();
 
 	// Define the ground body.
 	b2BodyDef groundBodyDef;
 	groundBodyDef.type = b2_staticBody;
 	groundBodyDef.position.Set(0.f, WINDOW_HEIGHT - 150);
-
+	 
 	// Call the body factory which allocates memory for the ground body
 	// from a pool and creates the ground box shape (also from a pool).
 	// The body is also added to the world.
@@ -56,6 +52,13 @@ World::World()
 		exit(EXIT_FAILURE);
 
 	}
+}
+
+void World::initArrow()
+{
+	m_arrow.setTexture(*Resources::instance().getPlayerArrowTexture());
+	m_arrow.setScale(sf::Vector2f(0.04, 0.04));
+	m_arrow.setOrigin(m_arrow.getGlobalBounds().width, m_arrow.getGlobalBounds().height);
 }
 
 void World::draw(sf::RenderWindow& window)
@@ -147,7 +150,7 @@ void World::loadLevel(int levelNum)
 
 bool World::isPlayer(std::string type)
 {
-	//Tali: change to more generic
+	//Tali: change to more generic //Noga: we can change this 'if' to .find() or save it as a pair / map i think
 	return type == PLAYERS[0]
 			|| type == PLAYERS[1]
 			|| type == PLAYERS[2];

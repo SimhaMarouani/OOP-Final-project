@@ -30,6 +30,7 @@ private:
 	void createTexts();
 	void calcTime(int& sec, int& min)const;
 
+	void isClickPlayersBtns(sf::Event e);
 	void setTimeText();
 	Timer m_timer;
 
@@ -40,5 +41,11 @@ private:
 	sf::Text m_levelText;
 
 	std::vector<Button> m_players;
+	std::vector<Button> m_levelActions;
+
+	LevelActions m_pageStatus;
+
+	sf::RectangleShape m_pauseWindow; //change to class or struct maybe?
+
 	int m_pressedPlayer;
 };

@@ -21,7 +21,7 @@ public:
 	void setTexture(sf::Texture* texture);
 	void setColor(sf::Color color);
 	void setSize(sf::Vector2f size);
-	void setOutline(sf::Color color, float thickness);
+	//void setOutline(sf::Color color, float thickness);
 
 
 private:

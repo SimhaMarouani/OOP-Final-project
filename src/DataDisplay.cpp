@@ -2,11 +2,25 @@
 #include "Controller.h"
 
 DataDisplay::DataDisplay(/*int level*/)
-	: m_players(3, Button(*Resources::instance().getPlayerFaceTexture(Player::Heavy) , sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE))), m_pressedPlayer(0)
+	: m_players(NUM_OF_PLAYERS, Button(*Resources::instance().getPlayerFaceTexture(Player::Heavy), sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE))), 
+	  m_pressedPlayer(0),
+	  m_levelActions(2, Button(*Resources::instance().getLevelActionButtonTexture(LevelActions::Pause), sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE))),
+	  m_pageStatus(LevelActions::None),
+	  m_pauseWindow(sf::Vector2f(800, 500))
 {
 	createPlayersButtons();
 	createTexts();
-	m_players[m_pressedPlayer].setOutline(sf::Color::Black, 4);
+	//m_players[m_pressedPlayer].setOutline(sf::Color::Black, 4);
+	
+	m_pauseWindow.setFillColor(sf::Color(30, 30, 30));
+	m_pauseWindow.setPosition(sf::Vector2f((WINDOW_WIDTH - 800) / 2, (WINDOW_HEIGHT - 500) / 2));
+
+
+	m_levelActions[int(LevelActions::Retry)].setPosition(sf::Vector2f(30, 30));
+	m_levelActions[int(LevelActions::Retry)].setTexture(Resources::instance().getLevelActionButtonTexture(LevelActions::Retry));
+
+	m_levelActions[int(LevelActions::Pause)].setPosition(sf::Vector2f(130, 30));
+	m_levelActions[int(LevelActions::Pause)].setTexture(Resources::instance().getLevelActionButtonTexture(LevelActions::Pause));
 }
 
 DataDisplay::~DataDisplay()
@@ -54,12 +68,29 @@ void DataDisplay::createTexts()
 void DataDisplay::draw(sf::RenderWindow& window)
 {
 	setTimeText();
-	window.draw(m_levelText);
+	//window.draw(m_levelText); //Noga: we need to decide if we neet this text and where to place it on the window
 	window.draw(m_timerText);
 
 	for (auto& player : m_players)
 	{
 		player.draw(window);
+	}
+	for (auto& la : m_levelActions)
+	{
+		la.draw(window);
+	}
+
+	switch (m_pageStatus)
+	{
+	case LevelActions::Pause:
+		window.draw(m_pauseWindow);
+		break;
+	case LevelActions::Retry:
+		break;
+	case LevelActions::None:
+		break;
+	default:
+		break;
 	}
 }
 
@@ -79,6 +110,29 @@ void DataDisplay::calcTime(int& sec, int& min) const
 	}
 }
 
+//void DataDisplay::handleLevelActionClicked(LevelActions la)
+//{
+//
+//}
+
+void DataDisplay::isClickPlayersBtns(sf::Event event)
+{
+	for (int i = 0; i < m_players.size(); i++)
+	{
+		if (m_players[i].isContain(event))
+		{
+			m_pressedPlayer = i;
+		}
+		else
+		{
+			m_players[i].setColor(sf::Color(255, 255, 255, 190));
+			m_players[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
+		}
+	}
+	m_players[m_pressedPlayer].setColor(sf::Color(sf::Color::White));
+	m_players[m_pressedPlayer].setSize(sf::Vector2f(PLAYER_FACE_SIZE + 10, PLAYER_FACE_SIZE + 10));
+}
+
 void DataDisplay::setTimeText()
 {
 	int sec = 0, min = 0;
@@ -90,21 +144,37 @@ void DataDisplay::setTimeText()
 
 void DataDisplay::handleClick(sf::Event event)
 {
-	for (int i = 0; i < m_players.size(); i++)
+	switch (m_pageStatus)
 	{
-		if (m_players[i].isContain(event))
-		{
-			m_pressedPlayer = i;
-			std::cout << "pressed player " << i << std::endl;
-		}
-		else
-		{
-			m_players[i].setColor(sf::Color(255, 255, 255, 190));
-			m_players[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
-		}
+	case LevelActions::Pause:
+	{
+		if (!m_pauseWindow.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
+			m_pageStatus = LevelActions::None;
+		break;
 	}
-	m_players[m_pressedPlayer].setColor(sf::Color(sf::Color::White));
-	m_players[m_pressedPlayer].setSize(sf::Vector2f(PLAYER_FACE_SIZE + 10, PLAYER_FACE_SIZE + 10));
+	case LevelActions::Retry:
+		break;
+	case LevelActions::None:
+	{
+		isClickPlayersBtns(event);
+		//Noga: move to function
+		for (int i = 0; i < m_levelActions.size() && m_pageStatus == LevelActions::None; i++)
+		{
+			if (m_levelActions[i].isContain(event))
+			{
+				if (i == int(LevelActions::Pause)) m_pageStatus = LevelActions(i);
+				if (i == int(LevelActions::Retry)) std::cout << "retry\n"; //retryLevel(); //send the GameScreen
+
+				break;
+			}
+		}
+		break;
+	}
+	default:
+		break;
+	}
+
+	
 }
 
 int DataDisplay::getCurrPlayer()
@@ -118,14 +188,16 @@ void DataDisplay::setCurrPlayer(int activePlayer)
 	{
 		if (i == activePlayer)
 		{
-			m_players[activePlayer].setOutline(sf::Color::Black, 4);
 			m_pressedPlayer = activePlayer;
+			m_players[m_pressedPlayer].setColor(sf::Color(sf::Color::White));
+			m_players[m_pressedPlayer].setSize(sf::Vector2f(PLAYER_FACE_SIZE + 10, PLAYER_FACE_SIZE + 10));
 		}
 		else
-			m_players[i].setOutline(sf::Color::White, 0);
+			m_players[i].setColor(sf::Color(255, 255, 255, 190));
+			m_players[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
 	}
 }
-//
+
 //void DataDisplay::handleHover(const sf::Vector2f& location)
 //{
 //	for (int i = 0; i < m_players.size(); i++)
