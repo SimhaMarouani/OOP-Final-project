@@ -2,4 +2,5 @@ Heavy 100 600
 Simple 250 600
 Light 400 600
 Hay 800 600
-l_floor 310 860
+l_floor 300 850
+r_floor 600 650

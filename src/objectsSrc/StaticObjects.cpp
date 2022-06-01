@@ -14,7 +14,7 @@ StaticObjects::StaticObjects(Objects type)
 StaticObjects::StaticObjects(Grounds type)
 {
 	m_icon.setTexture(*Resources::instance().getGroundTexture(type));
-	m_icon.setScale(sf::Vector2f(0.7, 0.7));
+	m_icon.setScale(sf::Vector2f(0.2, 0.2));
 	m_icon.setOrigin(m_icon.getGlobalBounds().width, m_icon.getGlobalBounds().height);
 }
 
