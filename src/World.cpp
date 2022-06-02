@@ -36,22 +36,7 @@ World::World()
 	// Add the ground fixture to the ground body.
 	groundBody->CreateFixture(&groundBox, 0.0f);
  
-	//init players positions based on level file
-	initPlayers();
-	try {
-		loadLevel(1); //Tali: change to const
-	}
-	catch (const std::ifstream::failure& e) //catches fstream error and sstream
-	{
-		std::cerr << "There was an error opening level file OR reading input\n";
-		exit(EXIT_FAILURE);
-	}
-	catch (const std::invalid_argument& e)
-	{
-		std::cerr << "There was an error opening level file\n";
-		exit(EXIT_FAILURE);
-
-	}
+	createLevel(1);
 }
 
 void World::initArrow()
@@ -98,6 +83,26 @@ void World::moveArrow(Player active)
 	float y = m_players[(int)active]->getPosition().y - m_players[(int)active]->getHeight();
 	m_arrow.setPosition(x, y);
 }
+
+void World::createLevel(int level)
+{
+	//init players positions based on level file
+	initPlayers();
+	try {
+		loadLevel(level); //Tali: change to const
+	}
+	catch (const std::ifstream::failure& e) //catches fstream error and sstream
+	{
+		std::cerr << "There was an error opening level file OR reading input\n";
+		exit(EXIT_FAILURE);
+	}
+	catch (const std::invalid_argument& e)
+	{
+		std::cerr << "There was an error opening level file\n";
+		exit(EXIT_FAILURE);
+	}
+}
+
 
 void World::initPlayers()
 {

@@ -33,7 +33,7 @@ public:
 		m_box2dWorld.SetDebugDraw(d);
 	}
 
-
+	void createLevel(int level);
 	b2World* getWorld() { return &m_box2dWorld; }
 
 private:
