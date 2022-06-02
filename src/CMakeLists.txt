@@ -8,7 +8,6 @@
                                               "Button.cpp"
                                               "TitledButton.cpp"
                                               "GameObjects.cpp"
-                                              "LevelMenu.cpp"
                                               "Screens/HomePageScreen.cpp"
                                               "Screens/GameScreen.cpp"
                                               "Screens/LevelMenuScreen.cpp"
@@ -23,8 +22,10 @@
                                               "playersSrc/Simple.cpp"
                                               
                                               "objectsSrc/Box.cpp"
-                                              "objectsSrc/Stairs.cpp"
+                                              "objectsSrc/Floor.cpp"
                                               "objectsSrc/StaticObjects.cpp"
                                               "objectsSrc/Stick.cpp"
                                               "objectsSrc/Switch.cpp"
+
+                                              "Factory.cpp"
                                               )

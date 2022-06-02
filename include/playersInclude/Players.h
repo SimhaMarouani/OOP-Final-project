@@ -1,7 +1,6 @@
 #pragma once
 #include "GameObjects.h"
-#include "Macros.h"
-#include "Utilities.h"
+
 
 class Players : public GameObjects
 {
@@ -15,21 +14,19 @@ public:
 	void draw(sf::RenderWindow& window);
 	void move(float deltaTime);
 
-	//virtual void move(float deltaTime) = 0;
-//	void move(Controller& controller) {};
+	//---- simha: Move to game object -----
+	void createBody(b2World* world /*, b2BodyType bodyType*/);
+	sf::Vector2f getPosition();
+	float getHeight();
+	//-------------------------------------
 
-	void createBody(b2World* world);
-	
-	
 
-protected:
+protected: //Tali: why protected? need change all protected members in other classes as well
 	sf::Sprite m_icon; //Tali: Move to GameObjects? then will have to make access functions
 	
 	//---- simha: Move to game object -----
 	b2Body* m_body = nullptr;	
 	float getWidth();
-	float getHeight();
-	sf::Vector2f getPosition();
 	//-------------------------------------
 	 
 	

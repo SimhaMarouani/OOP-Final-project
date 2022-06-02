@@ -1,27 +1,58 @@
 ﻿
 # fonts
-#configure_file ("fonts/YatraOne.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
-
-# textures
-#configure_file ("images/cat.png" ${CMAKE_BINARY_DIR} COPYONLY)
-#configure_file ("images/new_game_btn.png" ${CMAKE_BINARY_DIR} COPYONLY)
-#configure_file ("images/resart_btn.png" ${CMAKE_BINARY_DIR} COPYONLY)
-#configure_file ("images/undo_btn.png" ${CMAKE_BINARY_DIR} COPYONLY)
-#configure_file ("images/GameIcon.png" ${CMAKE_BINARY_DIR} COPYONLY)
-configure_file ("images/deer.png" ${CMAKE_BINARY_DIR} COPYONLY)
-configure_file ("images/penguin.png" ${CMAKE_BINARY_DIR} COPYONLY)
-configure_file ("images/polar-bear.png" ${CMAKE_BINARY_DIR} COPYONLY)
-
-configure_file ("arrow.png" ${CMAKE_BINARY_DIR} COPYONLY)
-
-configure_file ("images/Menu-background.jpg" ${CMAKE_BINARY_DIR} COPYONLY)
-
-
 configure_file ("Font.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
 
-#configure_file ("images/win_page.png" ${CMAKE_BINARY_DIR} COPYONLY)
-#configure_file ("images/lose_page.png" ${CMAKE_BINARY_DIR} COPYONLY)
+# textures
+configure_file ("images/deer.png" ${CMAKE_BINARY_DIR} COPYONLY) # delete
+configure_file ("images/penguin.png" ${CMAKE_BINARY_DIR} COPYONLY) # delete
+configure_file ("images/polar-bear.png" ${CMAKE_BINARY_DIR} COPYONLY) # delete
+
+configure_file ("spritesheets/heavy.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("spritesheets/simple.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("spritesheets/light.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 
-#audio
-#configure_file ("audio/click.wav" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/floor_L2.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/left_floor_L1.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/right_floor_L1.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/left_floor_L3.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/right_floor_L3.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/destination.png" ${CMAKE_BINARY_DIR} COPYONLY)
+
+# bg
+configure_file ("images/home_background.jpg" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/home_background.png" ${CMAKE_BINARY_DIR} COPYONLY)
+
+configure_file ("images/game_background.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/levelmenu_background.png" ${CMAKE_BINARY_DIR} COPYONLY) #dont forget to remove
+
+
+
+
+# icons
+configure_file ("arrow.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/hay.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/heavy_player_face.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/simple_player_face.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/light_player_face.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/lock_level.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/unlock_level.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/retry_button.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/pause_button.png" ${CMAKE_BINARY_DIR} COPYONLY)
+
+# home page buttons
+configure_file ("images/start.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/help.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/settings.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/exit.png" ${CMAKE_BINARY_DIR} COPYONLY)
+
+# sprite sheets
+
+
+# files
+configure_file ("files/Level1.txt" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("files/Level2.txt" ${CMAKE_BINARY_DIR} COPYONLY)
+
+
+# audio
+

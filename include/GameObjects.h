@@ -2,7 +2,9 @@
 #include <SFML/Graphics.hpp>
 #include "Resources.h"
 #include "Macros.h"
+#include "Utilities.h"
 #include "box2d/box2d.h"
+
 
 
 class GameObjects

@@ -2,9 +2,8 @@
 
 
 Controller::Controller() 
-	: m_window(), m_homePageScreen(), m_currPage(Page::HomePage), m_currPlayer(0)
+	: m_window(), m_homePageScreen(), m_currPage(Screen::HomePage)
 {
-	//setWorld();
 }
 
 void Controller::run()
@@ -19,20 +18,14 @@ void Controller::run()
 	}
 }
 
-//void Controller::setWorld()
-//{
-//	b2Vec2 gravity(0.0f, 10.0f);
-//	m_world = std::make_unique<b2World>(gravity);
-//}
-
-void Controller::startGame(Page page, int level)
+void Controller::startGame(Screen page, int level)
 {
 	m_gameScreen.resetTimer();
 	m_gameScreen.loadLevel(level);
 	updatePage(page);
 }
 
-void Controller::updatePage(Page page)
+void Controller::updatePage(Screen page)
 {
 	m_currPage = page;
 }
@@ -51,47 +44,36 @@ void Controller::processEvents()
 
 		switch (m_currPage)
 		{
-		case Page::HomePage:
+		case Screen::HomePage:
 			m_homePageScreen.processEvents(event, *this);
 			break;
-		case Page::LevelMenu:
+		case Screen::LevelMenu:
 			m_levelMenuScreen.processEvents(event, *this);
 			break;
-		case Page::Game:
+		case Screen::Game:
 			m_gameScreen.processEvents(event, *this);
 			break;
 		default:
 			break;
 		}
 	}
-	if (m_currPage == Page::Game)
+	if (m_currPage == Screen::Game)
 		handleKeyboardPress();
 }
 
-//void Controller::processEventsHome(sf::Event event)
-//{
-//	
-//}
-//
-//void Controller::processEventsLevelMenu(sf::Event event)
-//{
-//}
-//
-//void Controller::processEventsGame(sf::Event event)
-//{
-//}
 
 void Controller::update()
 {
+	//Tali:maybe here step
 	float deltaTime = m_timer.restart().asSeconds();
 	//move, update etc.
 	switch (m_currPage)
 	{
-	case Page::HomePage:
+	case Screen::HomePage:
 		break;
-	case Page::LevelMenu:
+	case Screen::LevelMenu:
 		break;
-	case Page::Game:
+	case Screen::Game:
 		m_gameScreen.update(deltaTime);
 		//m_world.getWorld()->DebugDraw();
 		break;
@@ -112,15 +94,15 @@ void Controller::drawCurrPage()
 	//Noga: maybe we can put all the screens class in vector or something and then we wont need all the switch case ? 
 	switch (m_currPage)
 	{
-	case Page::HomePage:
+	case Screen::HomePage:
 		m_window.drawScreen(m_homePageScreen); //Noga: this is the template function - works. 
 		//m_window.drawHomePage(m_homePageScreen);
 		break;
-	case Page::LevelMenu:
+	case Screen::LevelMenu:
 		m_window.drawScreen(m_levelMenuScreen); 
 		//m_window.drawLevelMenuPage(m_levelMenuScreen);
 		break;
-	case Page::Game:
+	case Screen::Game:
 		m_window.drawScreen(m_gameScreen); 
 		//m_window.drawGame(m_gameScreen);
 		break;

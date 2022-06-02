@@ -18,16 +18,15 @@ public:
 
 	//Access Functions
 	sf::Font* getFont();
-	sf::Texture* getBackground(Backgrounds index);
-
-	//sf::Texture* getBtnTexture(Btns button);
-	//sf::Texture* getCatSpriteSheet();
-	//sf::Texture* getWinPageTexture();
-	//sf::Texture* getLosePageTexture();
-	//sf::Image* getGameIcon();
-	//sf::SoundBuffer* getAudioClick();
+	sf::Texture* getBackground(Screen index);
 	sf::Texture* getPlayerTexture(Player player);
-	sf::Texture* getArrowTexture();
+	sf::Texture* getPlayerFaceTexture(Player player);
+	sf::Texture* getPlayerArrowTexture();
+	sf::Texture* getObjectTexture(Objects obj);
+	sf::Texture* getLevelMenuTexture(LevelState l);
+	sf::Texture* getHomePageBtnsTexture(HomeButtonType b);
+	sf::Texture* getLevelActionButtonTexture(LevelActions la);
+	sf::Texture* getGroundTexture(Grounds obj);
 
 private:
 	Resources();
@@ -36,16 +35,22 @@ private:
 
 	//Load Functions
 	void loadFont();
-	void loadBackgroundTextures();
 
-	//void loadBtnTextures();
-	//void loadCatSpriteSheet();
-	//void loadWinPageTexture();
-	//void loadLosePageTexture();
-	//void loadAudioClick();
-	//void loadGameIcon();
+	//Textures
 	void loadPlayers();
+	void loadPlayersFace();
+	void loadObjects();
+	void loadPlayerArrow();
+	void loadBackgroundTextures();
+	void loadLevelMenuIcons();
+	void loadHomePageBtnsTexture();
+	void loadLevelActionButtonTexture();
+	void loadGrounds();
 
+
+	
+	//Audio 
+	
 
 	//======Members==========
 
@@ -53,16 +58,20 @@ private:
 	sf::Font m_font;
 
 	////Textures
-	sf::Texture m_arrow;;
-	//sf::Texture m_winPageTexture;
-	//sf::Texture m_losePageTexture;
-	//sf::Image m_gameIcon;
+	sf::Texture m_playerArrow;;
 	std::vector<sf::Texture> m_players;
+	std::vector<sf::Texture> m_playersFace;
+	std::vector<sf::Texture> m_objects;
+	std::vector<sf::Texture> m_grounds;
+	std::vector<sf::Texture> m_levelMenuTexture;
+	std::vector<sf::Texture> m_homePageBtnsTexture;
+	std::vector<sf::Texture> m_levelActionButtonsTexture;
+	std::vector<sf::Texture> m_backgroundTextures;
 
-	sf::Texture m_backgroundTextures[NUM_OF_TEXTURES];
-	std::string m_fileBackground[NUM_OF_TEXTURES]{ "Menu-background.jpg"/*, "GameBackground.png", "win.png", "Lose.png", "Help.png"*/ };
+	//sf::Texture m_backgroundTextures[NUM_OF_BG_TEXTURES];
+	//std::string m_fileBackground[NUM_OF_BG_TEXTURES]{ "home_screen_bg.jpg", "game_background.png", /*"win.png", "Lose.png", "Help.png"*/ };
+	//
 	
-	//std::vector<sf::Texture> m_btnTextures;
 
 	////Audio
 	//sf::SoundBuffer m_audioClick;

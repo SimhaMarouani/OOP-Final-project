@@ -1,6 +1,4 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <string>
 
 #include "Timer.h"
 //#include "TitledButton.h"
@@ -9,7 +7,9 @@
 #include "Resources.h"
 #include "Macros.h"
 
-//class Controller;
+#include <SFML/Graphics.hpp>
+#include <string>
+
 
 class DataDisplay
 {
@@ -19,7 +19,6 @@ public:
 	void draw(sf::RenderWindow& window);
 	void handleClick(sf::Event event);
 	//void handleHover(const sf::Vector2f& location);
-	int getCurrPlayer();
 	void setCurrPlayer(int activePlayer);
 
 	//Time functiona
@@ -27,22 +26,27 @@ public:
 
 private:
 	void createPlayersButtons();
+	void initActionsButtons();
 	void createTexts();
 	void calcTime(int& sec, int& min)const;
-
+	void drawBtns(sf::RenderWindow& window);
 	void setTimeText();
+
+private:
 	Timer m_timer;
 
-	sf::RectangleShape m_barBackground; //Noga: still not in use
+	//sf::RectangleShape m_barBackground; //Noga: still not in use
 
 	sf::Text m_scoreText;
 	sf::Text m_timerText;
 	sf::Text m_levelText;
 
-	Button m_simplePlayerButton;
-	Button m_heavyPlayerButton;
-	Button m_lightPlayerButton;
-
 	std::vector<Button> m_players;
-	int m_pressedPlayer;
+	std::vector<Button> m_levelActions;
+
+	LevelActions m_pageStatus;
+
+	sf::RectangleShape m_pauseWindow; //change to class or struct maybe?
+
+	//int m_pressedPlayer;
 };

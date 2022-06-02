@@ -2,7 +2,6 @@
 #include "Players.h"
 //#include "Board.h"
 
-
 class Heavy : public Players
 {
 public:
@@ -11,7 +10,10 @@ public:
 
 	//void move(float deltaTime);
 
-protected:
+private:
+	//static bool m_registerit;
 
 };
+//bool Heavy::m_registerit = PlayerFactory::registerit("Heavy", []()-> std::unique_ptr<Players> {return std::make_unique<Heavy>(); });
+
 

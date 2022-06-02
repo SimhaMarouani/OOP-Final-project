@@ -1,12 +1,9 @@
 #include "Button.h"
 
-Button::Button(/*sf::Texture &texture,*/ sf::Vector2f size)
-	: m_button(size)
+Button::Button(sf::Texture &texture, sf::Vector2f size)
+	: m_button(texture)
 {
-	
-	//m_button.setScale(size.x / m_button.getTexture()->getSize().x, size.y / m_button.getTexture()->getSize().y); //Noga: when we use sprite - send size in px and calc the right scale
-	//m_button.setTexture(&texture);
-	//m_button.setScale(sf::Vector2f(1, 1));
+	m_button.setScale(size.x / m_button.getTexture()->getSize().x, size.y / m_button.getTexture()->getSize().y);
 }
 
 void Button::draw(sf::RenderWindow& window)
@@ -24,19 +21,17 @@ void Button::setPosition(sf::Vector2f pos)
 	m_button.setPosition(pos);
 }
 
+void Button::setTexture(sf::Texture *texture)
+{
+	m_button.setTexture(*texture);
+}
+
 void Button::setColor(sf::Color color)
 {
-	m_button.setFillColor(color);
+	m_button.setColor(color);
 }
 
 void Button::setSize(sf::Vector2f size)
 {
-	m_button.setSize(size);
+	m_button.setScale(size.x / m_button.getTexture()->getSize().x, size.y / m_button.getTexture()->getSize().y);
 }
-
-void Button::setOutline(sf::Color color, float thickness)
-{
-	m_button.setOutlineThickness(thickness);
-	m_button.setOutlineColor(color);
-}
-

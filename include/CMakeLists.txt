@@ -10,7 +10,6 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE
                                               "TitledButton.h"
 
                                               "GameObjects.h"
-                                              "LevelMenu.h"
                                               "Screens/HomePageScreen.h"
                                               "Screens/GameScreen.h"
                                               "Screens/LevelMenuScreen.h"
@@ -25,11 +24,12 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE
                                               "playersInclude/Simple.h"
                                               
                                               "objectsInclude/Box.h"
-                                              "objectsInclude/Stairs.h"
+                                              "objectsInclude/Floor.h"
                                               "objectsInclude/StaticObjects.h"
                                               "objectsInclude/Stick.h"
                                               "objectsInclude/Switch.h"
                                                 
                                               "Macros.h"
                                               "DebugDraw.h"
+                                              "Factory.h"
                                               )

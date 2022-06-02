@@ -2,33 +2,16 @@
 #include "Controller.h" // Noga: I dont know why but if I put this line to header file bad things happened
 
 LevelMenuScreen::LevelMenuScreen()
-	: m_levels(10 , TitledButton(sf::Vector2f(150.f, 150.f), "level1", 40.f, sf::Vector2f(0.f,0.f), *Resources::instance().getFont()))
+	: m_levels(10 , TitledButton(*Resources::instance().getLevelMenuTexture(LevelState::Lock), sf::Vector2f(LEVEL_MENU_BTN_SIZE, LEVEL_MENU_BTN_SIZE), "", 50.f, sf::Vector2f(0.f,0.f), *Resources::instance().getFont()))
+	, m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT))
 {
-	//TODO: move to const and init function
-	float size = 150.f;
-	float margin = 80.f;
-	int num_of_cols = 5;
-	int num_of_rows = floor(int(m_levels.size()) / num_of_cols);
-	auto offset_x = (WINDOW_WIDTH - (size + margin) * num_of_cols) / 2;
-	auto offset_y = (WINDOW_HEIGHT - (size + margin)*  num_of_rows) / 2;
-
-
-	for (int i = 0; i < m_levels.size(); i++)
-	{
-		auto y = floor(i / num_of_cols);
-		auto x = i % num_of_cols;
-
-		std::cout << (size + margin) * float(x) << " , " << (size + margin) * float(y) << std::endl;
-		m_levels[i].setPosition({ offset_x + (size + margin) * float(x), offset_y + (size + margin) * float(y) });
-		m_levels[i].setTextPosition({ offset_x + (size + margin) * float(x), offset_y + (size + margin) * float(y) });
-		m_levels[i].setColor(i < m_numOfLevelsCompleted ? sf::Color(30, 30, 30) : sf::Color(200, 200, 200));
-		m_levels[i].setTextColor(sf::Color(130, 200, 130));
-		m_levels[i].setTextString("level" + std::to_string(i + 1));
-	}
+	m_background.setTexture(Resources::instance().getBackground(Screen::LevelMenu));
+	initBtns();	
 }
 
 void LevelMenuScreen::draw(sf::RenderWindow& window)
 {
+	window.draw(m_background);
 	for (auto& l : m_levels)
 	{
 		l.draw(window);
@@ -62,7 +45,32 @@ void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)
 	{
 		if (m_levels[i].isContain(event) && i < m_numOfLevelsCompleted)
 		{
-			controller.startGame(Page::Game, i+1);
+			controller.startGame(Screen::Game, i+1);
 		}
+	}
+}
+
+void LevelMenuScreen::initBtns()
+{
+	const float margin = 40.f;
+
+	int num_of_rows = floor(int(m_levels.size()) / LEVEL_MENU_COLS);
+	auto offset_x = (WINDOW_WIDTH - (LEVEL_MENU_BTN_SIZE + margin) * LEVEL_MENU_COLS) / 2;
+	auto offset_y = (WINDOW_HEIGHT - (LEVEL_MENU_BTN_SIZE + margin) * num_of_rows) / 2;
+
+
+	for (int i = 0; i < m_levels.size(); i++)
+	{
+		auto y = floor(i / LEVEL_MENU_COLS);
+		auto x = i % LEVEL_MENU_COLS;
+		auto posX = offset_x + (LEVEL_MENU_BTN_SIZE + margin) * float(x);
+		auto posY = offset_y + (LEVEL_MENU_BTN_SIZE + margin) * float(y);
+
+		m_levels[i].setPosition({ offset_x + (LEVEL_MENU_BTN_SIZE + margin) * float(x), offset_y + (LEVEL_MENU_BTN_SIZE + margin) * float(y) });
+		//m_levels[i].setTextPosition({ offset_x + (size + margin) * float(x), offset_y + (size + margin) * float(y) });
+		m_levels[i].setTextPosition({ posX + (LEVEL_MENU_BTN_SIZE / 3), posY + (LEVEL_MENU_BTN_SIZE / 3) });
+		m_levels[i].setTexture(i < m_numOfLevelsCompleted ? Resources::instance().getLevelMenuTexture(LevelState::Unlock) : Resources::instance().getLevelMenuTexture(LevelState::Lock));
+		m_levels[i].setTextColor(sf::Color(64, 63, 61));
+		m_levels[i].setTextString(i < m_numOfLevelsCompleted ? std::to_string(i + 1) : "");
 	}
 }
