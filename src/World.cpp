@@ -36,22 +36,7 @@ World::World()
 	// Add the ground fixture to the ground body.
 	groundBody->CreateFixture(&groundBox, 0.0f);
  
-	//init players positions based on level file
-	initPlayers();
-	try {
-		loadLevel(1); //Tali: change to const
-	}
-	catch (const std::ifstream::failure& e) //catches fstream error and sstream
-	{
-		std::cerr << "There was an error opening level file OR reading input\n";
-		exit(EXIT_FAILURE);
-	}
-	catch (const std::invalid_argument& e)
-	{
-		std::cerr << "There was an error opening level file\n";
-		exit(EXIT_FAILURE);
-
-	}
+	createLevel(1);
 }
 
 void World::initArrow()
@@ -99,13 +84,33 @@ void World::moveArrow(Player active)
 	m_arrow.setPosition(x, y);
 }
 
+void World::createLevel(int level)
+{
+	//init players positions based on level file
+	initPlayers();
+	try {
+		loadLevel(level); //Tali: change to const
+	}
+	catch (const std::ifstream::failure& e) //catches fstream error and sstream
+	{
+		std::cerr << "There was an error opening level file OR reading input\n";
+		exit(EXIT_FAILURE);
+	}
+	catch (const std::invalid_argument& e)
+	{
+		std::cerr << "There was an error opening level file\n";
+		exit(EXIT_FAILURE);
+	}
+}
+
+
 void World::initPlayers()
 {
 	//add exeption if unsuccessful
 	for (int i = 0; i < NUM_OF_PLAYERS; i++)
 	{
 		m_players.emplace_back(PlayerFactory::create(PLAYERS[i]));
-		//m_players[i]->createBody(&m_box2dWorld); //Tali: if its here, positions arent updated when reading file, simha maybe you know why?
+		m_players[i]->createBody(&m_box2dWorld); //Tali: if its here, positions arent updated when reading file, simha maybe you know why?
 	}
 }
 
@@ -119,6 +124,7 @@ void World::loadLevel(int levelNum)
 
 	levelFile.exceptions(std::ifstream::badbit);
 	ssline.exceptions(ssline.failbit |  ssline.badbit);
+	m_objects.clear();
 
 	levelFile.open(levelName);
 	while (!levelFile.eof())
@@ -131,7 +137,6 @@ void World::loadLevel(int levelNum)
 		if (isPlayer(objType))
 		{
 			m_players[getIndPlayer(objType)]->setPostition(sf::Vector2f(locX, locY));
-			m_players[getIndPlayer(objType)]->createBody(&m_box2dWorld); //Tali: maybe have to change this for opening other level files
 		}
 		else //create the object and then set location
 		{
