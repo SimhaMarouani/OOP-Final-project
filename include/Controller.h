@@ -5,6 +5,7 @@
 #include "Screens/HomePageScreen.h"
 #include "Screens/LevelMenuScreen.h"
 #include "Screens/GameScreen.h"
+#include "Settings.h"
 
 #include "Utilities.h"
 #include "Macros.h"

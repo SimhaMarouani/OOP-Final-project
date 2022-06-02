@@ -18,11 +18,13 @@ public:
 	void loadLevel(int level);
 	void setDirection(Direction dir);
 	void updateStatus(LevelActions la);
+
+	void initSettings(std::shared_ptr<Settings> s);
 private:
 	World m_world;
 	DataDisplay m_dataDisplay;
 
-	Settings m_settingsView;
+	std::shared_ptr<Settings> m_settingsView;
 
 	LevelActions m_pageStatus;
 	Player m_activePlayer;

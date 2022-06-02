@@ -4,8 +4,7 @@
 
 GameScreen::GameScreen()
     : m_activePlayer(Player::Heavy),
-      m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
-      m_settingsView(sf::Vector2f(SETTINGS_WIDTH,SETTINGS_HEIGHT))
+      m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT))
 {
     m_background.setTexture(Resources::instance().getBackground(Screen::Game));
 }
@@ -25,7 +24,7 @@ void GameScreen::draw(sf::RenderWindow& window)
     m_world.getWorld()->DebugDraw(); 
 
     if (m_pageStatus == LevelActions::Pause)
-        m_settingsView.draw(window);
+        m_settingsView->draw(window, Screen::Game);
 }
 
 void GameScreen::processEvents(sf::Event event, Controller &controller)
@@ -51,8 +50,8 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
             m_dataDisplay.handleClick(event, *this);
         else
         {
-            m_settingsView.handleClick(event, Screen::Game);
-            if (!m_settingsView.isContain(event)) //Noga: temp
+            m_settingsView->handleClick(event, Screen::Game);
+            if (!m_settingsView->isContain(event)) //Noga: temp
             {
                 updateStatus(LevelActions::None);
             }
@@ -89,5 +88,10 @@ void GameScreen::setDirection(Direction dir)
 void GameScreen::updateStatus(LevelActions la)
 {
     m_pageStatus = la;
+}
+
+void GameScreen::initSettings(std::shared_ptr<Settings> s)
+{
+    m_settingsView = move(s);
 }
 

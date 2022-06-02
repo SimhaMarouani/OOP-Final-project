@@ -20,6 +20,8 @@ public:
 	sf::Font* getFont();
 	sf::Texture* getBackground(Screen index);
 	sf::Texture* getPlayerTexture(Player player);
+	sf::Texture* getSettingsReturnTexture();
+	sf::Texture* getSettingsHomeTexture();
 	sf::Texture* getPlayerFaceTexture(Player player);
 	sf::Texture* getPlayerArrowTexture();
 	sf::Texture* getObjectTexture(Objects obj);
@@ -28,7 +30,7 @@ public:
 	sf::Texture* getLevelActionButtonTexture(LevelActions la);
 	sf::Texture* getGroundTexture(Grounds obj);
 	sf::Texture* getSoundTexture(SoundStatus s);
-
+	sf::Texture* getSettingsBackground();
 
 	void playMusic(Screen s);
 	bool isMusicOn() const;
@@ -44,6 +46,9 @@ private:
 
 	//Textures
 	void loadPlayers();
+	void loadSettingsReturnTexture();
+	void loadSettingsHomeTexture();
+
 	void loadPlayersFace();
 	void loadObjects();
 	void loadPlayerArrow();
@@ -54,7 +59,7 @@ private:
 	void loadGrounds();
 
 	void loadSoundTexture();
-
+	void loadSettingsBackground();
 
 	
 	//Audio 
@@ -67,6 +72,9 @@ private:
 
 	////Textures
 	sf::Texture m_playerArrow;;
+	sf::Texture m_settingsReturnTexture;
+	sf::Texture m_settingsHomeTexture;
+	sf::Texture m_settingsBackground;
 	std::vector<sf::Texture> m_players;
 	std::vector<sf::Texture> m_playersFace;
 	std::vector<sf::Texture> m_objects;

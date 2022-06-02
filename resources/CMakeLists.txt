@@ -22,6 +22,7 @@ configure_file ("images/home_background.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 configure_file ("images/game_background.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/levelmenu_background.png" ${CMAKE_BINARY_DIR} COPYONLY) #dont forget to remove
+configure_file ("images/settings_bg.png" ${CMAKE_BINARY_DIR} COPYONLY) #dont forget to remove
 
 
 
@@ -43,6 +44,9 @@ configure_file ("images/audio_on.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/audio_off.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/music_on.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/music_off.png" ${CMAKE_BINARY_DIR} COPYONLY)
+
+configure_file ("images/home_button.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/return_button.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 # home page buttons
 configure_file ("images/start.png" ${CMAKE_BINARY_DIR} COPYONLY)

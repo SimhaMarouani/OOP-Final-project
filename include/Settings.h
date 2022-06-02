@@ -11,11 +11,10 @@
 
 class Settings {
 public:
-	Settings(sf::Vector2f bgSize);
+	Settings();
 	virtual ~Settings() = default;
-	void draw(sf::RenderWindow& window);
+	void draw(sf::RenderWindow& window, Screen s);
 
-	//get
 	bool isContain(sf::Event event) const;
 	void handleClick(sf::Event event, Screen s);
 
@@ -31,5 +30,10 @@ private:
 
 	bool m_audioStatus;
 	sf::RectangleShape m_background;
+	
 	std::vector<Button> m_soundBtns;
+
+	Button m_exitSettingsBtn; // "return" 
+	Button m_redirectBtn; // in game = "home"
+
 };

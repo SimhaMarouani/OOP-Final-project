@@ -54,6 +54,8 @@ Resources::Resources()
 	loadFont();
 	loadBackgroundTextures();
 	loadPlayers();
+	loadSettingsReturnTexture();
+	loadSettingsHomeTexture();
 	loadPlayersFace();
 	loadPlayerArrow();
 	loadObjects();
@@ -62,7 +64,7 @@ Resources::Resources()
 	loadHomePageBtnsTexture();
 	loadLevelActionButtonTexture();
 	loadSoundTexture();
-
+	loadSettingsBackground();
 	loadMusic();
 }
 
@@ -110,6 +112,16 @@ sf::Texture* Resources::getPlayerTexture(Player player)
 	return &m_players[(int)player];
 }
 
+sf::Texture* Resources::getSettingsReturnTexture()
+{
+	return &m_settingsReturnTexture;
+}
+
+sf::Texture* Resources::getSettingsHomeTexture()
+{
+	return &m_settingsHomeTexture;
+}
+
 sf::Texture* Resources::getPlayerFaceTexture(Player player)
 {
 	return &m_playersFace[(int)player];
@@ -133,6 +145,11 @@ sf::Texture* Resources::getGroundTexture(Grounds obj)
 sf::Texture* Resources::getSoundTexture(SoundStatus s)
 {
 	return &m_soundTextures[(int)s];
+}
+
+sf::Texture* Resources::getSettingsBackground()
+{
+	return &m_settingsBackground;
 }
 
 sf::Texture* Resources::getLevelMenuTexture(LevelState l)
@@ -218,6 +235,18 @@ void Resources::loadPlayers()
 	}
 }
 
+void Resources::loadSettingsReturnTexture()
+{
+	if (!m_settingsReturnTexture.loadFromFile("return_button.png"))
+		std::cerr << "error loading texture file";
+}
+
+void Resources::loadSettingsHomeTexture()
+{
+	if (!m_settingsHomeTexture.loadFromFile("home_button.png"))
+		std::cerr << "error loading texture file";
+}
+
 void Resources::loadPlayersFace()
 {
 	m_playersFace.resize(NUM_OF_PLAYERS);
@@ -265,6 +294,12 @@ void Resources::loadSoundTexture()
 	{
 		std::cerr << "error loading ground textures from file";
 	}
+}
+
+void Resources::loadSettingsBackground()
+{
+	if (!m_settingsBackground.loadFromFile("settings_bg.png"))
+		std::cerr << "error loading texture file";
 }
 
 

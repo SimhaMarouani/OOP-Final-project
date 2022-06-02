@@ -8,14 +8,15 @@
 
 class Button {
 public:
-	Button(sf::Texture &texture, sf::Vector2f size);
+	Button(sf::Texture& texture, sf::Vector2f size);
+	Button(sf::Texture &texture);
 	Button() {};
 	virtual ~Button() = default;
 	void draw(sf::RenderWindow& window);
 
 	//get
 	bool isContain(sf::Event event) const;
-
+	sf::Vector2f getSize()const;
 	//set sprite
 	void setPosition(sf::Vector2f pos);
 	void setTexture(sf::Texture* texture);

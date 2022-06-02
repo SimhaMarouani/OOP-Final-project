@@ -4,6 +4,9 @@
 Controller::Controller() 
 	: m_window(), m_homePageScreen(), m_currPage(Screen::HomePage)
 {
+	std::shared_ptr s = std::make_shared<Settings>();
+	m_homePageScreen.initSettings(s);
+	m_gameScreen.initSettings(s);
 }
 
 void Controller::run()
@@ -74,7 +77,7 @@ void Controller::update()
 {
 	//Tali:maybe here step
 	float deltaTime = m_timer.restart().asSeconds();
-	//move, update etc.
+	//move, update etc.etc.etc.
 	switch (m_currPage)
 	{
 	case Screen::HomePage:
@@ -83,7 +86,6 @@ void Controller::update()
 		break;
 	case Screen::Game:
 		m_gameScreen.update(deltaTime);
-		//m_world.getWorld()->DebugDraw();
 		break;
 	default:
 		break;
@@ -103,16 +105,13 @@ void Controller::drawCurrPage()
 	switch (m_currPage)
 	{
 	case Screen::HomePage:
-		m_window.drawScreen(m_homePageScreen); //Noga: this is the template function - works. 
-		//m_window.drawHomePage(m_homePageScreen);
+		m_window.drawScreen(m_homePageScreen);
 		break;
 	case Screen::LevelMenu:
 		m_window.drawScreen(m_levelMenuScreen); 
-		//m_window.drawLevelMenuPage(m_levelMenuScreen);
 		break;
 	case Screen::Game:
 		m_window.drawScreen(m_gameScreen); 
-		//m_window.drawGame(m_gameScreen);
 		break;
 	default:
 		break;
