@@ -81,6 +81,9 @@ void Players::createBody(b2World* world/*, b2BodyType bodyType*/)
 	fixtureDef.shape = &BoxShape;
 	fixtureDef.density = 15.0f;
 	fixtureDef.friction = 1.0f;
+	b2MassData mass;
+	mass.center = m_body->GetLocalCenter();
+	mass.mass = 10;
 	//fixtureDef.restitution = 0.5f;
 
 

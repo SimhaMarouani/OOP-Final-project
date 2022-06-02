@@ -4,7 +4,7 @@
 Window::Window()
     : m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), GAME_TITLE, sf::Style::Close | sf::Style::Titlebar)
 {
-	m_window.setFramerateLimit(60);
+	m_window.setFramerateLimit(140);
 }
 
 void Window::update()
