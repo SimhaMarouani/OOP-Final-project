@@ -15,6 +15,7 @@
 
 #include "objectsInclude/StaticObjects.h"
 #include "objectsInclude/Box.h"
+#include "objectsInclude/Rafter.h"
 #include "objectsInclude/Floor.h"
 
 

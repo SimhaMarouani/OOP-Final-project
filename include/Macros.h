@@ -25,7 +25,7 @@ const float LEVEL_MENU_BTN_SIZE = 220.f;
 const float PLAYER_FACE_SIZE = 100.f;
 
 //Game title
-const std::string GAME_TITLE = "Ice Adventures";
+const std::string GAME_TITLE = "Home Sheep Home";
 
 const sf::Vector2f HOME_BTN_SIZE(350, 150);
 
@@ -36,7 +36,7 @@ const float BASE_SPEED = 130.0;
 const std::string PLAYERS[NUM_OF_PLAYERS] = { "Heavy", "Simple", "Light" };
 
 //objects
-const int NUM_OF_OBJS = 1;
+const int NUM_OF_OBJS = 2;
 const int NUM_OF_GROUNDS = 5;
 
 

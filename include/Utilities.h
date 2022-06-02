@@ -37,6 +37,7 @@ enum class Direction
 enum class Objects
 {
 	Hay,
+	Rafter
 };
 
 enum class Grounds

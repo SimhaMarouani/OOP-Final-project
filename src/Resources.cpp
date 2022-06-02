@@ -176,7 +176,8 @@ void Resources::loadObjects()
 {
 	m_objects.resize(NUM_OF_OBJS);
 
-	if (!m_objects[(int)Objects::Hay].loadFromFile("hay.png"))
+	if (!m_objects[(int)Objects::Hay].loadFromFile("hay.png") ||
+		!m_objects[(int)Objects::Rafter].loadFromFile("rafter.png"))
 	{
 		std::cerr << "error loading object textures from file";
 	}

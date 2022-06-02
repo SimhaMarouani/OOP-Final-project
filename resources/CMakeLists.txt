@@ -29,6 +29,7 @@ configure_file ("images/levelmenu_background.png" ${CMAKE_BINARY_DIR} COPYONLY) 
 # icons
 configure_file ("arrow.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/hay.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/rafter.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/heavy_player_face.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/simple_player_face.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/light_player_face.png" ${CMAKE_BINARY_DIR} COPYONLY)

@@ -36,6 +36,7 @@ std::unique_ptr<StaticObjects> ObjectFactory::create(const std::string& name, sf
 	if (initial) {
 
 		registerit("Hay",	  [](sf::Vector2f pos) -> std::unique_ptr<StaticObjects> { return std::make_unique<Box>(pos); });
+		registerit("Rafter",  [](sf::Vector2f pos) -> std::unique_ptr<StaticObjects> { return std::make_unique<Rafter>(pos); });
 		registerit("l_floor", [](sf::Vector2f pos) -> std::unique_ptr<StaticObjects> { return std::make_unique<Floor>(pos, Grounds::Left_l1); });
 		registerit("r_floor", [](sf::Vector2f pos) -> std::unique_ptr<StaticObjects> { return std::make_unique<Floor>(pos, Grounds::Right_l1); });
 		registerit("floor",	  [](sf::Vector2f pos) -> std::unique_ptr<StaticObjects> { return std::make_unique<Floor>(pos, Grounds::l2); });
