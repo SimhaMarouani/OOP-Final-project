@@ -33,7 +33,7 @@ private:
 	};
 
 	bool m_audioStatus;
-	sf::RectangleShape m_shadow;
+	sf::RectangleShape m_shadow; //Noga: optional
 	sf::RectangleShape m_background;
 	
 	std::vector<Button> m_soundBtns;
