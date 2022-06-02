@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+
 enum class Screen
 {
 	HomePage = 0,
@@ -60,4 +61,12 @@ enum class LevelActions
 	Retry = 0,
 	Pause,
 	None = -1
+};
+
+enum class SoundStatus
+{
+	AudioOn = 0,
+	AudioOff,
+	MusicOn,
+	MusicOff
 };

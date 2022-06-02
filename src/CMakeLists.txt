@@ -16,6 +16,10 @@
                                               "Resources.cpp"
                                               "Timer.cpp"
 
+                                              "Settings.cpp"
+                                              "GameSettings.cpp"
+                                              "HomeSettings.cpp"
+
                                               "playersSrc/Players.cpp"
                                               "playersSrc/Heavy.cpp"
                                               "playersSrc/Light.cpp"

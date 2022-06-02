@@ -9,8 +9,8 @@ const int WINDOW_HEIGHT = 900;
 const int DATA_DISPLAY_WIDTH = 1600; //Noga same as WINDOW_WIDTH maybe we can save only one of them?
 const int DATA_DISPLAY_HEIGHT = 150;
 
-const int SETTINGS_WIDTH = WINDOW_WIDTH - (WINDOW_WIDTH / 6);
-const int SETTINGS_HEIGHT = WINDOW_HEIGHT - (WINDOW_HEIGHT / 6);
+const int SETTINGS_WIDTH = WINDOW_WIDTH * 0.4;
+const int SETTINGS_HEIGHT = WINDOW_HEIGHT * 0.6;
 
 const int HELP_WIDTH = WINDOW_WIDTH - (WINDOW_WIDTH / 8);
 const int HELP_HEIGHT = WINDOW_HEIGHT - (WINDOW_HEIGHT / 8);

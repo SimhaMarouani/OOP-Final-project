@@ -25,7 +25,7 @@ public:
 	void startGame(Screen page, int level);
 	void updatePage(Screen page);
 	void exit();
-
+	void changeMusic(Screen s);
 private:
 	void processEvents();
 	void update();

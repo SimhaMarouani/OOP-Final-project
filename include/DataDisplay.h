@@ -10,6 +10,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
+class GameScreen;
 
 class DataDisplay
 {
@@ -17,7 +18,7 @@ public:
 	DataDisplay();
 	~DataDisplay();
 	void draw(sf::RenderWindow& window);
-	void handleClick(sf::Event event);
+	void handleClick(sf::Event event, GameScreen &gs);
 	//void handleHover(const sf::Vector2f& location);
 	void setCurrPlayer(int activePlayer);
 
@@ -35,8 +36,6 @@ private:
 private:
 	Timer m_timer;
 
-	//sf::RectangleShape m_barBackground; //Noga: still not in use
-
 	sf::Text m_scoreText;
 	sf::Text m_timerText;
 	sf::Text m_levelText;
@@ -44,9 +43,5 @@ private:
 	std::vector<Button> m_players;
 	std::vector<Button> m_levelActions;
 
-	LevelActions m_pageStatus;
-
-	sf::RectangleShape m_pauseWindow; //change to class or struct maybe?
-
-	//int m_pressedPlayer;
+	sf::RectangleShape m_pauseWindow; //Noga: delete
 };

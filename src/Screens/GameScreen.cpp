@@ -4,7 +4,8 @@
 
 GameScreen::GameScreen()
     : m_activePlayer(Player::Heavy),
-      m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT))
+      m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
+      m_settingsView(sf::Vector2f(SETTINGS_WIDTH,SETTINGS_HEIGHT))
 {
     m_background.setTexture(Resources::instance().getBackground(Screen::Game));
 }
@@ -22,6 +23,9 @@ void GameScreen::draw(sf::RenderWindow& window)
     d.SetFlags(flags);
     m_world.getWorld()->SetDebugDraw(&d);
     m_world.getWorld()->DebugDraw(); 
+
+    if (m_pageStatus == LevelActions::Pause)
+        m_settingsView.draw(window);
 }
 
 void GameScreen::processEvents(sf::Event event, Controller &controller)
@@ -37,12 +41,22 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
         }
         else if (event.key.code == sf::Keyboard::Escape)
         {
+            m_pageStatus = LevelActions::None;
             controller.updatePage(Screen::HomePage);
         }
         break;
     }
     case sf::Event::MouseButtonReleased:
-        m_dataDisplay.handleClick(event);
+        if(m_pageStatus != LevelActions::Pause)
+            m_dataDisplay.handleClick(event, *this);
+        else
+        {
+            m_settingsView.handleClick(event, Screen::Game);
+            if (!m_settingsView.isContain(event)) //Noga: temp
+            {
+                updateStatus(LevelActions::None);
+            }
+        }
         break;
     default:
         break;
@@ -70,5 +84,10 @@ void GameScreen::loadLevel(int level)
 void GameScreen::setDirection(Direction dir)
 {
     m_world.setActiveDirection(dir, m_activePlayer);
+}
+
+void GameScreen::updateStatus(LevelActions la)
+{
+    m_pageStatus = la;
 }
 

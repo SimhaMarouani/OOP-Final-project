@@ -1,10 +1,10 @@
 #include "DataDisplay.h"	
 #include "Controller.h"
+//#include "Screens/GameScreen.h"
 
 DataDisplay::DataDisplay(/*int level*/)
 	: m_players(NUM_OF_PLAYERS, Button(*Resources::instance().getPlayerFaceTexture(Player::Heavy), sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE))), 
 	  m_levelActions(2, Button(*Resources::instance().getLevelActionButtonTexture(LevelActions::Pause), sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE))),
-	  m_pageStatus(LevelActions::None),
 	  m_pauseWindow(sf::Vector2f(800, 500)) //Noga: move to gamescreen? Noga: ok
 {
 	createPlayersButtons();
@@ -65,11 +65,10 @@ void DataDisplay::createTexts()
 void DataDisplay::draw(sf::RenderWindow& window)
 {
 	setTimeText();
-	//window.draw(m_levelText); //Noga: we need to decide if we neet this text and where to place it on the window
 	window.draw(m_timerText);
 	drawBtns(window);
 
-	switch (m_pageStatus)
+	/*switch (m_pageStatus)
 	{
 	case LevelActions::Pause:
 		window.draw(m_pauseWindow);
@@ -80,7 +79,7 @@ void DataDisplay::draw(sf::RenderWindow& window)
 		break;
 	default:
 		break;
-	}
+	}*/
 }
 
 void DataDisplay::resetTimer()
@@ -120,34 +119,43 @@ void DataDisplay::setTimeText()
 	m_timerText.setString("Time: " + time);
 }
 
-void DataDisplay::handleClick(sf::Event event)
+void DataDisplay::handleClick(sf::Event event , GameScreen& gs)
 {
-	switch (m_pageStatus)
-	{
-	case LevelActions::Pause:
-	{
-		if (!m_pauseWindow.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
-			m_pageStatus = LevelActions::None;
-		break;
-	}
-	case LevelActions::Retry:
-		break;
-	case LevelActions::None:
-	{
-		//Noga: move to function
-		if (m_pageStatus == LevelActions::None)
-		{
-			if (m_levelActions[int(LevelActions::Pause)].isContain(event))
-				m_pageStatus = LevelActions::Pause;
+	//switch (m_pageStatus)
+	//{
+	//case LevelActions::Pause:
+	//{
+	//	if (!m_pauseWindow.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
+	//		m_pageStatus = LevelActions::None;
+	//	break;
+	//}
+	//case LevelActions::Retry:
+	//	break;
+	//case LevelActions::None:
+	//{
+	//	//Noga: move to function
+	//	if (m_pageStatus == LevelActions::None)
+	//	{
+	//		if (m_levelActions[int(LevelActions::Pause)].isContain(event))
+	//			m_pageStatus = LevelActions::Pause;
+	//		
+	//		else if(m_levelActions[int(LevelActions::Retry)].isContain(event))
+	//			std::cout << "retry\n"; 
+	//	}
+	//	break;
+	//}
+	//default:
+	//	break;
+	//}	
+
+	//Noga: move to function
+
+	if (m_levelActions[int(LevelActions::Pause)].isContain(event))
+		gs.updateStatus(LevelActions::Pause);
 			
-			else if(m_levelActions[int(LevelActions::Retry)].isContain(event))
-				std::cout << "retry\n"; 
-		}
-		break;
-	}
-	default:
-		break;
-	}	
+	else if(m_levelActions[int(LevelActions::Retry)].isContain(event))
+		std::cout << "retry\n"; 
+	
 }
 
 void DataDisplay::setCurrPlayer(int activePlayer)

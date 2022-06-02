@@ -46,6 +46,7 @@ void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)
 		if (m_levels[i].isContain(event) && i < m_numOfLevelsCompleted)
 		{
 			controller.startGame(Screen::Game, i+1);
+		/*	controller.changeMusic(Screen::Game);*/
 		}
 	}
 }

@@ -1,5 +1,54 @@
 #include "Resources.h"
 
+void Resources::playMusic(Screen s)
+{
+	switch (s)
+	{
+	case Screen::Game:
+		m_gameMusic.setLoop(true);
+		m_gameMusic.play();
+		m_homeMusic.pause();
+		break;
+	case Screen::HomePage:
+	case Screen::LevelMenu:
+	{
+		if (m_homeMusic.getStatus() == sf::SoundSource::Status::Playing) break;
+		m_homeMusic.setLoop(true);
+		m_homeMusic.play();
+		m_gameMusic.pause();
+		break;
+	}
+	default:
+		break;
+	}
+}
+
+bool Resources::isMusicOn() const
+{
+	return ( m_gameMusic.getStatus() == sf::SoundSource::Status::Playing || m_homeMusic.getStatus() == sf::SoundSource::Status::Playing ) ;
+}
+
+void Resources::switchMusicStatus(Screen s)
+{
+	switch (s)
+	{
+	case Screen::Game:
+	{
+		isMusicOn() ? m_gameMusic.pause() : m_gameMusic.play();
+		break;
+	}
+	case Screen::HomePage:
+	case Screen::LevelMenu:
+	{
+		isMusicOn() ? m_homeMusic.pause() : m_homeMusic.play();
+		break;
+	}
+	default:
+		break;
+	}
+
+}
+
 Resources::Resources()
 {
 	loadFont();
@@ -12,6 +61,9 @@ Resources::Resources()
 	loadLevelMenuIcons();
 	loadHomePageBtnsTexture();
 	loadLevelActionButtonTexture();
+	loadSoundTexture();
+
+	loadMusic();
 }
 
 
@@ -76,6 +128,11 @@ sf::Texture* Resources::getObjectTexture(Objects obj)
 sf::Texture* Resources::getGroundTexture(Grounds obj)
 {
 	return &m_grounds[(int)obj];
+}
+
+sf::Texture* Resources::getSoundTexture(SoundStatus s)
+{
+	return &m_soundTextures[(int)s];
 }
 
 sf::Texture* Resources::getLevelMenuTexture(LevelState l)
@@ -195,6 +252,31 @@ void Resources::loadGrounds()
 	{
 		std::cerr << "error loading ground textures from file";
 	}
+}
+
+void Resources::loadSoundTexture()
+{
+	m_soundTextures.resize(4);
+
+	if (!m_soundTextures[(int)SoundStatus::AudioOn].loadFromFile("audio_on.png") ||
+		!m_soundTextures[(int)SoundStatus::AudioOff].loadFromFile("audio_off.png") ||
+		!m_soundTextures[(int)SoundStatus::MusicOn].loadFromFile("music_on.png") ||
+		!m_soundTextures[(int)SoundStatus::MusicOff].loadFromFile("music_off.png") )
+	{
+		std::cerr << "error loading ground textures from file";
+	}
+}
+
+
+void Resources::loadMusic()
+{
+	//Noga: try vector with ptr
+	if (!m_gameMusic.openFromFile("birds.wav")
+		|| !m_homeMusic.openFromFile("home_music.wav"))
+		std::cerr << "error loading music from file";
+	
+	m_gameMusic.setVolume(15);
+	m_homeMusic.setVolume(15);
 }
 
 void Resources::loadPlayerArrow()

@@ -3,7 +3,7 @@
 
 #include "World.h"
 #include "DataDisplay.h"
-
+#include "Settings.h"
 
 
 class GameScreen {
@@ -17,10 +17,14 @@ public:
 	void resetTimer();
 	void loadLevel(int level);
 	void setDirection(Direction dir);
-
+	void updateStatus(LevelActions la);
 private:
 	World m_world;
 	DataDisplay m_dataDisplay;
+
+	Settings m_settingsView;
+
+	LevelActions m_pageStatus;
 	Player m_activePlayer;
 
 	sf::RectangleShape m_background;

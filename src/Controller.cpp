@@ -9,7 +9,8 @@ Controller::Controller()
 void Controller::run()
 {
 	srand(time(NULL));
-	
+	Resources::instance().playMusic(m_currPage);
+
 	while (m_window.isOpen())
 	{
 		processEvents(); //events
@@ -28,11 +29,18 @@ void Controller::startGame(Screen page, int level)
 void Controller::updatePage(Screen page)
 {
 	m_currPage = page;
+	changeMusic(page);
 }
 
 void Controller::exit()
 {
 	m_window.close();
+}
+
+void Controller::changeMusic(Screen s)
+{
+	if (Resources::instance().isMusicOn())
+		Resources::instance().playMusic(s);
 }
 
 void Controller::processEvents()

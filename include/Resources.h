@@ -27,7 +27,13 @@ public:
 	sf::Texture* getHomePageBtnsTexture(HomeButtonType b);
 	sf::Texture* getLevelActionButtonTexture(LevelActions la);
 	sf::Texture* getGroundTexture(Grounds obj);
+	sf::Texture* getSoundTexture(SoundStatus s);
 
+
+	void playMusic(Screen s);
+	bool isMusicOn() const;
+
+	void switchMusicStatus(Screen s);
 private:
 	Resources();
 	Resources(const Resources&) = default;
@@ -47,10 +53,12 @@ private:
 	void loadLevelActionButtonTexture();
 	void loadGrounds();
 
+	void loadSoundTexture();
+
 
 	
 	//Audio 
-	
+	void loadMusic();
 
 	//======Members==========
 
@@ -68,11 +76,13 @@ private:
 	std::vector<sf::Texture> m_levelActionButtonsTexture;
 	std::vector<sf::Texture> m_backgroundTextures;
 
-	//sf::Texture m_backgroundTextures[NUM_OF_BG_TEXTURES];
-	//std::string m_fileBackground[NUM_OF_BG_TEXTURES]{ "home_screen_bg.jpg", "game_background.png", /*"win.png", "Lose.png", "Help.png"*/ };
-	//
-	
+	std::vector<sf::Texture> m_soundTextures;
 
 	////Audio
 	//sf::SoundBuffer m_audioClick;
+
+	sf::Music m_gameMusic; //game background music
+	sf::Music m_homeMusic; //home background music
+	//const std::string MUSIC_FILE_NAME[NUM_OF_BG_TEXTURES] = { "home_music.wav", "levelmenu_music.wav", "birds.wav" };
+	//std::vector<sf::Music> m_music;
 };
