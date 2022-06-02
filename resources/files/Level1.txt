@@ -2,6 +2,6 @@ Heavy 100 600
 Simple 250 600
 Light 400 600
 Hay 800 600
-r_floor 1315 620
-l_floor 305 855
-Rafter 320 370
+r_floor 1210 620
+l_floor 550 855
+Rafter 490 370

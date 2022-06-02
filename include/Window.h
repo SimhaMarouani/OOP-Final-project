@@ -23,10 +23,10 @@ public:
     template <class T>
     void drawScreen(T& t) { t.draw(m_window); }
 
-    sf::RenderWindow* PTRW()
+    /*sf::RenderWindow* PTRW()
     {
         return &m_window;
-    }
+    }*/
 
 private:
     sf::RenderWindow m_window;
