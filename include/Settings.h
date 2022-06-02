@@ -9,6 +9,8 @@
 
 #include <iostream>
 
+class Controller;
+
 class Settings {
 public:
 	Settings();
@@ -18,6 +20,8 @@ public:
 	bool isContain(sf::Event event) const;
 	void handleClick(sf::Event event, Screen s);
 
+	bool isContainExit(sf::Event e) const;
+	bool isContainHome(sf::Event e) const;
 private:
 	void createBtns();
 
@@ -29,6 +33,7 @@ private:
 	};
 
 	bool m_audioStatus;
+	sf::RectangleShape m_shadow;
 	sf::RectangleShape m_background;
 	
 	std::vector<Button> m_soundBtns;

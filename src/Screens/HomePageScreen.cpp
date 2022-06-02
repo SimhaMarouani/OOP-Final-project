@@ -26,8 +26,8 @@ void HomePageScreen::draw(sf::RenderWindow& window)
 		m_settingsView->draw(window, Screen::HomePage);
 		break;
 	case PageStatus::Menu:
-	default:
 		drawMenu(window);
+	default:
 		break;
 	}
 }
@@ -82,7 +82,9 @@ void HomePageScreen::handleClick(sf::Event event, Controller &controller)
 	case HomePageScreen::PageStatus::Settings:
 	{
 		m_settingsView->handleClick(event, Screen::HomePage);
-		if (!m_settingsView -> isContain(event))
+		if (!m_settingsView -> isContain(event)) //Noga: delete?
+			m_pageStatus = PageStatus::Menu;
+		if(m_settingsView->isContainExit(event))
 			m_pageStatus = PageStatus::Menu;
 		break;
 	}

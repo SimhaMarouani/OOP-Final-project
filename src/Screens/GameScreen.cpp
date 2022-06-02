@@ -52,8 +52,13 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
         {
             m_settingsView->handleClick(event, Screen::Game);
             if (!m_settingsView->isContain(event)) //Noga: temp
+                updateStatus(LevelActions::None);
+            if (m_settingsView->isContainExit(event))
+                updateStatus(LevelActions::None);
+            if (m_settingsView->isContainHome(event))
             {
                 updateStatus(LevelActions::None);
+                controller.updatePage(Screen::HomePage);
             }
         }
         break;

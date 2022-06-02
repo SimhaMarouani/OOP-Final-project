@@ -1,13 +1,16 @@
 #include "Settings.h"
+#include "Controller.h"
 
 
 Settings::Settings() //TODO: send current status
 	:m_background(sf::Vector2f(SETTINGS_WIDTH, SETTINGS_HEIGHT)),
+	m_shadow(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
 	m_exitSettingsBtn(*Resources::instance().getSettingsReturnTexture()),
 	m_redirectBtn(*Resources::instance().getSettingsHomeTexture()),
 	m_audioStatus(true)
 
 {
+	m_shadow.setFillColor(sf::Color::Color(0, 0, 0, 50));
 	m_background.setTexture(Resources::instance().getSettingsBackground());
 	m_background.setPosition(sf::Vector2f((WINDOW_WIDTH - SETTINGS_WIDTH) / 2, (WINDOW_HEIGHT - SETTINGS_HEIGHT) / 2));
 	createBtns();
@@ -20,6 +23,7 @@ Settings::Settings() //TODO: send current status
 
 void Settings::draw(sf::RenderWindow& window, Screen s)
 {
+	window.draw(m_shadow);
 	window.draw(m_background);
 
 	for (auto& i : m_soundBtns)
@@ -44,7 +48,7 @@ void Settings::handleClick(sf::Event event, Screen s)
 	{
 		SoundStatus type = m_audioStatus ? SoundStatus::AudioOff : SoundStatus::AudioOn;
 		m_soundBtns[(int)Type::Audio].setTexture(Resources::instance().getSoundTexture(type));
-		m_audioStatus != m_audioStatus;
+		m_audioStatus = !m_audioStatus;
 	}
 	else if (m_soundBtns[(int)Type::Music].isContain(event))
 	{
@@ -52,20 +56,38 @@ void Settings::handleClick(sf::Event event, Screen s)
 		m_soundBtns[(int)Type::Music].setTexture(Resources::instance().getSoundTexture(type));
 		Resources::instance().switchMusicStatus(s);
 	}
+	/*else if (m_redirectBtn.isContain(event) && s == Screen::Game)
+	{
+		controller.updatePage(Screen::HomePage);
+	}
+	else if (m_exitSettingsBtn.isContain(event))
+	{
+
+	}*/
+}
+
+bool Settings::isContainExit(sf::Event e) const
+{
+	return m_exitSettingsBtn.isContain(e);
+}
+
+bool Settings::isContainHome(sf::Event e) const
+{
+	return m_redirectBtn.isContain(e);
 }
 
 void Settings::createBtns()
 {
-	auto x = m_background.getPosition();
-	auto y = m_background.getPosition();
+	auto startPos = m_background.getPosition();
+	int i = (int)Type::Audio;
+	int j = (int)Type::Music;
 
 	m_soundBtns.resize(2);
-	m_soundBtns[(int)Type::Audio].setTexture(Resources::instance().getSoundTexture(SoundStatus::AudioOn));
-	m_soundBtns[(int)Type::Audio].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
-	m_soundBtns[(int)Type::Audio].setPosition(m_background.getPosition() + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_soundBtns[(int)Type::Audio].getSize().x / 2 ), SETTINGS_HEIGHT / 4));
+	m_soundBtns[i].setTexture(Resources::instance().getSoundTexture(SoundStatus::AudioOn));
+	m_soundBtns[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
+	m_soundBtns[i].setPosition(startPos + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_soundBtns[i].getSize().x / 2 ), SETTINGS_HEIGHT / 4));
 
-	m_soundBtns[(int)Type::Music].setTexture(Resources::instance().getSoundTexture(SoundStatus::MusicOn));
-	m_soundBtns[(int)Type::Music].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
-	m_soundBtns[(int)Type::Music].setPosition(m_background.getPosition() + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_soundBtns[(int)Type::Music].getSize().x / 2 - PLAYER_FACE_SIZE ), SETTINGS_HEIGHT / 4));
-	//m_soundBtns[(int)Type::Music].setPosition(m_background.getPosition() + sf::Vector2f(120, 10));
+	m_soundBtns[j].setTexture(Resources::instance().getSoundTexture(SoundStatus::MusicOn));
+	m_soundBtns[j].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
+	m_soundBtns[j].setPosition(startPos + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_soundBtns[j].getSize().x / 2 - PLAYER_FACE_SIZE ), SETTINGS_HEIGHT / 4));
 }
