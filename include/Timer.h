@@ -15,7 +15,9 @@ public:
 	void setTime(int time);
 	void startClock();
 	void addTime(float time_to_add);
-
+	//TODO: add start and pause
+	void start();
+	void pause();
 	//Access Functions
 	sf::Time getElapsed()const;
 	float getTime()const;
