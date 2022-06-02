@@ -23,6 +23,7 @@ void Players::setPostition(sf::Vector2f pos)
 {
 	//Tali: add exception to vector
 	m_icon.setPosition(pos);
+	m_body->SetTransform(b2Vec2(m_icon.getPosition().x, m_icon.getPosition().y), 0);
 }
 
 void Players::move(float deltaTime)

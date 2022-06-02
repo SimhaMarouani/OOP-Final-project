@@ -105,7 +105,7 @@ void World::initPlayers()
 	for (int i = 0; i < NUM_OF_PLAYERS; i++)
 	{
 		m_players.emplace_back(PlayerFactory::create(PLAYERS[i]));
-		//m_players[i]->createBody(&m_box2dWorld); //Tali: if its here, positions arent updated when reading file, simha maybe you know why?
+		m_players[i]->createBody(&m_box2dWorld); //Tali: if its here, positions arent updated when reading file, simha maybe you know why?
 	}
 }
 
@@ -119,6 +119,7 @@ void World::loadLevel(int levelNum)
 
 	levelFile.exceptions(std::ifstream::badbit);
 	ssline.exceptions(ssline.failbit |  ssline.badbit);
+	m_objects.clear();
 
 	levelFile.open(levelName);
 	while (!levelFile.eof())
@@ -131,7 +132,6 @@ void World::loadLevel(int levelNum)
 		if (isPlayer(objType))
 		{
 			m_players[getIndPlayer(objType)]->setPostition(sf::Vector2f(locX, locY));
-			m_players[getIndPlayer(objType)]->createBody(&m_box2dWorld); //Tali: maybe have to change this for opening other level files
 		}
 		else //create the object and then set location
 		{
