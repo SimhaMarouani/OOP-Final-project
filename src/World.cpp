@@ -12,8 +12,9 @@ const int OFFSET = 37;
 
 
 World::World()
-	:m_box2dWorld(gravity)
+	//:m_box2dWorld(gravity)
 {
+	m_box2dWorld = new b2World(gravity);
 	initArrow();
 
 	// Define the ground body.
@@ -25,7 +26,7 @@ World::World()
 	// from a pool and creates the ground box shape (also from a pool).
 	// The body is also added to the world.
 	//b2Body* groundBody = m_box2dWorld.CreateBody(&groundBodyDef);
-	groundBody = m_box2dWorld.CreateBody(&groundBodyDef);
+	groundBody = m_box2dWorld->CreateBody(&groundBodyDef);
 
 	// Define the ground box shape.
 	b2PolygonShape groundBox;
@@ -35,7 +36,8 @@ World::World()
 
 	// Add the ground fixture to the ground body.
 	groundBody->CreateFixture(&groundBox, 0.0f);
- 
+	
+	initPlayers();
 	createLevel(1);
 }
 
@@ -70,7 +72,7 @@ void World::moveActive(float deltaTime, Player active)
 	
 	for (int i = 0; i < m_players.size(); i++)
 	{
-		m_box2dWorld.Step(timeStep, velocityIterations, positionIterations);
+		m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
 		m_players[i]->move(deltaTime);
 	}
 	/*m_box2dWorld.Step(timeStep, velocityIterations, positionIterations);
@@ -87,7 +89,7 @@ void World::moveArrow(Player active)
 void World::createLevel(int level)
 {
 	//init players positions based on level file
-	initPlayers();
+	//initPlayers();
 	try {
 		loadLevel(level); //Tali: change to const
 	}
@@ -106,12 +108,10 @@ void World::createLevel(int level)
 
 void World::initPlayers()
 {
-	//add exeption if unsuccessful
-	for (int i = 0; i < NUM_OF_PLAYERS; i++)
-	{
-		m_players.emplace_back(PlayerFactory::create(PLAYERS[i]));
-		m_players[i]->createBody(&m_box2dWorld); //Tali: if its here, positions arent updated when reading file, simha maybe you know why?
-	}
+	//Players (amount and type) is constant!
+	m_players.emplace_back(std::make_unique<Heavy>(m_box2dWorld));
+	m_players.emplace_back(std::make_unique<Simple>(m_box2dWorld));
+	m_players.emplace_back(std::make_unique<Light>(m_box2dWorld));
 }
 
 void World::loadLevel(int levelNum)
@@ -136,7 +136,7 @@ void World::loadLevel(int levelNum)
 
 		if (isPlayer(objType))
 		{
-			m_players[getIndPlayer(objType)]->setPostition(sf::Vector2f(locX, locY));
+			m_players[getIndPlayer(objType)]->setPosition(sf::Vector2f(locX, locY));
 		}
 		else //create the object and then set location
 		{
@@ -153,7 +153,7 @@ void World::loadLevel(int levelNum)
 	levelFile.close();
 }
 
-bool World::isPlayer(std::string type)
+bool World::isPlayer(std::string type)const
 {
 	//Tali: change to more generic //Noga: we can change this 'if' to .find() or save it as a pair / map i think
 	return type == PLAYERS[0]
@@ -161,7 +161,7 @@ bool World::isPlayer(std::string type)
 			|| type == PLAYERS[2];
 }
 
-int World::getIndPlayer(std::string player) //might not need in future
+int World::getIndPlayer(std::string player)const //might not need in future
 {
 	for (int i = 0; i < NUM_OF_PLAYERS; i++)
 		if (PLAYERS[i] == player)

@@ -6,7 +6,9 @@ class Heavy : public Players
 {
 public:
 	Heavy();
-	Heavy(sf::Vector2f position/*, Board& board*/);
+	//Heavy(sf::Vector2f position/*, Board& board*/);
+	Heavy(b2World* world);
+
 
 	//void move(float deltaTime);
 

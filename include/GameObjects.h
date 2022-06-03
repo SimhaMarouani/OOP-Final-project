@@ -11,17 +11,20 @@ class GameObjects
 {
 public:
     GameObjects();
-
+    //GameObjects(b2World* world, b2BodyType bodyType);
     virtual ~GameObjects() = default;
-    sf::Vector2f  convertB2VecToVec2f(b2Vec2 vec2f) const;
-//    void draw(sf::RenderWindow& window) = 0;
 
-protected:
-    void setBox2d(std::unique_ptr<b2World> &world, b2BodyType);
-    b2Body* m_body = nullptr;
+    void draw(sf::RenderWindow& window);
+
+    sf::Vector2f  convertB2VecToVec2f(b2Vec2 vec2f) const;
+    sf::Vector2f getPosition();
+    virtual void setPosition(sf::Vector2f pos);
     float getWidth();
     float getHeight();
-    sf::Vector2f getPosition();
+    void createBody(b2World* world, b2BodyType bodyType);
+
+protected:
+    b2Body* m_body = nullptr;
    
-    sf::Sprite m_sprite;
+    sf::Sprite m_icon;
 };

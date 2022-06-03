@@ -8,5 +8,5 @@ Box::Box()
 Box::Box(sf::Vector2f pos)
 	: StaticObjects(Objects::Hay)
 {
-	setPostition(pos);
+	setPosition(pos);
 }

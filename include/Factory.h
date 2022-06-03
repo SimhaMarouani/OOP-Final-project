@@ -18,22 +18,6 @@
 #include "objectsInclude/Rafter.h"
 #include "objectsInclude/Floor.h"
 
-
-
-class PlayerFactory 
-{
-public:
-	using pFnc = std::unique_ptr<Players>(*)();
-	static std::unique_ptr<Players> create(const std::string& name);
-	static void registerit(const std::string& name, pFnc);
-
-private:
-	static auto& getMap() {
-		static std::map<std::string, pFnc> map;
-		return map;
-	}
-};
-
 class ObjectFactory 
 {
 public:

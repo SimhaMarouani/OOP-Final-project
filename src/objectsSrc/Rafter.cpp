@@ -8,5 +8,5 @@ Rafter::Rafter()
 Rafter::Rafter(sf::Vector2f pos)
 	: StaticObjects(Objects::Rafter)
 {
-	setPostition(pos);
+	setPosition(pos);
 }

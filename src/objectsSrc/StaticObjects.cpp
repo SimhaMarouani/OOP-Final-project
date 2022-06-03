@@ -21,12 +21,4 @@ StaticObjects::StaticObjects(Grounds type)
 	m_icon.setOrigin(m_icon.getGlobalBounds().width, m_icon.getGlobalBounds().height);
 }
 
-void StaticObjects::setPostition(sf::Vector2f pos)
-{
-	m_icon.setPosition(pos);
-}
 
-void StaticObjects::draw(sf::RenderWindow & window)
-{
-	window.draw(m_icon);
-}

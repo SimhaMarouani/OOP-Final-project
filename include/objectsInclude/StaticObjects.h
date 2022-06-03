@@ -10,9 +10,6 @@ public:
 	StaticObjects(Objects type);
 	StaticObjects(Grounds type);
 
-	void setPostition(sf::Vector2f pos);
-	void draw(sf::RenderWindow& window);
 
 private:
-	sf::Sprite m_icon;
 };

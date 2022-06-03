@@ -4,27 +4,33 @@ Players::Players()
 {}
 
 Players::Players(Player type)
+	:GameObjects()
 {
 	m_icon.setTexture(*Resources::instance().getPlayerTexture(type));
 	m_icon.setScale(sf::Vector2f(0.5, 0.5));
 	m_icon.setOrigin(m_icon.getGlobalBounds().width, m_icon.getGlobalBounds().height);
 }
 
-void Players::draw(sf::RenderWindow& window)
+Players::Players(Player type, b2World* world)
 {
-	//auto step = (deltaTime * m_speedPerSecond * getDirection(m_direction));
-	//m_body->SetTransform(m_body->GetPosition() + step, 0);
-	//m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
-
-	window.draw(m_icon);
+	m_icon.setTexture(*Resources::instance().getPlayerTexture(type));
+	m_icon.setScale(sf::Vector2f(0.5, 0.5));
+	m_icon.setOrigin(m_icon.getGlobalBounds().width, m_icon.getGlobalBounds().height);
+	m_icon.setPosition(sf::Vector2f(0, 600));
+	createBody(world, b2_dynamicBody);
+	m_body->SetFixedRotation(true);
 }
 
-void Players::setPostition(sf::Vector2f pos)
-{
-	//Tali: add exception to vector
-	m_icon.setPosition(pos);
-	m_body->SetTransform(b2Vec2(m_icon.getPosition().x, m_icon.getPosition().y), 0);
-}
+//void Players::draw(sf::RenderWindow& window)
+//{
+//	//auto step = (deltaTime * m_speedPerSecond * getDirection(m_direction));
+//	//m_body->SetTransform(m_body->GetPosition() + step, 0);
+//	//m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
+//
+//	window.draw(m_icon);
+//}
+
+
 
 void Players::move(float deltaTime)
 {
@@ -38,10 +44,13 @@ void Players::move(float deltaTime)
 		
 
 	//-------- 2nd Version
-	m_body->ApplyForce(b2Vec2(0, -1), m_body->GetWorldCenter(), true);
-	auto step = (deltaTime * m_speedPerSecond * getDirection(m_direction));
-	m_body->SetTransform(m_body->GetPosition() + step, 0);
-	m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
+	if (m_body)
+	{
+		m_body->ApplyForce(b2Vec2(0, -1), m_body->GetWorldCenter(), true);
+		auto step = (deltaTime * m_speedPerSecond * getDirection(m_direction));
+		m_body->SetTransform(m_body->GetPosition() + step, 0);
+		m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
+	}
 }
 
 void Players::setDirection(Direction dir)
@@ -64,45 +73,30 @@ b2Vec2 Players::getDirection(Direction dir)
     }
 }
 
-void Players::createBody(b2World* world/*, b2BodyType bodyType*/)
-{
-	// BodyDef
-	b2BodyDef bodyDef;
-	bodyDef.type = b2_dynamicBody;
-	
-	bodyDef.position.Set(getPosition().x, getPosition().y);
-	bodyDef.fixedRotation = true;
-	m_body = world->CreateBody(&bodyDef);
-
-	b2PolygonShape BoxShape;
-	BoxShape.SetAsBox(getWidth() / 2, getHeight() / 2);
-
-	// FixtureDef
-	b2FixtureDef fixtureDef;
-	fixtureDef.shape = &BoxShape;
-	fixtureDef.density = 15.0f;
-	fixtureDef.friction = 1.0f;
-	b2MassData mass;
-	mass.center = m_body->GetLocalCenter();
-	mass.mass = 10;
-	//fixtureDef.restitution = 0.5f;
-
-
-	m_body->CreateFixture(&fixtureDef);
-}
-
-float Players::getWidth()
-{
-	return m_icon.getGlobalBounds().width;
-}
-
-float Players::getHeight()
-{
-	return m_icon.getGlobalBounds().height;
-}
-
-sf::Vector2f Players::getPosition()
-{
-	return m_icon.getPosition();
-}
+//void Players::createBody(b2World* world/*, b2BodyType bodyType*/)
+//{
+//	// BodyDef
+//	b2BodyDef bodyDef;
+//	bodyDef.type = b2_dynamicBody;
+//	
+//	bodyDef.position.Set(getPosition().x, getPosition().y);
+//	bodyDef.fixedRotation = true;
+//	m_body = world->CreateBody(&bodyDef);
+//
+//	b2PolygonShape BoxShape;
+//	BoxShape.SetAsBox(getWidth() / 2, getHeight() / 2);
+//
+//	// FixtureDef
+//	b2FixtureDef fixtureDef;
+//	fixtureDef.shape = &BoxShape;
+//	fixtureDef.density = 15.0f;
+//	fixtureDef.friction = 1.0f;
+//	b2MassData mass;
+//	mass.center = m_body->GetLocalCenter();
+//	mass.mass = 10;
+//	//fixtureDef.restitution = 0.5f;
+//
+//
+//	m_body->CreateFixture(&fixtureDef);
+//}
 

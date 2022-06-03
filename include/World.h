@@ -22,7 +22,7 @@ class World
 {
 public:
 	World();
-
+	~World() = default;
 	void draw(sf::RenderWindow& window);
 	void setActiveDirection(Direction dir, Player active);
 	void moveActive(float deltaTime, Player active);
@@ -30,20 +30,20 @@ public:
 
 	void SetDebugDraw(DebugDraw* d)
 	{
-		m_box2dWorld.SetDebugDraw(d);
+		m_box2dWorld->SetDebugDraw(d);
 	}
 
 	void createLevel(int level);
-	b2World* getWorld() { return &m_box2dWorld; }
+	b2World* getWorld() { return m_box2dWorld; } //for debugging
 
 private:
 	void initPlayers();
 	void initArrow();
 	void loadLevel(int levelNum);
-	bool isPlayer(std::string type);
-	int getIndPlayer(std::string player);
+	bool isPlayer(std::string type)const;
+	int getIndPlayer(std::string player)const;
 
-	b2World m_box2dWorld;
+	b2World* m_box2dWorld;
 	sf::Sprite m_arrow;
 	
 	std::vector<std::unique_ptr<Players>> m_players;
@@ -51,5 +51,4 @@ private:
 
 
 	b2Body* groundBody;
-	//sf::RectangleShape ground;
 };

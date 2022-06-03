@@ -8,7 +8,7 @@ Floor::Floor(Grounds type)
 Floor::Floor(sf::Vector2f pos, Grounds type)
 	: StaticObjects(type)
 {
-	setPostition(pos);
+	setPosition(pos);
 }
 
 void Floor::setAsGround()
