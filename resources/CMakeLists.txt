@@ -56,6 +56,9 @@ configure_file ("images/exit.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 # sprite sheets
 
+configure_file ("spritesheets/heavy_spritesheet.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("spritesheets/simple_spritesheet.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("spritesheets/light_spritesheet.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 # files
 configure_file ("files/Level1.txt" ${CMAKE_BINARY_DIR} COPYONLY)

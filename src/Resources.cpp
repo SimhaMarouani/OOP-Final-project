@@ -65,7 +65,9 @@ Resources::Resources()
 	loadLevelActionButtonTexture();
 	loadSoundTexture();
 	loadSettingsBackground();
+	loadPlayerSpriteSheet();
 	loadMusic();
+
 }
 
 
@@ -150,6 +152,11 @@ sf::Texture* Resources::getSoundTexture(SoundStatus s)
 sf::Texture* Resources::getSettingsBackground()
 {
 	return &m_settingsBackground;
+}
+
+sf::Texture* Resources::getPlayerSpriteSheet(Player p)
+{
+	return &m_playerSpriteSheet[(int)p];
 }
 
 sf::Texture* Resources::getLevelMenuTexture(LevelState l)
@@ -300,6 +307,18 @@ void Resources::loadSettingsBackground()
 {
 	if (!m_settingsBackground.loadFromFile("settings_bg.png"))
 		std::cerr << "error loading texture file";
+}
+
+void Resources::loadPlayerSpriteSheet()
+{
+	m_playerSpriteSheet.resize(NUM_OF_PLAYERS);
+
+	if (!m_playerSpriteSheet[(int)Player::Heavy].loadFromFile("heavy_spritesheet.png") ||
+		!m_playerSpriteSheet[(int)Player::Simple].loadFromFile("simple_spritesheet.png") ||
+		!m_playerSpriteSheet[(int)Player::Light].loadFromFile("light_spritesheet.png"))
+	{
+		std::cerr << "error loading player spritesheet from file";
+	}
 }
 
 

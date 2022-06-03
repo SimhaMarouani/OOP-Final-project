@@ -81,6 +81,7 @@ void Controller::update()
 	switch (m_currPage)
 	{
 	case Screen::HomePage:
+		m_homePageScreen.update(deltaTime); //animation
 		break;
 	case Screen::LevelMenu:
 		break;

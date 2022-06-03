@@ -6,9 +6,11 @@
 #include "Button.h"
 #include "Window.h"
 #include "Settings.h"
+#include "Animation.h"
 
 #include "Macros.h"
 #include "Utilities.h"
+
 
 class Window;
 
@@ -21,7 +23,7 @@ public:
 	void processEvents(sf::Event event, Controller& controller);
 	void handleClick(sf::Event event, Controller& controller);
 	void initSettings(std::shared_ptr<Settings> s);
-
+	void update(float deltaTime);  //animation
 private:
 	void setHelpScreen();
 	void initButtons();
@@ -41,4 +43,11 @@ private:
 
 	PageStatus m_pageStatus;
 	std::shared_ptr<Settings> m_settingsView;
+	
+	//Noga: need to add light + simple and save as vector or something- at first I thought to create 'Player' and not sf::Sprite
+	// but I didnt want to change anything in Player class so...
+	sf::Sprite m_heavy;  //animation
+	Animation m_animation;  //animation
+
+
 };

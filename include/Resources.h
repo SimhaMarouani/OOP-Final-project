@@ -31,6 +31,7 @@ public:
 	sf::Texture* getGroundTexture(Grounds obj);
 	sf::Texture* getSoundTexture(SoundStatus s);
 	sf::Texture* getSettingsBackground();
+	sf::Texture* getPlayerSpriteSheet(Player p);
 
 	void playMusic(Screen s);
 	bool isMusicOn() const;
@@ -61,7 +62,7 @@ private:
 	void loadSoundTexture();
 	void loadSettingsBackground();
 
-	
+	void loadPlayerSpriteSheet();
 	//Audio 
 	void loadMusic();
 
@@ -83,6 +84,7 @@ private:
 	std::vector<sf::Texture> m_homePageBtnsTexture;
 	std::vector<sf::Texture> m_levelActionButtonsTexture;
 	std::vector<sf::Texture> m_backgroundTextures;
+	std::vector<sf::Texture> m_playerSpriteSheet;
 
 	std::vector<sf::Texture> m_soundTextures;
 

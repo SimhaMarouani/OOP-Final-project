@@ -2,12 +2,16 @@
 #include "Controller.h"
 
 HomePageScreen::HomePageScreen()
-	: m_pageStatus(PageStatus::Menu), m_helpBackground(sf::Vector2f(HELP_WIDTH, HELP_HEIGHT))
+	: m_pageStatus(PageStatus::Menu), m_helpBackground(sf::Vector2f(HELP_WIDTH, HELP_HEIGHT)),
+	m_animation(Resources::instance().getPlayerSpriteSheet(Player::Heavy), sf::Vector2u(5, 5), 0.08f) //animation
 {
 	setHelpScreen();
 
 	m_background.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
 	m_background.setTexture(Resources::instance().getBackground(Screen::HomePage));
+
+	m_heavy.setTexture(*Resources::instance().getPlayerSpriteSheet(Player::Heavy)); //animation
+	m_heavy.setPosition(sf::Vector2f(140, 500)); //animation
 
 	initButtons();
 
@@ -16,7 +20,7 @@ HomePageScreen::HomePageScreen()
 void HomePageScreen::draw(sf::RenderWindow& window)
 {
 	window.draw(m_background);
-
+	window.draw(m_heavy);
 	switch (m_pageStatus)
 	{
 	case PageStatus::Help:
@@ -96,6 +100,12 @@ void HomePageScreen::handleClick(sf::Event event, Controller &controller)
 void HomePageScreen::initSettings(std::shared_ptr<Settings> s)
 {
 	m_settingsView = move(s);
+}
+
+void HomePageScreen::update(float deltaTime)
+{
+	m_animation.update(1 /*line*/, 4, deltaTime); //animation
+	m_heavy.setTextureRect(m_animation.m_uvRect); //animations
 }
 
 void HomePageScreen::setHelpScreen()
