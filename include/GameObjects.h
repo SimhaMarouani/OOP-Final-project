@@ -17,10 +17,10 @@ public:
     void draw(sf::RenderWindow& window);
 
     sf::Vector2f  convertB2VecToVec2f(b2Vec2 vec2f) const;
-    sf::Vector2f getPosition();
+    sf::Vector2f getPosition()const;
     virtual void setPosition(sf::Vector2f pos);
-    float getWidth();
-    float getHeight();
+    float getWidth()const;
+    float getHeight()const;
     void createBody(b2World* world, b2BodyType bodyType);
 
 protected:

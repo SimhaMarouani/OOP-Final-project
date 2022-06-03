@@ -74,17 +74,17 @@ void GameObjects::createBody(b2World* world, b2BodyType bodyType)
 
 }
 
-float GameObjects::getWidth()
+float GameObjects::getWidth()const
 {
     return m_icon.getGlobalBounds().width;
 }
 
-float GameObjects::getHeight()
+float GameObjects::getHeight()const
 {
     return m_icon.getGlobalBounds().height;
 }
 
-sf::Vector2f GameObjects::getPosition()
+sf::Vector2f GameObjects::getPosition()const
 {
     return m_icon.getPosition();
 }
