@@ -39,4 +39,6 @@ const std::string PLAYERS[NUM_OF_PLAYERS] = { "Heavy", "Simple", "Light" };
 const int NUM_OF_OBJS = 2;
 const int NUM_OF_GROUNDS = 5;
 
+//static int numFootContacts; //Tali:To change
+//static bool TOUCHING_GROUND;
 

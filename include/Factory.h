@@ -21,8 +21,8 @@
 class ObjectFactory 
 {
 public:
-	using pFnc = std::unique_ptr<StaticObjects>(*)(sf::Vector2f pos);
-	static std::unique_ptr<StaticObjects> create(const std::string& name, sf::Vector2f pos);
+	using pFnc = std::unique_ptr<StaticObjects>(*)(sf::Vector2f pos, b2World* world);
+	static std::unique_ptr<StaticObjects> create(const std::string& name, sf::Vector2f pos, b2World* world);
 	static void registerit(const std::string& name, pFnc);
 
 private:

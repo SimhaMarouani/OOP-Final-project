@@ -13,7 +13,6 @@
 #include "objectsInclude/StaticObjects.h" //Tali: will change to appropriate object header files
 
 #include "Factory.h"
-
 #include "DebugDraw.h"
 
 class Controller;

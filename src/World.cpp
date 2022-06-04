@@ -10,35 +10,37 @@ const b2Vec2 gravity = b2Vec2(0.0f, 10.0f);
 const sf::Vector2f initVec = sf::Vector2f(0.f, 0.f);
 const int OFFSET = 37;
 
+//int numFootContacts;
 
 World::World()
-	//:m_box2dWorld(gravity)
 {
+
 	m_box2dWorld = new b2World(gravity);
+
+	//// Define the ground body.
+	//b2BodyDef groundBodyDef;
+	//groundBodyDef.type = b2_staticBody;
+	//groundBodyDef.position.Set(0.f, WINDOW_HEIGHT - 150);
+	// 
+	//// Call the body factory which allocates memory for the ground body
+	//// from a pool and creates the ground box shape (also from a pool).
+	//// The body is also added to the world.
+	////b2Body* groundBody = m_box2dWorld.CreateBody(&groundBodyDef);
+	//groundBody = m_box2dWorld->CreateBody(&groundBodyDef);
+
+	//// Define the ground box shape.
+	//b2PolygonShape groundBox;
+
+	//// The extents are the half-widths of the box.
+	//groundBox.SetAsBox(500.0f, 2.0f);
+
+	//// Add the ground fixture to the ground body.
+	//groundBody->CreateFixture(&groundBox, 0.0f);
+	//
 	initArrow();
-
-	// Define the ground body.
-	b2BodyDef groundBodyDef;
-	groundBodyDef.type = b2_staticBody;
-	groundBodyDef.position.Set(0.f, WINDOW_HEIGHT - 150);
-	 
-	// Call the body factory which allocates memory for the ground body
-	// from a pool and creates the ground box shape (also from a pool).
-	// The body is also added to the world.
-	//b2Body* groundBody = m_box2dWorld.CreateBody(&groundBodyDef);
-	groundBody = m_box2dWorld->CreateBody(&groundBodyDef);
-
-	// Define the ground box shape.
-	b2PolygonShape groundBox;
-
-	// The extents are the half-widths of the box.
-	groundBox.SetAsBox(500.0f, 2.0f);
-
-	// Add the ground fixture to the ground body.
-	groundBody->CreateFixture(&groundBox, 0.0f);
-	
 	initPlayers();
 	createLevel(1);
+	
 }
 
 void World::initArrow()
@@ -70,13 +72,19 @@ void World::setActiveDirection(Direction dir, Player active)
 void World::moveActive(float deltaTime, Player active)
 {
 	
-	for (int i = 0; i < m_players.size(); i++)
+	m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
+	m_players[(int)active]->move(deltaTime);
+
+	//for (int i = 0; i < m_players.size(); i++)
+	//{
+	//	m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
+	//	m_players[i]->move(deltaTime);
+	//}
+	for (int i = 0; i < m_objects.size(); i++)
 	{
 		m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
-		m_players[i]->move(deltaTime);
+		m_objects[i]->update();
 	}
-	/*m_box2dWorld.Step(timeStep, velocityIterations, positionIterations);
-	m_players[(int)active].move(deltaTime);*/
 }
 
 void World::moveArrow(Player active)
@@ -85,6 +93,7 @@ void World::moveArrow(Player active)
 	float y = m_players[(int)active]->getPosition().y - m_players[(int)active]->getHeight();
 	m_arrow.setPosition(x, y);
 }
+
 
 void World::createLevel(int level)
 {
@@ -140,10 +149,9 @@ void World::loadLevel(int levelNum)
 		}
 		else //create the object and then set location
 		{
-			auto o = ObjectFactory::create(objType, sf::Vector2f(locX, locY));
+			auto o = ObjectFactory::create(objType, sf::Vector2f(locX, locY), m_box2dWorld);
 			if (o)
 			{
-				//o->createBody(&m_box2dWorld);
 				m_objects.emplace_back(move(o));
 			}
 			else //wasnt able to create object

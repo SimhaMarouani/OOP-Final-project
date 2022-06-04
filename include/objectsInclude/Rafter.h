@@ -5,8 +5,8 @@
 class Rafter : public StaticObjects
 {
 public:
-	Rafter();
-	Rafter(sf::Vector2f pos);
+	Rafter(b2World* world);
+	Rafter(sf::Vector2f pos, b2World* world);
 
 
 private:

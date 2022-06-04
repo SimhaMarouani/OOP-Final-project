@@ -25,6 +25,6 @@ public:
 
 protected:
     b2Body* m_body = nullptr;
-   
+    b2Fixture* footSensor = nullptr;
     sf::Sprite m_icon;
 };

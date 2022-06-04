@@ -65,6 +65,7 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
     default:
         break;
     }
+
 }
 
 //-----------------------------------------------------------------
@@ -73,6 +74,7 @@ void GameScreen::update(float deltaTime)
 {
     m_world.moveActive(deltaTime, m_activePlayer);
     m_world.moveArrow(m_activePlayer);
+    
 }
 
 void GameScreen::resetTimer()

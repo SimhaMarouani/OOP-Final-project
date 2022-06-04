@@ -12,4 +12,8 @@ Light::Light()
 Light::Light(b2World* world)
 	: Players(Player::Light, world)
 {
+	b2MassData mass;
+	mass.center = m_body->GetLocalCenter();
+	mass.mass = 3;
+	m_body->SetMassData(&mass);
 }

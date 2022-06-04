@@ -14,48 +14,100 @@ Players::Players(Player type)
 Players::Players(Player type, b2World* world)
 {
 	m_icon.setTexture(*Resources::instance().getPlayerTexture(type));
-	m_icon.setScale(sf::Vector2f(0.5, 0.5));
+	m_icon.setScale(sf::Vector2f(0.5, 0.5)); //Tali: get from file
 	m_icon.setOrigin(m_icon.getGlobalBounds().width, m_icon.getGlobalBounds().height);
-	m_icon.setPosition(sf::Vector2f(0, 600));
+	m_icon.setPosition(sf::Vector2f(0, 600)); //Tali: change to DEFAULT
+
+	//create body in world
 	createBody(world, b2_dynamicBody);
 	m_body->SetFixedRotation(true);
+
+	//create foot sensor
+	b2PolygonShape shape;
+	shape.SetAsBox(getWidth() /2 *0.9, 10, b2Vec2(0, getHeight()/2 + 1), 0);
+
+	b2FixtureDef fixture;
+	fixture.shape = &shape;
+	fixture.density = 1.0f;
+	fixture.isSensor = true;
+	footSensor = m_body->CreateFixture(&fixture);
+	
 }
-
-//void Players::draw(sf::RenderWindow& window)
-//{
-//	//auto step = (deltaTime * m_speedPerSecond * getDirection(m_direction));
-//	//m_body->SetTransform(m_body->GetPosition() + step, 0);
-//	//m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
-//
-//	window.draw(m_icon);
-//}
-
 
 
 void Players::move(float deltaTime)
 {
-	////----- 1st Version
-	////if (getDirection(m_direction) == b2Vec2(0, 5))
-	/*auto impulse = m_body->GetMass() * 3;
-	m_body->ApplyLinearImpulse(b2Vec2(0, impulse), m_body->GetWorldCenter(), true);
-	auto step = (deltaTime * m_speedPerSecond * getDirection(m_direction));
-	m_body->SetTransform(m_body->GetPosition() + step, 0);
-	m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));*/
-		
-
-	//-------- 2nd Version
-	if (m_body)
+	if (m_direction == Direction::Left || m_direction == Direction::Right)
 	{
-		m_body->ApplyForce(b2Vec2(0, -1), m_body->GetWorldCenter(), true);
-		auto step = (deltaTime * m_speedPerSecond * getDirection(m_direction));
-		m_body->SetTransform(m_body->GetPosition() + step, 0);
-		m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
+		auto step1= b2Vec2(getDirection(m_direction).x * 300, 0); //running speed = 300
+		m_body->ApplyForceToCenter(step1, true);
 	}
+	else
+		m_body->SetLinearVelocity(b2Vec2(m_body->GetLinearVelocity().x * 0.95, m_body->GetLinearVelocity().y));
+
+	
+	//deaccelerating 
+	float MAX_SPEED = 20.0f;
+	if (m_body->GetLinearVelocity().x < -MAX_SPEED) {
+		m_body->SetLinearVelocity(b2Vec2(-MAX_SPEED, m_body->GetLinearVelocity().y));
+	}
+	else if (m_body->GetLinearVelocity().x > MAX_SPEED) {
+		m_body->SetLinearVelocity(b2Vec2(MAX_SPEED, m_body->GetLinearVelocity().y));
+	}
+
+
+	bool below = false;
+
+	if (!m_jumping)
+		return;
+
+	//std::cout << "jumping\n";
+	for (b2ContactEdge* ce = m_body->GetContactList(); ce != nullptr; ce = ce->next) {
+		b2Contact* c = ce->contact;
+		if (c->IsTouching()) {
+			b2WorldManifold manifold;
+			c->GetWorldManifold(&manifold);
+			// Check if the points are below
+			below = false;
+			int i;
+			for ( i = 0; i < b2_maxManifoldPoints; i++) {
+				if (manifold.points[i].y > (m_body->GetPosition().y + (getHeight() / 2.0f) - 1.0f)) {
+					if (footSensor->TestPoint(manifold.points[i]))
+					{
+						std::cout << "CONTACT WITH FOOT\n";
+					}
+					below = true;
+					break;
+				}
+			}
+			if (below && sf::Keyboard::isKeyPressed(sf::Keyboard::Up) /*&& footSensor->TestPoint(manifold.points[i])*/) {
+				std::cout << "we can jump\n";
+				auto impulse = m_body->GetMass() * 60;
+				m_body->ApplyLinearImpulse(b2Vec2(0, -impulse), m_body->GetWorldCenter(), true);
+				m_jumping = false;	
+				break;
+			}
+		}
+	}
+	
+
+	m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
+
 }
+
 
 void Players::setDirection(Direction dir)
 {
 	m_direction = dir;
+	if (dir == Direction::Up)
+		m_jumping = true;
+}
+
+void Players::update()
+{
+	m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition())); //Tali: to possibly remove
+	//direction idle?
+
 }
 
 b2Vec2 Players::getDirection(Direction dir)
@@ -72,31 +124,3 @@ b2Vec2 Players::getDirection(Direction dir)
         return b2Vec2(0, 0);
     }
 }
-
-//void Players::createBody(b2World* world/*, b2BodyType bodyType*/)
-//{
-//	// BodyDef
-//	b2BodyDef bodyDef;
-//	bodyDef.type = b2_dynamicBody;
-//	
-//	bodyDef.position.Set(getPosition().x, getPosition().y);
-//	bodyDef.fixedRotation = true;
-//	m_body = world->CreateBody(&bodyDef);
-//
-//	b2PolygonShape BoxShape;
-//	BoxShape.SetAsBox(getWidth() / 2, getHeight() / 2);
-//
-//	// FixtureDef
-//	b2FixtureDef fixtureDef;
-//	fixtureDef.shape = &BoxShape;
-//	fixtureDef.density = 15.0f;
-//	fixtureDef.friction = 1.0f;
-//	b2MassData mass;
-//	mass.center = m_body->GetLocalCenter();
-//	mass.mass = 10;
-//	//fixtureDef.restitution = 0.5f;
-//
-//
-//	m_body->CreateFixture(&fixtureDef);
-//}
-

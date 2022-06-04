@@ -5,8 +5,8 @@
 class Box : public StaticObjects
 {
 public:
-	Box();
-	Box(sf::Vector2f pos);
+	Box(b2World* world);
+	Box(sf::Vector2f pos, b2World* world);
 
 private:
 

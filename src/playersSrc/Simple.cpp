@@ -11,4 +11,8 @@ Simple::Simple()
 Simple::Simple(b2World* world)
 	: Players(Player::Simple, world)
 {
+	b2MassData mass;
+	mass.center = m_body->GetLocalCenter();
+	mass.mass = 5;
+	m_body->SetMassData(&mass);
 }

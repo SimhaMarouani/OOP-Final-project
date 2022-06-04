@@ -34,6 +34,7 @@ GameObjects::GameObjects()
 
 void GameObjects::draw(sf::RenderWindow& window)
 {
+    m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
     window.draw(m_icon);
 }
 
@@ -60,7 +61,7 @@ void GameObjects::createBody(b2World* world, b2BodyType bodyType)
     m_body = world->CreateBody(&bodyDef);
 
     b2PolygonShape boxShape;
-    boxShape.SetAsBox(getWidth() / 2, getHeight() / 2);
+    boxShape.SetAsBox(getWidth() / 2 /* - b2_polygonRadius*/, getHeight() / 2 /* - b2_polygonRadius*/);
 
     // FixtureDef
     b2FixtureDef fixtureDef;
@@ -68,7 +69,8 @@ void GameObjects::createBody(b2World* world, b2BodyType bodyType)
     if (bodyType == b2_dynamicBody)
     {
         fixtureDef.density = 1.0f;
-        fixtureDef.friction = 1.0f;
+        fixtureDef.friction = 0.1f;
+
     }
     m_body->CreateFixture(&fixtureDef);
 
