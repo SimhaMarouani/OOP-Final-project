@@ -1,12 +1,12 @@
 #include "objectsInclude/Rafter.h"
 
-Rafter::Rafter(b2World* world)
-	:StaticObjects(Objects::Rafter, world, sf::Vector2f(0, 600))
-{
-}
+//Rafter::Rafter(b2World* world)
+//	:StaticObjects(Objects::Rafter, world, sf::Vector2f(0, 600))
+//{
+//}
 
-Rafter::Rafter(sf::Vector2f pos, b2World* world)
-	: StaticObjects(Objects::Rafter, world, pos)
+Rafter::Rafter(sf::Vector2f pos, b2World* world, sf::Vector2f scale)
+	: StaticObjects(Objects::Rafter, world, pos, scale)
 {
 	//setPosition(pos);
 	b2MassData mass;

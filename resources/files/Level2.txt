@@ -3,3 +3,4 @@ Simple 250 600
 Light 400 600
 Hay 800 600
 floor 310 860
+Rafter 490 270

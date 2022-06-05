@@ -1,12 +1,12 @@
 #include "objectsInclude/Floor.h"
 
-Floor::Floor(Grounds type, b2World* world)
-	:StaticObjects(type, world, sf::Vector2f(0, 600))
-{
-}
+//Floor::Floor(Grounds type, b2World* world, sf::Vector2f scale)
+//	:StaticObjects(type, world, sf::Vector2f(0, 600), scale)
+//{
+//}
 
-Floor::Floor(sf::Vector2f pos, Grounds type, b2World* world)
-	: StaticObjects(type, world, pos)
+Floor::Floor(sf::Vector2f pos, Grounds type, b2World* world, sf::Vector2f scale)
+	: StaticObjects(type, world, pos, scale)
 {
 	//setPosition(pos);
 }

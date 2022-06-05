@@ -10,8 +10,6 @@ const b2Vec2 gravity = b2Vec2(0.0f, 10.0f);
 const sf::Vector2f initVec = sf::Vector2f(0.f, 0.f);
 const int OFFSET = 37;
 
-//int numFootContacts;
-
 World::World()
 {
 
@@ -72,14 +70,14 @@ void World::setActiveDirection(Direction dir, Player active)
 void World::moveActive(float deltaTime, Player active)
 {
 	
-	m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
-	m_players[(int)active]->move(deltaTime);
+	/*m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
+	m_players[(int)active]->move(deltaTime);*/
 
-	//for (int i = 0; i < m_players.size(); i++)
-	//{
-	//	m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
-	//	m_players[i]->move(deltaTime);
-	//}
+	for (int i = 0; i < m_players.size(); i++)
+	{
+		m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
+		m_players[i]->move(deltaTime);
+	}
 	for (int i = 0; i < m_objects.size(); i++)
 	{
 		m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
@@ -129,6 +127,7 @@ void World::loadLevel(int levelNum)
 	std::ifstream levelFile;
 	std::string line, objType;
 	int locX, locY;
+	float scaleX, scaleY;
 	std::stringstream ssline;
 
 	levelFile.exceptions(std::ifstream::badbit);
@@ -147,9 +146,10 @@ void World::loadLevel(int levelNum)
 		{
 			m_players[getIndPlayer(objType)]->setPosition(sf::Vector2f(locX, locY));
 		}
-		else //create the object and then set location
+		else //create the object
 		{
-			auto o = ObjectFactory::create(objType, sf::Vector2f(locX, locY), m_box2dWorld);
+			ssline >> scaleX >> scaleY;
+			auto o = ObjectFactory::create(objType, sf::Vector2f(locX, locY), m_box2dWorld, sf::Vector2f(scaleX, scaleY));
 			if (o)
 			{
 				m_objects.emplace_back(move(o));

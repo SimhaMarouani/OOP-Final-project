@@ -15,6 +15,6 @@ Heavy::Heavy(b2World* world)
 {
 	b2MassData mass;
 	mass.center = m_body->GetLocalCenter();
-	mass.mass = 8;
+	mass.mass = 10;
 	m_body->SetMassData(&mass);
 }
