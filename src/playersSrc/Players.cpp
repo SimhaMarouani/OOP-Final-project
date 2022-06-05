@@ -14,7 +14,7 @@ Players::Players(Player type)
 Players::Players(Player type, b2World* world)
 {
 	m_icon.setTexture(*Resources::instance().getPlayerTexture(type));
-	m_icon.setScale(sf::Vector2f(0.5, 0.5)); //Tali: get from file
+	m_icon.setScale(sf::Vector2f(0.5, 0.5)); //Tali: make default
 	m_icon.setOrigin(m_icon.getGlobalBounds().width, m_icon.getGlobalBounds().height);
 	m_icon.setPosition(sf::Vector2f(0, 600)); //Tali: change to DEFAULT
 
@@ -86,14 +86,13 @@ void Players::move(float deltaTime)
 				std::cout << "we can jump\n";
 				auto impulse = m_body->GetMass() * 50;
 				m_body->ApplyLinearImpulse(b2Vec2(0, -impulse), m_body->GetWorldCenter(), true);
-				below = m_jumping = false;	
 				break;
 			}
 		}
 	}
-	
+	m_jumping = false;
 
-	m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
+	//m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
 
 }
 
