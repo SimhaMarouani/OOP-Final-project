@@ -8,14 +8,14 @@ configure_file ("spritesheets/heavy.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("spritesheets/simple.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("spritesheets/light.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
-
+#floors
 configure_file ("images/floor_L2.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/left_floor_L1.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/right_floor_L1.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/left_floor_L3.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/right_floor_L3.png" ${CMAKE_BINARY_DIR} COPYONLY)
-configure_file ("images/destination.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
+configure_file ("images/destination.png" ${CMAKE_BINARY_DIR} COPYONLY)
 # bg
 configure_file ("images/home_background.jpg" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/home_background.png" ${CMAKE_BINARY_DIR} COPYONLY)

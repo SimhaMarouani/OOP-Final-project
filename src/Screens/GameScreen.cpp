@@ -75,6 +75,8 @@ void GameScreen::update(float deltaTime)
     m_world.moveActive(deltaTime, m_activePlayer);
     m_world.moveArrow(m_activePlayer);
     
+    if (m_world.allPlayersReachedEnd())
+        std::cout << "Level Won";
 }
 
 void GameScreen::resetTimer()

@@ -112,6 +112,16 @@ void World::createLevel(int level)
 	}
 }
 
+bool World::allPlayersReachedEnd()
+{
+	for (auto& player : m_players)
+	{
+		if (player->getPosition().x < m_endpoint)
+			return false;
+	}
+	return true;
+}
+
 
 void World::initPlayers()
 {
@@ -135,6 +145,14 @@ void World::loadLevel(int levelNum)
 	m_objects.clear();
 
 	levelFile.open(levelName);
+
+	//reading level end point
+	getline(levelFile, line);
+	ssline.clear();
+	ssline.str(line);
+	ssline >> m_endpoint;
+
+	//reading contents of level
 	while (!levelFile.eof())
 	{
 		getline(levelFile, line);

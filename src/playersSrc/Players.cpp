@@ -39,17 +39,21 @@ void Players::move(float deltaTime)
 {
 	if (m_direction == Direction::Left || m_direction == Direction::Right)
 	{
-		auto step1= b2Vec2(getDirection(m_direction).x * m_speedPerSecond, 0); //running speed = 300
-		m_body->ApplyForceToCenter(step1, true);
-		//auto step2 = b2Vec2(getDirection(m_direction).x*5, 0); //running speed = 300
-		//m_body->ApplyLinearImpulse(step2, m_body->GetPosition(), true);
+		//if with mass:
+		//auto step1= b2Vec2(getDirection(m_direction).x * 300, 0); //running speed = 300
+		//m_body->ApplyForceToCenter(step1, true);
+		//else if without mass:
+		auto step2 = b2Vec2(getDirection(m_direction).x*300, 0); //running speed = 300
+		m_body->ApplyLinearImpulse(step2, m_body->GetPosition(), true);
+		auto step = deltaTime * m_speedPerSecond * getDirection(m_direction);
+		m_body->SetTransform(m_body->GetPosition() + step, 0);
 	}
 	else
 		m_body->SetLinearVelocity(b2Vec2(m_body->GetLinearVelocity().x * 0.95, m_body->GetLinearVelocity().y));
 
 	
-	//deaccelerating 
-	float MAX_SPEED = 20.0f;
+	//deaccelerating //Tali: maybe move to update function for all bodies!!!
+	float MAX_SPEED = 15.0f;
 	if (m_body->GetLinearVelocity().x < -MAX_SPEED) {
 		m_body->SetLinearVelocity(b2Vec2(-MAX_SPEED, m_body->GetLinearVelocity().y));
 	}
@@ -84,7 +88,7 @@ void Players::move(float deltaTime)
 			}
 			if (below && m_jumping/*sf::Keyboard::isKeyPressed(sf::Keyboard::Up)*/ /*&& footSensor->TestPoint(manifold.points[i])*/) {
 				std::cout << "we can jump\n";
-				auto impulse = m_body->GetMass() * 50;
+				auto impulse = m_body->GetMass() * 60;
 				m_body->ApplyLinearImpulse(b2Vec2(0, -impulse), m_body->GetWorldCenter(), true);
 				break;
 			}

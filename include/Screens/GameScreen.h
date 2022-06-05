@@ -30,4 +30,5 @@ private:
 	Player m_activePlayer;
 
 	sf::RectangleShape m_background;
+
 };

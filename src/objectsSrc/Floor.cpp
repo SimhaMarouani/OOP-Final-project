@@ -11,6 +11,7 @@ Floor::Floor(sf::Vector2f pos, Grounds type, b2World* world, sf::Vector2f scale)
 	//setPosition(pos);
 }
 
+//Tali: currently unused
 void Floor::setAsGround()
 {
 	// Define the ground body.

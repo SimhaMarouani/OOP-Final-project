@@ -13,8 +13,8 @@ Heavy::Heavy()
 Heavy::Heavy(b2World* world)
 	: Players(Player::Heavy, world)
 {
-	b2MassData mass;
-	mass.center = m_body->GetLocalCenter();
-	mass.mass = 10;
-	m_body->SetMassData(&mass);
+	//b2MassData mass;
+	//mass.center = m_body->GetLocalCenter();
+	//mass.mass = 10;
+	//m_body->SetMassData(&mass);
 }

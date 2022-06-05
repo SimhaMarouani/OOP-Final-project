@@ -34,8 +34,8 @@ StaticObjects::StaticObjects(Grounds type, b2World* world, sf::Vector2f pos, sf:
 
 void StaticObjects::update()
 {
+	m_icon.setRotation(m_body->GetAngle());
 	m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
-	m_icon.rotate(m_body->GetAngle());
 }
 
 

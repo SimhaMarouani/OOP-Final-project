@@ -34,6 +34,8 @@ GameObjects::GameObjects()
 
 void GameObjects::draw(sf::RenderWindow& window)
 {
+    if (!m_body->IsFixedRotation())
+        m_icon.setRotation(m_body->GetAngle());
     m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
     window.draw(m_icon);
 }
@@ -68,9 +70,8 @@ void GameObjects::createBody(b2World* world, b2BodyType bodyType)
     fixtureDef.shape = &boxShape;
     if (bodyType == b2_dynamicBody)
     {
-        fixtureDef.density = 1.0f;
-        fixtureDef.friction = 0.1f;
-
+        fixtureDef.density = 10.0f;
+        fixtureDef.friction = 0.3f;
     }
     m_body->CreateFixture(&fixtureDef);
 

@@ -35,6 +35,8 @@ public:
 	void createLevel(int level);
 	b2World* getWorld() { return m_box2dWorld; } //for debugging
 
+	bool allPlayersReachedEnd();
+
 private:
 	void initPlayers();
 	void initArrow();
@@ -42,12 +44,13 @@ private:
 	bool isPlayer(std::string type)const;
 	int getIndPlayer(std::string player)const;
 
+
 	b2World* m_box2dWorld;
 	sf::Sprite m_arrow;
 	
 	std::vector<std::unique_ptr<Players>> m_players;
 	std::vector<std::unique_ptr<StaticObjects>> m_objects;
 
-
+	int m_endpoint = 1400;
 	b2Body* groundBody;
 };
