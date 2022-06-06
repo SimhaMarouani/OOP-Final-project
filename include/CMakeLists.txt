@@ -32,4 +32,7 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE
                                               "DebugDraw.h"
                                               "Factory.h"
 
+                                              "MyContactListener.h"
+                                              "CollisionHandler.h"
+
                                               )

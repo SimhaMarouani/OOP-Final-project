@@ -29,5 +29,7 @@
                                               "objectsSrc/Switch.cpp"
 
                                               "Factory.cpp"
+                                              "MyContactListener.cpp"
+                                              "CollisionHandler.cpp"
 
                                               )

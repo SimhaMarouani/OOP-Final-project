@@ -11,9 +11,9 @@ class MyContactListener : public b2ContactListener
         auto objA = static_cast<GameObject*>(bodyUserDataA)
         void* fixtureUserDataA = contact->GetFixtureA()->GetUserData();
 
-        void* bodyUserDataB = contact->GetFixtureA()->GetBody->GetUserData();
+        void* bodyUserDataB = contact->GetFixtureB()->GetBody->GetUserData();
         auto objA = static_cast<GameObject*>(bodyUserDataB)
-        void* fixtureUserDataB = contact->GetFixtureA()->GetUserData();
+        void* fixtureUserDataB = contact->GetFixtureB()->GetUserData();
 
         if (!objA | !objB)
             return;
@@ -24,26 +24,11 @@ class MyContactListener : public b2ContactListener
         */
 
 
-
-
-
-        //if ((int)fixtureUserData == 3)
-        //    TOUCHING_GROUND = true;
-        ////check if fixture B was the foot sensor
-        //fixtureUserData = &contact->GetFixtureB()->GetUserData().pointer;
-        //if ((int)fixtureUserData == 3)
-        //    TOUCHING_GROUND = true;
+    
     }
 
     void EndContact(b2Contact* contact) {
-        ////check if fixture A was the foot sensor
-        //void* fixtureUserData = &contact->GetFixtureA()->GetUserData().pointer;
-        //if ((int)fixtureUserData == 3)
-        //    TOUCHING_GROUND = false;
-        ////check if fixture B was the foot sensor
-        //fixtureUserData = &contact->GetFixtureB()->GetUserData().pointer;
-        //if ((int)fixtureUserData == 3)
-        //    TOUCHING_GROUND = false;
+
 
     }
 };
