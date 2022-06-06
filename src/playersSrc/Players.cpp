@@ -31,6 +31,7 @@ Players::Players(Player type, b2World* world)
 	fixture.density = 1.0f;
 	fixture.isSensor = true;
 	footSensor = m_body->CreateFixture(&fixture);
+	//SET foot data
 	
 }
 

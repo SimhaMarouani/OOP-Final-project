@@ -75,7 +75,7 @@ void GameObjects::createBody(b2World* world, b2BodyType bodyType)
     fixtureDef.shape = &boxShape;
     if (bodyType == b2_dynamicBody)
     {
-        fixtureDef.density = 10.0f;
+        fixtureDef.density = 1.0f;
         fixtureDef.friction = 0.3f;
     }
     m_body->CreateFixture(&fixtureDef);
