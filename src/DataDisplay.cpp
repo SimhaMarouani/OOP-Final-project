@@ -64,9 +64,10 @@ void DataDisplay::createTexts()
 
 void DataDisplay::draw(sf::RenderWindow& window)
 {
-	setTimeText();
-	window.draw(m_timerText);
 	drawBtns(window);
+	window.draw(m_timerText);
+	if (!m_timer.isTimerPaused())
+		setTimeText();
 
 	/*switch (m_pageStatus)
 	{
@@ -85,6 +86,16 @@ void DataDisplay::draw(sf::RenderWindow& window)
 void DataDisplay::resetTimer()
 {
 	m_timer.startClock();
+}
+
+void DataDisplay::switchTimer()
+{
+	m_timer.switchTimer();
+}
+
+void DataDisplay::startTimer()
+{
+	m_timer.start();
 }
 
 void DataDisplay::calcTime(int& sec, int& min) const
@@ -151,10 +162,18 @@ void DataDisplay::handleClick(sf::Event event , GameScreen& gs)
 	//Noga: move to function
 
 	if (m_levelActions[int(LevelActions::Pause)].isContain(event))
+	{
 		gs.updateStatus(LevelActions::Pause);
+		//switchTimer();
+		m_timer.pause();
+	}
 			
-	else if(m_levelActions[int(LevelActions::Retry)].isContain(event))
+	else if (m_levelActions[int(LevelActions::Retry)].isContain(event))
+	{
+		gs.updateStatus(LevelActions::Retry);
+		m_timer.startClock();
 		std::cout << "retry\n"; 
+	}
 	
 }
 

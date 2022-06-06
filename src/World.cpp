@@ -142,15 +142,19 @@ void World::loadLevel(int levelNum)
 
 	levelFile.exceptions(std::ifstream::badbit);
 	ssline.exceptions(ssline.failbit |  ssline.badbit);
+	
 	m_objects.clear();
 
 	levelFile.open(levelName);
+	levelFile.seekg(0);
 
 	//reading level end point
 	getline(levelFile, line);
 	ssline.clear();
 	ssline.str(line);
 	ssline >> m_endpoint;
+
+	getline(levelFile, line);
 
 	//reading contents of level
 	while (!levelFile.eof())

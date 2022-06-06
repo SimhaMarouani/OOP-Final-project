@@ -3,6 +3,11 @@
 GameObjects::GameObjects()
 {
 }
+
+GameObjects::~GameObjects()
+{
+    m_body->GetWorld()->DestroyBody(m_body);
+}
 //GameObjects::GameObjects(b2World* world, b2BodyType bodyType)
 //{
 //    //BodyDef
@@ -90,4 +95,9 @@ float GameObjects::getHeight()const
 sf::Vector2f GameObjects::getPosition()const
 {
     return m_icon.getPosition();
+}
+
+b2Body* GameObjects::getBody()
+{
+    return m_body;
 }

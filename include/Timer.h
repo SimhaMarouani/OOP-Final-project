@@ -13,17 +13,22 @@ public:
 
 	//Set Functions
 	void setTime(int time);
+	void switchTimer();
 	void startClock();
 	void addTime(float time_to_add);
 	//TODO: add start and pause
-	void start();
-	void pause();
+	//void start();
+	//void pause();
 	//Access Functions
 	sf::Time getElapsed()const;
 	float getTime()const;
-
+	bool isTimerPaused();
+	void pause();
+	void start();
 private:
+	float m_runTime;
 	sf::Clock m_clock;
 	sf::Time m_time;
+	bool m_pauseTimer;
 };
 

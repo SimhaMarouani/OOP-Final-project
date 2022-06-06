@@ -24,7 +24,16 @@ void GameScreen::draw(sf::RenderWindow& window)
     m_world.getWorld()->DebugDraw(); 
 
     if (m_pageStatus == LevelActions::Pause)
+    {
         m_settingsView->draw(window, Screen::Game);
+    }
+    else if (m_pageStatus == LevelActions::Retry)
+    {
+        //Noga: move to processEvent 
+        m_world.loadLevel(1); //simha: need to chek the level num
+        //resetTimer();
+    }
+    
 }
 
 void GameScreen::processEvents(sf::Event event, Controller &controller)
@@ -51,10 +60,16 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
         else
         {
             m_settingsView->handleClick(event, Screen::Game);
+
             if (!m_settingsView->isContain(event)) //Noga: temp
                 updateStatus(LevelActions::None);
+
             if (m_settingsView->isContainExit(event))
+            {
                 updateStatus(LevelActions::None);
+                m_dataDisplay.startTimer();
+            }
+
             if (m_settingsView->isContainHome(event))
             {
                 updateStatus(LevelActions::None);
@@ -82,6 +97,11 @@ void GameScreen::update(float deltaTime)
 void GameScreen::resetTimer()
 {
     m_dataDisplay.resetTimer();
+}
+
+void GameScreen::pauseTimer()
+{
+    m_dataDisplay.switchTimer();
 }
 
 void GameScreen::loadLevel(int level)

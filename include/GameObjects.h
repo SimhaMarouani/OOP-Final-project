@@ -12,7 +12,7 @@ class GameObjects
 public:
     GameObjects();
     //GameObjects(b2World* world, b2BodyType bodyType);
-    virtual ~GameObjects() = default;
+    ~GameObjects();
 
     void draw(sf::RenderWindow& window);
 
@@ -22,6 +22,7 @@ public:
     float getWidth()const;
     float getHeight()const;
     void createBody(b2World* world, b2BodyType bodyType);
+    b2Body* getBody();
 
 protected:
     b2Body* m_body = nullptr;

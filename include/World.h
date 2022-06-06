@@ -36,11 +36,11 @@ public:
 	b2World* getWorld() { return m_box2dWorld; } //for debugging
 
 	bool allPlayersReachedEnd();
+	void loadLevel(int levelNum);
 
 private:
 	void initPlayers();
 	void initArrow();
-	void loadLevel(int levelNum);
 	bool isPlayer(std::string type)const;
 	int getIndPlayer(std::string player)const;
 

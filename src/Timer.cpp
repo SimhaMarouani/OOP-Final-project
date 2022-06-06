@@ -2,7 +2,7 @@
 
 //create timer if time == -1 and else countdown
 Timer::Timer()
-	: m_time(sf::seconds(-1)), m_clock()
+	: m_time(sf::seconds(-1)), m_clock(), m_pauseTimer(false), m_runTime(0)
 {
 	setTime(-1);
 }
@@ -19,29 +19,61 @@ void Timer::setTime(int time)
 void Timer::startClock()
 {
 	m_clock.restart();
+	m_runTime = 0;
 }
 
 //-----------------------------------------------------------------
 
-sf::Time Timer::getElapsed()const
+void Timer::switchTimer()
 {
-	return m_clock.getElapsedTime();
+	m_pauseTimer = !m_pauseTimer;
 }
 
 //-----------------------------------------------------------------
 
-void Timer::addTime(float time_to_add)
+bool Timer::isTimerPaused()
 {
-	sf::Time t = sf::seconds(time_to_add);
-	auto sumSec = m_time.asSeconds() + t.asSeconds();
-	m_time = sf::seconds(sumSec < 0 ? 0 : sumSec);
+	return m_pauseTimer;
 }
+
+void Timer::pause()
+{
+	if (!m_pauseTimer)
+		m_runTime += m_clock.getElapsedTime().asSeconds();
+	m_pauseTimer = true;
+}
+
+void Timer::start()
+{
+	if (m_pauseTimer)
+		m_clock.restart();
+	m_pauseTimer = false;
+}
+
+//-----------------------------------------------------------------
+
+//sf::Time Timer::getElapsed()const
+//{
+//	if (m_pauseTimer)
+//		return m_runTime + m_clock.getElapsedTime().asSeconds();
+//	return m_runTime;
+//}
+
+//-----------------------------------------------------------------
+////Simha: not used for now
+//void Timer::addTime(float time_to_add)
+//{
+//	sf::Time t = sf::seconds(time_to_add);
+//	auto sumSec = m_time.asSeconds() + t.asSeconds();
+//	m_time = sf::seconds(sumSec < 0 ? 0 : sumSec);
+//}
 
 //-----------------------------------------------------------------
 
 float Timer::getTime()const
 {
-	return m_clock.getElapsedTime().asSeconds();
-	
+	if (!m_pauseTimer)
+		return m_runTime + m_clock.getElapsedTime().asSeconds();
+	return m_runTime;
 }
 

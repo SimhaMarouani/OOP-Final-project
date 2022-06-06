@@ -24,7 +24,9 @@ public:
 
 	//Time functiona
 	void resetTimer();
+	void switchTimer();
 
+	void startTimer();
 private:
 	void createPlayersButtons();
 	void initActionsButtons();
