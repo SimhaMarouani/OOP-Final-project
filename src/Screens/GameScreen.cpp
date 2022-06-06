@@ -126,6 +126,7 @@ void GameScreen::retryLevel()
     m_world.loadLevel(1); //simha: need to chek the level num
     m_dataDisplay.resetTimer();
     m_activePlayer = Player::Heavy;
+    m_dataDisplay.setCurrPlayer((int)m_activePlayer);
     std::cout << "retry\n";
 }
 
