@@ -26,14 +26,7 @@ void GameScreen::draw(sf::RenderWindow& window)
     if (m_pageStatus == LevelActions::Pause)
     {
         m_settingsView->draw(window, Screen::Game);
-    }
-    else if (m_pageStatus == LevelActions::Retry)
-    {
-        //Noga: move to processEvent 
-        m_world.loadLevel(1); //simha: need to chek the level num
-        //resetTimer();
-    }
-    
+    }    
 }
 
 void GameScreen::processEvents(sf::Event event, Controller &controller)
@@ -125,5 +118,14 @@ void GameScreen::updateStatus(LevelActions la)
 void GameScreen::initSettings(std::shared_ptr<Settings> s)
 {
     m_settingsView = move(s);
+}
+
+//Noga
+void GameScreen::retryLevel()
+{
+    m_world.loadLevel(1); //simha: need to chek the level num
+    m_dataDisplay.resetTimer();
+    m_activePlayer = Player::Heavy;
+    std::cout << "retry\n";
 }
 
