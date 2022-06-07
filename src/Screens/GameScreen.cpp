@@ -35,7 +35,7 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
     {
     case sf::Event::KeyReleased:
     {
-        if (event.key.code == sf::Keyboard::P)
+        if (event.key.code == sf::Keyboard::P && m_pageStatus != LevelActions::Pause)
         {
             m_activePlayer = Player((int(m_activePlayer) + 1) % 3);
             m_dataDisplay.setCurrPlayer(int(m_activePlayer));
@@ -128,5 +128,10 @@ void GameScreen::retryLevel()
     m_activePlayer = Player::Heavy;
     m_dataDisplay.setCurrPlayer((int)m_activePlayer);
     std::cout << "retry\n";
+}
+
+LevelActions GameScreen::getPageStatus() const
+{
+    return m_pageStatus;
 }
 
