@@ -20,7 +20,7 @@ public:
 	static HighScore& instance();
 	~HighScore();
 
-	void addScore() {}; //TODO: if exist update. if new insert
+	void addScore(int level, int score);
 	int getNumOfCompleteLevels() { return m_levelsScore.size(); };
 private:
 	HighScore();

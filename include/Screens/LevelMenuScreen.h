@@ -19,7 +19,7 @@ public:
 	void draw(sf::RenderWindow& window);
 	void processEvents(sf::Event event, Controller& controller);
 	void handleClick(sf::Event event, Controller& controller);
-
+	void updateNumOfLevels();
 private:
 	void initBtns();
 	int m_numOfLevelsCompleted; //Noga: change to read from file which levels the user already complete and the time it took - to know for the level score....

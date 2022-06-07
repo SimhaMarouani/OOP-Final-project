@@ -47,9 +47,22 @@ void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)
 		if (m_levels[i].isContain(event) && i < m_numOfLevelsCompleted)
 		{
 			controller.startGame(Screen::Game, i+1);
+			
 		/*	controller.changeMusic(Screen::Game);*/
 		}
 	}
+}
+
+void LevelMenuScreen::updateNumOfLevels()
+{
+	int curr = HighScore::instance().getNumOfCompleteLevels();
+	for (int i = m_numOfLevelsCompleted; i < curr; i++)
+	{
+		m_levels[i].setTexture(Resources::instance().getLevelMenuTexture(LevelState::Unlock));
+		m_levels[i].setTextColor(sf::Color(64, 63, 61));
+		m_levels[i].setTextString(std::to_string(i + 1));
+	}
+	m_numOfLevelsCompleted = curr;
 }
 
 void LevelMenuScreen::initBtns()

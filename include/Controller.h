@@ -27,6 +27,7 @@ public:
 	void updatePage(Screen page);
 	void exit();
 	void changeMusic(Screen s);
+	void updateNumOflevels();
 private:
 	void processEvents();
 	void update();
@@ -34,7 +35,6 @@ private:
 	void drawCurrPage();
 
 	void handleKeyboardPress();
-	
 
 	Window m_window;
 	sf::Clock m_timer;

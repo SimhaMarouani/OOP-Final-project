@@ -138,3 +138,8 @@ void Controller::handleKeyboardPress()
 		m_gameScreen.setDirection(Direction::None);
 	}
 }
+
+void Controller::updateNumOflevels()
+{
+	m_levelMenuScreen.updateNumOfLevels();
+}
