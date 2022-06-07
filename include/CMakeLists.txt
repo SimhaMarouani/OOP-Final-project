@@ -16,7 +16,7 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE
 
                                               "Resources.h"
                                               "Timer.h"
-
+                                              "HighScore.h"
                                               "playersInclude/Players.h"
                                               "playersInclude/Heavy.h"
                                               "playersInclude/Light.h"

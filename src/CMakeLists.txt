@@ -16,7 +16,7 @@
                                               "Timer.cpp"
 
                                               "Settings.cpp"
-                
+                                              "HighScore.cpp"
                                               "playersSrc/Players.cpp"
                                               "playersSrc/Heavy.cpp"
                                               "playersSrc/Light.cpp"
