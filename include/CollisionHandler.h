@@ -33,7 +33,7 @@ struct KeyEqual
 class CollisionHandler
 {
 public:
-	using HitFunctionPtr = void (CollisionHandler::*)(GameObjects*, GameObjects*);
+	using HitFunctionPtr = void (CollisionHandler::*)(GameObjects*, GameObjects*, bool, bool);
 	using Key = std::pair<std::type_index, std::type_index>;
 	using HitMap = std::unordered_map<Key, HitFunctionPtr, PairKeysHash, KeyEqual>;
 
@@ -42,7 +42,7 @@ public:
 	//Access data
 	static CollisionHandler& instance();
 
-	void processCollision(GameObjects* object1, GameObjects* object2);
+	void processCollision(GameObjects* object1, GameObjects* object2, bool footSensor1, bool footSensor2);
 private:
 	std::unordered_map<Key, HitFunctionPtr, PairKeysHash, KeyEqual> m_hitMap;
 
@@ -55,11 +55,11 @@ private:
 	//handle collisions functions
 
 	//Primary collision handler
-	void sheepStatic(GameObjects* sheep, GameObjects* stat);
-	void sheepPlayer(GameObjects* sheep, GameObjects* player);
+	void sheepStatic(GameObjects* sheep, GameObjects* stat, bool footSensor1, bool footSensor2);
+	void sheepPlayer(GameObjects* sheep, GameObjects* player, bool footSensor1, bool footSensor2);
 	//Secondary collision handler
-	void staticSheep(GameObjects* stat, GameObjects* sheep);
-	void playerSheep(GameObjects* player, GameObjects* sheep);
+	void staticSheep(GameObjects* stat, GameObjects* sheep, bool footSensor1, bool footSensor2);
+	void playerSheep(GameObjects* player, GameObjects* sheep, bool footSensor1, bool footSensor2);
 	
 
 

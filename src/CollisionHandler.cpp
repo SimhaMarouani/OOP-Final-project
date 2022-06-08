@@ -16,7 +16,7 @@ void CollisionHandler::intializeMap()
 }
 
 //PRIMARY COLLISION HANDLER
-void CollisionHandler::sheepStatic(GameObjects* sheep, GameObjects* stat)
+void CollisionHandler::sheepStatic(GameObjects* sheep, GameObjects* stat, bool footSensor1, bool footSensor2)
 {
     Players* sh = static_cast<Players*>(sheep);
     StaticObjects* statObj = static_cast<StaticObjects*>(stat);
@@ -24,24 +24,33 @@ void CollisionHandler::sheepStatic(GameObjects* sheep, GameObjects* stat)
     if (!sh || !statObj)
         return;
 
-
+    if (footSensor1 || footSensor2)
+        std::cout << "footsensor yall\n";
     //else deal with it
 }
 
-void CollisionHandler::sheepPlayer(GameObjects* sheep, GameObjects* player)
+void CollisionHandler::sheepPlayer(GameObjects* sheep, GameObjects* player, bool footSensor1, bool footSensor2)
 {
+    Players* sh1 = static_cast<Players*>(sheep);
+    Players* sh2 = static_cast<Players*>(player);
+
+    if (!sh1 || !sh1)
+        return;
+
+    if (footSensor1 || footSensor2)
+        std::cout << "footsensor yall\n";
 }
 
 
 //SECONDARY COLLISION HANDLER
-void CollisionHandler::staticSheep(GameObjects* stat, GameObjects* sheep)
+void CollisionHandler::staticSheep(GameObjects* stat, GameObjects* sheep, bool footSensor1, bool footSensor2)
 {
-    sheepStatic(sheep, stat);
+    sheepStatic(sheep, stat, footSensor2, footSensor1);
 }
 
-void CollisionHandler::playerSheep(GameObjects* player, GameObjects* sheep)
+void CollisionHandler::playerSheep(GameObjects* player, GameObjects* sheep, bool footSensor1, bool footSensor2)
 {
-    sheepPlayer(sheep, player);
+    sheepPlayer(sheep, player, footSensor2, footSensor1);
 }
 
 CollisionHandler::~CollisionHandler()
@@ -54,12 +63,12 @@ CollisionHandler& CollisionHandler::instance()
 	return inst;
 }
 
-void CollisionHandler::processCollision(GameObjects* object1, GameObjects* object2 /*,bool foot1, bool foot2*/)
+void CollisionHandler::processCollision(GameObjects* object1, GameObjects* object2 ,bool footSensor1, bool footSensor2)
 {
     auto hit = m_hitMap.find(Key(typeid(*object1), typeid(*object2)));
     if (hit != m_hitMap.end())
     {
         auto func = hit->second;
-        (this->*(func))(object1, object2/*, foot1, foot2*/);
+        (this->*(func))(object1, object2, footSensor1, footSensor2);
     }
 }

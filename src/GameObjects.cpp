@@ -78,7 +78,9 @@ void GameObjects::createBody(b2World* world, b2BodyType bodyType)
         fixtureDef.density = 1.0f;
         fixtureDef.friction = 0.3f;
     }
+    //m_body->SetUserData((void*)this);
     m_body->CreateFixture(&fixtureDef);
+    //m_body->SetUserData(this);
 
 }
 

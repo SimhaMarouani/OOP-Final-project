@@ -26,11 +26,20 @@ Players::Players(Player type, b2World* world)
 	b2PolygonShape shape;
 	shape.SetAsBox(getWidth() /2 *0.9, 10, b2Vec2(0, getHeight()/2 + 1), 0);
 
+	//FixtureUserData* myData = new FixtureUserData;
+	//myData->dataIndex = 1;
+
 	b2FixtureDef fixture;
 	fixture.shape = &shape;
 	fixture.density = 1.0f;
+	fixture.friction = 0.1f;
 	fixture.isSensor = true;
 	footSensor = m_body->CreateFixture(&fixture);
+	/*b2Fixture* foot;
+	foot = m_body->CreateFixture(&fixture);*/
+
+	//fixture.userData.pointer = ((void*)1);
+	//fixture.userData.pointer = reinterpret_cast<uintptr_t>(myData);
 	//SET foot data
 	
 }

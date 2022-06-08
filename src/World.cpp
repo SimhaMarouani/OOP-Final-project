@@ -8,12 +8,15 @@ const int32 velocityIterations = 6,
 			positionIterations = 2;
 const b2Vec2 gravity = b2Vec2(0.0f, 10.0f);
 const sf::Vector2f initVec = sf::Vector2f(0.f, 0.f);
-const int OFFSET = 37;
+//const int OFFSET = 37;
 
 World::World()
 {
+	//MyContactListener contacListener;
 
 	m_box2dWorld = new b2World(gravity);
+
+	//m_box2dWorld->SetContactListener(&contacListener);
 
 	//// Define the ground body.
 	//b2BodyDef groundBodyDef;

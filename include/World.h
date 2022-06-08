@@ -15,6 +15,8 @@
 #include "Factory.h"
 #include "DebugDraw.h"
 
+#include "MyContactListener.h"
+
 class Controller;
 
 class World 

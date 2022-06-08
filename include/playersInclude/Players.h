@@ -1,6 +1,9 @@
 #pragma once
 #include "GameObjects.h"
 
+//struct FixtureUserData {
+//	int dataIndex;
+//};
 
 class Players : public GameObjects
 {
@@ -20,5 +23,6 @@ protected: //Tali: why protected? need change all protected members in other cla
 	bool m_jumping = false;
 	Direction m_direction = Direction::None;
 	b2Vec2 getDirection(Direction dir);
+
 
 };
