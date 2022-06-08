@@ -170,11 +170,8 @@ void DataDisplay::handleClick(sf::Event event , GameScreen& gs)
 			
 	else if (m_levelActions[int(LevelActions::Retry)].isContain(event))
 	{
-		gs.updateStatus(LevelActions::Retry);
-		m_timer.startClock();
-		std::cout << "retry\n"; 
+		gs.retryLevel();
 	}
-	
 }
 
 void DataDisplay::setCurrPlayer(int activePlayer)

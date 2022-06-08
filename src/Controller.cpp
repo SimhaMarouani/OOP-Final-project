@@ -68,7 +68,8 @@ void Controller::processEvents()
 			break;
 		}
 	}
-	if (m_currPage == Screen::Game)
+	//Noga: we need to check if we can move this handlekeyboard to the gameScreen processEvents
+	if (m_currPage == Screen::Game && m_gameScreen.getPageStatus() != LevelActions::Pause)
 		handleKeyboardPress();
 }
 
@@ -137,4 +138,9 @@ void Controller::handleKeyboardPress()
 	{
 		m_gameScreen.setDirection(Direction::None);
 	}
+}
+
+void Controller::updateNumOflevels()
+{
+	m_levelMenuScreen.updateNumOfLevels();
 }

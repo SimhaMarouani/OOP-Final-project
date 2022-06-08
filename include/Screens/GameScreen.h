@@ -21,7 +21,11 @@ public:
 	void updateStatus(LevelActions la);
 
 	void initSettings(std::shared_ptr<Settings> s);
+	void retryLevel();
+
+	LevelActions getPageStatus() const;
 private:
+	
 	World m_world;
 	DataDisplay m_dataDisplay;
 

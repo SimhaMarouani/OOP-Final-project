@@ -64,7 +64,10 @@ void HomePageScreen::handleClick(sf::Event event, Controller &controller)
 	case HomePageScreen::PageStatus::Menu:
 	{
 		if (m_buttons[(int)HomeButtonType::Start].isContain(event))
+		{
 			controller.updatePage(Screen::LevelMenu);
+			controller.updateNumOflevels(); //Noga: optional
+		}
 	
 		else if (m_buttons[(int)HomeButtonType::Help].isContain(event))
 		{
