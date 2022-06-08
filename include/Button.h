@@ -8,6 +8,7 @@
 
 class Button {
 public:
+	Button(sf::Texture& texture, float scale);
 	Button(sf::Texture& texture, sf::Vector2f size);
 	Button(sf::Texture &texture);
 	Button() {};
