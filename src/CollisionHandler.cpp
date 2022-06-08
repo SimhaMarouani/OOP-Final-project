@@ -34,7 +34,7 @@ void CollisionHandler::sheepPlayer(GameObjects* sheep, GameObjects* player, bool
     Players* sh1 = static_cast<Players*>(sheep);
     Players* sh2 = static_cast<Players*>(player);
 
-    if (!sh1 || !sh1)
+    if (!sh1 || !sh2)
         return;
 
     if (footSensor1 || footSensor2)
@@ -65,6 +65,8 @@ CollisionHandler& CollisionHandler::instance()
 
 void CollisionHandler::processCollision(GameObjects* object1, GameObjects* object2 ,bool footSensor1, bool footSensor2)
 {
+    if (footSensor1)
+        std::cout << "foot sensor yes bro u know\n";
     auto hit = m_hitMap.find(Key(typeid(*object1), typeid(*object2)));
     if (hit != m_hitMap.end())
     {

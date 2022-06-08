@@ -55,4 +55,6 @@ private:
 
 	int m_endpoint = 1400;
 	b2Body* groundBody;
+
+	MyContactListener contactListener;
 };

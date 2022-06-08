@@ -48,6 +48,7 @@ set(BOX2D_SOURCE_FILES
 	dynamics/b2_prismatic_joint.cpp
 	dynamics/b2_pulley_joint.cpp
 	dynamics/b2_revolute_joint.cpp
+	dynamics/b2_rope_joint.cpp
 	dynamics/b2_weld_joint.cpp
 	dynamics/b2_wheel_joint.cpp
 	dynamics/b2_world.cpp
@@ -55,14 +56,12 @@ set(BOX2D_SOURCE_FILES
 	rope/b2_rope.cpp)
 
 set(BOX2D_HEADER_FILES
-	../include/box2d/b2_api.h
 	../include/box2d/b2_block_allocator.h
 	../include/box2d/b2_body.h
 	../include/box2d/b2_broad_phase.h
 	../include/box2d/b2_chain_shape.h
 	../include/box2d/b2_circle_shape.h
 	../include/box2d/b2_collision.h
-	../include/box2d/b2_common.h
 	../include/box2d/b2_contact.h
 	../include/box2d/b2_contact_manager.h
 	../include/box2d/b2_distance.h
@@ -83,13 +82,13 @@ set(BOX2D_HEADER_FILES
 	../include/box2d/b2_pulley_joint.h
 	../include/box2d/b2_revolute_joint.h
 	../include/box2d/b2_rope.h
+	../include/box2d/b2_rope_joint.h
 	../include/box2d/b2_settings.h
 	../include/box2d/b2_shape.h
 	../include/box2d/b2_stack_allocator.h
 	../include/box2d/b2_time_of_impact.h
 	../include/box2d/b2_timer.h
 	../include/box2d/b2_time_step.h
-	../include/box2d/b2_types.h
 	../include/box2d/b2_weld_joint.h
 	../include/box2d/b2_wheel_joint.h
 	../include/box2d/b2_world.h

@@ -1,10 +1,6 @@
 #pragma once
 #include "GameObjects.h"
 
-//struct FixtureUserData {
-//	int dataIndex;
-//};
-
 class Players : public GameObjects
 {
 public:
