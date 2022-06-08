@@ -1,5 +1,6 @@
 out/
 .vs/
+.cmake-build-debug/
 
 # Prerequisites
 *.d
@@ -33,3 +34,4 @@ out/
 *.exe
 *.out
 *.app
+CMakeLists.txt

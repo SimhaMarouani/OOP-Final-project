@@ -10,7 +10,7 @@ Settings::Settings() //TODO: send current status
 	m_audioStatus(true)
 
 {
-	m_shadow.setFillColor(sf::Color::Color(0, 0, 0, 50));
+	m_shadow.setFillColor(sf::Color(0, 0, 0, 50));
 	m_background.setTexture(Resources::instance().getSettingsBackground());
 	m_background.setPosition(sf::Vector2f((WINDOW_WIDTH - SETTINGS_WIDTH) / 2, (WINDOW_HEIGHT - SETTINGS_HEIGHT) / 2));
 	createBtns();

@@ -21,7 +21,7 @@ Animation::~Animation()
 void Animation::update(int row, int totalImages, float deltaTime)
 {
 	m_totalImages = totalImages - 1;
-	m_currentImage.y = (row - 1) + floor(m_displayed / m_imageCount.x);
+//	m_currentImage.y = (row - 1) + floor(m_displayed / m_imageCount.x);
 	m_totalTime += deltaTime;
 
 	if (m_totalTime >= m_switchTime)
@@ -38,9 +38,9 @@ void Animation::update(int row, int totalImages, float deltaTime)
 		if (m_totalImages < m_displayed)
 		{
 			m_displayed = 0;
-			m_currentImage.x = 0;
-			m_currentImage.y = 0;
-		}
+            m_currentImage.x = 0;
+            m_currentImage.y = 0;
+        }
 	}
 
 	m_uvRect.left = m_currentImage.x * m_uvRect.width;
