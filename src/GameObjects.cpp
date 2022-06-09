@@ -37,6 +37,8 @@ void GameObjects::createBody(b2World* world, b2BodyType bodyType)
     b2BodyDef bodyDef;
     bodyDef.type = bodyType;
     bodyDef.position.Set(getPosition().x, getPosition().y);
+    //bodyDef.linearDamping = 0.0f;
+    //bodyDef.angularDamping = 0.01f;
 
     m_body = world->CreateBody(&bodyDef);
 
