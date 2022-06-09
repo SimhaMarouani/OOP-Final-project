@@ -47,14 +47,13 @@ namespace
 			}
 		}
 		return dir;
-		//return dir + sf::Vector2f{ 0, 0 };
 	}
 }
 
 
 void Players::move(float deltaTime)
 {
-	if (/*dirFromKey() == sf::Vector2f{ 0, -1 } &&*/ dirFromKey().y < 0 && m_touchingFloor)
+	if ( dirFromKey().y < 0 && m_touchingFloor)
 	{
 		//auto impulse = m_body->GetMass() * 60;
 		//m_body->ApplyLinearImpulse(b2Vec2(0, -impulse), m_body->GetWorldCenter(), true);
