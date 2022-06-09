@@ -1,8 +1,8 @@
 1300
 				posX	posY	scaleX		scaleY
-Heavy			100		700
-Simple			280		700
-Light			600		700
+Heavy			100		650
+Simple			280		650
+Light			600		650
 Hay				1160	700		0.45		0.45
 Hay				1160	630		0.45		0.45
 Hay				1240	700		0.45		0.45

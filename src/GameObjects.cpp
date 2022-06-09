@@ -31,7 +31,7 @@ void GameObjects::setPosition(sf::Vector2f pos)
 }
 
 //
-void GameObjects::createBody(b2World* world, b2BodyType bodyType)
+void GameObjects::createBody(b2World* world, b2BodyType bodyType, sf::Vector2i rect)
 { 
     //BodyDef
     b2BodyDef bodyDef;
@@ -43,7 +43,10 @@ void GameObjects::createBody(b2World* world, b2BodyType bodyType)
     m_body = world->CreateBody(&bodyDef);
 
     b2PolygonShape boxShape;
-    boxShape.SetAsBox(getWidth() / 2 /* - b2_polygonRadius*/, getHeight() / 2 /* - b2_polygonRadius*/);
+    float width = rect.x == 0 ? getWidth() : float(rect.x)/2 ;
+    float height = rect.y == 0 ? getHeight() : float(rect.y)/2 ;
+
+    boxShape.SetAsBox(width / 2 /* - b2_polygonRadius*/, height / 2 /* - b2_polygonRadius*/);
 
     // FixtureDef
     b2FixtureDef fixtureDef;

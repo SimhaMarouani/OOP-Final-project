@@ -42,3 +42,35 @@ const int NUM_OF_GROUNDS = 5;
 //static int numFootContacts; //Tali:To change
 //static bool TOUCHING_GROUND;
 
+
+// animation data:
+const std::pair<int, int> lightAnimationRow[4] =
+{
+	{ 6, 12 }, //jump 
+	{ 2, 8 }, //walk
+	{ 2, 8 }, //walk
+	{ 1, 5 } //stand
+};
+
+const std::pair<int, int> simpleAnimationRow[4] =
+{
+	{ 6, 7 }, //jump
+	{ 4, 8 }, //walk
+	{ 4, 8 }, //walk
+	{ 1, 15 } //stand
+};
+
+const std::pair<int, int> heavyAnimationRow[4] =
+{
+	{ 4, 7 }, //jump
+	{ 2, 8 }, //walk
+	{ 2, 8 }, //walk
+	{ 1, 5 } //stand
+};
+
+//std::vector<std::pair<Direction, int>> simpleAnimationCount =
+//{
+//	{Direction::Up, 7},
+//	{Direction::Right, 8 },
+//	{Direction::None , 15}
+//}
