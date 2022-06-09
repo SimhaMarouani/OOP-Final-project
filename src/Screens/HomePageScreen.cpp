@@ -121,10 +121,10 @@ void HomePageScreen::setHelpScreen()
 
 void HomePageScreen::initButtons()
 {
-	m_buttons.emplace_back(Button(*Resources::instance().getHomePageBtnsTexture(HomeButtonType::Start), HOME_BTN_SIZE));
-	m_buttons.emplace_back(Button(*Resources::instance().getHomePageBtnsTexture(HomeButtonType::Help), HOME_BTN_SIZE));
-	m_buttons.emplace_back(Button(*Resources::instance().getHomePageBtnsTexture(HomeButtonType::Settings), HOME_BTN_SIZE));
-	m_buttons.emplace_back(Button(*Resources::instance().getHomePageBtnsTexture(HomeButtonType::Exit), HOME_BTN_SIZE));
+	m_buttons.emplace_back(Button(*Resources::instance().getHomePageBtnsTexture(HomeButtonType::Start), 1));
+	m_buttons.emplace_back(Button(*Resources::instance().getHomePageBtnsTexture(HomeButtonType::Help), 1));
+	m_buttons.emplace_back(Button(*Resources::instance().getHomePageBtnsTexture(HomeButtonType::Settings), 1));
+	m_buttons.emplace_back(Button(*Resources::instance().getHomePageBtnsTexture(HomeButtonType::Exit), 1));
 
 	auto centered_x = (WINDOW_WIDTH - HOME_BTN_SIZE.x) / 2;
 	for (size_t i = 0; i < m_buttons.size(); i++)

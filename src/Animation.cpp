@@ -1,3 +1,4 @@
+#include <cmath>
 #include "Animation.h"
 
 Animation::Animation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime)
@@ -38,9 +39,9 @@ void Animation::update(int row, int totalImages, float deltaTime)
 		if (m_totalImages < m_displayed)
 		{
 			m_displayed = 0;
-			m_currentImage.x = 0;
-			m_currentImage.y = 0;
-		}
+            m_currentImage.x = 0;
+            m_currentImage.y = 0;
+        }
 	}
 
 	m_uvRect.left = m_currentImage.x * m_uvRect.width;

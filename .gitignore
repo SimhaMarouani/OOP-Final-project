@@ -1,5 +1,14 @@
 out/
 .vs/
+.idea/
+cmake-build-debug/
+
+# User-specific stuff:
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
 
 # Prerequisites
 *.d

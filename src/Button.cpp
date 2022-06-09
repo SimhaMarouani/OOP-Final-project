@@ -1,5 +1,11 @@
 #include "Button.h"
 
+Button::Button(sf::Texture& texture, float scale)
+	: Button(texture)
+{
+	m_button.setScale(scale, scale);
+}
+
 Button::Button(sf::Texture &texture, sf::Vector2f size)
 	: Button(texture)
 {

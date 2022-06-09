@@ -33,7 +33,6 @@ World::~World()
 void World::initArrow()
 {
 	m_arrow.setTexture(*Resources::instance().getPlayerArrowTexture());
-	m_arrow.setScale(sf::Vector2f(0.04, 0.04));
 	m_arrow.setOrigin(m_arrow.getGlobalBounds().width, m_arrow.getGlobalBounds().height);
 }
 
@@ -76,8 +75,8 @@ void World::moveActive(float deltaTime, Player active)
 
 void World::moveArrow(Player active)
 {
-	float x = m_players[(int)active]->getPosition().x;
-	float y = m_players[(int)active]->getPosition().y - m_players[(int)active]->getHeight();
+	float x = m_players[(int)active]->getPosition().x + 80;
+	float y = m_players[(int)active]->getPosition().y - m_players[(int)active]->getHeight() / 2;
 	m_arrow.setPosition(x, y);
 }
 
