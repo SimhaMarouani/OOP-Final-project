@@ -22,9 +22,11 @@ StaticObjects::StaticObjects(Grounds type, b2World* world, sf::Vector2f pos, sf:
 
 void StaticObjects::initIcon(sf::Vector2f pos, sf::Vector2f scale)
 {
-	m_icon.setOrigin(m_icon.getGlobalBounds().width / 2, m_icon.getGlobalBounds().height / 2);
-	m_icon.setScale(scale);
+	m_icon.setOrigin(m_icon.getGlobalBounds().width/2, m_icon.getGlobalBounds().height/2);
 	m_icon.setPosition(pos);
+	m_icon.setScale(scale);
+
+	//m_icon.setOrigin(m_icon.getGlobalBounds().width / 2, m_icon.getGlobalBounds().height / 2);
 
 }
 void StaticObjects::update()

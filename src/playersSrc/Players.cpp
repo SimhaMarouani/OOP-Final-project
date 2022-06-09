@@ -61,13 +61,11 @@ void Players::move(float deltaTime)
 {
 	if ( dirFromKey().y < 0 && m_touchingFloor)
 	{
-		//auto impulse = m_body->GetMass() * 60;
-		//m_body->ApplyLinearImpulse(b2Vec2(0, -impulse), m_body->GetWorldCenter(), true);
-		//m_body->ApplyLinearImpulseToCenter(b2Vec2(0, -impulse),true);
-
-		auto impulse = m_body->GetMass();
-		m_body->SetLinearVelocity(b2Vec2(0, -impulse));
-		m_touchingFloor = false;
+		//auto impulse = m_body->GetMass();
+		//m_body->SetLinearVelocity(b2Vec2(0, -impulse));
+		auto impulse = -(m_body->GetMass()) -800 ;
+		m_body->ApplyLinearImpulseToCenter(b2Vec2(0, impulse), true);
+		//setTouchingFloor(false);
 	}
 	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * m_speedPerSecond, 0);
 	m_body->ApplyForceToCenter(step1, true);
@@ -79,6 +77,12 @@ void Players::move(float deltaTime)
 
 void Players::setTouchingFloor(bool touching)
 {
+	std::cout << "set touching to: ";
+	if (touching)
+		std::cout << "True\n";
+	else 
+		std::cout << "False\n";
+
 	m_touchingFloor = touching;
 }
 
