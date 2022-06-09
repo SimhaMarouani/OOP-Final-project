@@ -10,15 +10,17 @@ Settings::Settings() //TODO: send current status
 	m_audioStatus(true)
 
 {
-	m_shadow.setFillColor(sf::Color(0, 0, 0, 50));
+	m_shadow.setFillColor(sf::Color(255, 255, 255, 50));
 	m_background.setTexture(Resources::instance().getSettingsBackground());
 	m_background.setPosition(sf::Vector2f((WINDOW_WIDTH - SETTINGS_WIDTH) / 2, (WINDOW_HEIGHT - SETTINGS_HEIGHT) / 2));
 	createBtns();
 
 	//return
-	m_exitSettingsBtn.setPosition(m_background.getPosition() + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_redirectBtn.getSize().x / 2), SETTINGS_HEIGHT * 3 / 4));
+	m_exitSettingsBtn.setScale(sf::Vector2f(0.7, 0.7));
+	m_exitSettingsBtn.setPosition(m_background.getPosition() + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_exitSettingsBtn.getSize().x / 2), SETTINGS_HEIGHT * 4 /6));
 	//home
-	m_redirectBtn.setPosition(m_background.getPosition() + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_redirectBtn.getSize().x / 2), SETTINGS_HEIGHT * 2 / 4));
+	m_redirectBtn.setScale(sf::Vector2f(0.7, 0.7));
+	m_redirectBtn.setPosition(m_background.getPosition() + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_redirectBtn.getSize().x / 2), SETTINGS_HEIGHT * 3 / 6));
 }
 
 void Settings::draw(sf::RenderWindow& window, Screen s)
@@ -85,9 +87,9 @@ void Settings::createBtns()
 	m_soundBtns.resize(2);
 	m_soundBtns[i].setTexture(Resources::instance().getSoundTexture(SoundStatus::AudioOn));
 	m_soundBtns[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
-	m_soundBtns[i].setPosition(startPos + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_soundBtns[i].getSize().x / 2 ), SETTINGS_HEIGHT / 4));
+	m_soundBtns[i].setPosition(startPos + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_soundBtns[i].getSize().x  ), SETTINGS_HEIGHT /6));
 
 	m_soundBtns[j].setTexture(Resources::instance().getSoundTexture(SoundStatus::MusicOn));
 	m_soundBtns[j].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
-	m_soundBtns[j].setPosition(startPos + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_soundBtns[j].getSize().x / 2 - PLAYER_FACE_SIZE ), SETTINGS_HEIGHT / 4));
+	m_soundBtns[j].setPosition(startPos + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_soundBtns[j].getSize().x  - PLAYER_FACE_SIZE ), SETTINGS_HEIGHT / 6));
 }
