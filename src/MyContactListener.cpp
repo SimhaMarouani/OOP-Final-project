@@ -14,17 +14,10 @@ void MyContactListener::BeginContact(b2Contact* contact) {
 
     if (!objA | !objB)
         return;
-    if ((int)fixtureUserDataA == 1)
-    {
-        std::cout << "fixture a is foot\n";
-    }
-    if ((int)fixtureUserDataB == 1)
-    {
-        std::cout << "fixture b is foot\n";
-    }
-    CollisionHandler::instance().processCollision(objA, objB, 
-        ((int)fixtureUserDataA == 1) ? true : false, 
-        ((int)fixtureUserDataB == 1) ? true : false);
+
+    CollisionHandler::instance().processCollision(objA, objB,
+                                                  ((int)(size_t)fixtureUserDataA == 1) ? true : false,
+                                                  ((int)(size_t)fixtureUserDataB == 1) ? true : false);
 }
 
 void MyContactListener::EndContact(b2Contact* contact) {
