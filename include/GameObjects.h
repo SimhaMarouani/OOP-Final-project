@@ -11,7 +11,6 @@ class GameObjects
 {
 public:
     GameObjects();
-    //GameObjects(b2World* world, b2BodyType bodyType);
     ~GameObjects();
 
     void draw(sf::RenderWindow& window);

@@ -4,8 +4,6 @@
 class Players : public GameObjects
 {
 public:
-	Players(); //remove
-	Players(Player type); //remove
 	Players(Player type, b2World* world);
 
 

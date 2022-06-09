@@ -8,34 +8,6 @@ GameObjects::~GameObjects()
 {
     m_body->GetWorld()->DestroyBody(m_body);
 }
-//GameObjects::GameObjects(b2World* world, b2BodyType bodyType)
-//{
-//    //BodyDef
-//    b2BodyDef bodyDef;
-//    bodyDef.type = bodyType;
-//    bodyDef.position.Set(getPosition().x, getPosition().y);
-//
-//    m_body = world->CreateBody(&bodyDef);
-//
-//    b2PolygonShape boxShape;
-//    boxShape.SetAsBox(getWidth() / 2, getHeight() / 2);
-//
-//    // FixtureDef
-//    b2FixtureDef fixtureDef;
-//    fixtureDef.shape = &boxShape;
-//    if (bodyType == b2_dynamicBody)
-//    {
-//        fixtureDef.density = 1.0f;
-//        fixtureDef.friction = 1.0f;
-//        b2MassData mass;
-//	    mass.center = m_body->GetLocalCenter();
-//	    mass.mass = 10;
-//    }
-//    m_body->CreateFixture(&fixtureDef);
-//
-//
-//}
-
 
 void GameObjects::draw(sf::RenderWindow& window)
 {
