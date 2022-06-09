@@ -4,9 +4,9 @@ Players::Players(Player type, b2World* world)
 	:m_touchingFloor(true)
 {
 	m_icon.setTexture(*Resources::instance().getPlayerTexture(type));
+	m_icon.setPosition(sf::Vector2f(0, 600)); //Tali: change to DEFAULT
 	m_icon.setScale(sf::Vector2f(0.5, 0.5)); //Tali: make default
 	m_icon.setOrigin(m_icon.getGlobalBounds().width, m_icon.getGlobalBounds().height);
-	m_icon.setPosition(sf::Vector2f(0, 600)); //Tali: change to DEFAULT
 
 	//create body in world
 	createBody(world, b2_dynamicBody);
@@ -57,9 +57,9 @@ void Players::move(float deltaTime)
 	{
 		//auto impulse = m_body->GetMass();
 		//m_body->SetLinearVelocity(b2Vec2(0, -impulse));
-		auto impulse = -(m_body->GetMass() * 15) -900 ;
+		auto impulse = -(m_body->GetMass()) -800 ;
 		m_body->ApplyLinearImpulseToCenter(b2Vec2(0, impulse), true);
-		setTouchingFloor(false);
+		//setTouchingFloor(false);
 	}
 	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * m_speedPerSecond, 0);
 	m_body->ApplyForceToCenter(step1, true);
@@ -67,6 +67,12 @@ void Players::move(float deltaTime)
 
 void Players::setTouchingFloor(bool touching)
 {
+	std::cout << "set touching to: ";
+	if (touching)
+		std::cout << "True\n";
+	else 
+		std::cout << "False\n";
+
 	m_touchingFloor = touching;
 }
 

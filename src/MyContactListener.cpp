@@ -21,6 +21,30 @@ void MyContactListener::BeginContact(b2Contact* contact) {
 }
 
 void MyContactListener::EndContact(b2Contact* contact) {
+    void* bodyUserDataA = contact->GetFixtureA()->GetBody()->GetUserData();
+    auto objA = static_cast<GameObjects*>(bodyUserDataA);
+    void* fixtureUserDataA = contact->GetFixtureA()->GetUserData();
 
+    //check if fixture B was the foot sensor
+    void* bodyUserDataB = contact->GetFixtureB()->GetBody()->GetUserData();
+    auto objB = static_cast<GameObjects*>(bodyUserDataB);
+    void* fixtureUserDataB = contact->GetFixtureB()->GetUserData();
+
+    if (!objA | !objB)
+        return;
+    
+    if ((int)(size_t)fixtureUserDataA == 1)
+    {
+        auto p = static_cast<Players*>(bodyUserDataA);
+        if (p)
+            p->setTouchingFloor(false);
+
+    }
+    if ((int)(size_t)fixtureUserDataB == 1)
+    {
+        auto p = static_cast<Players*>(bodyUserDataB);
+        if (p)
+            p->setTouchingFloor(false);
+    }
 
 }
