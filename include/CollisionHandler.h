@@ -1,14 +1,20 @@
 #pragma once
-#include "GameObjects.h"
-#include "playersInclude/Players.h"
-#include "objectsInclude/StaticObjects.h"
-
+//#include "GameObjects.h"
+//#include "playersInclude/Players.h"
+//#include "objectsInclude/StaticObjects.h"
+#include "playersInclude/Light.h"
+#include "playersInclude/Simple.h"
+#include "playersInclude/Heavy.h"
+#include "objectsInclude/Floor.h"
+#include "objectsInclude/Box.h"
 
 #include <iostream>
 #include <unordered_map>
 #include <string>
 #include <typeinfo>
 #include <typeindex>
+
+
 
 //Both structs needed for unordered map:
 struct PairKeysHash
@@ -59,7 +65,7 @@ private:
 	void sheepPlayer(GameObjects* sheep, GameObjects* player, bool footSensor1, bool footSensor2);
 	//Secondary collision handler
 	void staticSheep(GameObjects* stat, GameObjects* sheep, bool footSensor1, bool footSensor2);
-	void playerSheep(GameObjects* player, GameObjects* sheep, bool footSensor1, bool footSensor2);
+	//void playerSheep(GameObjects* player, GameObjects* sheep, bool footSensor1, bool footSensor2);
 	
 
 

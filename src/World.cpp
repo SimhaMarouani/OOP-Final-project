@@ -49,13 +49,13 @@ void World::setActiveDirection(Direction dir, Player active)
 void World::moveActive(float deltaTime, Player active)
 {
 	
-	/*m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
-	m_players[(int)active]->move(deltaTime);*/
+	m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
+	m_players[(int)active]->move(deltaTime);
 
 	for (int i = 0; i < m_players.size(); i++)
 	{
 		m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
-		m_players[i]->move(deltaTime);
+		m_players[i]->update();
 	}
 	for (int i = 0; i < m_objects.size(); i++)
 	{

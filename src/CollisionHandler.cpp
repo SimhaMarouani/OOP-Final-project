@@ -9,10 +9,30 @@ CollisionHandler::CollisionHandler()
 
 void CollisionHandler::intializeMap()
 {
-    m_hitMap[Key(typeid(Player), typeid(StaticObjects))] = &CollisionHandler::sheepStatic;
-    m_hitMap[Key(typeid(Player), typeid(Player))] = &CollisionHandler::sheepPlayer;
-    m_hitMap[Key(typeid(StaticObjects), typeid(Player))] = &CollisionHandler::staticSheep;
-    m_hitMap[Key(typeid(Player), typeid(Player))] = &CollisionHandler::playerSheep;
+    //Player with object
+    m_hitMap[Key(typeid(Light), typeid(Floor))] = &CollisionHandler::sheepStatic;
+    m_hitMap[Key(typeid(Simple), typeid(Floor))] = &CollisionHandler::sheepStatic;
+    m_hitMap[Key(typeid(Heavy), typeid(Floor))] = &CollisionHandler::sheepStatic;
+    m_hitMap[Key(typeid(Light), typeid(Box))] = &CollisionHandler::sheepStatic;
+    m_hitMap[Key(typeid(Simple), typeid(Box))] = &CollisionHandler::sheepStatic;
+    m_hitMap[Key(typeid(Heavy), typeid(Box))] = &CollisionHandler::sheepStatic;
+
+    //Player with Player
+    m_hitMap[Key(typeid(Heavy), typeid(Light))] = &CollisionHandler::sheepPlayer;
+    m_hitMap[Key(typeid(Heavy), typeid(Simple))] = &CollisionHandler::sheepPlayer;
+    m_hitMap[Key(typeid(Light), typeid(Simple))] = &CollisionHandler::sheepPlayer;
+    m_hitMap[Key(typeid(Light), typeid(Heavy))] = &CollisionHandler::sheepPlayer;
+    m_hitMap[Key(typeid(Simple), typeid(Light))] = &CollisionHandler::sheepPlayer;
+    m_hitMap[Key(typeid(Simple), typeid(Heavy))] = &CollisionHandler::sheepPlayer;
+    //m_hitMap[Key(typeid(Player), typeid(Player))] = &CollisionHandler::playerSheep; //Tali: TO REMOVE?
+
+    //Object with Player
+    m_hitMap[Key(typeid(Floor), typeid(Light))] = &CollisionHandler::staticSheep;
+    m_hitMap[Key(typeid(Floor), typeid(Simple))] = &CollisionHandler::staticSheep;
+    m_hitMap[Key(typeid(Floor), typeid(Heavy))] = &CollisionHandler::staticSheep;
+    m_hitMap[Key(typeid(Box), typeid(Light))] = &CollisionHandler::staticSheep;
+    m_hitMap[Key(typeid(Box), typeid(Simple))] = &CollisionHandler::staticSheep;
+    m_hitMap[Key(typeid(Box), typeid(Heavy))] = &CollisionHandler::staticSheep;
 }
 
 //PRIMARY COLLISION HANDLER
@@ -24,9 +44,8 @@ void CollisionHandler::sheepStatic(GameObjects* sheep, GameObjects* stat, bool f
     if (!sh || !statObj)
         return;
 
-    if (footSensor1 || footSensor2)
-        std::cout << "footsensor yall\n";
-    //else deal with it
+    if (footSensor1)
+        sh->setTouchingFloor(true);
 }
 
 void CollisionHandler::sheepPlayer(GameObjects* sheep, GameObjects* player, bool footSensor1, bool footSensor2)
@@ -37,8 +56,12 @@ void CollisionHandler::sheepPlayer(GameObjects* sheep, GameObjects* player, bool
     if (!sh1 || !sh2)
         return;
 
-    if (footSensor1 || footSensor2)
-        std::cout << "footsensor yall\n";
+    if (footSensor1)
+        sh1->setTouchingFloor(true);
+
+    if (footSensor2)
+        sh2->setTouchingFloor(true);
+
 }
 
 
@@ -48,10 +71,10 @@ void CollisionHandler::staticSheep(GameObjects* stat, GameObjects* sheep, bool f
     sheepStatic(sheep, stat, footSensor2, footSensor1);
 }
 
-void CollisionHandler::playerSheep(GameObjects* player, GameObjects* sheep, bool footSensor1, bool footSensor2)
-{
-    sheepPlayer(sheep, player, footSensor2, footSensor1);
-}
+//void CollisionHandler::playerSheep(GameObjects* player, GameObjects* sheep, bool footSensor1, bool footSensor2)
+//{
+//    sheepPlayer(sheep, player, footSensor2, footSensor1);
+//}
 
 CollisionHandler::~CollisionHandler()
 {
@@ -65,8 +88,8 @@ CollisionHandler& CollisionHandler::instance()
 
 void CollisionHandler::processCollision(GameObjects* object1, GameObjects* object2 ,bool footSensor1, bool footSensor2)
 {
-    if (footSensor1)
-        std::cout << "foot sensor yes bro u know\n";
+    std::cout << typeid(*object1).name() << " " << typeid(*object2).name() << std::endl; //Tali: remove
+
     auto hit = m_hitMap.find(Key(typeid(*object1), typeid(*object2)));
     if (hit != m_hitMap.end())
     {

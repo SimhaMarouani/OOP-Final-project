@@ -12,6 +12,7 @@ Players::Players(Player type)
 }
 
 Players::Players(Player type, b2World* world)
+	:m_touchingFloor(true)
 {
 	m_icon.setTexture(*Resources::instance().getPlayerTexture(type));
 	m_icon.setScale(sf::Vector2f(0.5, 0.5)); //Tali: make default
@@ -53,8 +54,31 @@ void Players::move(float deltaTime)
 	else
 		m_body->SetLinearVelocity(b2Vec2(m_body->GetLinearVelocity().x * 0.95, m_body->GetLinearVelocity().y));
 
-	
-	//deaccelerating //Tali: maybe move to update function for all bodies!!!
+
+	if (m_direction == Direction::Up && m_touchingFloor)
+	{
+		auto impulse = m_body->GetMass() * 60;
+		m_body->ApplyLinearImpulse(b2Vec2(0, -impulse), m_body->GetWorldCenter(), true);
+		m_touchingFloor = false;
+	}
+}
+
+void Players::setTouchingFloor(bool touching)
+{
+	std::cout << "set touching floor to true\n";
+	m_touchingFloor = touching;
+}
+
+
+void Players::setDirection(Direction dir)
+{
+	m_direction = dir;
+}
+
+void Players::update()
+{
+	//m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition())); //Tali: to possibly remove
+	//direction idle?
 	float MAX_SPEED = 15.0f;
 	if (m_body->GetLinearVelocity().x < -MAX_SPEED) {
 		m_body->SetLinearVelocity(b2Vec2(-MAX_SPEED, m_body->GetLinearVelocity().y));
@@ -62,58 +86,6 @@ void Players::move(float deltaTime)
 	else if (m_body->GetLinearVelocity().x > MAX_SPEED) {
 		m_body->SetLinearVelocity(b2Vec2(MAX_SPEED, m_body->GetLinearVelocity().y));
 	}
-
-
-	bool below = false;
-
-	if (!m_jumping)
-		return;
-
-	//std::cout << "jumping\n";
-	for (b2ContactEdge* ce = m_body->GetContactList(); ce != nullptr; ce = ce->next) {
-		b2Contact* c = ce->contact;
-		if (c->IsTouching()) {
-			b2WorldManifold manifold;
-			c->GetWorldManifold(&manifold);
-			// Check if the points are below
-			below = false;
-			int i;
-			for ( i = 0; i < b2_maxManifoldPoints; i++) {
-				if (manifold.points[i].y > (m_body->GetPosition().y + (getHeight() / 2.0f) - 1.0f)) {
-					if (footSensor->TestPoint(manifold.points[i]))
-					{
-						std::cout << "CONTACT WITH FOOT\n";
-					}
-					below = true;
-					break;
-				}
-			}
-			if (below && m_jumping/*sf::Keyboard::isKeyPressed(sf::Keyboard::Up)*/ /*&& footSensor->TestPoint(manifold.points[i])*/) {
-				std::cout << "we can jump\n";
-				auto impulse = m_body->GetMass() * 60;
-				m_body->ApplyLinearImpulse(b2Vec2(0, -impulse), m_body->GetWorldCenter(), true);
-				break;
-			}
-		}
-	}
-	m_jumping = false;
-
-	//m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
-
-}
-
-
-void Players::setDirection(Direction dir)
-{
-	m_direction = dir;
-	if (dir == Direction::Up)
-		m_jumping = true;
-}
-
-void Players::update()
-{
-	m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition())); //Tali: to possibly remove
-	//direction idle?
 
 }
 

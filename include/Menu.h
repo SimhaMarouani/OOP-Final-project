@@ -12,6 +12,7 @@
 class Window;
 
 //HomeMenu
+//Noga: I think we dont use this class
 class Menu 
 {
 public:
