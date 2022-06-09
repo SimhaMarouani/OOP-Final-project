@@ -14,7 +14,7 @@ Players::Players(Player type, b2World* world)
 
 	//create foot sensor
 	b2PolygonShape shape;
-	shape.SetAsBox(getWidth() /2 *0.5, 6, b2Vec2(0, getHeight()/2 + 1), 0);
+	shape.SetAsBox(getWidth() /2 *0.5, 9, b2Vec2(0, getHeight()/2 + 1), 0);
 
 	b2FixtureDef fixture;
 	fixture.shape = &shape;
@@ -55,17 +55,14 @@ void Players::move(float deltaTime)
 {
 	if ( dirFromKey().y < 0 && m_touchingFloor)
 	{
-		//auto impulse = m_body->GetMass() * 60;
-		//m_body->ApplyLinearImpulse(b2Vec2(0, -impulse), m_body->GetWorldCenter(), true);
-		//m_body->ApplyLinearImpulseToCenter(b2Vec2(0, -impulse),true);
-
-		auto impulse = m_body->GetMass();
-		m_body->SetLinearVelocity(b2Vec2(0, -impulse));
-		m_touchingFloor = false;
+		//auto impulse = m_body->GetMass();
+		//m_body->SetLinearVelocity(b2Vec2(0, -impulse));
+		auto impulse = -(m_body->GetMass() * 15) -900 ;
+		m_body->ApplyLinearImpulseToCenter(b2Vec2(0, impulse), true);
+		setTouchingFloor(false);
 	}
 	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * m_speedPerSecond, 0);
 	m_body->ApplyForceToCenter(step1, true);
-
 }
 
 void Players::setTouchingFloor(bool touching)
