@@ -33,6 +33,8 @@ namespace
 {
 	sf::Vector2f dirFromKey()
 	{
+		sf::Vector2f dir = { 0 , 0 };
+
 		static const
 			std::initializer_list<std::pair<sf::Keyboard::Key, sf::Vector2f>>
 			keyToVectorMapping =
@@ -46,21 +48,24 @@ namespace
 		{
 			if (sf::Keyboard::isKeyPressed(pair.first))
 			{
-				return pair.second;
+				dir += pair.second;
 			}
 		}
-
-		return { 0, 0 };
+		return dir;
 	}
 }
 
 
 void Players::move(float deltaTime)
 {
-	if (dirFromKey() == sf::Vector2f{ 0, -1 } && m_touchingFloor)
+	if ( dirFromKey().y < 0 && m_touchingFloor)
 	{
-		auto impulse = m_body->GetMass() * 60;
-		m_body->ApplyLinearImpulse(b2Vec2(0, -impulse), m_body->GetWorldCenter(), true);
+		//auto impulse = m_body->GetMass() * 60;
+		//m_body->ApplyLinearImpulse(b2Vec2(0, -impulse), m_body->GetWorldCenter(), true);
+		//m_body->ApplyLinearImpulseToCenter(b2Vec2(0, -impulse),true);
+
+		auto impulse = m_body->GetMass();
+		m_body->SetLinearVelocity(b2Vec2(0, -impulse));
 		m_touchingFloor = false;
 	}
 	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * m_speedPerSecond, 0);
@@ -71,7 +76,6 @@ void Players::move(float deltaTime)
 
 void Players::setTouchingFloor(bool touching)
 {
-	std::cout << "set touching floor to true\n";
 	m_touchingFloor = touching;
 }
 
