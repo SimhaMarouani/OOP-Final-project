@@ -4,6 +4,7 @@
 #include "World.h"
 #include "DataDisplay.h"
 #include "Settings.h"
+#include "WinScreen.h"
 
 
 class GameScreen {
@@ -21,19 +22,22 @@ public:
 	void updateStatus(LevelActions la);
 
 	void initSettings(std::shared_ptr<Settings> s);
+	void initEndLevelScreen(std::shared_ptr<WinScreen> s);
 	void retryLevel();
 
 	LevelActions getPageStatus() const;
+
 private:
-	
 	World m_world;
 	DataDisplay m_dataDisplay;
 
 	std::shared_ptr<Settings> m_settingsView;
+	std::shared_ptr<WinScreen> m_endLevelView;
 
 	LevelActions m_pageStatus;
 	Player m_activePlayer;
 
 	sf::RectangleShape m_background;
 
+    bool m_win;
 };

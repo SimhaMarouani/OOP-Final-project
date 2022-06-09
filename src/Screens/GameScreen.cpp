@@ -3,7 +3,7 @@
 
 
 GameScreen::GameScreen()
-    : m_activePlayer(Player::Heavy),
+    : m_activePlayer(Player::Heavy), m_win(false),
       m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT))
 {
     m_background.setTexture(Resources::instance().getBackground(Screen::Game));
@@ -23,6 +23,11 @@ void GameScreen::draw(sf::RenderWindow& window)
     m_world.getWorld()->SetDebugDraw(&d);
     m_world.getWorld()->DebugDraw(); 
 
+    if(m_win)
+    {
+        m_endLevelView->draw(window);
+    }
+
     if (m_pageStatus == LevelActions::Pause)
     {
         m_settingsView->draw(window, Screen::Game);
@@ -31,6 +36,17 @@ void GameScreen::draw(sf::RenderWindow& window)
 
 void GameScreen::processEvents(sf::Event event, Controller &controller)
 {
+
+    if (m_win)
+    {
+        if (m_endLevelView->isContainRetry(event))
+            retryLevel();
+        else if (m_endLevelView->isContainNext(event))            //need to update the level num
+            ;
+        else if (m_endLevelView->isContainMenu(event))
+            controller.updatePage(Screen::HomePage);
+    }
+
     switch (event.type)
     {
     case sf::Event::KeyReleased:
@@ -71,6 +87,8 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
                 updateStatus(LevelActions::None);
                 controller.updatePage(Screen::HomePage);
             }
+
+
         }
         break;
     default:
@@ -85,9 +103,12 @@ void GameScreen::update(float deltaTime)
 {
     m_world.moveActive(deltaTime, m_activePlayer);
     m_world.moveArrow(m_activePlayer);
-    
-    if (m_world.allPlayersReachedEnd())
+
+
+    if (m_world.allPlayersReachedEnd()) {
         std::cout << "Level Won";
+        m_win = true;
+    }
 }
 
 void GameScreen::resetTimer()
@@ -118,6 +139,11 @@ void GameScreen::updateStatus(LevelActions la)
 void GameScreen::initSettings(std::shared_ptr<Settings> s)
 {
     m_settingsView = move(s);
+}
+
+void GameScreen::initEndLevelScreen(std::shared_ptr<WinScreen> s)
+{
+    m_endLevelView = move(s);
 }
 
 //Noga

@@ -27,7 +27,8 @@ public:
 	void updatePage(Screen page);
 	void exit();
 	void changeMusic(Screen s);
-	void updateNumOflevels();
+	void updateNumOfLevels();
+
 private:
 	void processEvents();
 	void update();
@@ -44,6 +45,4 @@ private:
 	HomePageScreen m_homePageScreen;
 	LevelMenuScreen m_levelMenuScreen;
 	GameScreen m_gameScreen;
-
-
 };

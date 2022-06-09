@@ -5,8 +5,10 @@ Controller::Controller()
 	: m_window(), m_homePageScreen(), m_currPage(Screen::HomePage)
 {
 	std::shared_ptr s = std::make_shared<Settings>();
+	std::shared_ptr w = std::make_shared<WinScreen>();
 	m_homePageScreen.initSettings(s);
 	m_gameScreen.initSettings(s);
+	m_gameScreen.initEndLevelScreen(w);
 }
 
 void Controller::run()
@@ -140,7 +142,7 @@ void Controller::handleKeyboardPress()
 	}
 }
 
-void Controller::updateNumOflevels()
+void Controller::updateNumOfLevels()
 {
 	m_levelMenuScreen.updateNumOfLevels();
 }

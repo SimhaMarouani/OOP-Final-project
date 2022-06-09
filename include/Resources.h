@@ -33,6 +33,10 @@ public:
 	sf::Texture* getSoundTexture(SoundStatus s);
 	sf::Texture* getSettingsBackground();
 	sf::Texture* getPlayerSpriteSheet(Player p);
+    sf::Texture* getWinBackground();
+    sf::Texture* getNextLevelBtn();
+    sf::Texture* getRetryBtn();
+    sf::Texture* getMenuBtn();
 
 	void playMusic(Screen s);
 	bool isMusicOn() const;
@@ -51,6 +55,11 @@ private:
 	void loadSettingsReturnTexture();
 	void loadSettingsHomeTexture();
 	void loadBackArrowTexture();
+
+    void loadWinBackground();
+    void loadNextLevelBtn();
+    void loadRetryBtn();
+    void loadMenuBtn();
 
 	void loadPlayersFace();
 	void loadObjects();
@@ -79,6 +88,10 @@ private:
 	sf::Texture m_settingsReturnTexture;
 	sf::Texture m_settingsHomeTexture;
 	sf::Texture m_settingsBackground;
+	sf::Texture m_winBackground;
+    sf::Texture m_nextLevelBtn;
+    sf::Texture m_retryBtn;
+    sf::Texture m_menuBtn;
 	std::vector<sf::Texture> m_players;
 	std::vector<sf::Texture> m_playersFace;
 	std::vector<sf::Texture> m_objects;

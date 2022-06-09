@@ -55,8 +55,13 @@ configure_file ("images/help.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/settings.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/exit.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
-# sprite sheets
+# win screen
+configure_file ("images/win_background.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/retry_btn.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/menu_btn.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/next_level_btn.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
+# sprite sheets
 configure_file ("spritesheets/heavy_spritesheet.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("spritesheets/simple_spritesheet.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("spritesheets/light_spritesheet.png" ${CMAKE_BINARY_DIR} COPYONLY)

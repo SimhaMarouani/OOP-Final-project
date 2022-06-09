@@ -68,6 +68,11 @@ Resources::Resources()
 	loadPlayerSpriteSheet();
 	loadMusic();
     loadBackArrowTexture();
+    loadWinBackground();
+    loadNextLevelBtn();
+    loadRetryBtn();
+    loadMenuBtn();
+
 }
 
 
@@ -108,6 +113,11 @@ sf::Texture* Resources::getBackground(Screen index)
 //	return &m_audioClick;
 //}
 //
+
+sf::Texture* Resources::getWinBackground()
+{
+    return &m_winBackground;
+}
 
 sf::Texture* Resources::getPlayerTexture(Player player)
 {
@@ -157,6 +167,21 @@ sf::Texture* Resources::getSoundTexture(SoundStatus s)
 sf::Texture* Resources::getSettingsBackground()
 {
 	return &m_settingsBackground;
+}
+
+sf::Texture* Resources::getNextLevelBtn()
+{
+    return &m_nextLevelBtn;
+}
+
+sf::Texture* Resources::getRetryBtn()
+{
+    return &m_retryBtn;
+}
+
+sf::Texture* Resources::getMenuBtn()
+{
+    return &m_menuBtn;
 }
 
 sf::Texture* Resources::getPlayerSpriteSheet(Player p)
@@ -265,6 +290,24 @@ void Resources::loadSettingsHomeTexture()
 		std::cerr << "error loading texture file";
 }
 
+void Resources::loadNextLevelBtn()
+{
+    if (!m_nextLevelBtn.loadFromFile("next_level_btn.png"))
+        std::cerr << "error loading texture file";
+}
+
+void Resources::loadRetryBtn()
+{
+    if (!m_retryBtn.loadFromFile("retry_btn.png"))
+        std::cerr << "error loading texture file";
+}
+
+void Resources::loadMenuBtn()
+{
+    if (!m_menuBtn.loadFromFile("menu_btn.png"))
+        std::cerr << "error loading texture file";
+}
+
 void Resources::loadPlayersFace()
 {
 	m_playersFace.resize(NUM_OF_PLAYERS);
@@ -320,6 +363,12 @@ void Resources::loadSettingsBackground()
 		std::cerr << "error loading texture file";
 }
 
+void Resources::loadWinBackground()
+{
+	if (!m_winBackground.loadFromFile("win_background.png"))
+		std::cerr << "error loading texture file";
+}
+
 void Resources::loadPlayerSpriteSheet()
 {
 	m_playerSpriteSheet.resize(NUM_OF_PLAYERS);
@@ -331,7 +380,6 @@ void Resources::loadPlayerSpriteSheet()
 		std::cerr << "error loading player spritesheet from file";
 	}
 }
-
 
 void Resources::loadMusic()
 {

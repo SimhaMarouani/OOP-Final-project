@@ -8,10 +8,12 @@
                                               "Button.cpp"
                                               "TitledButton.cpp"
                                               "GameObjects.cpp"
+
                                               "Screens/HomePageScreen.cpp"
                                               "Screens/GameScreen.cpp"
                                               "Screens/LevelMenuScreen.cpp"
                                               "Settings.cpp"
+                                              "WinScreen.cpp"
 
                                               "Resources.cpp"
                                               "Timer.cpp"
