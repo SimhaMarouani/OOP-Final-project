@@ -38,9 +38,7 @@ private:
 private:
 	Timer m_timer;
 
-	sf::Text m_scoreText;
 	sf::Text m_timerText;
-	sf::Text m_levelText;
 
 	std::vector<Button> m_players;
 	std::vector<Button> m_levelActions;

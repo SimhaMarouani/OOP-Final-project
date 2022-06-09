@@ -36,17 +36,6 @@ void GameScreen::draw(sf::RenderWindow& window)
 
 void GameScreen::processEvents(sf::Event event, Controller &controller)
 {
-
-    if (m_win)
-    {
-        if (m_endLevelView->isContainRetry(event))
-            retryLevel();
-        else if (m_endLevelView->isContainNext(event))            //need to update the level num
-            ;
-        else if (m_endLevelView->isContainMenu(event))
-            controller.updatePage(Screen::HomePage);
-    }
-
     switch (event.type)
     {
     case sf::Event::KeyReleased:
@@ -64,6 +53,19 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
         break;
     }
     case sf::Event::MouseButtonReleased:
+        if (m_win)
+        {
+            m_win = false;
+            if (m_endLevelView->isContainRetry(event))
+            {
+                std::cout << "retry pressed"<<std::endl;
+                retryLevel();
+            }
+            else if (m_endLevelView->isContainNext(event))   //need to update the level num and reload a level
+                ;
+            else if (m_endLevelView->isContainMenu(event))
+                controller.updatePage(Screen::HomePage);
+        }
         if(m_pageStatus != LevelActions::Pause)
             m_dataDisplay.handleClick(event, *this);
         else
@@ -87,8 +89,6 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
                 updateStatus(LevelActions::None);
                 controller.updatePage(Screen::HomePage);
             }
-
-
         }
         break;
     default:
@@ -104,10 +104,9 @@ void GameScreen::update(float deltaTime)
     m_world.moveActive(deltaTime, m_activePlayer);
     m_world.moveArrow(m_activePlayer);
 
-
     if (m_world.allPlayersReachedEnd()) {
-        std::cout << "Level Won";
         m_win = true;
+        std::cout << "Level Won";
     }
 }
 

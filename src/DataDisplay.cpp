@@ -50,12 +50,6 @@ void DataDisplay::initActionsButtons()
 
 void DataDisplay::createTexts()
 {
-	m_levelText.setFont(*Resources::instance().getFont());
-	m_levelText.setCharacterSize(CHAR_SIZE);
-	m_levelText.setPosition(100, 50);
-	m_levelText.setColor(sf::Color::Black);
-	m_levelText.setString("Level: " + std::to_string(1));	//simha: need to get the number of the level from anoother class
-
 	m_timerText.setFont(*Resources::instance().getFont());
 	m_timerText.setCharacterSize(CHAR_SIZE);
 	m_timerText.setPosition(350, 50);

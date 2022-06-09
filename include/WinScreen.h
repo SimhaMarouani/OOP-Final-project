@@ -17,12 +17,12 @@ public:
 
     void draw(sf::RenderWindow& window);
 
-    void handleClick(sf::Event event);
+    //void handleClick(sf::Event event);
+    void createText();
 
     bool isContainRetry(sf::Event e) const;
     bool isContainMenu(sf::Event e) const;
     bool isContainNext(sf::Event e) const;
-    //bool isContainHome(sf::Event e) const;
 
 private:
     void createBtns();
@@ -32,4 +32,7 @@ private:
     Button m_retryBtn;
     Button m_nextLevelBtn;
     Button m_menuBtn;
+
+    sf::Text m_text;
+    sf::Text m_timeText;
 };
