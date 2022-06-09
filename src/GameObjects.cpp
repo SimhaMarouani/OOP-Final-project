@@ -8,34 +8,6 @@ GameObjects::~GameObjects()
 {
     m_body->GetWorld()->DestroyBody(m_body);
 }
-//GameObjects::GameObjects(b2World* world, b2BodyType bodyType)
-//{
-//    //BodyDef
-//    b2BodyDef bodyDef;
-//    bodyDef.type = bodyType;
-//    bodyDef.position.Set(getPosition().x, getPosition().y);
-//
-//    m_body = world->CreateBody(&bodyDef);
-//
-//    b2PolygonShape boxShape;
-//    boxShape.SetAsBox(getWidth() / 2, getHeight() / 2);
-//
-//    // FixtureDef
-//    b2FixtureDef fixtureDef;
-//    fixtureDef.shape = &boxShape;
-//    if (bodyType == b2_dynamicBody)
-//    {
-//        fixtureDef.density = 1.0f;
-//        fixtureDef.friction = 1.0f;
-//        b2MassData mass;
-//	    mass.center = m_body->GetLocalCenter();
-//	    mass.mass = 10;
-//    }
-//    m_body->CreateFixture(&fixtureDef);
-//
-//
-//}
-
 
 void GameObjects::draw(sf::RenderWindow& window)
 {
@@ -49,6 +21,7 @@ sf::Vector2f GameObjects::convertB2VecToVec2f(b2Vec2 vec2f) const
 {
     return sf::Vector2f({ vec2f.x, vec2f.y });
 }
+
 void GameObjects::setPosition(sf::Vector2f pos)
 {
     //Tali: add exception to vector
@@ -58,17 +31,22 @@ void GameObjects::setPosition(sf::Vector2f pos)
 }
 
 //
-void GameObjects::createBody(b2World* world, b2BodyType bodyType)
+void GameObjects::createBody(b2World* world, b2BodyType bodyType, sf::Vector2i rect)
 { 
     //BodyDef
     b2BodyDef bodyDef;
     bodyDef.type = bodyType;
     bodyDef.position.Set(getPosition().x, getPosition().y);
+    //bodyDef.linearDamping = 0.0f;
+    //bodyDef.angularDamping = 0.01f;
 
     m_body = world->CreateBody(&bodyDef);
 
     b2PolygonShape boxShape;
-    boxShape.SetAsBox(getWidth() / 2 /* - b2_polygonRadius*/, getHeight() / 2 /* - b2_polygonRadius*/);
+    float width = rect.x == 0 ? getWidth() : float(rect.x)/2 ;
+    float height = rect.y == 0 ? getHeight() : float(rect.y)/2 ;
+
+    boxShape.SetAsBox(width / 2 /* - b2_polygonRadius*/, height / 2 /* - b2_polygonRadius*/);
 
     // FixtureDef
     b2FixtureDef fixtureDef;

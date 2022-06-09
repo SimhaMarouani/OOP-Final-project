@@ -128,7 +128,7 @@ void GameScreen::loadLevel(int level)
 
 void GameScreen::setDirection(Direction dir)
 {
-    m_world.setActiveDirection(dir, m_activePlayer);
+    //m_world.setActiveDirection(dir, m_activePlayer);
 }
 
 void GameScreen::updateStatus(LevelActions la)

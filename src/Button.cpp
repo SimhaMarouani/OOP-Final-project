@@ -29,7 +29,10 @@ bool Button::isContain(sf::Event event) const
 
 sf::Vector2f Button::getSize() const
 {
-	return 	sf::Vector2f(m_button.getTexture()->getSize());
+	sf::Vector2f textureSize = sf::Vector2f(m_button.getTexture()->getSize());
+	sf::Vector2f scale = m_button.getScale();
+	return 	sf::Vector2f(textureSize.x * scale.x, textureSize.y * scale.y);
+	//return 	sf::Vector2f(m_button.getTexture()->getSize());
 }
 
 void Button::setPosition(sf::Vector2f pos)
@@ -50,4 +53,9 @@ void Button::setColor(sf::Color color)
 void Button::setSize(sf::Vector2f size)
 {
 	m_button.setScale(size.x / m_button.getTexture()->getSize().x, size.y / m_button.getTexture()->getSize().y);
+}
+
+void Button::setScale(sf::Vector2f scale)
+{
+	m_button.setScale(scale);
 }

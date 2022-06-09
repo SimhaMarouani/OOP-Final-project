@@ -1,31 +1,26 @@
 #include "playersInclude/Players.h"
 
-Players::Players()
-{}
-
-Players::Players(Player type)
-	:GameObjects()
+Players::Players(Player type, sf::Vector2u imageCount, b2World* world)
+	:m_touchingFloor(true),
+	m_animation(Resources::instance().getPlayerSpriteSheet(type), imageCount, 0.08f),
+	m_direction(Direction::None),
+	m_isFaceRight(true)
 {
-	m_icon.setTexture(*Resources::instance().getPlayerTexture(type));
-	m_icon.setScale(sf::Vector2f(0.5, 0.5));
-	m_icon.setOrigin(m_icon.getGlobalBounds().width, m_icon.getGlobalBounds().height);
-}
-
-Players::Players(Player type, b2World* world)
-	:m_touchingFloor(true)
-{
-	m_icon.setTexture(*Resources::instance().getPlayerTexture(type));
+	//float width = m_animation.m_uvRect.width / 2;
+	//float height = m_animation.m_uvRect.width/2 ;
+	m_icon.setTexture(*Resources::instance().getPlayerSpriteSheet(type));
 	m_icon.setScale(sf::Vector2f(0.5, 0.5)); //Tali: make default
-	m_icon.setOrigin(m_icon.getGlobalBounds().width, m_icon.getGlobalBounds().height);
+	//m_icon.setColor(sf::Color::Blue);
+	m_icon.setOrigin(m_animation.m_uvRect.width/2 , m_animation.m_uvRect.height/2); //m_icon.getGlobalBounds().width, m_icon.getGlobalBounds().height);
 	m_icon.setPosition(sf::Vector2f(0, 600)); //Tali: change to DEFAULT
 
 	//create body in world
-	createBody(world, b2_dynamicBody);
+	createBody(world, b2_dynamicBody, sf::Vector2i{ m_animation.m_uvRect.width  , m_animation.m_uvRect.height});
 	m_body->SetFixedRotation(true);
-
+	
 	//create foot sensor
 	b2PolygonShape shape;
-	shape.SetAsBox(getWidth() /2 *0.9, 10, b2Vec2(0, getHeight()/2 + 1), 0);
+	shape.SetAsBox(m_animation.m_uvRect.width /4 *0.9, 10, b2Vec2(0, m_animation.m_uvRect.height/4 + 1), 0);
 
 	b2FixtureDef fixture;
 	fixture.shape = &shape;
@@ -34,51 +29,101 @@ Players::Players(Player type, b2World* world)
 	fixture.isSensor = true;
 	footSensor = m_body->CreateFixture(&fixture);
 	footSensor->SetUserData((void*)1);
+}
+namespace 
+{
+	sf::Vector2f dirFromKey()
+	{
+		sf::Vector2f dir = { 0 , 0 };
 
+		static const
+			std::initializer_list<std::pair<sf::Keyboard::Key, sf::Vector2f>>
+			keyToVectorMapping =
+		{
+			{ sf::Keyboard::Right, { 1, 0 } },
+			{ sf::Keyboard::Left , { -1, 0 } },
+			{ sf::Keyboard::Space   , { 0, -1 } },
+		};
+
+		for (const auto& pair : keyToVectorMapping)
+		{
+			if (sf::Keyboard::isKeyPressed(pair.first))
+			{
+				dir += pair.second;
+			}
+		}
+		return dir;
+	}
 }
 
 
 void Players::move(float deltaTime)
 {
-	if (m_direction == Direction::Left || m_direction == Direction::Right)
+	if ( dirFromKey().y < 0 && m_touchingFloor)
 	{
-		//if with mass:
-		//auto step1= b2Vec2(getDirection(m_direction).x * 300, 0); //running speed = 300
-		//m_body->ApplyForceToCenter(step1, true);
-		//else if without mass:
-		auto step2 = b2Vec2(getDirection(m_direction).x*300, 0); //running speed = 300
-		m_body->ApplyLinearImpulse(step2, m_body->GetPosition(), true);
-		auto step = deltaTime * m_speedPerSecond * getDirection(m_direction);
-		m_body->SetTransform(m_body->GetPosition() + step, 0);
+		//auto impulse = m_body->GetMass();
+		//m_body->SetLinearVelocity(b2Vec2(0, -impulse));
+		auto impulse = -(m_body->GetMass()) -800 ;
+		m_body->ApplyLinearImpulseToCenter(b2Vec2(0, impulse), true);
+		//setTouchingFloor(false);
 	}
-	else
-		m_body->SetLinearVelocity(b2Vec2(m_body->GetLinearVelocity().x * 0.95, m_body->GetLinearVelocity().y));
+	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * m_speedPerSecond, 0);
+	m_body->ApplyForceToCenter(step1, true);
 
-
-	if (m_direction == Direction::Up && m_touchingFloor)
-	{
-		auto impulse = m_body->GetMass() * 60;
-		m_body->ApplyLinearImpulse(b2Vec2(0, -impulse), m_body->GetWorldCenter(), true);
-		m_touchingFloor = false;
-	}
+	//move to update func
+	sf::Vector2f dir = dirFromKey();
+	m_direction = getDir(dir);
 }
 
 void Players::setTouchingFloor(bool touching)
 {
-	std::cout << "set touching floor to true\n";
+	std::cout << "set touching to: ";
+	if (touching)
+		std::cout << "True\n";
+	else 
+		std::cout << "False\n";
+
 	m_touchingFloor = touching;
+}
+
+Direction Players::getDir(sf::Vector2f dir) 
+{
+	if (dir.y < 0 && !m_touchingFloor)
+	{
+		return Direction::Up;
+	}
+	else if (dir.x > 0)
+	{
+		m_isFaceRight = true;
+		return Direction::Left;
+
+	}
+	else if (dir.x < 0)
+	{
+		m_isFaceRight = false;
+		return Direction::Right;
+
+	}
+
+	return Direction::None;
+}
+
+void Players::updateAnimation(float deltaTime)
+{
+	//first = row, second = num of images
+	std::pair<int, int> row_numOf = getAnimationData();
+	m_animation.update(row_numOf.first, row_numOf.second, deltaTime, m_isFaceRight);
+	m_icon.setTextureRect(m_animation.m_uvRect);
 }
 
 
 void Players::setDirection(Direction dir)
 {
-	m_direction = dir;
+	//m_direction = dir;
 }
 
-void Players::update()
+void Players::update(float deltaTime)
 {
-	//m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition())); //Tali: to possibly remove
-	//direction idle?
 	float MAX_SPEED = 15.0f;
 	if (m_body->GetLinearVelocity().x < -MAX_SPEED) {
 		m_body->SetLinearVelocity(b2Vec2(-MAX_SPEED, m_body->GetLinearVelocity().y));
@@ -86,20 +131,20 @@ void Players::update()
 	else if (m_body->GetLinearVelocity().x > MAX_SPEED) {
 		m_body->SetLinearVelocity(b2Vec2(MAX_SPEED, m_body->GetLinearVelocity().y));
 	}
-
+	updateAnimation(deltaTime);
 }
 
-b2Vec2 Players::getDirection(Direction dir)
-{
-    switch (dir)
-    {
-    case Direction::Left:
-        return b2Vec2(-1, 0);
-    case Direction::Right:
-        return b2Vec2(1, 0);
-    case Direction::Up:
-        return b2Vec2(0, -5);
-    default:
-        return b2Vec2(0, 0);
-    }
-}
+//b2Vec2 Players::getDirection(Direction dir)
+//{
+//    switch (dir)
+//    {
+//    case Direction::Left:
+//        return b2Vec2(-1, 0);
+//    case Direction::Right:
+//        return b2Vec2(1, 0);
+//    case Direction::Up:
+//        return b2Vec2(0, -5);
+//    default:
+//        return b2Vec2(0, 0);
+//    }
+//}

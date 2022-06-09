@@ -11,7 +11,6 @@ class GameObjects
 {
 public:
     GameObjects();
-    //GameObjects(b2World* world, b2BodyType bodyType);
     ~GameObjects();
 
     void draw(sf::RenderWindow& window);
@@ -21,7 +20,7 @@ public:
     virtual void setPosition(sf::Vector2f pos);
     float getWidth()const;
     float getHeight()const;
-    void createBody(b2World* world, b2BodyType bodyType);
+    void createBody(b2World* world, b2BodyType bodyType, sf::Vector2i rect = { 0, 0 });
     b2Body* getBody();
 
 protected:

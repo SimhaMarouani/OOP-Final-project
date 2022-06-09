@@ -7,15 +7,12 @@
 
 #include "Macros.h"
 #include "playersInclude/Players.h"
-//#include "playersInclude/Light.h"
-//#include "playersInclude/Heavy.h"
-//#include "playersInclude/Simple.h"
-#include "objectsInclude/StaticObjects.h" //Tali: will change to appropriate object header files
+#include "objectsInclude/StaticObjects.h"
+#include "MyContactListener.h"
 
 #include "Factory.h"
 #include "DebugDraw.h"
 
-#include "MyContactListener.h"
 
 class Controller;
 
@@ -23,7 +20,7 @@ class World
 {
 public:
 	World();
-	~World() = default;
+	~World();
 	void draw(sf::RenderWindow& window);
 	void setActiveDirection(Direction dir, Player active);
 	void moveActive(float deltaTime, Player active);
@@ -54,7 +51,6 @@ private:
 	std::vector<std::unique_ptr<StaticObjects>> m_objects;
 
 	int m_endpoint = 1400;
-	b2Body* groundBody;
-
+	
 	MyContactListener contactListener;
 };

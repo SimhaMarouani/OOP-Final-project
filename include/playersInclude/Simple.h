@@ -1,19 +1,20 @@
 #pragma once
 #include "Players.h"
-//#include "Board.h"
 
 class Simple : public Players
 {
 public:
-	Simple();
-	//Simple(sf::Vector2f position/*, Board& board*/);
 	Simple(b2World* world);
-	//~Simple() = default;
+	std::pair<int, int> getAnimationData() {
 
-
-
-	//void move(float deltaTime);
-
+		Direction dir = Players::getCurrDirection();
+		return std::pair<int, int>(simpleAnimationRow[int(dir)]);
+	};
+	//void update(float deltaTime)
+	//{
+	//	Players::update(deltaTime);
+	//	updateAnimation(deltaTime);
+	//};
 private:
 
 };

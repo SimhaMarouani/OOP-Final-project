@@ -1,19 +1,14 @@
 #include "playersInclude/Light.h"
 
-Light::Light()
-	:Players(Player::Light)
-{
-}
-//
-//Light::Light(sf::Vector2f position/*, Board& board*/)
-//	:Players(Player::Light)
-//{
-//}
+
 Light::Light(b2World* world)
-	: Players(Player::Light, world)
+	: Players(Player::Light, sf::Vector2u(5, 8), world)
 {
-	//b2MassData mass;
-	//mass.center = m_body->GetLocalCenter();
-	//mass.mass = 3;
-	//m_body->SetMassData(&mass);
+	b2MassData mass;
+	mass.center = m_body->GetLocalCenter();
+	mass.mass = 20;
+	mass.I = m_icon.getOrigin().y;
+	m_body->SetMassData(&mass);
+	//m_body->ResetMassData();
+
 }

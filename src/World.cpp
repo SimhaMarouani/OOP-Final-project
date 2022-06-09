@@ -21,6 +21,15 @@ World::World()
 	
 }
 
+World::~World()
+{
+	m_players.clear();
+	m_objects.clear();
+
+	if (m_box2dWorld)
+		delete m_box2dWorld;
+}
+
 void World::initArrow()
 {
 	m_arrow.setTexture(*Resources::instance().getPlayerArrowTexture());
@@ -55,7 +64,7 @@ void World::moveActive(float deltaTime, Player active)
 	for (int i = 0; i < m_players.size(); i++)
 	{
 		m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
-		m_players[i]->update();
+		m_players[i]->update(deltaTime);
 	}
 	for (int i = 0; i < m_objects.size(); i++)
 	{

@@ -1,7 +1,5 @@
 #pragma once
-//#include "GameObjects.h"
-//#include "playersInclude/Players.h"
-//#include "objectsInclude/StaticObjects.h"
+
 #include "playersInclude/Light.h"
 #include "playersInclude/Simple.h"
 #include "playersInclude/Heavy.h"
@@ -58,16 +56,9 @@ private:
 
 	void intializeMap();
 
-	//handle collisions functions
-
 	//Primary collision handler
 	void sheepStatic(GameObjects* sheep, GameObjects* stat, bool footSensor1, bool footSensor2);
 	void sheepPlayer(GameObjects* sheep, GameObjects* player, bool footSensor1, bool footSensor2);
 	//Secondary collision handler
 	void staticSheep(GameObjects* stat, GameObjects* sheep, bool footSensor1, bool footSensor2);
-	//void playerSheep(GameObjects* player, GameObjects* sheep, bool footSensor1, bool footSensor2);
-	
-
-
-
 };

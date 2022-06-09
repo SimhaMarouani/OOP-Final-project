@@ -23,7 +23,7 @@ public:
 	void setTexture(sf::Texture* texture);
 	void setColor(sf::Color color);
 	void setSize(sf::Vector2f size);
-
+	void setScale(sf::Vector2f scale);
 
 private:
 	sf::Sprite m_button;

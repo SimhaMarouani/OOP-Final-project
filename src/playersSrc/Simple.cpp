@@ -1,18 +1,13 @@
 #include "playersInclude/Simple.h"
 
-Simple::Simple()
-	:Players(Player::Simple)
-{
-}
-//
-//Simple::Simple(sf::Vector2f position/*, Board& board*/)
-//	:Players(Player::Simple)
-//{}
+
 Simple::Simple(b2World* world)
-	: Players(Player::Simple, world)
+	: Players(Player::Simple, sf::Vector2u(5, 10), world)
 {
-	//b2MassData mass;
-	//mass.center = m_body->GetLocalCenter();
-	//mass.mass = 5;
-	//m_body->SetMassData(&mass);
+	b2MassData mass;
+	mass.center = m_body->GetLocalCenter();
+	mass.mass = 30;
+	mass.I = m_icon.getOrigin().y;
+	m_body->SetMassData(&mass);
+	//m_body->ResetMassData();
 }

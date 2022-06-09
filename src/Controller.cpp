@@ -124,22 +124,22 @@ void Controller::drawCurrPage()
 
 void Controller::handleKeyboardPress()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-		m_gameScreen.setDirection(Direction::Left);
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	{
-		m_gameScreen.setDirection(Direction::Right);
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) //Tali: Up will have to be in poll event, boop
-	{
-		m_gameScreen.setDirection(Direction::Up);
-	}
-	else
-	{
-		m_gameScreen.setDirection(Direction::None);
-	}
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	//{
+	//	m_gameScreen.setDirection(Direction::Left);
+	//}
+	//else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	//{
+	//	m_gameScreen.setDirection(Direction::Right);
+	//}
+	//else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) //Tali: Up will have to be in poll event, boop
+	//{
+	//	m_gameScreen.setDirection(Direction::Up);
+	//}
+	//else
+	//{
+	//	m_gameScreen.setDirection(Direction::None);
+	//}
 }
 
 void Controller::updateNumOfLevels()

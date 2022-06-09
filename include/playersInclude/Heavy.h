@@ -1,16 +1,16 @@
 #pragma once
 #include "Players.h"
-//#include "Board.h"
+
 
 class Heavy : public Players
 {
 public:
-	Heavy();
-	//Heavy(sf::Vector2f position/*, Board& board*/);
 	Heavy(b2World* world);
+	std::pair<int, int> getAnimationData() {
 
-
-	//void move(float deltaTime);
+		Direction dir = Players::getCurrDirection();
+		return std::pair<int, int>(heavyAnimationRow[int(dir)]);
+	};
 
 private:
 	//static bool m_registerit;
