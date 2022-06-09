@@ -1,20 +1,25 @@
 #include "playersInclude/Players.h"
 
-Players::Players(Player type, b2World* world)
-	:m_touchingFloor(true)
+Players::Players(Player type, sf::Vector2u imageCount, b2World* world)
+	:m_touchingFloor(true),
+	m_animation(Resources::instance().getPlayerSpriteSheet(type), imageCount, 0.08f),
+	m_direction(Direction::None)
 {
-	m_icon.setTexture(*Resources::instance().getPlayerTexture(type));
+	//float width = m_animation.m_uvRect.width / 2;
+	//float height = m_animation.m_uvRect.width/2 ;
+	m_icon.setTexture(*Resources::instance().getPlayerSpriteSheet(type));
 	m_icon.setScale(sf::Vector2f(0.5, 0.5)); //Tali: make default
-	m_icon.setOrigin(m_icon.getGlobalBounds().width, m_icon.getGlobalBounds().height);
+	//m_icon.setColor(sf::Color::Blue);
+	m_icon.setOrigin(m_animation.m_uvRect.width/2 , m_animation.m_uvRect.height/2); //m_icon.getGlobalBounds().width, m_icon.getGlobalBounds().height);
 	m_icon.setPosition(sf::Vector2f(0, 600)); //Tali: change to DEFAULT
 
 	//create body in world
-	createBody(world, b2_dynamicBody);
+	createBody(world, b2_dynamicBody, sf::Vector2i{ m_animation.m_uvRect.width  , m_animation.m_uvRect.height});
 	m_body->SetFixedRotation(true);
-
+	
 	//create foot sensor
 	b2PolygonShape shape;
-	shape.SetAsBox(getWidth() /2 *0.9, 10, b2Vec2(0, getHeight()/2 + 1), 0);
+	shape.SetAsBox(m_animation.m_uvRect.width /4 *0.9, 10, b2Vec2(0, m_animation.m_uvRect.height/4 + 1), 0);
 
 	b2FixtureDef fixture;
 	fixture.shape = &shape;
@@ -24,7 +29,7 @@ Players::Players(Player type, b2World* world)
 	footSensor = m_body->CreateFixture(&fixture);
 	footSensor->SetUserData((void*)1);
 }
-namespace
+namespace 
 {
 	sf::Vector2f dirFromKey()
 	{
@@ -61,6 +66,7 @@ void Players::move(float deltaTime)
 	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * m_speedPerSecond, 0);
 	m_body->ApplyForceToCenter(step1, true);
 
+	m_direction = getDir(dirFromKey());
 }
 
 void Players::setTouchingFloor(bool touching)
@@ -71,8 +77,26 @@ void Players::setTouchingFloor(bool touching)
 
 Direction Players::getDir(sf::Vector2f dir) const
 {
-	//if(dir == )
-	return Direction();
+	if (dir.y < 0 && !m_touchingFloor)
+	{
+		return Direction::Up;
+	}
+	else if (dir.x > 0)
+	{
+		return Direction::Left;
+	}
+	else if (dir.x < 0)
+		return Direction::Right;
+
+	return Direction::None;
+}
+
+void Players::updateAnimation(float deltaTime)
+{
+	//first = row, second = num of images
+	std::pair<int, int> row_numOf = getAnimationData();
+	m_animation.update(row_numOf.first, row_numOf.second, deltaTime);
+	m_icon.setTextureRect(m_animation.m_uvRect);
 }
 
 
@@ -81,7 +105,7 @@ void Players::setDirection(Direction dir)
 	//m_direction = dir;
 }
 
-void Players::update()
+void Players::update(float deltaTime)
 {
 	float MAX_SPEED = 15.0f;
 	if (m_body->GetLinearVelocity().x < -MAX_SPEED) {
@@ -90,6 +114,7 @@ void Players::update()
 	else if (m_body->GetLinearVelocity().x > MAX_SPEED) {
 		m_body->SetLinearVelocity(b2Vec2(MAX_SPEED, m_body->GetLinearVelocity().y));
 	}
+	updateAnimation(deltaTime);
 }
 
 //b2Vec2 Players::getDirection(Direction dir)

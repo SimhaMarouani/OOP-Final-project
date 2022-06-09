@@ -2,7 +2,7 @@
 
 
 Heavy::Heavy(b2World* world)
-	: Players(Player::Heavy, world)
+	: Players(Player::Heavy, sf::Vector2u(5, 5), world)
 {
 	b2MassData mass;
 	mass.center = m_body->GetLocalCenter();

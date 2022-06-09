@@ -2,7 +2,7 @@
 
 
 Light::Light(b2World* world)
-	: Players(Player::Light, world)
+	: Players(Player::Light, sf::Vector2u(5, 8), world)
 {
 	b2MassData mass;
 	mass.center = m_body->GetLocalCenter();
