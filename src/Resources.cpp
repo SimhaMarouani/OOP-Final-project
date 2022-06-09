@@ -67,7 +67,7 @@ Resources::Resources()
 	loadSettingsBackground();
 	loadPlayerSpriteSheet();
 	loadMusic();
-
+    loadBackArrowTexture();
 }
 
 
@@ -132,6 +132,11 @@ sf::Texture* Resources::getPlayerFaceTexture(Player player)
 sf::Texture* Resources::getPlayerArrowTexture()
 {
 	return &m_playerArrow;
+}
+
+sf::Texture* Resources::getBackArrowTexture()
+{
+	return &m_backArrow;
 }
 
 sf::Texture* Resources::getObjectTexture(Objects obj)
@@ -246,6 +251,12 @@ void Resources::loadSettingsReturnTexture()
 {
 	if (!m_settingsReturnTexture.loadFromFile("return_button.png"))
 		std::cerr << "error loading texture file";
+}
+
+void Resources::loadBackArrowTexture()
+{
+    if (!m_backArrow.loadFromFile("back_home.png"))
+        std::cerr << "error loading texture file";
 }
 
 void Resources::loadSettingsHomeTexture()

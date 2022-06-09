@@ -1,3 +1,4 @@
+#include <cmath>
 #include "Animation.h"
 
 Animation::Animation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime)
@@ -21,7 +22,7 @@ Animation::~Animation()
 void Animation::update(int row, int totalImages, float deltaTime)
 {
 	m_totalImages = totalImages - 1;
-//	m_currentImage.y = (row - 1) + floor(m_displayed / m_imageCount.x);
+	m_currentImage.y = (row - 1) + floor(m_displayed / m_imageCount.x);
 	m_totalTime += deltaTime;
 
 	if (m_totalTime >= m_switchTime)

@@ -7,7 +7,7 @@
 #include "Window.h"
 #include "TitledButton.h"
 #include "HighScore.h"
-
+#include "Button.h"
 #include "Macros.h"
 #include "Utilities.h"
 
@@ -28,4 +28,5 @@ private:
 	sf::RectangleShape m_background;
 	std::vector<TitledButton> m_levels;
 
+    Button m_homeButton;
 };

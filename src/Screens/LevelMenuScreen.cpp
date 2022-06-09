@@ -4,7 +4,8 @@
 LevelMenuScreen::LevelMenuScreen()
 	: m_levels(10 , TitledButton(*Resources::instance().getLevelMenuTexture(LevelState::Lock), sf::Vector2f(LEVEL_MENU_BTN_SIZE, LEVEL_MENU_BTN_SIZE), "", 50.f, sf::Vector2f(0.f,0.f), *Resources::instance().getFont()))
 	, m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
-	m_numOfLevelsCompleted(HighScore::instance().getNumOfCompleteLevels())
+	m_numOfLevelsCompleted(HighScore::instance().getNumOfCompleteLevels()),
+      m_homeButton(*Resources::instance().getBackArrowTexture())
 {
 	m_background.setTexture(Resources::instance().getBackground(Screen::LevelMenu));
 	initBtns();	
@@ -17,6 +18,7 @@ void LevelMenuScreen::draw(sf::RenderWindow& window)
 	{
 		l.draw(window);
 	}
+    m_homeButton.draw((window));
 }
 
 void LevelMenuScreen::processEvents(sf::Event event, Controller& controller)
@@ -51,6 +53,9 @@ void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)
 		/*	controller.changeMusic(Screen::Game);*/
 		}
 	}
+
+    if(m_homeButton.isContain(event))
+        controller.updatePage(Screen::HomePage);
 }
 
 void LevelMenuScreen::updateNumOfLevels()
@@ -73,6 +78,7 @@ void LevelMenuScreen::initBtns()
 	auto offset_x = (WINDOW_WIDTH - (LEVEL_MENU_BTN_SIZE + margin) * LEVEL_MENU_COLS) / 2;
 	auto offset_y = (WINDOW_HEIGHT - (LEVEL_MENU_BTN_SIZE + margin) * num_of_rows) / 2;
 
+    m_homeButton.setPosition(sf::Vector2f (30, 30));
 
 	for (int i = 0; i < m_levels.size(); i++)
 	{
