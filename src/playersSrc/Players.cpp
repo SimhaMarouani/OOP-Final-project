@@ -14,7 +14,7 @@ Players::Players(Player type, b2World* world)
 
 	//create foot sensor
 	b2PolygonShape shape;
-	shape.SetAsBox(getWidth() /2 *0.9, 10, b2Vec2(0, getHeight()/2 + 1), 0);
+	shape.SetAsBox(getWidth() /2 *0.5, 6, b2Vec2(0, getHeight()/2 + 1), 0);
 
 	b2FixtureDef fixture;
 	fixture.shape = &shape;
@@ -28,6 +28,8 @@ namespace
 {
 	sf::Vector2f dirFromKey()
 	{
+		sf::Vector2f dir = { 0 , 0 };
+
 		static const
 			std::initializer_list<std::pair<sf::Keyboard::Key, sf::Vector2f>>
 			keyToVectorMapping =
@@ -41,21 +43,25 @@ namespace
 		{
 			if (sf::Keyboard::isKeyPressed(pair.first))
 			{
-				return pair.second;
+				dir += pair.second;
 			}
 		}
-
-		return { 0, 0 };
+		return dir;
+		//return dir + sf::Vector2f{ 0, 0 };
 	}
 }
 
 
 void Players::move(float deltaTime)
 {
-	if (dirFromKey() == sf::Vector2f{ 0, -1 } && m_touchingFloor)
+	if (/*dirFromKey() == sf::Vector2f{ 0, -1 } &&*/ dirFromKey().y < 0 && m_touchingFloor)
 	{
-		auto impulse = m_body->GetMass() * 60;
-		m_body->ApplyLinearImpulse(b2Vec2(0, -impulse), m_body->GetWorldCenter(), true);
+		//auto impulse = m_body->GetMass() * 60;
+		//m_body->ApplyLinearImpulse(b2Vec2(0, -impulse), m_body->GetWorldCenter(), true);
+		//m_body->ApplyLinearImpulseToCenter(b2Vec2(0, -impulse),true);
+
+		auto impulse = m_body->GetMass();
+		m_body->SetLinearVelocity(b2Vec2(0, -impulse));
 		m_touchingFloor = false;
 	}
 	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * m_speedPerSecond, 0);
@@ -65,7 +71,6 @@ void Players::move(float deltaTime)
 
 void Players::setTouchingFloor(bool touching)
 {
-	std::cout << "set touching floor to true\n";
 	m_touchingFloor = touching;
 }
 
