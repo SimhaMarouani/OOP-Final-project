@@ -6,7 +6,7 @@ Simple::Simple(b2World* world)
 {
 	b2MassData mass;
 	mass.center = m_body->GetLocalCenter();
-	mass.mass = 20;
+	mass.mass = 45;
 	mass.I = m_icon.getOrigin().y;
 	m_body->SetMassData(&mass);
 	//m_body->ResetMassData();

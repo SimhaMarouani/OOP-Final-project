@@ -21,6 +21,7 @@ sf::Vector2f GameObjects::convertB2VecToVec2f(b2Vec2 vec2f) const
 {
     return sf::Vector2f({ vec2f.x, vec2f.y });
 }
+
 void GameObjects::setPosition(sf::Vector2f pos)
 {
     //Tali: add exception to vector
