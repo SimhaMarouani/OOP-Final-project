@@ -3,7 +3,8 @@
 Players::Players(Player type, sf::Vector2u imageCount, b2World* world)
 	:m_touchingFloor(true),
 	m_animation(Resources::instance().getPlayerSpriteSheet(type), imageCount, 0.08f),
-	m_direction(Direction::None)
+	m_direction(Direction::None),
+	m_isFaceRight(true)
 {
 	//float width = m_animation.m_uvRect.width / 2;
 	//float height = m_animation.m_uvRect.width/2 ;
@@ -71,7 +72,9 @@ void Players::move(float deltaTime)
 	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * m_speedPerSecond, 0);
 	m_body->ApplyForceToCenter(step1, true);
 
-	m_direction = getDir(dirFromKey());
+	//move to update func
+	sf::Vector2f dir = dirFromKey();
+	m_direction = getDir(dir);
 }
 
 void Players::setTouchingFloor(bool touching)
@@ -79,7 +82,7 @@ void Players::setTouchingFloor(bool touching)
 	m_touchingFloor = touching;
 }
 
-Direction Players::getDir(sf::Vector2f dir) const
+Direction Players::getDir(sf::Vector2f dir) 
 {
 	if (dir.y < 0 && !m_touchingFloor)
 	{
@@ -87,10 +90,16 @@ Direction Players::getDir(sf::Vector2f dir) const
 	}
 	else if (dir.x > 0)
 	{
+		m_isFaceRight = true;
 		return Direction::Left;
+
 	}
 	else if (dir.x < 0)
+	{
+		m_isFaceRight = false;
 		return Direction::Right;
+
+	}
 
 	return Direction::None;
 }
@@ -99,7 +108,7 @@ void Players::updateAnimation(float deltaTime)
 {
 	//first = row, second = num of images
 	std::pair<int, int> row_numOf = getAnimationData();
-	m_animation.update(row_numOf.first, row_numOf.second, deltaTime);
+	m_animation.update(row_numOf.first, row_numOf.second, deltaTime, m_isFaceRight);
 	m_icon.setTextureRect(m_animation.m_uvRect);
 }
 

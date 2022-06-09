@@ -19,7 +19,7 @@ Animation::~Animation()
 {
 }
 
-void Animation::update(int row, int totalImages, float deltaTime)
+void Animation::update(int row, int totalImages, float deltaTime, bool isFaceRight)
 {
 	m_totalImages = totalImages - 1;
 	m_currentImage.y = (row - 1) + floor(m_displayed / m_imageCount.x);
@@ -43,7 +43,18 @@ void Animation::update(int row, int totalImages, float deltaTime)
             m_currentImage.y = 0;
         }
 	}
-
-	m_uvRect.left = m_currentImage.x * m_uvRect.width;
+	
+	//m_uvRect.left = m_currentImage.x * m_uvRect.width;
 	m_uvRect.top = m_currentImage.y * m_uvRect.height;
+
+	if (isFaceRight)
+	{
+		m_uvRect.left = m_currentImage.x * m_uvRect.width;
+		m_uvRect.width = abs(m_uvRect.width);
+	}
+	else
+	{
+		m_uvRect.left = (m_currentImage.x + 1) * abs(m_uvRect.width);
+		m_uvRect.width = -abs(m_uvRect.width);
+	}
 }

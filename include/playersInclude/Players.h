@@ -11,7 +11,7 @@ public:
 	void update(float deltaTime);
 	void move(float deltaTime);
 	void setTouchingFloor(bool touching);
-	Direction getDir(sf::Vector2f dir) const;
+	Direction getDir(sf::Vector2f dir) ;
 	Direction getCurrDirection()const { return m_direction; };
 	virtual std::pair<int, int> getAnimationData() = 0;
 	/*sf::IntRect getWidth()const;
@@ -29,6 +29,6 @@ private:
 	void updateAnimation(float deltaTime);
 
 	Animation m_animation;
-
+	bool m_isFaceRight;
 
 };
