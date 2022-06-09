@@ -21,6 +21,15 @@ World::World()
 	
 }
 
+World::~World()
+{
+	m_players.clear();
+	m_objects.clear();
+
+	if (m_box2dWorld)
+		delete m_box2dWorld;
+}
+
 void World::initArrow()
 {
 	m_arrow.setTexture(*Resources::instance().getPlayerArrowTexture());

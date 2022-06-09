@@ -52,15 +52,15 @@ namespace
 
 void Players::move(float deltaTime)
 {
-	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * m_speedPerSecond, 0);
-	m_body->ApplyForceToCenter(step1, true);
-
 	if (dirFromKey() == sf::Vector2f{ 0, -1 } && m_touchingFloor)
 	{
 		auto impulse = m_body->GetMass() * 60;
 		m_body->ApplyLinearImpulse(b2Vec2(0, -impulse), m_body->GetWorldCenter(), true);
 		m_touchingFloor = false;
 	}
+	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * m_speedPerSecond, 0);
+	m_body->ApplyForceToCenter(step1, true);
+
 }
 
 void Players::setTouchingFloor(bool touching)
@@ -69,10 +69,16 @@ void Players::setTouchingFloor(bool touching)
 	m_touchingFloor = touching;
 }
 
+Direction Players::getDir(sf::Vector2f dir) const
+{
+	//if(dir == )
+	return Direction();
+}
+
 
 void Players::setDirection(Direction dir)
 {
-	m_direction = dir;
+	//m_direction = dir;
 }
 
 void Players::update()
@@ -86,17 +92,17 @@ void Players::update()
 	}
 }
 
-b2Vec2 Players::getDirection(Direction dir)
-{
-    switch (dir)
-    {
-    case Direction::Left:
-        return b2Vec2(-1, 0);
-    case Direction::Right:
-        return b2Vec2(1, 0);
-    case Direction::Up:
-        return b2Vec2(0, -5);
-    default:
-        return b2Vec2(0, 0);
-    }
-}
+//b2Vec2 Players::getDirection(Direction dir)
+//{
+//    switch (dir)
+//    {
+//    case Direction::Left:
+//        return b2Vec2(-1, 0);
+//    case Direction::Right:
+//        return b2Vec2(1, 0);
+//    case Direction::Up:
+//        return b2Vec2(0, -5);
+//    default:
+//        return b2Vec2(0, 0);
+//    }
+//}

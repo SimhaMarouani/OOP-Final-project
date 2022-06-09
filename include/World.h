@@ -20,7 +20,7 @@ class World
 {
 public:
 	World();
-	~World() = default;
+	~World();
 	void draw(sf::RenderWindow& window);
 	void setActiveDirection(Direction dir, Player active);
 	void moveActive(float deltaTime, Player active);
