@@ -33,6 +33,11 @@ bool Resources::isMusicOn() const
 	return ( m_gameMusic.getStatus() == sf::SoundSource::Status::Playing || m_homeMusic.getStatus() == sf::SoundSource::Status::Playing ) ;
 }
 
+bool Resources::isAudioOn() const
+{
+	return m_audioOn;
+}
+
 void Resources::switchMusicStatus(Screen s)
 {
 	switch (s)
@@ -52,6 +57,11 @@ void Resources::switchMusicStatus(Screen s)
 		break;
 	}
 
+}
+
+void Resources::switchAudioStatus()
+{
+	m_audioOn = !m_audioOn;
 }
 
 Resources::Resources()

@@ -42,8 +42,10 @@ public:
 
 	void playMusic(Screen s);
 	bool isMusicOn() const;
+	bool isAudioOn() const;
 
 	void switchMusicStatus(Screen s);
+	void switchAudioStatus();
 private:
 	Resources();
 	Resources(const Resources&) = default;
@@ -114,4 +116,6 @@ private:
 	sf::Music m_homeMusic; //home background music
 	//const std::string MUSIC_FILE_NAME[NUM_OF_BG_TEXTURES] = { "home_music.wav", "levelmenu_music.wav", "birds.wav" };
 	//std::vector<sf::Music> m_music;
+
+	bool m_audioOn = true;
 };

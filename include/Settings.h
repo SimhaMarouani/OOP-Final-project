@@ -36,7 +36,6 @@ private:
 	};
 
 	Screen m_currScreen;
-	bool m_audioStatus;
 	sf::RectangleShape m_shadow; //Noga: optional
 	sf::RectangleShape m_background;
 	

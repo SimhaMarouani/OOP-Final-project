@@ -29,6 +29,7 @@ private:
 	void setHelpScreen();
 	void initButtons();
 	void drawMenu(sf::RenderWindow& window);
+	void playAudio(Audio& a);
 
 	sf::RectangleShape m_helpBackground;
 	std::vector<Button> m_buttons; //Noga: unique ptr?

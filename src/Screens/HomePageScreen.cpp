@@ -66,24 +66,24 @@ void HomePageScreen::handleClick(sf::Event event, Controller &controller)
 	{
 		if (m_buttons[(int)HomeButtonType::Start].isContain(event))
 		{
-			m_btnsAudio.playMusic();
+			playAudio(m_btnsAudio);
 			controller.updatePage(Screen::LevelMenu);
 			controller.updateNumOfLevels(); //Noga: optional
 		}
 	
 		else if (m_buttons[(int)HomeButtonType::Help].isContain(event))
 		{
-			m_btnsAudio.playMusic();
+			playAudio(m_btnsAudio);
 			m_pageStatus = PageStatus::Help;
 		}
 		else if (m_buttons[(int)HomeButtonType::Settings].isContain(event))
 		{
-			m_btnsAudio.playMusic();
+			playAudio(m_btnsAudio);
 			m_pageStatus = PageStatus::Settings;
 		}
 		else if (m_buttons[(int)HomeButtonType::Exit].isContain(event))
 		{
-			m_btnsAudio.playMusic();
+			playAudio(m_btnsAudio);
 			controller.exit();
 		}
 		break;
@@ -101,7 +101,7 @@ void HomePageScreen::handleClick(sf::Event event, Controller &controller)
 			m_pageStatus = PageStatus::Menu;
 		if (m_settingsView->isContainExit(event))
 		{
-			m_btnsAudio.playMusic();
+			playAudio(m_btnsAudio);
 			m_pageStatus = PageStatus::Menu;
 		}
 		break;
@@ -155,4 +155,10 @@ void HomePageScreen::drawMenu(sf::RenderWindow& window)
 	{
 		b.draw(window);
 	}
+}
+
+void HomePageScreen::playAudio(Audio& a)
+{
+	if(Resources::instance().isAudioOn())
+		a.playMusic();
 }

@@ -7,7 +7,6 @@ Settings::Settings() //TODO: send current status
 	m_shadow(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
 	m_exitSettingsBtn(*Resources::instance().getSettingsReturnTexture(Screen::HomePage)),
 	m_redirectBtn(*Resources::instance().getSettingsHomeTexture()),
-	m_audioStatus(true),
 	m_btnsAudio(Resources::instance().getAudioClick()),
 	m_currScreen(Screen::HomePage)
 
@@ -60,9 +59,9 @@ void Settings::handleClick(sf::Event event, Screen s)
 {
 	if (m_soundBtns[(int)Type::Audio].isContain(event))
 	{
-		SoundStatus type = m_audioStatus ? SoundStatus::AudioOff : SoundStatus::AudioOn;
+		SoundStatus type = Resources::instance().isAudioOn() ? SoundStatus::AudioOff : SoundStatus::AudioOn;
 		m_soundBtns[(int)Type::Audio].setTexture(Resources::instance().getSoundTexture(type));
-		m_audioStatus = !m_audioStatus;
+		Resources::instance().switchAudioStatus();
 	}
 	else if (m_soundBtns[(int)Type::Music].isContain(event))
 	{
