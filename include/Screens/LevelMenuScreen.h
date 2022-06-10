@@ -8,6 +8,8 @@
 #include "TitledButton.h"
 #include "HighScore.h"
 #include "Button.h"
+#include "Audio.h"
+
 #include "Macros.h"
 #include "Utilities.h"
 
@@ -29,4 +31,5 @@ private:
 	std::vector<TitledButton> m_levels;
 
     Button m_homeButton;
+	Audio m_btnsAudio;
 };

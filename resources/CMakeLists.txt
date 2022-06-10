@@ -73,6 +73,12 @@ configure_file ("files/Level2.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("files/high_score.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 
 # audio
+# music
 configure_file ("audio/birds.wav" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("audio/home_music.wav" ${CMAKE_BINARY_DIR} COPYONLY)
 
+#sound effects
+
+configure_file ("audio/click.wav" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("audio/click2.wav" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("audio/click3.wav" ${CMAKE_BINARY_DIR} COPYONLY)

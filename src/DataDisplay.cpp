@@ -5,7 +5,8 @@
 DataDisplay::DataDisplay(/*int level*/)
 	: m_players(NUM_OF_PLAYERS, Button(*Resources::instance().getPlayerFaceTexture(Player::Heavy), sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE))), 
 	  m_levelActions(2, Button(*Resources::instance().getLevelActionButtonTexture(LevelActions::Pause), sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE))),
-	  m_pauseWindow(sf::Vector2f(800, 500)) //Noga: move to gamescreen? Noga: ok
+      m_btnsAudio(Resources::instance().getAudioClick())
+
 {
 	createPlayersButtons();
 	initActionsButtons();
@@ -37,10 +38,6 @@ void DataDisplay::createPlayersButtons()
 
 void DataDisplay::initActionsButtons()
 {
-	// maybe in gamescreen
-	m_pauseWindow.setFillColor(sf::Color(30, 30, 30));
-	m_pauseWindow.setPosition(sf::Vector2f((WINDOW_WIDTH - 800) / 2, (WINDOW_HEIGHT - 500) / 2));
-
 	m_levelActions[int(LevelActions::Retry)].setPosition(sf::Vector2f(30, 30));
 	m_levelActions[int(LevelActions::Retry)].setTexture(Resources::instance().getLevelActionButtonTexture(LevelActions::Retry));
 
@@ -62,19 +59,6 @@ void DataDisplay::draw(sf::RenderWindow& window)
 	window.draw(m_timerText);
 	if (!m_timer.isTimerPaused())
 		setTimeText();
-
-	/*switch (m_pageStatus)
-	{
-	case LevelActions::Pause:
-		window.draw(m_pauseWindow);
-		break;
-	case LevelActions::Retry:
-		break;
-	case LevelActions::None:
-		break;
-	default:
-		break;
-	}*/
 }
 
 void DataDisplay::resetTimer()
@@ -126,44 +110,15 @@ void DataDisplay::setTimeText()
 
 void DataDisplay::handleClick(sf::Event event , GameScreen& gs)
 {
-	//switch (m_pageStatus)
-	//{
-	//case LevelActions::Pause:
-	//{
-	//	if (!m_pauseWindow.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
-	//		m_pageStatus = LevelActions::None;
-	//	break;
-	//}
-	//case LevelActions::Retry:
-	//	break;
-	//case LevelActions::None:
-	//{
-	//	//Noga: move to function
-	//	if (m_pageStatus == LevelActions::None)
-	//	{
-	//		if (m_levelActions[int(LevelActions::Pause)].isContain(event))
-	//			m_pageStatus = LevelActions::Pause;
-	//		
-	//		else if(m_levelActions[int(LevelActions::Retry)].isContain(event))
-	//			std::cout << "retry\n"; 
-	//	}
-	//	break;
-	//}
-	//default:
-	//	break;
-	//}	
-
-	//Noga: move to function
-
 	if (m_levelActions[int(LevelActions::Pause)].isContain(event))
 	{
+		m_btnsAudio.playMusic();
 		gs.updateStatus(LevelActions::Pause);
-		//switchTimer();
 		m_timer.pause();
 	}
-			
 	else if (m_levelActions[int(LevelActions::Retry)].isContain(event))
 	{
+		m_btnsAudio.playMusic();
 		gs.retryLevel();
 	}
 }

@@ -7,6 +7,7 @@
 #include "Window.h"
 #include "Settings.h"
 #include "Animation.h"
+#include "Audio.h"
 
 #include "Macros.h"
 #include "Utilities.h"
@@ -49,5 +50,5 @@ private:
 	sf::Sprite m_heavy;  //animation
 	Animation m_animation;  //animation
 
-
+	Audio m_btnsAudio;
 };

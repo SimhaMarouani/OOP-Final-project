@@ -5,7 +5,7 @@
 #include "DataDisplay.h"
 #include "Settings.h"
 #include "WinScreen.h"
-
+#include "Audio.h"
 
 class GameScreen {
 public:
@@ -40,4 +40,6 @@ private:
 	sf::RectangleShape m_background;
 
     bool m_win;
+
+	Audio m_btnsClick;
 };

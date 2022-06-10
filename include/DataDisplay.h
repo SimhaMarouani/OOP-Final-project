@@ -3,6 +3,7 @@
 #include "Timer.h"
 //#include "TitledButton.h"
 #include "Button.h"
+#include "Audio.h"
 
 #include "Resources.h"
 #include "Macros.h"
@@ -43,5 +44,5 @@ private:
 	std::vector<Button> m_players;
 	std::vector<Button> m_levelActions;
 
-	sf::RectangleShape m_pauseWindow; //Noga: delete
+	Audio m_btnsAudio;
 };

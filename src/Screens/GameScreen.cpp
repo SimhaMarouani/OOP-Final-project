@@ -4,7 +4,8 @@
 
 GameScreen::GameScreen()
     : m_activePlayer(Player::Heavy), m_win(false),
-      m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT))
+      m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
+      m_btnsClick(Resources::instance().getAudioClick())
 {
     m_background.setTexture(Resources::instance().getBackground(Screen::Game));
 }
@@ -80,12 +81,14 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
 
             if (m_settingsView->isContainExit(event))
             {
+                m_btnsClick.playMusic();
                 updateStatus(LevelActions::None);
                 m_dataDisplay.startTimer();
             }
 
             if (m_settingsView->isContainHome(event))
             {
+                m_btnsClick.playMusic();
                 updateStatus(LevelActions::None);
                 controller.updatePage(Screen::HomePage);
             }

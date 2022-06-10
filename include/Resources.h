@@ -38,6 +38,8 @@ public:
     sf::Texture* getRetryBtn();
     sf::Texture* getMenuBtn();
 
+	sf::SoundBuffer* getAudioClick();
+
 	void playMusic(Screen s);
 	bool isMusicOn() const;
 
@@ -76,6 +78,7 @@ private:
 	void loadPlayerSpriteSheet();
 	//Audio 
 	void loadMusic();
+	void loadAudioClick();
 
 	//======Members==========
 
@@ -105,7 +108,7 @@ private:
 	std::vector<sf::Texture> m_soundTextures;
 
 	////Audio
-	//sf::SoundBuffer m_audioClick;
+	sf::SoundBuffer m_audioClick;
 
 	sf::Music m_gameMusic; //game background music
 	sf::Music m_homeMusic; //home background music

@@ -1,5 +1,10 @@
 #include "Resources.h"
 
+sf::SoundBuffer* Resources::getAudioClick()
+{
+	return &m_audioClick;
+}
+
 void Resources::playMusic(Screen s)
 {
 	switch (s)
@@ -73,6 +78,7 @@ Resources::Resources()
     loadRetryBtn();
     loadMenuBtn();
 
+	loadAudioClick();
 }
 
 
@@ -106,13 +112,6 @@ sf::Texture* Resources::getBackground(Screen index)
 {
 	return &m_backgroundTextures[int(index)];
 }
-
-//
-//sf::SoundBuffer* Resources::getAudioClick()
-//{
-//	return &m_audioClick;
-//}
-//
 
 sf::Texture* Resources::getWinBackground()
 {
@@ -392,9 +391,17 @@ void Resources::loadMusic()
 	m_homeMusic.setVolume(15);
 }
 
+void Resources::loadAudioClick()
+{
+	if (!m_audioClick.loadFromFile("click.wav")) 
+	{
+		std::cerr << "error loading audio 'click' from file";
+	}
+}
+
 void Resources::loadPlayerArrow()
 {
-	if (!m_playerArrow.loadFromFile("arrow.png")) //Todo: move to load function
+	if (!m_playerArrow.loadFromFile("arrow.png"))
 	{
 		std::cerr << "error loading arrow from file";
 	}

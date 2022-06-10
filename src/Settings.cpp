@@ -7,7 +7,8 @@ Settings::Settings() //TODO: send current status
 	m_shadow(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
 	m_exitSettingsBtn(*Resources::instance().getSettingsReturnTexture()),
 	m_redirectBtn(*Resources::instance().getSettingsHomeTexture()),
-	m_audioStatus(true)
+	m_audioStatus(true),
+	m_btnsAudio(Resources::instance().getAudioClick())
 
 {
 	m_shadow.setFillColor(sf::Color(255, 255, 255, 50));

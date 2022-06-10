@@ -2,8 +2,10 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
-#include "Macros.h"
 #include "Button.h"
+#include "Audio.h"
+
+#include "Macros.h"
 #include "Resources.h"
 #include "Utilities.h"
 
@@ -40,5 +42,7 @@ private:
 
 	Button m_exitSettingsBtn; // "return" 
 	Button m_redirectBtn; // in game = "home"
+
+	Audio m_btnsAudio;
 
 };

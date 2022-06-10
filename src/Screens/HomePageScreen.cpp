@@ -3,7 +3,8 @@
 
 HomePageScreen::HomePageScreen()
 	: m_pageStatus(PageStatus::Menu), m_helpBackground(sf::Vector2f(HELP_WIDTH, HELP_HEIGHT)),
-	m_animation(Resources::instance().getPlayerSpriteSheet(Player::Heavy), sf::Vector2u(5, 5), 0.08f) //animation
+	m_animation(Resources::instance().getPlayerSpriteSheet(Player::Heavy), sf::Vector2u(5, 5), 0.08f), //animation
+	m_btnsAudio(Resources::instance().getAudioClick())
 {
 	setHelpScreen();
 
@@ -65,19 +66,26 @@ void HomePageScreen::handleClick(sf::Event event, Controller &controller)
 	{
 		if (m_buttons[(int)HomeButtonType::Start].isContain(event))
 		{
+			m_btnsAudio.playMusic();
 			controller.updatePage(Screen::LevelMenu);
 			controller.updateNumOfLevels(); //Noga: optional
 		}
 	
 		else if (m_buttons[(int)HomeButtonType::Help].isContain(event))
 		{
+			m_btnsAudio.playMusic();
 			m_pageStatus = PageStatus::Help;
 		}
 		else if (m_buttons[(int)HomeButtonType::Settings].isContain(event))
+		{
+			m_btnsAudio.playMusic();
 			m_pageStatus = PageStatus::Settings;
-		
+		}
 		else if (m_buttons[(int)HomeButtonType::Exit].isContain(event))
+		{
+			m_btnsAudio.playMusic();
 			controller.exit();
+		}
 		break;
 	}
 	case HomePageScreen::PageStatus::Help:
@@ -91,8 +99,11 @@ void HomePageScreen::handleClick(sf::Event event, Controller &controller)
 		m_settingsView->handleClick(event, Screen::HomePage);
 		if (!m_settingsView -> isContain(event)) //Noga: delete?
 			m_pageStatus = PageStatus::Menu;
-		if(m_settingsView->isContainExit(event))
+		if (m_settingsView->isContainExit(event))
+		{
+			m_btnsAudio.playMusic();
 			m_pageStatus = PageStatus::Menu;
+		}
 		break;
 	}
 	default:
