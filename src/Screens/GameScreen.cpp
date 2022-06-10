@@ -5,9 +5,11 @@
 GameScreen::GameScreen()
     : m_activePlayer(Player::Heavy), m_win(false),
       m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
-      m_btnsClick(Resources::instance().getAudioClick())
+      m_btnsClick(Resources::instance().getAudioClick()),
+      m_levelNum(1)
 {
     m_background.setTexture(Resources::instance().getBackground(Screen::Game));
+    m_world.createLevel(m_levelNum);
 }
 
 //-----------------------------------------------------------------
@@ -22,7 +24,7 @@ void GameScreen::draw(sf::RenderWindow& window)
     uint32 flags = b2Draw::e_shapeBit;
     d.SetFlags(flags);
     m_world.getWorld()->SetDebugDraw(&d);
-    m_world.getWorld()->DebugDraw(); 
+    m_world.getWorld()->DebugDraw();
 
     if(m_win)
     {
@@ -59,12 +61,15 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
         {
             m_win = false;
             if (m_endLevelView->isContainRetry(event))
-            {
-                std::cout << "retry pressed"<<std::endl;
                 retryLevel();
-            }
             else if (m_endLevelView->isContainNext(event))   //need to update the level num and reload a level
-                ;
+            {
+                ++m_levelNum;
+                m_world.createLevel(m_levelNum);
+                m_dataDisplay.resetTimer();
+                m_activePlayer = Player::Heavy;
+                m_dataDisplay.setCurrPlayer((int)m_activePlayer);
+            }
             else if (m_endLevelView->isContainMenu(event))
                 controller.updatePage(Screen::HomePage);
         }
@@ -114,12 +119,12 @@ void GameScreen::update(float deltaTime)
     {
         m_settingsView->update(Screen::Game);
     }
-    if (m_world.allPlayersReachedEnd()) {
+
+    if (m_world.allPlayersReachedEnd())
+    {
         m_win = true;
         std::cout << "Level Won";
     }
-
-
 }
 
 void GameScreen::resetTimer()
@@ -159,11 +164,10 @@ void GameScreen::initEndLevelScreen(std::shared_ptr<WinScreen> s)
 
 void GameScreen::retryLevel()
 {
-    m_world.loadLevel(1); //simha: need to chek the level num
+    m_world.loadLevel(m_levelNum);
     m_dataDisplay.resetTimer();
     m_activePlayer = Player::Heavy;
     m_dataDisplay.setCurrPlayer((int)m_activePlayer);
-    std::cout << "retry\n";
 }
 
 LevelActions GameScreen::getPageStatus() const

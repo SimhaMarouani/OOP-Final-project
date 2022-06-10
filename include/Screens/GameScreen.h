@@ -42,6 +42,7 @@ private:
 	sf::RectangleShape m_background;
 
     bool m_win;
-
+    int m_levelNum;
+    
 	Audio m_btnsClick;
 };
