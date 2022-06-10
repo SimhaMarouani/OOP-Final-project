@@ -59,14 +59,6 @@ void Settings::handleClick(sf::Event event, Screen s)
 		m_soundBtns[(int)Type::Music].setTexture(Resources::instance().getSoundTexture(type));
 		Resources::instance().switchMusicStatus(s);
 	}
-	/*else if (m_redirectBtn.isContain(event) && s == Screen::Game)
-	{
-		controller.updatePage(Screen::HomePage);
-	}
-	else if (m_exitSettingsBtn.isContain(event))
-	{
-
-	}*/
 }
 
 bool Settings::isContainExit(sf::Event e) const

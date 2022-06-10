@@ -1,5 +1,6 @@
 #include "Screens/LevelMenuScreen.h"
-#include "Controller.h" // Noga: I dont know why but if I put this line to header file bad things happened
+#include "Controller.h" 
+
 
 LevelMenuScreen::LevelMenuScreen()
 	: m_levels(10 , TitledButton(*Resources::instance().getLevelMenuTexture(LevelState::Lock), sf::Vector2f(LEVEL_MENU_BTN_SIZE, LEVEL_MENU_BTN_SIZE), "", 50.f, sf::Vector2f(0.f,0.f), *Resources::instance().getFont())),
@@ -51,13 +52,14 @@ void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)
 		{
 			m_btnsAudio.playMusic();
 			controller.startGame(Screen::Game, i+1);
-			
-		/*	controller.changeMusic(Screen::Game);*/
 		}
 	}
 
-    if(m_homeButton.isContain(event))
+	if (m_homeButton.isContain(event))
+	{
+		m_btnsAudio.playMusic();
         controller.updatePage(Screen::HomePage);
+	}
 }
 
 void LevelMenuScreen::updateNumOfLevels()

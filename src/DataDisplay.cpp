@@ -1,6 +1,6 @@
 #include "DataDisplay.h"	
 #include "Controller.h"
-//#include "Screens/GameScreen.h"
+
 
 DataDisplay::DataDisplay(/*int level*/)
 	: m_players(NUM_OF_PLAYERS, Button(*Resources::instance().getPlayerFaceTexture(Player::Heavy), sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE))), 

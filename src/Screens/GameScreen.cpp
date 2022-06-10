@@ -35,6 +35,7 @@ void GameScreen::draw(sf::RenderWindow& window)
     }    
 }
 
+//TODO : move part of this to new functions
 void GameScreen::processEvents(sf::Event event, Controller &controller)
 {
     switch (event.type)
@@ -104,8 +105,11 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
 
 void GameScreen::update(float deltaTime)
 {
-    m_world.moveActive(deltaTime, m_activePlayer);
-    m_world.moveArrow(m_activePlayer);
+    if (m_pageStatus != LevelActions::Pause)
+    {
+        m_world.moveActive(deltaTime, m_activePlayer);
+        m_world.moveArrow(m_activePlayer);
+    }
 
     if (m_world.allPlayersReachedEnd()) {
         m_win = true;
@@ -148,7 +152,6 @@ void GameScreen::initEndLevelScreen(std::shared_ptr<WinScreen> s)
     m_endLevelView = move(s);
 }
 
-//Noga
 void GameScreen::retryLevel()
 {
     m_world.loadLevel(1); //simha: need to chek the level num

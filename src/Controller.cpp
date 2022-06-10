@@ -70,9 +70,9 @@ void Controller::processEvents()
 			break;
 		}
 	}
-	//Noga: we need to check if we can move this handlekeyboard to the gameScreen processEvents
-	if (m_currPage == Screen::Game && m_gameScreen.getPageStatus() != LevelActions::Pause)
-		handleKeyboardPress();
+	////Noga: we need to check if we can move this handlekeyboard to the gameScreen processEvents
+	//if (m_currPage == Screen::Game && m_gameScreen.getPageStatus() != LevelActions::Pause)
+	//	handleKeyboardPress();
 }
 
 
