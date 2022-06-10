@@ -17,7 +17,7 @@ World::World()
 
 	initArrow();
 	initPlayers();
-	createLevel(1);
+	//createLevel(1);   //simha: i moved it to game screen constructor
 	
 }
 

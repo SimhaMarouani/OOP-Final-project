@@ -1,6 +1,6 @@
-Heavy 100 600
-Simple 250 600
-Light 400 600
-Hay 800 600
-floor 310 860
-Rafter 490 270
+1300
+				posX	posY	scaleX		scaleY
+Heavy			100		650
+Simple			280		650
+Light			600		650
+floor			800		870		1			 1
