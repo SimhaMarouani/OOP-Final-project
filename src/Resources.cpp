@@ -123,9 +123,10 @@ sf::Texture* Resources::getPlayerTexture(Player player)
 	return &m_players[(int)player];
 }
 
-sf::Texture* Resources::getSettingsReturnTexture()
+sf::Texture* Resources::getSettingsReturnTexture(Screen s)
 {
-	return &m_settingsReturnTexture;
+	int i = s == Screen::Game ? 0 : 1;
+	return &m_settingsReturnTexture[i];
 }
 
 sf::Texture* Resources::getSettingsHomeTexture()
@@ -273,7 +274,10 @@ void Resources::loadPlayers()
 
 void Resources::loadSettingsReturnTexture()
 {
-	if (!m_settingsReturnTexture.loadFromFile("return_button.png"))
+	m_settingsReturnTexture.resize(2);
+	if (!m_settingsReturnTexture[1].loadFromFile("return_button.png")
+		|| !m_settingsReturnTexture[0].loadFromFile("continue_button.png")
+		)
 		std::cerr << "error loading texture file";
 }
 

@@ -5,10 +5,11 @@
 Settings::Settings() //TODO: send current status
 	:m_background(sf::Vector2f(SETTINGS_WIDTH, SETTINGS_HEIGHT)),
 	m_shadow(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
-	m_exitSettingsBtn(*Resources::instance().getSettingsReturnTexture()),
+	m_exitSettingsBtn(*Resources::instance().getSettingsReturnTexture(Screen::HomePage)),
 	m_redirectBtn(*Resources::instance().getSettingsHomeTexture()),
 	m_audioStatus(true),
-	m_btnsAudio(Resources::instance().getAudioClick())
+	m_btnsAudio(Resources::instance().getAudioClick()),
+	m_currScreen(Screen::HomePage)
 
 {
 	m_shadow.setFillColor(sf::Color(255, 255, 255, 50));
@@ -39,6 +40,16 @@ void Settings::draw(sf::RenderWindow& window, Screen s)
 	if(s == Screen::Game)
 		m_redirectBtn.draw(window);
 }
+
+void Settings::update(Screen s)
+{
+	if (m_currScreen != s)
+	{
+		m_currScreen = s;
+		m_exitSettingsBtn.setTexture(Resources::instance().getSettingsReturnTexture(s));
+	}	
+}
+
 
 bool Settings::isContain(sf::Event event) const
 {

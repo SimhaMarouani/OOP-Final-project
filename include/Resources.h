@@ -20,7 +20,7 @@ public:
 	sf::Font* getFont();
 	sf::Texture* getBackground(Screen index);
 	sf::Texture* getPlayerTexture(Player player);
-	sf::Texture* getSettingsReturnTexture();
+	sf::Texture* getSettingsReturnTexture(Screen s);
 	sf::Texture* getSettingsHomeTexture();
     sf::Texture* getBackArrowTexture();
     sf::Texture* getPlayerFaceTexture(Player player);
@@ -88,7 +88,7 @@ private:
 	////Textures
 	sf::Texture m_playerArrow;;
 	sf::Texture m_backArrow;;
-	sf::Texture m_settingsReturnTexture;
+	std::vector<sf::Texture> m_settingsReturnTexture;
 	sf::Texture m_settingsHomeTexture;
 	sf::Texture m_settingsBackground;
 	sf::Texture m_winBackground;

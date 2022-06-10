@@ -110,11 +110,16 @@ void GameScreen::update(float deltaTime)
         m_world.moveActive(deltaTime, m_activePlayer);
         m_world.moveArrow(m_activePlayer);
     }
-
+    else
+    {
+        m_settingsView->update(Screen::Game);
+    }
     if (m_world.allPlayersReachedEnd()) {
         m_win = true;
         std::cout << "Level Won";
     }
+
+
 }
 
 void GameScreen::resetTimer()

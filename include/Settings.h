@@ -18,6 +18,7 @@ public:
 	Settings();
 	virtual ~Settings() = default;
 	void draw(sf::RenderWindow& window, Screen s);
+	void update(Screen s);
 
 	bool isContain(sf::Event event) const;
 	void handleClick(sf::Event event, Screen s);
@@ -34,6 +35,7 @@ private:
 		Music
 	};
 
+	Screen m_currScreen;
 	bool m_audioStatus;
 	sf::RectangleShape m_shadow; //Noga: optional
 	sf::RectangleShape m_background;
