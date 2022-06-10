@@ -10,7 +10,6 @@ Players::Players(Player type, sf::Vector2u imageCount, b2World* world)
 	//float height = m_animation.m_uvRect.width/2 ;
 	m_icon.setTexture(*Resources::instance().getPlayerSpriteSheet(type));
 	m_icon.setScale(sf::Vector2f(0.5, 0.5)); //Tali: make default
-	//m_icon.setColor(sf::Color::Blue);
 	m_icon.setOrigin(m_animation.m_uvRect.width/2 , m_animation.m_uvRect.height/2); //m_icon.getGlobalBounds().width, m_icon.getGlobalBounds().height);
 	m_icon.setPosition(sf::Vector2f(0, 600)); //Tali: change to DEFAULT
 

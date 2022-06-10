@@ -39,17 +39,17 @@ void WinScreen::draw(sf::RenderWindow &window)
 
 bool WinScreen::isContainRetry(sf::Event e) const
 {
-    m_retryBtn.isContain(e);
+    return m_retryBtn.isContain(e);
 }
 
 bool WinScreen::isContainMenu(sf::Event e) const
 {
-    m_menuBtn.isContain(e);
+    return m_menuBtn.isContain(e);
 }
 
 bool WinScreen::isContainNext(sf::Event e) const
 {
-    m_nextLevelBtn.isContain(e);
+    return m_nextLevelBtn.isContain(e);
 }
 
 void WinScreen::createText()
