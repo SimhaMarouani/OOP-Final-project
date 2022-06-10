@@ -45,8 +45,7 @@ private:
 	PageStatus m_pageStatus;
 	std::shared_ptr<Settings> m_settingsView;
 	
-	//Noga: need to add light + simple and save as vector or something- at first I thought to create 'Player' and not sf::Sprite
-	// but I didnt want to change anything in Player class so...
+	//Noga: need to add light + simple and save as vector or something
 	sf::Sprite m_heavy;  //animation
 	Animation m_animation;  //animation
 

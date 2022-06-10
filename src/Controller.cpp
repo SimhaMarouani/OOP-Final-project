@@ -87,6 +87,7 @@ void Controller::update()
 		m_homePageScreen.update(deltaTime); //animation
 		break;
 	case Screen::LevelMenu:
+		m_levelMenuScreen.update(deltaTime);
 		break;
 	case Screen::Game:
 		m_gameScreen.update(deltaTime);

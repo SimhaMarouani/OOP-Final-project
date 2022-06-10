@@ -20,6 +20,7 @@ public:
 	LevelMenuScreen();
 	void draw(sf::RenderWindow& window);
 	void processEvents(sf::Event event, Controller& controller);
+	void update(float deltaTime);
 	void handleClick(sf::Event event, Controller& controller);
 	void updateNumOfLevels();
 private:
@@ -32,4 +33,9 @@ private:
 
     Button m_homeButton;
 	Audio m_btnsAudio;
+
+
+	//
+	sf::Sprite m_light;  //animation
+	Animation m_animation;  //animation
 };

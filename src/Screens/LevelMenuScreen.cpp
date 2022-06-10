@@ -7,10 +7,16 @@ LevelMenuScreen::LevelMenuScreen()
 	  m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
 	  m_numOfLevelsCompleted(HighScore::instance().getNumOfCompleteLevels()),
       m_homeButton(*Resources::instance().getBackArrowTexture()),
-	  m_btnsAudio(Resources::instance().getAudioClick())
+	  m_btnsAudio(Resources::instance().getAudioClick()),
+	  m_animation(Resources::instance().getPlayerSpriteSheet(Player::Light), sf::Vector2u(5, 8), 0.08f) //animation
 {
 	m_background.setTexture(Resources::instance().getBackground(Screen::LevelMenu));
 	initBtns();	
+
+	m_light.setTexture(*Resources::instance().getPlayerSpriteSheet(Player::Light)); //animation
+	m_light.setScale(sf::Vector2f(0.6, 0.6)); //animation
+	m_light.setPosition(sf::Vector2f(1430, 339)); //animation
+
 }
 
 void LevelMenuScreen::draw(sf::RenderWindow& window)
@@ -20,6 +26,7 @@ void LevelMenuScreen::draw(sf::RenderWindow& window)
 	{
 		l.draw(window);
 	}
+	window.draw(m_light);
     m_homeButton.draw((window));
 }
 
@@ -42,6 +49,12 @@ void LevelMenuScreen::processEvents(sf::Event event, Controller& controller)
 	default:
 		break;
 	}
+}
+
+void LevelMenuScreen::update(float deltaTime)
+{
+	m_animation.update(1 /*line*/, 5, deltaTime, false); //animation
+	m_light.setTextureRect(m_animation.m_uvRect); //animations
 }
 
 void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)

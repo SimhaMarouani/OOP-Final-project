@@ -118,6 +118,7 @@ void HomePageScreen::initSettings(std::shared_ptr<Settings> s)
 
 void HomePageScreen::update(float deltaTime)
 {
+	
 	m_animation.update(1 /*line*/, 5, deltaTime, true); //animation
 	m_heavy.setTextureRect(m_animation.m_uvRect); //animations
 }
