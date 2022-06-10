@@ -108,17 +108,23 @@ void DataDisplay::setTimeText()
 	m_timerText.setString("Time: " + time);
 }
 
+void DataDisplay::playAudio(Audio& a)
+{
+	if (Resources::instance().isAudioOn())
+		a.playMusic();
+}
+
 void DataDisplay::handleClick(sf::Event event , GameScreen& gs)
 {
 	if (m_levelActions[int(LevelActions::Pause)].isContain(event))
 	{
-		m_btnsAudio.playMusic();
+		playAudio(m_btnsAudio);
 		gs.updateStatus(LevelActions::Pause);
 		m_timer.pause();
 	}
 	else if (m_levelActions[int(LevelActions::Retry)].isContain(event))
 	{
-		m_btnsAudio.playMusic();
+		playAudio(m_btnsAudio);
 		gs.retryLevel();
 	}
 }

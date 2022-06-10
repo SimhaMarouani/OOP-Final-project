@@ -87,14 +87,14 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
 
             if (m_settingsView->isContainExit(event))
             {
-                m_btnsClick.playMusic();
+                playAudio(m_btnsClick);
                 updateStatus(LevelActions::None);
                 m_dataDisplay.startTimer();
             }
 
             if (m_settingsView->isContainHome(event))
             {
-                m_btnsClick.playMusic();
+                playAudio(m_btnsClick);
                 updateStatus(LevelActions::None);
                 controller.updatePage(Screen::HomePage);
             }
@@ -114,6 +114,10 @@ void GameScreen::update(float deltaTime)
     {
         m_world.moveActive(deltaTime, m_activePlayer);
         m_world.moveArrow(m_activePlayer);
+    }
+    else
+    {
+        m_settingsView->update(Screen::Game);
     }
 
     if (m_world.allPlayersReachedEnd())
@@ -169,5 +173,11 @@ void GameScreen::retryLevel()
 LevelActions GameScreen::getPageStatus() const
 {
     return m_pageStatus;
+}
+
+void GameScreen::playAudio(Audio& a)
+{
+    if (Resources::instance().isAudioOn())
+        a.playMusic();
 }
 

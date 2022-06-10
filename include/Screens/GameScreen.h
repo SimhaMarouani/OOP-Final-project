@@ -28,6 +28,8 @@ public:
 	LevelActions getPageStatus() const;
 
 private:
+	void playAudio(Audio& a);
+
 	World m_world;
 	DataDisplay m_dataDisplay;
 
