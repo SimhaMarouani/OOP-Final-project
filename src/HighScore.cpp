@@ -21,6 +21,14 @@ void HighScore::addScore(int level, int score)
 		m_levelsScore.insert(std::pair<int, int>(level, score)); 
 }
 
+int HighScore::getLevelScore(int level) const
+{
+	auto iter = m_levelsScore.find(level);
+	if(iter != m_levelsScore.end()) // update
+		 return iter->second;
+	return -1;
+}
+
 HighScore& HighScore::instance()
 {
 	static HighScore inst;
