@@ -27,9 +27,9 @@ void GameScreen::draw(sf::RenderWindow& window)
     m_world.getWorld()->DebugDraw();
 
     if(m_win)
-    {
-        m_endLevelView->draw(window);
-    }
+        m_endLevelView->draw(window, true, m_levelNum);
+    else if(m_lose)
+        m_endLevelView->draw(window, false, m_levelNum);
 
     if (m_pageStatus == LevelActions::Pause)
     {
