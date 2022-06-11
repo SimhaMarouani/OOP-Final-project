@@ -57,12 +57,14 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
         break;
     }
     case sf::Event::MouseButtonReleased:
-        if (m_win)
+        if (m_win || m_lose)
         {
             m_win = false;
+            m_lose = false;
+
             if (m_endLevelView->isContainRetry(event))
                 retryLevel();
-            else if (m_endLevelView->isContainNext(event))   //need to update the level num and reload a level
+            else if (m_endLevelView->isContainNext(event))
             {
                 ++m_levelNum;
                 m_world.createLevel(m_levelNum);
@@ -117,17 +119,12 @@ void GameScreen::update(float deltaTime)
         m_world.moveArrow(m_activePlayer);
     }
     else
-    {
         m_settingsView->update(Screen::Game);
-    }
 
     if (m_world.allPlayersReachedEnd())
         m_win = true;
     else if (m_world.playerLost())
-    {
         m_lose = true;
-        std::cout << "loser" << std::endl;
-    }
 }
 
 void GameScreen::resetTimer()
