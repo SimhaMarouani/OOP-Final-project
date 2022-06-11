@@ -25,6 +25,7 @@ public:
     sf::Texture* getBackArrowTexture();
     sf::Texture* getPlayerFaceTexture(Player player);
 	sf::Texture* getPlayerArrowTexture();
+	sf::Texture* getSignTexture();
 	sf::Texture* getObjectTexture(Objects obj);
 	sf::Texture* getLevelMenuTexture(LevelState l);
 	sf::Texture* getHomePageBtnsTexture(HomeButtonType b);
@@ -68,6 +69,7 @@ private:
 	void loadPlayersFace();
 	void loadObjects();
 	void loadPlayerArrow();
+	void loadSign();
 	void loadBackgroundTextures();
 	void loadLevelMenuIcons();
 	void loadHomePageBtnsTexture();
@@ -90,6 +92,7 @@ private:
 	////Textures
 	sf::Texture m_playerArrow;;
 	sf::Texture m_backArrow;;
+	sf::Texture m_sign;;
 	std::vector<sf::Texture> m_settingsReturnTexture;
 	sf::Texture m_settingsHomeTexture;
 	sf::Texture m_settingsBackground;

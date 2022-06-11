@@ -66,6 +66,7 @@ void Resources::switchAudioStatus()
 
 Resources::Resources()
 {
+	//Tali: add exceptions to hereee
 	loadFont();
 	loadBackgroundTextures();
 	loadPlayers();
@@ -73,6 +74,7 @@ Resources::Resources()
 	loadSettingsHomeTexture();
 	loadPlayersFace();
 	loadPlayerArrow();
+	loadSign();
 	loadObjects();
 	loadGrounds();
 	loadLevelMenuIcons();
@@ -152,6 +154,11 @@ sf::Texture* Resources::getPlayerFaceTexture(Player player)
 sf::Texture* Resources::getPlayerArrowTexture()
 {
 	return &m_playerArrow;
+}
+
+sf::Texture* Resources::getSignTexture()
+{
+	return &m_sign;
 }
 
 sf::Texture* Resources::getBackArrowTexture()
@@ -271,6 +278,7 @@ void Resources::loadLevelActionButtonTexture()
 	}
 }
 
+//Tali: needed??
 void Resources::loadPlayers()
 {
 	m_players.resize(NUM_OF_PLAYERS);
@@ -418,6 +426,13 @@ void Resources::loadPlayerArrow()
 	if (!m_playerArrow.loadFromFile("arrow.png"))
 	{
 		std::cerr << "error loading arrow from file";
+	}
+}
+void Resources::loadSign()
+{
+	if (!m_sign.loadFromFile("destination.png"))
+	{
+		std::cerr << "error loading sign from file";
 	}
 }
 

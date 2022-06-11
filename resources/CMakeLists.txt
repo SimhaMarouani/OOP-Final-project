@@ -29,6 +29,7 @@ configure_file ("images/settings_bg.png" ${CMAKE_BINARY_DIR} COPYONLY) #dont for
 
 # icons
 configure_file ("arrow.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/destination.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/hay.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/rafter.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/heavy_player_face.png" ${CMAKE_BINARY_DIR} COPYONLY)

@@ -39,14 +39,14 @@ public:
 
 private:
 	void initPlayers();
-	void initArrow();
+	void initSymbols();
 	bool isPlayer(std::string type)const;
 	int getIndPlayer(std::string player)const;
 
 
 	std::unique_ptr<b2World> m_box2dWorld;
 	sf::Sprite m_arrow;
-	//sf::Sprite m_sign;
+	sf::Sprite m_sign;
 	
 	std::vector<std::unique_ptr<Players>> m_players;
 	std::vector<std::unique_ptr<StaticObjects>> m_objects;

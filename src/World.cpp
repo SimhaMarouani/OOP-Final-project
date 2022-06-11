@@ -13,7 +13,7 @@ World::World()
 	m_box2dWorld = std::make_unique<b2World>(gravity);
 	m_box2dWorld->SetContactListener(&contactListener);
 
-	initArrow();
+	initSymbols();
 	initPlayers();
 	//createLevel(1);   //simha: i moved it to game screen constructor
 }
@@ -24,14 +24,17 @@ World::~World()
 	m_objects.clear();
 }
 
-void World::initArrow()
+void World::initSymbols()
 {
 	m_arrow.setTexture(*Resources::instance().getPlayerArrowTexture());
 	m_arrow.setOrigin(m_arrow.getGlobalBounds().width, m_arrow.getGlobalBounds().height);
+	m_sign.setTexture(*Resources::instance().getSignTexture());
+	m_sign.setOrigin(m_sign.getGlobalBounds().width, m_sign.getGlobalBounds().height);
 }
 
 void World::draw(sf::RenderWindow& window)
 {
+	window.draw(m_arrow);
 	for (auto& object : m_objects)
 	{
 		object->draw(window);
@@ -41,8 +44,7 @@ void World::draw(sf::RenderWindow& window)
 		movable->draw(window);
 	}
 	
-	window.draw(m_arrow);
-	//window.draw(m_sign);
+	window.draw(m_sign);
 }
 
 void World::setActiveDirection(Direction dir, Player active)
@@ -135,6 +137,14 @@ void World::loadLevel(int levelNum)
 	ssline.clear();
 	ssline.str(line);
 	ssline >> m_endpoint;
+	
+	//read sign location
+	getline(levelFile, line);
+	ssline.clear();
+	ssline.str(line);
+	ssline >> locX >> locY >> scaleX >> scaleY;
+	m_sign.setPosition(sf::Vector2f(locX, locY));
+	m_sign.setScale(sf::Vector2f(scaleX, scaleY));
 
 	getline(levelFile, line);
 
