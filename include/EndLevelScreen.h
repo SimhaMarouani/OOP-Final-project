@@ -7,6 +7,7 @@
 #include "Button.h"
 #include "Resources.h"
 #include "Macros.h"
+#include "HighScore.h"
 //#include "Controller.h"
 
 
@@ -15,7 +16,7 @@ public:
     EndLevelScreen();
     virtual ~EndLevelScreen() = default;
 
-    void draw(sf::RenderWindow& window, bool status, int levelNum);
+    void draw(sf::RenderWindow& window, bool status, int levelNum, int time);
 
     //void handleClick(sf::Event event);
     void createText();
@@ -36,4 +37,7 @@ private:
     sf::Text m_winText;
     sf::Text m_loseText;
     sf::Text m_timeText;
+    sf::Text m_newScoreText;
+
+    HighScore m_highScore;
 };

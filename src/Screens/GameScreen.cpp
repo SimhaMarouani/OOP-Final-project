@@ -27,9 +27,9 @@ void GameScreen::draw(sf::RenderWindow& window)
     m_world.getWorld()->DebugDraw();
 
     if(m_win)
-        m_endLevelView->draw(window, true, m_levelNum);
+        m_endLevelView->draw(window, true, m_levelNum, m_dataDisplay.getTime());
     else if(m_lose)
-        m_endLevelView->draw(window, false, m_levelNum);
+        m_endLevelView->draw(window, false, m_levelNum, m_dataDisplay.getTime());
 
     if (m_pageStatus == LevelActions::Pause)
     {
@@ -75,6 +75,7 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
             else if (m_endLevelView->isContainMenu(event))
                 controller.updatePage(Screen::HomePage);
         }
+
         if(m_pageStatus != LevelActions::Pause)
             m_dataDisplay.handleClick(event, *this);
         else
@@ -122,7 +123,10 @@ void GameScreen::update(float deltaTime)
         m_settingsView->update(Screen::Game);
 
     if (m_world.allPlayersReachedEnd())
+    {
         m_win = true;
+        m_dataDisplay.pauseTimer();
+    }
     else if (m_world.playerLost())
         m_lose = true;
 }
@@ -132,16 +136,12 @@ void GameScreen::resetTimer()
     m_dataDisplay.resetTimer();
 }
 
-void GameScreen::pauseTimer()
-{
-    m_dataDisplay.switchTimer();
-}
-
 void GameScreen::loadLevel(int level)
 {
     m_levelNum = level;
     m_world.createLevel(level);
     m_dataDisplay.resetTimer();
+    //m_dataDisplay.startTimer();
     //m_world.loadLevel(level);
 }
 

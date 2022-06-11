@@ -28,6 +28,10 @@ public:
 	void switchTimer();
 
 	void startTimer();
+	void pauseTimer();
+
+    int getTime();
+
 private:
 	void createPlayersButtons();
 	void initActionsButtons();
@@ -36,7 +40,7 @@ private:
 	void drawBtns(sf::RenderWindow& window);
 	void setTimeText();
 	void playAudio(Audio& a);
-private:
+
 	Timer m_timer;
 
 	sf::Text m_timerText;
