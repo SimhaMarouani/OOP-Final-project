@@ -35,7 +35,9 @@ public:
 	b2World* getWorld() { return m_box2dWorld.get(); }
 
 	bool allPlayersReachedEnd();
-	void loadLevel(int levelNum);
+    bool playerLost();
+
+    void loadLevel(int levelNum);
 
 private:
 	void initPlayers();
