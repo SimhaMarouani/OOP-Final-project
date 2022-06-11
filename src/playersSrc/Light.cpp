@@ -6,9 +6,12 @@ Light::Light(b2World* world)
 {
 	b2MassData mass;
 	mass.center = m_body->GetLocalCenter();
-	mass.mass = 20;
+	mass.mass = 15;
 	mass.I = m_icon.getOrigin().y;
 	m_body->SetMassData(&mass);
-	//m_body->ResetMassData();
+}
 
+int Light::getJumpImpulse()
+{
+	return m_body->GetMass() * (-31);
 }

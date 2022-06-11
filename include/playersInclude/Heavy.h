@@ -11,6 +11,7 @@ public:
 		Direction dir = Players::getCurrDirection();
 		return std::pair<int, int>(heavyAnimationRow[int(dir)]);
 	};
+	int getJumpImpulse();
 
 private:
 	//static bool m_registerit;

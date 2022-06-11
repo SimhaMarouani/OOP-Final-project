@@ -16,6 +16,7 @@ public:
 	virtual std::pair<int, int> getAnimationData() = 0;
 	/*sf::IntRect getWidth()const;
 	sf::IntRect getheight()const;*/
+	virtual int getJumpImpulse() = 0;
 	
 protected: //Tali: why protected? need change all protected members in other classes as well
 	
@@ -30,5 +31,6 @@ private:
 
 	Animation m_animation;
 	bool m_isFaceRight;
+
 
 };

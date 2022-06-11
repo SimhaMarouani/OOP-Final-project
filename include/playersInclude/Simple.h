@@ -15,6 +15,8 @@ public:
 	//	Players::update(deltaTime);
 	//	updateAnimation(deltaTime);
 	//};
+	int getJumpImpulse();
+
 private:
 
 };

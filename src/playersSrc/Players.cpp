@@ -60,11 +60,9 @@ void Players::move(float deltaTime)
 {
 	if ( dirFromKey().y < 0 && m_touchingFloor)
 	{
-		//auto impulse = m_body->GetMass();
-		//m_body->SetLinearVelocity(b2Vec2(0, -impulse));
 		auto impulse = -(m_body->GetMass()) -600 ;
-		m_body->ApplyLinearImpulseToCenter(b2Vec2(0, impulse), true);
-		//setTouchingFloor(false);
+		//m_body->ApplyLinearImpulseToCenter(b2Vec2(0, impulse), true);
+		m_body->ApplyLinearImpulseToCenter(b2Vec2(0, this->getJumpImpulse()), true);
 	}
 	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * m_speedPerSecond, 0);
 	m_body->ApplyForceToCenter(step1, true);
@@ -76,12 +74,6 @@ void Players::move(float deltaTime)
 
 void Players::setTouchingFloor(bool touching)
 {
-	std::cout << "set touching to: ";
-	if (touching)
-		std::cout << "True\n";
-	else 
-		std::cout << "False\n";
-
 	m_touchingFloor = touching;
 }
 
@@ -101,7 +93,6 @@ Direction Players::getDir(sf::Vector2f dir)
 	{
 		m_isFaceRight = false;
 		return Direction::Right;
-
 	}
 
 	return Direction::None;
@@ -116,6 +107,7 @@ void Players::updateAnimation(float deltaTime)
 }
 
 
+//Tali: to remove??
 void Players::setDirection(Direction dir)
 {
 	//m_direction = dir;
