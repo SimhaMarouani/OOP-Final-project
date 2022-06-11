@@ -1,17 +1,17 @@
 #include "Timer.h"
 
 Timer::Timer()
-	: m_time(sf::seconds(-1)), m_clock(), m_pauseTimer(false), m_runTime(0)
+	:/* m_time(sf::seconds(-1)),*/ m_clock(), m_pauseTimer(false), m_runTime(0)
 {
-	setTime(-1);
+	//setTime(-1);
 }
 
 //-----------------------------------------------------------------
 
-void Timer::setTime(int time)
-{
-	m_time = sf::seconds((float)time);
-}
+//void Timer::setTime(int time)
+//{
+//	m_time = sf::seconds((float)time);
+//}
 
 //-----------------------------------------------------------------
 
