@@ -8,7 +8,9 @@ LevelMenuScreen::LevelMenuScreen()
 	  m_numOfLevelsCompleted(HighScore::instance().getNumOfCompleteLevels()),
       m_homeButton(*Resources::instance().getBackArrowTexture()),
 	  m_btnsAudio(Resources::instance().getAudioClick()),
-	  m_animation(Resources::instance().getPlayerSpriteSheet(Player::Light), sf::Vector2u(5, 8), 0.08f) //animation
+	  m_animation(Resources::instance().getPlayerSpriteSheet(Player::Light), sf::Vector2u(5, 8), 0.08f), //animation.
+	  m_highScoreButton(*Resources::instance().getSettingsHomeTexture()),
+	m_isScoreOpen(false)
 {
 	m_background.setTexture(Resources::instance().getBackground(Screen::LevelMenu));
 	initBtns();	
@@ -16,6 +18,9 @@ LevelMenuScreen::LevelMenuScreen()
 	m_light.setTexture(*Resources::instance().getPlayerSpriteSheet(Player::Light)); //animation
 	m_light.setScale(sf::Vector2f(0.6, 0.6)); //animation
 	m_light.setPosition(sf::Vector2f(1430, 339)); //animation
+
+
+	m_highScoreButton.setPosition(sf::Vector2f((WINDOW_WIDTH - m_highScoreButton.getSize().x) / 2, WINDOW_HEIGHT - m_highScoreButton.getSize().y - 100));
 
 }
 
@@ -28,6 +33,9 @@ void LevelMenuScreen::draw(sf::RenderWindow& window)
 	}
 	window.draw(m_light);
     m_homeButton.draw((window));
+	m_highScoreButton.draw(window);
+	if (m_isScoreOpen) m_highScoreView.draw(window);
+
 }
 
 void LevelMenuScreen::processEvents(sf::Event event, Controller& controller)
@@ -59,6 +67,12 @@ void LevelMenuScreen::update(float deltaTime)
 
 void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)
 {
+	if (m_isScoreOpen && !m_highScoreView.isContain(event))
+	{
+		m_isScoreOpen = false;
+		return;
+	}
+
 	for (int i = 0; i < m_levels.size(); i++)
 	{
 		if (m_levels[i].isContain(event) && i < m_numOfLevelsCompleted)
@@ -73,6 +87,12 @@ void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)
 		playAudio(m_btnsAudio);
 		controller.updatePage(Screen::HomePage);
 	}
+
+	if (m_highScoreButton.isContain(event))
+	{
+		playAudio(m_btnsAudio);
+		m_isScoreOpen = true;
+	}
 }
 
 void LevelMenuScreen::updateNumOfLevels()
@@ -83,6 +103,9 @@ void LevelMenuScreen::updateNumOfLevels()
 		m_levels[i].setTexture(Resources::instance().getLevelMenuTexture(LevelState::Unlock));
 		m_levels[i].setTextColor(sf::Color(64, 63, 61));
 		m_levels[i].setTextString(std::to_string(i + 1));
+
+		//high score table
+		m_highScoreView.setLevelScore(i);
 	}
 	m_numOfLevelsCompleted = curr;
 }

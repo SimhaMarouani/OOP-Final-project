@@ -8,6 +8,7 @@
                                               "Button.cpp"
                                               "TitledButton.cpp"
                                               "GameObjects.cpp"
+                                              "HighScoreView.cpp"
 
                                               "Screens/HomePageScreen.cpp"
                                               "Screens/GameScreen.cpp"
