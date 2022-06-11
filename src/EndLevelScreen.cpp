@@ -65,18 +65,18 @@ void EndLevelScreen::createText()
     m_winText.setCharacterSize(CHAR_SIZE);
     m_winText.setPosition(580, 300);
     m_winText.setColor(sf::Color::Black);
-    m_winText.setString("Great! you won this level");
+    m_winText.setString("Great! you won this level\n        Time: ");
 
-    m_timeText.setFont(*Resources::instance().getFont());
+    /*m_timeText.setFont(*Resources::instance().getFont());
     m_timeText.setCharacterSize(CHAR_SIZE);
     m_timeText.setPosition(660, 370);
     m_timeText.setColor(sf::Color::Black);
-    m_timeText.setString("Time: ");     //simha: need to read the time from data display
+    m_timeText.setString("Time: ");     //simha: need to read the time from data display*/
 
     m_loseText.setFont(*Resources::instance().getFont());
     m_loseText.setCharacterSize(CHAR_SIZE);
-    m_loseText.setPosition(580, 300);
+    m_loseText.setPosition(640, 300);
     m_loseText.setColor(sf::Color::Black);
-    m_loseText.setString("You lost this level\nTry again!");
+    m_loseText.setString("You lost this level\n    Try again!");
 
 }
