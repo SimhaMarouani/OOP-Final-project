@@ -13,7 +13,7 @@
                                               "Screens/GameScreen.cpp"
                                               "Screens/LevelMenuScreen.cpp"
                                               "Settings.cpp"
-                                              "WinScreen.cpp"
+                                              "EndLevelScreen.cpp"
 
                                               "Resources.cpp"
                                               "Timer.cpp"

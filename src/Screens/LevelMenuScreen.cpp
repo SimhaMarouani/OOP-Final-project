@@ -3,7 +3,7 @@
 
 
 LevelMenuScreen::LevelMenuScreen()
-	: m_levels(10 , TitledButton(*Resources::instance().getLevelMenuTexture(LevelState::Lock), sf::Vector2f(LEVEL_MENU_BTN_SIZE, LEVEL_MENU_BTN_SIZE), "", 50.f, sf::Vector2f(0.f,0.f), *Resources::instance().getFont())),
+	: m_levels(NUM_OF_LEVELS , TitledButton(*Resources::instance().getLevelMenuTexture(LevelState::Lock), sf::Vector2f(LEVEL_MENU_BTN_SIZE, LEVEL_MENU_BTN_SIZE), "", 50.f, sf::Vector2f(0.f,0.f), *Resources::instance().getFont())),
 	  m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
 	  m_numOfLevelsCompleted(HighScore::instance().getNumOfCompleteLevels()),
       m_homeButton(*Resources::instance().getBackArrowTexture()),
