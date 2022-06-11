@@ -21,7 +21,7 @@ const int HELP_HEIGHT = WINDOW_HEIGHT - (WINDOW_HEIGHT / 8);
 const int CHAR_SIZE = 40;
 
 // Level Menu 
-const int LEVEL_MENU_COLS = 5;
+const int LEVEL_MENU_COLS = 4;
 const float LEVEL_MENU_BTN_SIZE = 220.f;
 
 // DataDisplay
