@@ -12,15 +12,13 @@
 
 class EndLevelScreen{
 public:
-    EndLevelScreen(bool status);
+    EndLevelScreen();
     virtual ~EndLevelScreen() = default;
 
-    void draw(sf::RenderWindow& window);
+    void draw(sf::RenderWindow& window, bool status, int levelNum);
 
     //void handleClick(sf::Event event);
     void createText();
-    void setWinText();
-    void setLoseText();
 
     bool isContainRetry(sf::Event e) const;
     bool isContainMenu(sf::Event e) const;
@@ -35,6 +33,7 @@ private:
     Button m_nextLevelBtn;
     Button m_menuBtn;
 
-    sf::Text m_text;
+    sf::Text m_winText;
+    sf::Text m_loseText;
     sf::Text m_timeText;
 };
