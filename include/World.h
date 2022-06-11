@@ -32,7 +32,7 @@ public:
 	}
 
 	void createLevel(int level);
-	b2World* getWorld() { return m_box2dWorld; } //for debugging
+	b2World* getWorld() { return m_box2dWorld.get(); }
 
 	bool allPlayersReachedEnd();
 	void loadLevel(int levelNum);
@@ -44,8 +44,9 @@ private:
 	int getIndPlayer(std::string player)const;
 
 
-	b2World* m_box2dWorld;
+	std::unique_ptr<b2World> m_box2dWorld;
 	sf::Sprite m_arrow;
+	//sf::Sprite m_sign;
 	
 	std::vector<std::unique_ptr<Players>> m_players;
 	std::vector<std::unique_ptr<StaticObjects>> m_objects;

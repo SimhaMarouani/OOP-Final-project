@@ -2,32 +2,26 @@
 #include "Controller.h"
 
 //box2d
-
 const float timeStep = 1.0f / 60.0f;
 const int32 velocityIterations = 6,
 			positionIterations = 2;
 const b2Vec2 gravity = b2Vec2(0.0f, 10.0f);
 const sf::Vector2f initVec = sf::Vector2f(0.f, 0.f);
-//const int OFFSET = 37;
 
 World::World()
 {
-	m_box2dWorld = new b2World(gravity);
+	m_box2dWorld = std::make_unique<b2World>(gravity);
 	m_box2dWorld->SetContactListener(&contactListener);
 
 	initArrow();
 	initPlayers();
 	//createLevel(1);   //simha: i moved it to game screen constructor
-	
 }
 
 World::~World()
 {
 	m_players.clear();
 	m_objects.clear();
-
-	if (m_box2dWorld)
-		delete m_box2dWorld;
 }
 
 void World::initArrow()
@@ -48,6 +42,7 @@ void World::draw(sf::RenderWindow& window)
 	}
 	
 	window.draw(m_arrow);
+	//window.draw(m_sign);
 }
 
 void World::setActiveDirection(Direction dir, Player active)
@@ -84,7 +79,6 @@ void World::moveArrow(Player active)
 void World::createLevel(int level)
 {
 	//init players positions based on level file
-	//initPlayers();
 	try {
 		loadLevel(level); //Tali: change to const
 	}
@@ -114,9 +108,9 @@ bool World::allPlayersReachedEnd()
 void World::initPlayers()
 {
 	//Players (amount and type) is constant!
-	m_players.emplace_back(std::make_unique<Heavy>(m_box2dWorld));
-	m_players.emplace_back(std::make_unique<Simple>(m_box2dWorld));
-	m_players.emplace_back(std::make_unique<Light>(m_box2dWorld));
+	m_players.emplace_back(std::make_unique<Heavy>(getWorld()));
+	m_players.emplace_back(std::make_unique<Simple>(getWorld()));
+	m_players.emplace_back(std::make_unique<Light>(getWorld()));
 }
 
 void World::loadLevel(int levelNum)
@@ -159,7 +153,7 @@ void World::loadLevel(int levelNum)
 		else //create the object
 		{
 			ssline >> scaleX >> scaleY;
-			auto o = ObjectFactory::create(objType, sf::Vector2f(locX, locY), m_box2dWorld, sf::Vector2f(scaleX, scaleY));
+			auto o = ObjectFactory::create(objType, sf::Vector2f(locX, locY), getWorld(), sf::Vector2f(scaleX, scaleY));
 			if (o)
 			{
 				m_objects.emplace_back(move(o));
