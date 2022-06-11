@@ -3,13 +3,13 @@
 
 
 GameScreen::GameScreen()
-    : m_activePlayer(Player::Heavy), m_win(false),
+    : m_activePlayer(Player::Heavy), m_win(false), m_lose(false),
       m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
       m_btnsClick(Resources::instance().getAudioClick()),
       m_levelNum(1)
 {
     m_background.setTexture(Resources::instance().getBackground(Screen::Game));
-    m_world.createLevel(m_levelNum);
+    //m_world.createLevel(m_levelNum);
 }
 
 //-----------------------------------------------------------------
@@ -121,8 +121,11 @@ void GameScreen::update(float deltaTime)
     }
 
     if (m_world.allPlayersReachedEnd())
-    {
         m_win = true;
+    else if (m_world.playerLost())
+    {
+        m_lose = true;
+        std::cout << "loser" << std::endl;
     }
 }
 
@@ -138,7 +141,7 @@ void GameScreen::pauseTimer()
 
 void GameScreen::loadLevel(int level)
 {
-    //TODO: load level from file or something
+    m_world.createLevel(level);
 }
 
 void GameScreen::setDirection(Direction dir)

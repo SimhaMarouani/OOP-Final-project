@@ -106,6 +106,15 @@ bool World::allPlayersReachedEnd()
 	return true;
 }
 
+bool World::playerLost()
+{
+	for (auto& player : m_players)
+	{
+		if (player->getPosition().y > WINDOW_HEIGHT && player->getPosition().x < WINDOW_WIDTH)
+			return true;
+	}
+	return false;
+}
 
 void World::initPlayers()
 {
