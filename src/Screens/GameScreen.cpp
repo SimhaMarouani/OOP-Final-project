@@ -8,6 +8,7 @@ GameScreen::GameScreen()
       m_btnsClick(Resources::instance().getAudioClick())
 {
     m_background.setTexture(Resources::instance().getBackground(Screen::Game));
+    //loadLevel(m_levelNum);
     //m_world.createLevel(m_levelNum);
 }
 
@@ -95,6 +96,7 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
             {
                 playAudio(m_btnsClick);
                 updateStatus(LevelActions::None);
+                m_dataDisplay.startTimer();
                 controller.updatePage(Screen::HomePage);
             }
         }
@@ -142,6 +144,8 @@ void GameScreen::loadLevel(int level)
 {
     m_levelNum = level;
     m_world.createLevel(level);
+    m_dataDisplay.resetTimer();
+    //m_world.loadLevel(level);
 }
 
 void GameScreen::setDirection(Direction dir)
