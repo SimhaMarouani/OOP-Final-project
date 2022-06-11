@@ -20,7 +20,7 @@ public:
 	sf::Font* getFont();
 	sf::Texture* getBackground(Screen index);
 	sf::Texture* getPlayerTexture(Player player);
-	sf::Texture* getSettingsReturnTexture();
+	sf::Texture* getSettingsReturnTexture(Screen s);
 	sf::Texture* getSettingsHomeTexture();
     sf::Texture* getBackArrowTexture();
     sf::Texture* getPlayerFaceTexture(Player player);
@@ -42,8 +42,10 @@ public:
 
 	void playMusic(Screen s);
 	bool isMusicOn() const;
+	bool isAudioOn() const;
 
 	void switchMusicStatus(Screen s);
+	void switchAudioStatus();
 private:
 	Resources();
 	Resources(const Resources&) = default;
@@ -88,7 +90,7 @@ private:
 	////Textures
 	sf::Texture m_playerArrow;;
 	sf::Texture m_backArrow;;
-	sf::Texture m_settingsReturnTexture;
+	std::vector<sf::Texture> m_settingsReturnTexture;
 	sf::Texture m_settingsHomeTexture;
 	sf::Texture m_settingsBackground;
 	sf::Texture m_winBackground;
@@ -114,4 +116,6 @@ private:
 	sf::Music m_homeMusic; //home background music
 	//const std::string MUSIC_FILE_NAME[NUM_OF_BG_TEXTURES] = { "home_music.wav", "levelmenu_music.wav", "birds.wav" };
 	//std::vector<sf::Music> m_music;
+
+	bool m_audioOn = true;
 };

@@ -28,6 +28,8 @@ public:
 	LevelActions getPageStatus() const;
 
 private:
+	void playAudio(Audio& a);
+
 	World m_world;
 	DataDisplay m_dataDisplay;
 
@@ -40,6 +42,7 @@ private:
 	sf::RectangleShape m_background;
 
     bool m_win;
-
+    int m_levelNum;
+    
 	Audio m_btnsClick;
 };

@@ -35,7 +35,7 @@ private:
 	void calcTime(int& sec, int& min)const;
 	void drawBtns(sf::RenderWindow& window);
 	void setTimeText();
-
+	void playAudio(Audio& a);
 private:
 	Timer m_timer;
 
