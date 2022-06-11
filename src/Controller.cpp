@@ -5,7 +5,7 @@ Controller::Controller()
 	: m_window(), m_homePageScreen(), m_currPage(Screen::HomePage)
 {
 	std::shared_ptr s = std::make_shared<Settings>();
-	std::shared_ptr w = std::make_shared<WinScreen>();
+	std::shared_ptr w = std::make_shared<EndLevelScreen>();
 	m_homePageScreen.initSettings(s);
 	m_gameScreen.initSettings(s);
 	m_gameScreen.initEndLevelScreen(w);

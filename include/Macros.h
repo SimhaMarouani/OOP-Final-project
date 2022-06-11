@@ -23,6 +23,7 @@ const int CHAR_SIZE = 40;
 // Level Menu 
 const int LEVEL_MENU_COLS = 4;
 const float LEVEL_MENU_BTN_SIZE = 220.f;
+const int NUM_OF_LEVELS = 5;
 
 // DataDisplay
 const float PLAYER_FACE_SIZE = 100.f;

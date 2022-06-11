@@ -6,19 +6,21 @@
 #include <string>
 #include "Button.h"
 #include "Resources.h"
-#include "Utilities.h"
+#include "Macros.h"
 //#include "Controller.h"
 
 
-class WinScreen{
+class EndLevelScreen{
 public:
-    WinScreen();
-    virtual ~WinScreen() = default;
+    EndLevelScreen(bool status);
+    virtual ~EndLevelScreen() = default;
 
     void draw(sf::RenderWindow& window);
 
     //void handleClick(sf::Event event);
     void createText();
+    void setWinText();
+    void setLoseText();
 
     bool isContainRetry(sf::Event e) const;
     bool isContainMenu(sf::Event e) const;

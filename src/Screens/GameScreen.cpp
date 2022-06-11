@@ -5,8 +5,7 @@
 GameScreen::GameScreen()
     : m_activePlayer(Player::Heavy), m_win(false), m_lose(false),
       m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
-      m_btnsClick(Resources::instance().getAudioClick()),
-      m_levelNum(1)
+      m_btnsClick(Resources::instance().getAudioClick())
 {
     m_background.setTexture(Resources::instance().getBackground(Screen::Game));
     //loadLevel(m_levelNum);
@@ -143,6 +142,7 @@ void GameScreen::pauseTimer()
 
 void GameScreen::loadLevel(int level)
 {
+    m_levelNum = level;
     m_world.createLevel(level);
     m_dataDisplay.resetTimer();
     //m_world.loadLevel(level);
@@ -163,7 +163,7 @@ void GameScreen::initSettings(std::shared_ptr<Settings> s)
     m_settingsView = move(s);
 }
 
-void GameScreen::initEndLevelScreen(std::shared_ptr<WinScreen> s)
+void GameScreen::initEndLevelScreen(std::shared_ptr<EndLevelScreen> s)
 {
     m_endLevelView = move(s);
 }
