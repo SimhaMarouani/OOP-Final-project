@@ -38,7 +38,7 @@ void GameObjects::createBody(b2World* world, b2BodyType bodyType, sf::Vector2i r
     bodyDef.type = bodyType;
     bodyDef.position.Set(getPosition().x, getPosition().y);
     //bodyDef.linearDamping = 0.0f;
-    //bodyDef.angularDamping = 0.01f;
+    bodyDef.angularDamping = 0.01f;
 
     m_body = world->CreateBody(&bodyDef);
 
@@ -54,7 +54,7 @@ void GameObjects::createBody(b2World* world, b2BodyType bodyType, sf::Vector2i r
     if (bodyType == b2_dynamicBody)
     {
         fixtureDef.density = 1.0f;
-        fixtureDef.friction = 0.3f;
+        fixtureDef.friction = 0.4f;
     }
     m_body->CreateFixture(&fixtureDef);
     m_body->SetUserData(this);

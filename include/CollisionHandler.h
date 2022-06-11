@@ -5,6 +5,7 @@
 #include "playersInclude/Heavy.h"
 #include "objectsInclude/Floor.h"
 #include "objectsInclude/Box.h"
+#include "objectsInclude/Rafter.h"
 
 #include <iostream>
 #include <unordered_map>

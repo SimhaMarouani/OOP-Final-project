@@ -16,6 +16,9 @@ void CollisionHandler::intializeMap()
     m_hitMap[Key(typeid(Light), typeid(Box))] = &CollisionHandler::sheepStatic;
     m_hitMap[Key(typeid(Simple), typeid(Box))] = &CollisionHandler::sheepStatic;
     m_hitMap[Key(typeid(Heavy), typeid(Box))] = &CollisionHandler::sheepStatic;
+    m_hitMap[Key(typeid(Light), typeid(Rafter))] = &CollisionHandler::sheepStatic;
+    m_hitMap[Key(typeid(Simple), typeid(Rafter))] = &CollisionHandler::sheepStatic;
+    m_hitMap[Key(typeid(Heavy), typeid(Rafter))] = &CollisionHandler::sheepStatic;
 
     //Player with Player
     m_hitMap[Key(typeid(Heavy), typeid(Light))] = &CollisionHandler::sheepPlayer;
@@ -32,7 +35,11 @@ void CollisionHandler::intializeMap()
     m_hitMap[Key(typeid(Box), typeid(Light))] = &CollisionHandler::staticSheep;
     m_hitMap[Key(typeid(Box), typeid(Simple))] = &CollisionHandler::staticSheep;
     m_hitMap[Key(typeid(Box), typeid(Heavy))] = &CollisionHandler::staticSheep;
+    m_hitMap[Key(typeid(Rafter), typeid(Light))] = &CollisionHandler::staticSheep;
+    m_hitMap[Key(typeid(Rafter), typeid(Simple))] = &CollisionHandler::staticSheep;
+    m_hitMap[Key(typeid(Rafter), typeid(Heavy))] = &CollisionHandler::staticSheep;
 }
+
 
 //PRIMARY COLLISION HANDLER
 void CollisionHandler::sheepStatic(GameObjects* sheep, GameObjects* stat, bool footSensor1, bool footSensor2)

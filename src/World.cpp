@@ -34,7 +34,7 @@ void World::initSymbols()
 
 void World::draw(sf::RenderWindow& window)
 {
-	window.draw(m_arrow);
+	window.draw(m_sign);
 	for (auto& object : m_objects)
 	{
 		object->draw(window);
@@ -44,7 +44,7 @@ void World::draw(sf::RenderWindow& window)
 		movable->draw(window);
 	}
 	
-	window.draw(m_sign);
+	window.draw(m_arrow);
 }
 
 void World::setActiveDirection(Direction dir, Player active)

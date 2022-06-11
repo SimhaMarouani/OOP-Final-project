@@ -123,7 +123,6 @@ void GameScreen::update(float deltaTime)
     if (m_world.allPlayersReachedEnd())
     {
         m_win = true;
-        std::cout << "Level Won";
     }
 }
 

@@ -5,7 +5,7 @@
 		//STATIC OBJECTS FACTORY
 //=======================================================================
 
-
+//Tali: to do: make sure all are relevant:
 std::unique_ptr<StaticObjects> ObjectFactory::create(const std::string& name, sf::Vector2f pos, b2World* world, sf::Vector2f scale)
 {
 	static bool initial = true;
@@ -17,6 +17,8 @@ std::unique_ptr<StaticObjects> ObjectFactory::create(const std::string& name, sf
 		registerit("r_floor",		[](sf::Vector2f pos, b2World* world, sf::Vector2f scale) -> std::unique_ptr<StaticObjects> { return std::make_unique<Floor>(pos, Grounds::Right_l1, world, scale); });
 		registerit("floor",			[](sf::Vector2f pos, b2World* world, sf::Vector2f scale) -> std::unique_ptr<StaticObjects> { return std::make_unique<Floor>(pos, Grounds::l2, world, scale); });
 		registerit("right_floor_L3",[](sf::Vector2f pos, b2World* world, sf::Vector2f scale) -> std::unique_ptr<StaticObjects> { return std::make_unique<Floor>(pos, Grounds::Right_l3, world, scale); });
+		registerit("left_floor_L3",[](sf::Vector2f pos, b2World* world, sf::Vector2f scale) -> std::unique_ptr<StaticObjects> { return std::make_unique<Floor>(pos, Grounds::Left_l3, world, scale); });
+		registerit("right_floor_L1",[](sf::Vector2f pos, b2World* world, sf::Vector2f scale) -> std::unique_ptr<StaticObjects> { return std::make_unique<Floor>(pos, Grounds::Right_l1, world, scale); });
 		
 		initial = false;
 	}  

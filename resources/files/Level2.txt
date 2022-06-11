@@ -1,7 +1,9 @@
-1300
-				1500	510		1.5			1.5
+1200
+				1500	625		1.9			1.9
 				posX	posY	scaleX		scaleY
-Heavy			100		650
-Simple			280		650
-Light			600		650
-floor			800		870		1			 1
+Heavy			100		550
+Simple			100		450
+Light			275		550
+Rafter			550		600		0.75		0.75
+left_floor_L3	300		770		1			 1
+right_floor_L1	1390	770		1.1			 1.1
