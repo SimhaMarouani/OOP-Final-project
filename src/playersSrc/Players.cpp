@@ -59,11 +59,8 @@ namespace
 void Players::move(float deltaTime)
 {
 	if ( dirFromKey().y < 0 && m_touchingFloor)
-	{
-		auto impulse = -(m_body->GetMass()) -600 ;
-		//m_body->ApplyLinearImpulseToCenter(b2Vec2(0, impulse), true);
 		m_body->ApplyLinearImpulseToCenter(b2Vec2(0, this->getJumpImpulse()), true);
-	}
+
 	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * m_speedPerSecond, 0);
 	m_body->ApplyForceToCenter(step1, true);
 
