@@ -62,7 +62,7 @@ void Players::move(float deltaTime)
 	{
 		//auto impulse = m_body->GetMass();
 		//m_body->SetLinearVelocity(b2Vec2(0, -impulse));
-		auto impulse = -(m_body->GetMass()) -800 ;
+		auto impulse = -(m_body->GetMass()) -600 ;
 		m_body->ApplyLinearImpulseToCenter(b2Vec2(0, impulse), true);
 		//setTouchingFloor(false);
 	}
