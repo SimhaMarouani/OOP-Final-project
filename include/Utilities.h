@@ -60,7 +60,7 @@ enum class LevelState
 enum class LevelActions 
 { 
 	Retry = 0,
-	Pause,
+	Pause = 1,
 	None = -1
 };
 
