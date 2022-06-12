@@ -22,6 +22,7 @@ void Audio::stopPlayMusic()
 
 void Audio::playMusic(int volume, bool loop)
 {
+	if (!Resources::instance().isAudioOn()) return;
 	m_sound.setLoop(loop);
 	m_sound.setVolume(volume);
 	m_sound.play();

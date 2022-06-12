@@ -92,14 +92,14 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
 
             if (m_settingsView->isContainExit(event))
             {
-                playAudio(m_btnsClick);
+                m_btnsClick.playMusic();
                 updateStatus(LevelActions::None);
                 m_dataDisplay.startTimer();
             }
 
             if (m_settingsView->isContainHome(event))
             {
-                playAudio(m_btnsClick);
+                m_btnsClick.playMusic();
                 updateStatus(LevelActions::None);
                 m_dataDisplay.startTimer();
                 controller.updatePage(Screen::HomePage);
@@ -184,9 +184,4 @@ LevelActions GameScreen::getPageStatus() const
     return m_pageStatus;
 }
 
-void GameScreen::playAudio(Audio& a)
-{
-    if (Resources::instance().isAudioOn())
-        a.playMusic();
-}
 

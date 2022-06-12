@@ -39,7 +39,6 @@ private:
 	void createTexts();
 	void drawBtns(sf::RenderWindow& window);
 	void setTimeText();
-	void playAudio(Audio& a);
 
 	Timer m_timer;
 
