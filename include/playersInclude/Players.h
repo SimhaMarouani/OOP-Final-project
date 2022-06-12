@@ -17,7 +17,7 @@ public:
 	/*sf::IntRect getWidth()const;
 	sf::IntRect getheight()const;*/
 	virtual int getJumpImpulse() = 0;
-	
+	void setFaceRight(bool f);
 protected: //Tali: why protected? need change all protected members in other classes as well
 	
 	float m_speedPerSecond = BASE_SPEED;
