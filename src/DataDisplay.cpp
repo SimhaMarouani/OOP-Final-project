@@ -49,7 +49,7 @@ void DataDisplay::createTexts()
 {
 	m_timerText.setFont(*Resources::instance().getFont());
 	m_timerText.setCharacterSize(CHAR_SIZE);
-	m_timerText.setPosition(350, 50);
+	m_timerText.setPosition(1330, 45);
 	m_timerText.setColor(sf::Color::Black);
 }
 
