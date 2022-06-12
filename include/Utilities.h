@@ -61,6 +61,8 @@ enum class LevelActions
 { 
 	Retry = 0,
 	Pause = 1,
+    Win,
+    Lose,
 	None = -1
 };
 
