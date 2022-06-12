@@ -10,3 +10,10 @@ Switch::Switch(sf::Vector2f pos, b2World* world, sf::Vector2f scale)
 
 	createSensor(world, getWidth() / 2, getHeight() / 2, b2Vec2(0, 0), 2);
 }
+
+
+void Switch::setDoor(StaticObjects* dr)
+{
+	if(auto obj = static_cast<Door*>(dr))
+		m_door = obj;
+}

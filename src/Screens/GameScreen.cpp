@@ -21,11 +21,11 @@ void GameScreen::draw(sf::RenderWindow& window)
 	m_world.draw(window);
 	m_dataDisplay.draw(window);
 
-    DebugDraw d(&window);
-    uint32 flags = b2Draw::e_shapeBit;
-    d.SetFlags(flags);
-    m_world.getWorld()->SetDebugDraw(&d);
-    m_world.getWorld()->DebugDraw();
+    //DebugDraw d(&window);
+    //uint32 flags = b2Draw::e_shapeBit;
+    //d.SetFlags(flags);
+    //m_world.getWorld()->SetDebugDraw(&d);
+    //m_world.getWorld()->DebugDraw();
 
     if(getPageStatus() == LevelActions::Win)
         m_endLevelView->draw(window, true, m_levelNum, m_dataDisplay.getTime());
@@ -45,7 +45,7 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
     {
     case sf::Event::KeyReleased:
     {
-        if (event.key.code == sf::Keyboard::P && m_pageStatus == LevelActions::None)
+        if (event.key.code == sf::Keyboard::A && m_pageStatus == LevelActions::None)
         {
             m_activePlayer = Player((int(m_activePlayer) + 1) % 3);
             m_dataDisplay.setCurrPlayer(int(m_activePlayer));

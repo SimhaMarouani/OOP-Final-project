@@ -7,7 +7,7 @@ Light			600		650
 floor			800		865		1			1
 floor_l4		120		670		1			1.5
 floor_l3		950		715		1.2			1.2
-Switch			1120	732		0.9			0.9
 Billboard		1500	410		1			1
 Hay				170		550		0.45		0.45
 Door			1375	490		1			1
+Switch			1120	732		0.9			0.9

@@ -13,6 +13,12 @@
 #include "Factory.h"
 #include "DebugDraw.h"
 
+//box2d
+const float timeStep = 1.0f / 60.0f;
+const int32 velocityIterations = 6,
+positionIterations = 2;
+const b2Vec2 gravity = b2Vec2(0.0f, 10.0f);
+const sf::Vector2f initVec = sf::Vector2f(0.f, 0.f);
 
 class Controller;
 
