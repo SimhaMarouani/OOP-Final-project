@@ -11,6 +11,7 @@ void Timer::startClock()
 {
 	m_clock.restart();
 	m_runTime = 0;
+	m_pauseTimer = false;
 }
 
 //-----------------------------------------------------------------

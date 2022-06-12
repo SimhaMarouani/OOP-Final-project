@@ -63,7 +63,9 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
             m_lose = false;
 
             if (m_endLevelView->isContainRetry(event))
+            {
                 retryLevel();
+            }
             else if (m_endLevelView->isContainNext(event))
             {
                 ++m_levelNum;
@@ -126,6 +128,7 @@ void GameScreen::update(float deltaTime)
     {
         m_win = true;
         m_dataDisplay.pauseTimer();
+
     }
     else if (m_world.playerLost())
         m_lose = true;
