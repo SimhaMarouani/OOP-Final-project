@@ -21,6 +21,9 @@ public:
 	bool isContain(sf::Event event) const;
 	void setLevelScore(int level);
 
+	void updateData();
+
+
 private:
 	sf::RectangleShape m_shadow; //Noga: optional
 	sf::RectangleShape m_background;

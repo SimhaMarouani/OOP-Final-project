@@ -91,6 +91,7 @@ void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)
 	if (m_highScoreButton.isContain(event))
 	{
 		m_btnsAudio.playMusic();
+		m_highScoreView.updateData();
 		m_isScoreOpen = true;
 	}
 }

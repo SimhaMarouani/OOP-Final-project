@@ -7,14 +7,20 @@ HighScore::HighScore()
 
 HighScore::~HighScore()
 {
-	//TODO: save in file
-	save();
+	static bool s;
+	if (s) return;
+	else
+	{
+		s = true;
+		save();
+	}
 }
 
 void HighScore::addScore(int level, int score)
 {
 	auto iter = m_levelsScore.find(level);
-	if (level != m_levelsScore.size() + 1) return; //cant add level if its previous not exist
+	if (level > m_levelsScore.size() + 1)
+		return; //cant add level if its previous not exist
 	if (iter != m_levelsScore.end()) // update
 		iter->second = score;
 	else // add new
