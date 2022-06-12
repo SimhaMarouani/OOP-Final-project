@@ -8,7 +8,6 @@ Door::Door(sf::Vector2f pos, Grounds type, b2World* world, sf::Vector2f scale)
 
 void Door::setOpen(bool open)
 {
-	std::cout << "setting door\n";
 	if(m_open != open)
 		m_moved = false;
 

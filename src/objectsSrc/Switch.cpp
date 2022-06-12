@@ -1,7 +1,7 @@
 #include "objectsInclude/Switch.h"
 
 Switch::Switch(sf::Vector2f pos, b2World* world, sf::Vector2f scale)
-	: StaticObjects(Objects::Switch, pos, scale)/*, m_pressed(false)*/
+	: StaticObjects(Objects::Switch, pos, scale), m_pressed(false)
 {
 	//BodyDef
 	b2BodyDef bodyDef;
@@ -21,14 +21,21 @@ void Switch::setDoor(StaticObjects* dr)
 
 void Switch::setPressed(bool pressed)
 {
-	std::cout << "setting switch\n";
-	if (pressed)
+	if (pressed == m_pressed)
+		return;
+
+	m_pressed = pressed;
+	if (m_pressed)
 	{
+		std::cout << "pressed down\n";
 		//change photo
 	}
 	else
 	{
+		std::cout << "switch opened\n";
+
 		//change photo
 	}
+	//clicking sound
 	m_door->setOpen(pressed);
 }
