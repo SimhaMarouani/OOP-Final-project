@@ -5,6 +5,7 @@
 #include "DataDisplay.h"
 #include "Settings.h"
 #include "EndLevelScreen.h"
+#include "HighScore.h"
 #include "Audio.h"
 
 class GameScreen {
@@ -46,4 +47,6 @@ private:
     int m_levelNum;
     
 	Audio m_btnsClick;
+
+    HighScore m_highScore;
 };

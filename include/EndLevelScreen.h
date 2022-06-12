@@ -8,6 +8,7 @@
 #include "Resources.h"
 #include "Macros.h"
 #include "HighScore.h"
+#include "Utilities.h"
 //#include "Controller.h"
 
 
@@ -27,6 +28,7 @@ public:
 
 private:
     void createBtns();
+    std::string setTimeText(int time);
 
     sf::RectangleShape m_background;
 
