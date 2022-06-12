@@ -62,13 +62,13 @@ void CollisionHandler::sheepStatic(GameObjects* sheep, GameObjects* stat, bool f
     if (!sh || !statObj)
         return;
 
-    if (footSensor1)
-        sh->setTouchingFloor(contact);
     if (auto sw = dynamic_cast<Switch*>(stat))
     {
         std::cout << "collision with switch\n";
-        //sw->setPressed(true);
+        sw->setPressed(contact);
     }
+    else if (footSensor1)
+        sh->setTouchingFloor(contact);
 }
 
 void CollisionHandler::sheepPlayer(GameObjects* sheep, GameObjects* player, bool footSensor1, bool footSensor2, bool contact)
@@ -89,8 +89,6 @@ void CollisionHandler::sheepPlayer(GameObjects* sheep, GameObjects* player, bool
 
 void CollisionHandler::switchStatic(GameObjects* swit, GameObjects* stat, bool footSensor1, bool footSensor2, bool contact)
 {
-    std::cout << "collision with switch\n";
-
     Switch* sw = static_cast<Switch*>(swit);
     StaticObjects* statObj = static_cast<StaticObjects*>(stat);
 
@@ -100,7 +98,7 @@ void CollisionHandler::switchStatic(GameObjects* swit, GameObjects* stat, bool f
     if (sw)
     {
         std::cout << "collision with switch\n";
-        //sw->setPressed(true);
+        sw->setPressed(contact);
     }
 }
 

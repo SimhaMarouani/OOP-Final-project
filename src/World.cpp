@@ -62,6 +62,11 @@ void World::moveActive(float deltaTime, Player active)
 	{
 		m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
 		m_objects[i]->update();
+		if (auto sw = dynamic_cast<Door*>(m_objects[i].get()))
+		{
+			sw->updateDoorState();
+		}
+
 	}
 }
 
