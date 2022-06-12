@@ -17,7 +17,7 @@ void MyContactListener::BeginContact(b2Contact* contact) {
 
     CollisionHandler::instance().processCollision(objA, objB, 
         ((int)(size_t)fixtureUserDataA == 1) ? true : false, 
-        ((int)(size_t)fixtureUserDataB == 1) ? true : false);
+        ((int)(size_t)fixtureUserDataB == 1) ? true : false, true);
 }
 
 void MyContactListener::EndContact(b2Contact* contact) {
@@ -33,18 +33,7 @@ void MyContactListener::EndContact(b2Contact* contact) {
     if (!objA | !objB)
         return;
     
-    if ((int)(size_t)fixtureUserDataA == 1)
-    {
-        auto p = static_cast<Players*>(bodyUserDataA);
-        if (p)
-            p->setTouchingFloor(false);
-
-    }
-    if ((int)(size_t)fixtureUserDataB == 1)
-    {
-        auto p = static_cast<Players*>(bodyUserDataB);
-        if (p)
-            p->setTouchingFloor(false);
-    }
-
+    CollisionHandler::instance().processCollision(objA, objB, 
+        ((int)(size_t)fixtureUserDataA == 1) ? true : false,
+        ((int)(size_t)fixtureUserDataB == 1) ? true : false, false);
 }

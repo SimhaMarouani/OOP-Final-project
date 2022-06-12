@@ -45,7 +45,7 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
     {
     case sf::Event::KeyReleased:
     {
-        if (event.key.code == sf::Keyboard::P && m_pageStatus == LevelActions::None)
+        if (event.key.code == sf::Keyboard::A && m_pageStatus == LevelActions::None)
         {
             m_activePlayer = Player((int(m_activePlayer) + 1) % 3);
             m_dataDisplay.setCurrPlayer(int(m_activePlayer));

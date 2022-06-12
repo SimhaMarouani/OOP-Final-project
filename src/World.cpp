@@ -1,12 +1,7 @@
 #include "World.h"
 #include "Controller.h"
 
-//box2d
-const float timeStep = 1.0f / 60.0f;
-const int32 velocityIterations = 6,
-			positionIterations = 2;
-const b2Vec2 gravity = b2Vec2(0.0f, 10.0f);
-const sf::Vector2f initVec = sf::Vector2f(0.f, 0.f);
+
 
 World::World()
 {
@@ -165,7 +160,7 @@ void World::loadLevel(int levelNum)
 		ssline.str(line);
 		ssline >> objType >> locX >> locY;
 
-		if (isPlayer(objType))
+		if (isPlayer(objType)) //Tali:change to static cast
 		{
 			m_players[getIndPlayer(objType)]->setPosition(sf::Vector2f(locX, locY));
 			m_players[getIndPlayer(objType)]->setFaceRight(true);
@@ -176,6 +171,10 @@ void World::loadLevel(int levelNum)
 			auto o = ObjectFactory::create(objType, sf::Vector2f(locX, locY), getWorld(), sf::Vector2f(scaleX, scaleY));
 			if (o)
 			{
+				if (auto obj = dynamic_cast<Switch*>(o.get()))
+				{
+					obj->setDoor(m_objects.back().get());
+				}
 				m_objects.emplace_back(move(o));
 			}
 			else //wasnt able to create object

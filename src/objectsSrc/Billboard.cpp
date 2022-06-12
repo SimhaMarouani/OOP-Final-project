@@ -8,5 +8,5 @@ Billboard::Billboard(sf::Vector2f pos, b2World* world, sf::Vector2f scale)
 	bodyDef.position.Set(getPosition().x, getPosition().y);
 	m_body = world->CreateBody(&bodyDef);
 
-	createSensor(world, getWidth() / 2, getHeight() / 2, b2Vec2(0, 0), 2);
+	createSensor(world, getWidth() / 2, getHeight() / 2, b2Vec2(0, 0), 3);
 }
