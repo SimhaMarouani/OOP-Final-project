@@ -5,7 +5,8 @@
 GameScreen::GameScreen()
     : m_activePlayer(Player::Heavy),
       m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
-      m_btnsClick(Resources::instance().getAudioClick())
+      m_btnsClick(Resources::instance().getAudioClick()),
+    m_pageStatus(LevelActions::None)
 {
     m_background.setTexture(Resources::instance().getBackground(Screen::Game));
     //loadLevel(m_levelNum);
