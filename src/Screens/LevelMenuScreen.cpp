@@ -75,7 +75,7 @@ void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)
 
 	for (int i = 0; i < m_levels.size(); i++)
 	{
-		if (m_levels[i].isContain(event) && i < m_numOfLevelsCompleted)
+		if (m_levels[i].isContain(event) && i <= m_numOfLevelsCompleted)
 		{
 			playAudio(m_btnsAudio);
 			controller.startGame(Screen::Game, i+1);
@@ -98,7 +98,7 @@ void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)
 void LevelMenuScreen::updateNumOfLevels()
 {
 	int curr = HighScore::instance().getNumOfCompleteLevels();
-	for (int i = m_numOfLevelsCompleted; i < curr; i++)
+	for (int i = m_numOfLevelsCompleted + 1; i < curr; i++)
 	{
 		m_levels[i].setTexture(Resources::instance().getLevelMenuTexture(LevelState::Unlock));
 		m_levels[i].setTextColor(sf::Color(64, 63, 61));
@@ -136,8 +136,8 @@ void LevelMenuScreen::initBtns()
 		m_levels[i].setPosition({ offset_x + (LEVEL_MENU_BTN_SIZE + margin) * float(x), offset_y + (LEVEL_MENU_BTN_SIZE + margin) * float(y) });
 		//m_levels[i].setTextPosition({ offset_x + (size + margin) * float(x), offset_y + (size + margin) * float(y) });
 		m_levels[i].setTextPosition({ posX + (LEVEL_MENU_BTN_SIZE / 3), posY + (LEVEL_MENU_BTN_SIZE / 3) });
-		m_levels[i].setTexture(i < m_numOfLevelsCompleted ? Resources::instance().getLevelMenuTexture(LevelState::Unlock) : Resources::instance().getLevelMenuTexture(LevelState::Lock));
+		m_levels[i].setTexture(i <= m_numOfLevelsCompleted ? Resources::instance().getLevelMenuTexture(LevelState::Unlock) : Resources::instance().getLevelMenuTexture(LevelState::Lock));
 		m_levels[i].setTextColor(sf::Color(64, 63, 61));
-		m_levels[i].setTextString(i < m_numOfLevelsCompleted ? std::to_string(i + 1) : "");
+		m_levels[i].setTextString(i <= m_numOfLevelsCompleted ? std::to_string(i + 1) : "");
 	}
 }
