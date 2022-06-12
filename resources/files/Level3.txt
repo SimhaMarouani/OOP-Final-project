@@ -1,8 +1,8 @@
 1200
 				1520	760		1.9			1.9
 				posX	posY	scaleX		scaleY
-Heavy			300		650
-Simple			500		650
+Heavy			500		650
+Simple			300		650
 Light			600		650
 floor			800		865		1			1
 floor_l4		120		670		1			1.5

@@ -24,6 +24,10 @@ void GameScreen::draw(sf::RenderWindow& window)
     DebugDraw d(&window);
     uint32 flags = b2Draw::e_shapeBit;
     d.SetFlags(flags);
+    //uint32 flags1 = b2Draw::e_aabbBit;
+    //d.SetFlags(flags1);
+    //uint32 flags2 = b2Draw::e_centerOfMassBit;
+    //d.SetFlags(flags2);
     m_world.getWorld()->SetDebugDraw(&d);
     m_world.getWorld()->DebugDraw();
 
