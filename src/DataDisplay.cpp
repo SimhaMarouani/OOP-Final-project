@@ -120,7 +120,7 @@ void DataDisplay::handleClick(sf::Event event , GameScreen& gs)
 	{
 		playAudio(m_btnsAudio);
 		gs.updateStatus(LevelActions::Pause);
-		m_timer.pause();
+		pauseTimer();
 	}
 	else if (m_levelActions[int(LevelActions::Retry)].isContain(event))
 	{
@@ -144,6 +144,15 @@ void DataDisplay::setCurrPlayer(int activePlayer)
 	}
 }
 
+int DataDisplay::getTime()
+{
+    return  int(m_timer.getTime());
+}
+
+void DataDisplay::pauseTimer()
+{
+    m_timer.pause();
+}
 //TODO: add to retry and pause buttins 
 //void DataDisplay::handleHover(const sf::Vector2f& location)
 //{

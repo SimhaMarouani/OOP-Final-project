@@ -4,7 +4,7 @@
 #include "World.h"
 #include "DataDisplay.h"
 #include "Settings.h"
-#include "WinScreen.h"
+#include "EndLevelScreen.h"
 #include "Audio.h"
 
 class GameScreen {
@@ -22,7 +22,7 @@ public:
 	void updateStatus(LevelActions la);
 
 	void initSettings(std::shared_ptr<Settings> s);
-	void initEndLevelScreen(std::shared_ptr<WinScreen> s);
+	void initEndLevelScreen(std::shared_ptr<EndLevelScreen> s);
 	void retryLevel();
 
 	LevelActions getPageStatus() const;
@@ -34,7 +34,7 @@ private:
 	DataDisplay m_dataDisplay;
 
 	std::shared_ptr<Settings> m_settingsView;
-	std::shared_ptr<WinScreen> m_endLevelView;
+	std::shared_ptr<EndLevelScreen> m_endLevelView;
 
 	LevelActions m_pageStatus;
 	Player m_activePlayer;
@@ -42,6 +42,7 @@ private:
 	sf::RectangleShape m_background;
 
     bool m_win;
+    bool m_lose;
     int m_levelNum;
     
 	Audio m_btnsClick;

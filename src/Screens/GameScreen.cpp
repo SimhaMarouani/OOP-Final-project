@@ -3,13 +3,13 @@
 
 
 GameScreen::GameScreen()
-    : m_activePlayer(Player::Heavy), m_win(false),
+    : m_activePlayer(Player::Heavy), m_win(false), m_lose(false),
       m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
-      m_btnsClick(Resources::instance().getAudioClick()),
-      m_levelNum(1)
+      m_btnsClick(Resources::instance().getAudioClick())
 {
     m_background.setTexture(Resources::instance().getBackground(Screen::Game));
-    m_world.createLevel(m_levelNum);
+    //loadLevel(m_levelNum);
+    //m_world.createLevel(m_levelNum);
 }
 
 //-----------------------------------------------------------------
@@ -27,9 +27,9 @@ void GameScreen::draw(sf::RenderWindow& window)
     m_world.getWorld()->DebugDraw();
 
     if(m_win)
-    {
-        m_endLevelView->draw(window);
-    }
+        m_endLevelView->draw(window, true, m_levelNum, m_dataDisplay.getTime());
+    else if(m_lose)
+        m_endLevelView->draw(window, false, m_levelNum, m_dataDisplay.getTime());
 
     if (m_pageStatus == LevelActions::Pause)
     {
@@ -57,12 +57,16 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
         break;
     }
     case sf::Event::MouseButtonReleased:
-        if (m_win)
+        if (m_win || m_lose)
         {
             m_win = false;
+            m_lose = false;
+
             if (m_endLevelView->isContainRetry(event))
+            {
                 retryLevel();
-            else if (m_endLevelView->isContainNext(event))   //need to update the level num and reload a level
+            }
+            else if (m_endLevelView->isContainNext(event))
             {
                 ++m_levelNum;
                 m_world.createLevel(m_levelNum);
@@ -73,6 +77,7 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
             else if (m_endLevelView->isContainMenu(event))
                 controller.updatePage(Screen::HomePage);
         }
+
         if(m_pageStatus != LevelActions::Pause)
             m_dataDisplay.handleClick(event, *this);
         else
@@ -96,6 +101,7 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
             {
                 playAudio(m_btnsClick);
                 updateStatus(LevelActions::None);
+                m_dataDisplay.startTimer();
                 controller.updatePage(Screen::HomePage);
             }
         }
@@ -116,14 +122,16 @@ void GameScreen::update(float deltaTime)
         m_world.moveArrow(m_activePlayer);
     }
     else
-    {
         m_settingsView->update(Screen::Game);
-    }
 
     if (m_world.allPlayersReachedEnd())
     {
         m_win = true;
+        m_dataDisplay.pauseTimer();
+
     }
+    else if (m_world.playerLost())
+        m_lose = true;
 }
 
 void GameScreen::resetTimer()
@@ -131,14 +139,13 @@ void GameScreen::resetTimer()
     m_dataDisplay.resetTimer();
 }
 
-void GameScreen::pauseTimer()
-{
-    m_dataDisplay.switchTimer();
-}
-
 void GameScreen::loadLevel(int level)
 {
-    //TODO: load level from file or something
+    m_levelNum = level;
+    m_world.createLevel(level);
+    m_dataDisplay.resetTimer();
+    //m_dataDisplay.startTimer();
+    //m_world.loadLevel(level);
 }
 
 void GameScreen::setDirection(Direction dir)
@@ -156,7 +163,7 @@ void GameScreen::initSettings(std::shared_ptr<Settings> s)
     m_settingsView = move(s);
 }
 
-void GameScreen::initEndLevelScreen(std::shared_ptr<WinScreen> s)
+void GameScreen::initEndLevelScreen(std::shared_ptr<EndLevelScreen> s)
 {
     m_endLevelView = move(s);
 }

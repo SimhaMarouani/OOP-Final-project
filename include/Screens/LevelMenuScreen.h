@@ -9,6 +9,7 @@
 #include "HighScore.h"
 #include "Button.h"
 #include "Audio.h"
+#include "HighScoreView.h"
 
 #include "Macros.h"
 #include "Utilities.h"
@@ -32,11 +33,14 @@ private:
 	sf::RectangleShape m_background;
 	std::vector<TitledButton> m_levels;
 
-    Button m_homeButton;
+	Button m_homeButton;
+	Button m_highScoreButton;
 	Audio m_btnsAudio;
 
-
+	bool m_isScoreOpen;
 	//
 	sf::Sprite m_light;  //animation
 	Animation m_animation;  //animation
+
+	HighScoreView m_highScoreView;
 };

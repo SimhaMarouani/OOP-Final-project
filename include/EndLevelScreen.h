@@ -6,16 +6,17 @@
 #include <string>
 #include "Button.h"
 #include "Resources.h"
-#include "Utilities.h"
+#include "Macros.h"
+#include "HighScore.h"
 //#include "Controller.h"
 
 
-class WinScreen{
+class EndLevelScreen{
 public:
-    WinScreen();
-    virtual ~WinScreen() = default;
+    EndLevelScreen();
+    virtual ~EndLevelScreen() = default;
 
-    void draw(sf::RenderWindow& window);
+    void draw(sf::RenderWindow& window, bool status, int levelNum, int time);
 
     //void handleClick(sf::Event event);
     void createText();
@@ -33,6 +34,10 @@ private:
     Button m_nextLevelBtn;
     Button m_menuBtn;
 
-    sf::Text m_text;
+    sf::Text m_winText;
+    sf::Text m_loseText;
     sf::Text m_timeText;
+    sf::Text m_newScoreText;
+
+    HighScore m_highScore;
 };

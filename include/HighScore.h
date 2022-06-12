@@ -18,13 +18,14 @@ class HighScore
 {
 public:
 	static HighScore& instance();
-	~HighScore();
+
+    HighScore();
+    ~HighScore();
 
 	void addScore(int level, int score);
 	int getNumOfCompleteLevels() { return m_levelsScore.size(); };
 	int getLevelScore(int level) const;
 private:
-	HighScore();
 	HighScore(const HighScore&) = default;
 	HighScore& operator=(const HighScore&) = default;
 
