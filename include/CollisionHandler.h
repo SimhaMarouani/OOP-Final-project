@@ -6,6 +6,7 @@
 #include "objectsInclude/Floor.h"
 #include "objectsInclude/Box.h"
 #include "objectsInclude/Rafter.h"
+#include "objectsInclude/Switch.h"
 
 #include <iostream>
 #include <unordered_map>
@@ -38,7 +39,7 @@ struct KeyEqual
 class CollisionHandler
 {
 public:
-	using HitFunctionPtr = void (CollisionHandler::*)(GameObjects*, GameObjects*, bool, bool);
+	using HitFunctionPtr = void (CollisionHandler::*)(GameObjects*, GameObjects*, bool, bool, bool);
 	using Key = std::pair<std::type_index, std::type_index>;
 	using HitMap = std::unordered_map<Key, HitFunctionPtr, PairKeysHash, KeyEqual>;
 
@@ -47,7 +48,7 @@ public:
 	//Access data
 	static CollisionHandler& instance();
 
-	void processCollision(GameObjects* object1, GameObjects* object2, bool footSensor1, bool footSensor2);
+	void processCollision(GameObjects* object1, GameObjects* object2, bool footSensor1, bool footSensor2, bool contact);
 private:
 	std::unordered_map<Key, HitFunctionPtr, PairKeysHash, KeyEqual> m_hitMap;
 
@@ -58,8 +59,12 @@ private:
 	void intializeMap();
 
 	//Primary collision handler
-	void sheepStatic(GameObjects* sheep, GameObjects* stat, bool footSensor1, bool footSensor2);
-	void sheepPlayer(GameObjects* sheep, GameObjects* player, bool footSensor1, bool footSensor2);
+	void sheepStatic(GameObjects* sheep, GameObjects* stat, bool footSensor1, bool footSensor2, bool contact);
+	void sheepPlayer(GameObjects* sheep, GameObjects* player, bool footSensor1, bool footSensor2, bool contact);
+	void switchStatic(GameObjects* swit, GameObjects* stat, bool footSensor1, bool footSensor2, bool contact);
+
 	//Secondary collision handler
-	void staticSheep(GameObjects* stat, GameObjects* sheep, bool footSensor1, bool footSensor2);
+	void staticSheep(GameObjects* stat, GameObjects* sheep, bool footSensor1, bool footSensor2, bool contact);
+	void staticSwitch(GameObjects* stat, GameObjects* swit, bool footSensor1, bool footSensor2, bool contact);
+
 };
