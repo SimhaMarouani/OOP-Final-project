@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+void calcTime(int&, int&);
 
 enum class Screen
 {
@@ -64,7 +65,9 @@ enum class LevelState
 enum class LevelActions 
 { 
 	Retry = 0,
-	Pause,
+	Pause = 1,
+    Win,
+    Lose,
 	None = -1
 };
 

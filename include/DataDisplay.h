@@ -6,6 +6,7 @@
 #include "Audio.h"
 
 #include "Resources.h"
+#include "Utilities.h"
 #include "Macros.h"
 
 #include <SFML/Graphics.hpp>
@@ -36,10 +37,8 @@ private:
 	void createPlayersButtons();
 	void initActionsButtons();
 	void createTexts();
-	void calcTime(int& sec, int& min)const;
 	void drawBtns(sf::RenderWindow& window);
 	void setTimeText();
-	void playAudio(Audio& a);
 
 	Timer m_timer;
 

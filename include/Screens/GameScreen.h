@@ -5,6 +5,7 @@
 #include "DataDisplay.h"
 #include "Settings.h"
 #include "EndLevelScreen.h"
+#include "HighScore.h"
 #include "Audio.h"
 
 class GameScreen {
@@ -28,8 +29,6 @@ public:
 	LevelActions getPageStatus() const;
 
 private:
-	void playAudio(Audio& a);
-
 	World m_world;
 	DataDisplay m_dataDisplay;
 
@@ -41,9 +40,9 @@ private:
 
 	sf::RectangleShape m_background;
 
-    bool m_win;
-    bool m_lose;
     int m_levelNum;
     
 	Audio m_btnsClick;
+
+    HighScore m_highScore;
 };

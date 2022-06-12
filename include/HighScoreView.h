@@ -3,6 +3,7 @@
 #include <string>
 #include "Macros.h"
 #include "Resources.h"
+#include "Utilities.h"
 #include "HighScore.h"
 
 
@@ -21,7 +22,6 @@ public:
 	void setLevelScore(int level);
 
 private:
-	void calcTime(int& sec, int& min) const; //Noga: move to utilities?
 	sf::RectangleShape m_shadow; //Noga: optional
 	sf::RectangleShape m_background;
 

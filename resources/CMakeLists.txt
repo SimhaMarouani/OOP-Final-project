@@ -73,6 +73,8 @@ configure_file ("files/Level1.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("files/Level2.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("files/Level3.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 
+configure_file ("files/Level4.txt" ${CMAKE_BINARY_DIR} COPYONLY)
+
 configure_file ("files/high_score.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 
 # audio

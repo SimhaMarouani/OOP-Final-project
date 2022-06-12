@@ -3,7 +3,7 @@
 
 
 GameScreen::GameScreen()
-    : m_activePlayer(Player::Heavy), m_win(false), m_lose(false),
+    : m_activePlayer(Player::Heavy),
       m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
       m_btnsClick(Resources::instance().getAudioClick())
 {
@@ -26,9 +26,9 @@ void GameScreen::draw(sf::RenderWindow& window)
     m_world.getWorld()->SetDebugDraw(&d);
     m_world.getWorld()->DebugDraw();
 
-    if(m_win)
+    if(getPageStatus() == LevelActions::Win)
         m_endLevelView->draw(window, true, m_levelNum, m_dataDisplay.getTime());
-    else if(m_lose)
+    else if(getPageStatus() == LevelActions::Lose)
         m_endLevelView->draw(window, false, m_levelNum, m_dataDisplay.getTime());
 
     if (m_pageStatus == LevelActions::Pause)
@@ -57,10 +57,11 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
         break;
     }
     case sf::Event::MouseButtonReleased:
-        if (m_win || m_lose)
+        if (getPageStatus() == LevelActions::Win || getPageStatus() == LevelActions::Lose)
         {
-            m_win = false;
-            m_lose = false;
+            updateStatus(LevelActions::None);   //simha: not sure
+            //m_win = false;
+            //m_lose = false;
 
             if (m_endLevelView->isContainRetry(event))
             {
@@ -92,14 +93,14 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
 
             if (m_settingsView->isContainExit(event))
             {
-                playAudio(m_btnsClick);
+                m_btnsClick.playMusic();
                 updateStatus(LevelActions::None);
                 m_dataDisplay.startTimer();
             }
 
             if (m_settingsView->isContainHome(event))
             {
-                playAudio(m_btnsClick);
+                m_btnsClick.playMusic();
                 updateStatus(LevelActions::None);
                 m_dataDisplay.startTimer();
                 controller.updatePage(Screen::HomePage);
@@ -126,12 +127,15 @@ void GameScreen::update(float deltaTime)
 
     if (m_world.allPlayersReachedEnd())
     {
-        m_win = true;
+        updateStatus(LevelActions::Win);
         m_dataDisplay.pauseTimer();
 
+        int time = m_dataDisplay.getTime();
+        if(time < m_highScore.getLevelScore(m_levelNum))
+            m_highScore.addScore(m_levelNum, time);
     }
     else if (m_world.playerLost())
-        m_lose = true;
+        updateStatus(LevelActions::Lose);
 }
 
 void GameScreen::resetTimer()
@@ -181,9 +185,4 @@ LevelActions GameScreen::getPageStatus() const
     return m_pageStatus;
 }
 
-void GameScreen::playAudio(Audio& a)
-{
-    if (Resources::instance().isAudioOn())
-        a.playMusic();
-}
 
