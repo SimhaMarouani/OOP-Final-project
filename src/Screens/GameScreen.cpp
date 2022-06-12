@@ -138,11 +138,14 @@ void GameScreen::update(float deltaTime)
         m_dataDisplay.pauseTimer();
 
         int time = m_dataDisplay.getTime();
-        if(time < HighScore::instance().getLevelScore(m_levelNum))
+        if(HighScore::instance().getLevelScore(m_levelNum) == -1 || time < HighScore::instance().getLevelScore(m_levelNum))
             HighScore::instance().addScore(m_levelNum, time);
     }
     else if (m_world.playerLost())
+    {
         updateStatus(LevelActions::Lose);
+        m_dataDisplay.pauseTimer();
+    }
 }
 
 void GameScreen::resetTimer()

@@ -85,6 +85,11 @@ Direction Players::getDir(sf::Vector2f dir)
 	return Direction::None;
 }
 
+void Players::setFaceRight(bool f)
+{
+	m_isFaceRight = f;
+}
+
 void Players::updateAnimation(float deltaTime)
 {
 	//first = row, second = num of images
