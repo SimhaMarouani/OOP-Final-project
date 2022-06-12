@@ -77,20 +77,20 @@ void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)
 	{
 		if (m_levels[i].isContain(event) && i <= m_numOfLevelsCompleted)
 		{
-			playAudio(m_btnsAudio);
+			m_btnsAudio.playMusic();
 			controller.startGame(Screen::Game, i+1);
 		}
 	}
 
 	if (m_homeButton.isContain(event))
 	{
-		playAudio(m_btnsAudio);
+		m_btnsAudio.playMusic();
 		controller.updatePage(Screen::HomePage);
 	}
 
 	if (m_highScoreButton.isContain(event))
 	{
-		playAudio(m_btnsAudio);
+		m_btnsAudio.playMusic();
 		m_isScoreOpen = true;
 	}
 }
@@ -108,12 +108,6 @@ void LevelMenuScreen::updateNumOfLevels()
 		m_highScoreView.setLevelScore(i);
 	}
 	m_numOfLevelsCompleted = curr;
-}
-
-void LevelMenuScreen::playAudio(Audio& a)
-{
-	if (Resources::instance().isAudioOn())
-		a.playMusic();
 }
 
 void LevelMenuScreen::initBtns()
