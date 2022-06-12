@@ -14,9 +14,10 @@ Players::Players(Player type, sf::Vector2u imageCount, b2World* world)
 	m_icon.setPosition(sf::Vector2f(0, 600)); //Tali: change to DEFAULT
 
 	//create body in world
-	createBody(world, b2_dynamicBody, sf::Vector2i{ m_animation.m_uvRect.width  , m_animation.m_uvRect.height});
+	createBody(world, b2_dynamicBody, sf::Vector2i{ m_animation.m_uvRect.width  , m_animation.m_uvRect.height}); //rectangle
 
 	//IF YOU WANT SHAPE TO BE CIRC
+	//-------------------------- circle ------------------------
 	//b2BodyDef bodyDef;
 	//bodyDef.type = b2_dynamicBody;
 	//bodyDef.position.Set(getPosition().x, getPosition().y);
@@ -34,6 +35,7 @@ Players::Players(Player type, sf::Vector2u imageCount, b2World* world)
 	//fixtureDef.friction = 0.4f;
 	//m_body->CreateFixture(&fixtureDef);
 	//m_body->SetUserData(this);
+	//----------------------------------------------------------
 
 	//create foot sensor
 	createSensor(world, m_animation.m_uvRect.width / 4 * 0.5, 10, b2Vec2(0, m_animation.m_uvRect.height / 4 + 1), 1);
