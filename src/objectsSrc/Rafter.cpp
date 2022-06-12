@@ -5,7 +5,8 @@ Rafter::Rafter(sf::Vector2f pos, b2World* world, sf::Vector2f scale)
 {
 	b2MassData mass;
 	mass.center = m_body->GetLocalCenter();
-	mass.mass = 15;
+	mass.mass = 20;
 	//mass.I = m_icon.getOrigin().x;
+	//mass.I = 400;
 	m_body->SetMassData(&mass);
 }
