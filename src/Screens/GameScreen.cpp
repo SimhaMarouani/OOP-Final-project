@@ -44,12 +44,12 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
     {
     case sf::Event::KeyReleased:
     {
-        if (event.key.code == sf::Keyboard::P && m_pageStatus != LevelActions::Pause)
+        if (event.key.code == sf::Keyboard::P && m_pageStatus == LevelActions::None)
         {
             m_activePlayer = Player((int(m_activePlayer) + 1) % 3);
             m_dataDisplay.setCurrPlayer(int(m_activePlayer));
         }
-        else if (event.key.code == sf::Keyboard::Escape)
+        else if (event.key.code == sf::Keyboard::Escape && m_pageStatus == LevelActions::None)
         {
             m_pageStatus = LevelActions::None;
             controller.updatePage(Screen::HomePage);
@@ -59,13 +59,14 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
     case sf::Event::MouseButtonReleased:
         if (getPageStatus() == LevelActions::Win || getPageStatus() == LevelActions::Lose)
         {
-            updateStatus(LevelActions::None);   //simha: not sure
             //m_win = false;
             //m_lose = false;
 
             if (m_endLevelView->isContainRetry(event))
             {
                 retryLevel();
+                updateStatus(LevelActions::None);  
+
             }
             else if (m_endLevelView->isContainNext(event))
             {
@@ -74,14 +75,19 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
                 m_dataDisplay.resetTimer();
                 m_activePlayer = Player::Heavy;
                 m_dataDisplay.setCurrPlayer((int)m_activePlayer);
+                updateStatus(LevelActions::None);   
+
             }
             else if (m_endLevelView->isContainMenu(event))
+            {
                 controller.updatePage(Screen::HomePage);
+                updateStatus(LevelActions::None);   
+            }
         }
 
-        if(m_pageStatus != LevelActions::Pause)
+        else if(m_pageStatus == LevelActions::None)
             m_dataDisplay.handleClick(event, *this);
-        else
+        else if( m_pageStatus == LevelActions::Pause)
         {
             m_settingsView->handleClick(event, Screen::Game);
 
@@ -117,12 +123,12 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
 
 void GameScreen::update(float deltaTime)
 {
-    if (m_pageStatus != LevelActions::Pause)
+    if (m_pageStatus != LevelActions::Pause && m_pageStatus != LevelActions::Win && m_pageStatus != LevelActions::Lose)
     {
         m_world.moveActive(deltaTime, m_activePlayer);
         m_world.moveArrow(m_activePlayer);
     }
-    else
+    else if(m_pageStatus == LevelActions::Pause)
         m_settingsView->update(Screen::Game);
 
     if (m_world.allPlayersReachedEnd())
@@ -131,8 +137,8 @@ void GameScreen::update(float deltaTime)
         m_dataDisplay.pauseTimer();
 
         int time = m_dataDisplay.getTime();
-        if(time < m_highScore.getLevelScore(m_levelNum))
-            m_highScore.addScore(m_levelNum, time);
+        if(time < HighScore::instance().getLevelScore(m_levelNum))
+            HighScore::instance().addScore(m_levelNum, time);
     }
     else if (m_world.playerLost())
         updateStatus(LevelActions::Lose);

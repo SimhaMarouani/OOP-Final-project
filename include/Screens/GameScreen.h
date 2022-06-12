@@ -44,5 +44,5 @@ private:
     
 	Audio m_btnsClick;
 
-    HighScore m_highScore;
+    //HighScore m_highScore;
 };

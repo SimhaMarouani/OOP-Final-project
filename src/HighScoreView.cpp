@@ -57,3 +57,27 @@ void HighScoreView::setLevelScore(int level)
 
 	m_levelsScoreText[level -1].setString("Level " + std::to_string(level) + "\t\t" + scoreStr);
 }
+
+void HighScoreView::updateData()
+{
+	for (int i = 0; i < m_levelsScoreText.size(); i++)
+	{
+		m_levelsScoreText[i].setFont(*Resources::instance().getFont());
+		m_levelsScoreText[i].setColor(sf::Color::Black);
+
+		m_levelsScoreText[i].setCharacterSize(CHAR_SIZE);
+		std::string scoreStr;
+		int sec = HighScore::instance().getLevelScore(i + 1);
+		if (sec == -1)
+			scoreStr = "-";
+		else
+		{
+			int min = 0;
+			calcTime(sec, min);
+			scoreStr = std::to_string(min) + ":" + std::to_string(sec);
+		}
+		m_levelsScoreText[i].setString("Level " + std::to_string(i + 1) + "\t\t" + scoreStr);
+
+		m_levelsScoreText[i].setPosition(m_background.getPosition().x + 200, m_background.getPosition().y + 100 + (CHAR_SIZE + 20) * i);
+	}
+}
