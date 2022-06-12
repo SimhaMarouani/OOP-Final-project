@@ -29,7 +29,7 @@ public:
 	void changeMusic(Screen s);
 	void updateNumOfLevels();
 private:
-	void processEvents();
+	void processEvents(/*sf::View &v*/);
 	void update();
 	void render();
 	void drawCurrPage();

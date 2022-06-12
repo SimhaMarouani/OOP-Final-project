@@ -18,9 +18,14 @@ void Controller::run()
 	srand(time(NULL));
 	Resources::instance().playMusic(m_currPage);
 	//fullscreen = 0;
+	/*sf::View view;
+	view = m_window.getView();
+	view.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+	view.setCenter(640 / 2, 480 / 2);
+	m_window.setView(view);*/
 	while (m_window.isOpen())
 	{
-		processEvents(); //events
+		processEvents(/*view*/); //events
 		update(); //updates of data CLOCK AND DELTA TIME HERE
 		render(); //draw
 	}
@@ -50,16 +55,27 @@ void Controller::changeMusic(Screen s)
 		Resources::instance().playMusic(s);
 }
 
-void Controller::processEvents()
+void Controller::processEvents(/*sf::View &view*/)
 {
 	if (auto event = sf::Event{}; m_window.pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
 			m_window.close();
 
+		//if (event.type == sf::Event::Resized)
+		//{
+		//	//glViewport(0, 0, 640, 480);
+		//	view = m_window.getView();
+		//	m_window.create(sf::VideoMode(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height, sf::VideoMode::getDesktopMode().bitsPerPixel), "SFML Graphics", sf::Style::Fullscreen);
+		//	view.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		//	view.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+		//	m_window.setView(view);
+		//}
+
 		/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::F))
 		{
 			if (fullscreen) m_window.create(sf::VideoMode::getFullscreenModes()[0], GAME_TITLE);
+			//if (fullscreen) m_window.create(sf::VideoMode(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height, sf::VideoMode::getDesktopMode().BitsPerPixel), "SFML Graphics", sf::Style::Fullscreen);
 			if (!fullscreen) m_window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_WIDTH), GAME_TITLE);
 			fullscreen = !fullscreen;
 		}*/
