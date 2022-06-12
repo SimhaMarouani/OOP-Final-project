@@ -1,5 +1,7 @@
 #include "Controller.h"
 
+//bool fullscreen;
+
 
 Controller::Controller() 
 	: m_window(), m_homePageScreen(), m_currPage(Screen::HomePage)
@@ -15,7 +17,7 @@ void Controller::run()
 {
 	srand(time(NULL));
 	Resources::instance().playMusic(m_currPage);
-
+	//fullscreen = 0;
 	while (m_window.isOpen())
 	{
 		processEvents(); //events
@@ -54,6 +56,13 @@ void Controller::processEvents()
 	{
 		if (event.type == sf::Event::Closed)
 			m_window.close();
+
+		/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::F))
+		{
+			if (fullscreen) m_window.create(sf::VideoMode::getFullscreenModes()[0], GAME_TITLE);
+			if (!fullscreen) m_window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_WIDTH), GAME_TITLE);
+			fullscreen = !fullscreen;
+		}*/
 
 		switch (m_currPage)
 		{

@@ -28,7 +28,6 @@ public:
 	void exit();
 	void changeMusic(Screen s);
 	void updateNumOfLevels();
-
 private:
 	void processEvents();
 	void update();

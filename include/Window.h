@@ -19,6 +19,7 @@ public:
     void close();
     void clear(sf::Color color = sf::Color::Color::White);
     void display();
+    void create(sf::VideoMode mode, const sf::String& title, sf::Uint32 style = sf::Style::Default, const sf::ContextSettings& settings = sf::ContextSettings());
 
     template <class T>
     void drawScreen(T& t) { t.draw(m_window); }
