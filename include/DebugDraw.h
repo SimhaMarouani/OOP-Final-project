@@ -60,7 +60,18 @@ public:
 	};
 
 	void DrawCircle(const b2Vec2& center, float radius, const b2Color& color) {};
-	void DrawSolidCircle(const b2Vec2& center, float radius, const b2Vec2& axis, const b2Color& color) {};
+	void DrawSolidCircle(const b2Vec2& center, float radius, const b2Vec2& axis, const b2Color& color) 
+	{
+		sf::CircleShape c(radius);
+
+		c.setOrigin(c.getRadius(), c.getRadius());
+		c.setPosition(center.x, center.y);
+
+		c.setFillColor(sf::Color{ 111,12,184, 127 });
+		c.setOutlineThickness(0.5f);
+		c.setOutlineColor(sf::Color{ 111, 12, 184 });
+		this->window->draw(c);
+	};
 	void DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color) {};
 	void DrawTransform(const b2Transform& xf) {};
 	void DrawPoint(const b2Vec2& p, float size, const b2Color& color) {};
