@@ -89,6 +89,7 @@ Resources::Resources()
     loadNextLevelBtn();
     loadRetryBtn();
     loadMenuBtn();
+	loadGameIcon();
 
 	loadAudioClick();
 }
@@ -199,6 +200,11 @@ sf::Texture* Resources::getRetryBtn()
 sf::Texture* Resources::getMenuBtn()
 {
     return &m_menuBtn;
+}
+
+sf::Image* Resources::getGameIcon()
+{
+	return &m_gameIcon;
 }
 
 sf::Texture* Resources::getPlayerSpriteSheet(Player p)
@@ -404,6 +410,14 @@ void Resources::loadPlayerSpriteSheet()
 		!m_playerSpriteSheet[(int)Player::Light].loadFromFile("light_spritesheet.png"))
 	{
 		std::cerr << "error loading player spritesheet from file";
+	}
+}
+
+void Resources::loadGameIcon()
+{
+	if (!m_gameIcon.loadFromFile("Game_icon.jpg"))
+	{
+		std::cerr << "error loading game icon from file";
 	}
 }
 

@@ -38,6 +38,7 @@ public:
     sf::Texture* getNextLevelBtn();
     sf::Texture* getRetryBtn();
     sf::Texture* getMenuBtn();
+	sf::Image* getGameIcon();
 
 	sf::SoundBuffer* getAudioClick();
 
@@ -80,6 +81,9 @@ private:
 	void loadSettingsBackground();
 
 	void loadPlayerSpriteSheet();
+
+	void loadGameIcon();
+
 	//Audio 
 	void loadMusic();
 	void loadAudioClick();
@@ -111,6 +115,8 @@ private:
 	std::vector<sf::Texture> m_playerSpriteSheet;
 
 	std::vector<sf::Texture> m_soundTextures;
+
+	sf::Image m_gameIcon;
 
 	////Audio
 	sf::SoundBuffer m_audioClick;

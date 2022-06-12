@@ -5,6 +5,8 @@ Window::Window()
     : m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), GAME_TITLE, sf::Style::Close | sf::Style::Titlebar)
 {
 	m_window.setFramerateLimit(70);
+	sf::Image image = (*Resources::instance().getGameIcon());
+	m_window.setIcon(image.getSize().x, image.getSize().y, image.getPixelsPtr());
 }
 
 void Window::update()
