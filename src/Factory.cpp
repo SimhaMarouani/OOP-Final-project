@@ -15,6 +15,7 @@ std::unique_ptr<StaticObjects> ObjectFactory::create(const std::string& name, sf
 		registerit("Rafter",		[](sf::Vector2f pos, b2World* world, sf::Vector2f scale) -> std::unique_ptr<StaticObjects> { return std::make_unique<Rafter>(pos, world, scale); });
 		registerit("Switch",		[](sf::Vector2f pos, b2World* world, sf::Vector2f scale) -> std::unique_ptr<StaticObjects> { return std::make_unique<Switch>(pos, world, scale); });
 		registerit("Billboard",		[](sf::Vector2f pos, b2World* world, sf::Vector2f scale) -> std::unique_ptr<StaticObjects> { return std::make_unique<Billboard>(pos, world, scale); });
+		registerit("Door",		[](sf::Vector2f pos, b2World* world, sf::Vector2f scale) -> std::unique_ptr<StaticObjects> { return std::make_unique<Door>(pos, Grounds::Door, world, scale); });
 		registerit("l_floor",		[](sf::Vector2f pos, b2World* world, sf::Vector2f scale) -> std::unique_ptr<StaticObjects> { return std::make_unique<Floor>(pos, Grounds::Left_l1, world, scale); });
 		registerit("r_floor",		[](sf::Vector2f pos, b2World* world, sf::Vector2f scale) -> std::unique_ptr<StaticObjects> { return std::make_unique<Floor>(pos, Grounds::Right_l1, world, scale); });
 		registerit("floor",			[](sf::Vector2f pos, b2World* world, sf::Vector2f scale) -> std::unique_ptr<StaticObjects> { return std::make_unique<Floor>(pos, Grounds::l2, world, scale); });
