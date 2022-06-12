@@ -15,7 +15,7 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE
                                               "Screens/GameScreen.h"
                                               "Screens/LevelMenuScreen.h"
                                               "EndLevelScreen.h"
-
+                                              "Utilities.h"
                                               "Resources.h"
                                               "Timer.h"
                                               "HighScore.h"

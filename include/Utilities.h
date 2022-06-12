@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+void calcTime(int&, int&);
 
 enum class Screen
 {

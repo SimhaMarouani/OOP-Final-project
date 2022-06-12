@@ -76,17 +76,6 @@ void DataDisplay::startTimer()
 	m_timer.start();
 }
 
-void DataDisplay::calcTime(int& sec, int& min) const
-{
-	sec = int(m_timer.getTime());
-
-	if (sec >= 60)
-	{
-		min = sec / 60;
-		sec = sec % 60;
-	}
-}
-
 void DataDisplay::drawBtns(sf::RenderWindow &window)
 {
 	for (auto& player : m_players)
@@ -101,7 +90,7 @@ void DataDisplay::drawBtns(sf::RenderWindow &window)
 
 void DataDisplay::setTimeText()
 {
-	int sec = 0, min = 0;
+	int sec = int(m_timer.getTime()), min = 0;
 	calcTime(sec, min);
 
 	std::string time = (min < 10 ? "0" : "") + std::to_string(min) + ":" + (sec < 10 ? "0" : "") + std::to_string(sec);

@@ -57,12 +57,3 @@ void HighScoreView::setLevelScore(int level)
 
 	m_levelsScoreText[level -1].setString("Level " + std::to_string(level) + "\t\t" + scoreStr);
 }
-
-void HighScoreView::calcTime(int& sec, int& min) const
-{
-	if (sec >= 60)
-	{
-		min = sec / 60;
-		sec = sec % 60;
-	}
-}
