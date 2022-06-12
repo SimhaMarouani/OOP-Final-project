@@ -40,7 +40,7 @@ void EndLevelScreen::draw(sf::RenderWindow &window, bool status, int levelNum, i
         window.draw(m_winText);
         window.draw(m_timeText);
 
-        if(/*HighScore::instance().getLevelScore(levelNum) == -1 || */time < HighScore::instance().getLevelScore(levelNum))
+        if(/*HighScore::instance().getLevelScore(levelNum) == -1 || */time <= HighScore::instance().getLevelScore(levelNum))
         {
             m_newScoreText.setString("You set a new score: " + setTimeText(time));
             window.draw(m_newScoreText);
@@ -81,7 +81,7 @@ void EndLevelScreen::createText()
 
     m_timeText.setFont(*Resources::instance().getFont());
     m_timeText.setCharacterSize(CHAR_SIZE);
-    m_timeText.setPosition(635, 375);
+    m_timeText.setPosition(695, 375);
     m_timeText.setColor(sf::Color::Black);
 
     m_newScoreText.setFont(*Resources::instance().getFont());
