@@ -41,7 +41,8 @@ enum class Objects
 	Hay,
 	Rafter,
 	Switch,
-	Billboard
+	Billboard,
+	SwitchOn
 };
 
 enum class Grounds

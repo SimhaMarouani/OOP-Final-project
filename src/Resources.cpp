@@ -347,7 +347,8 @@ void Resources::loadObjects()
 	if (!m_objects[(int)Objects::Hay].loadFromFile("hay.png") 
 		|| !m_objects[(int)Objects::Rafter].loadFromFile("rafter.png")
 		|| !m_objects[(int)Objects::Switch].loadFromFile("switch.png")
-		|| !m_objects[(int)Objects::Billboard].loadFromFile("billboard.png"))
+		|| !m_objects[(int)Objects::Billboard].loadFromFile("billboard.png")
+		|| !m_objects[(int)Objects::SwitchOn].loadFromFile("switchOn.png"))
 	{
 		std::cerr << "error loading object textures from file";
 	}
