@@ -129,6 +129,9 @@ void GameScreen::update(float deltaTime)
         m_win = true;
         m_dataDisplay.pauseTimer();
 
+        int time = m_dataDisplay.getTime();
+        if(time < m_highScore.getLevelScore(m_levelNum))
+            m_highScore.addScore(m_levelNum, time);
     }
     else if (m_world.playerLost())
         m_lose = true;

@@ -41,12 +41,12 @@ void EndLevelScreen::draw(sf::RenderWindow &window, bool status, int levelNum, i
         window.draw(m_timeText);
 
         if (time < m_highScore.getLevelScore(levelNum)) {
-            m_newScoreText.setString("You set a new score: " + std::to_string(time));
+            m_newScoreText.setString("You set a new score: " + setTimeText(time));
             window.draw(m_newScoreText);
         }
         else
         {
-            m_timeText.setString("Time: " + std::to_string(time));
+            m_timeText.setString("Time: " + setTimeText(time));
             window.draw(m_timeText);
         }
 
@@ -74,24 +74,33 @@ void EndLevelScreen::createText()
 {
     m_winText.setFont(*Resources::instance().getFont());
     m_winText.setCharacterSize(CHAR_SIZE);
-    m_winText.setPosition(590, 300);
+    m_winText.setPosition(590, 295);
     m_winText.setColor(sf::Color::Black);
     m_winText.setString("Great! you won this level");
 
     m_timeText.setFont(*Resources::instance().getFont());
     m_timeText.setCharacterSize(CHAR_SIZE);
-    m_timeText.setPosition(660, 370);
+    m_timeText.setPosition(650, 365);
     m_timeText.setColor(sf::Color::Black);
 
     m_newScoreText.setFont(*Resources::instance().getFont());
     m_newScoreText.setCharacterSize(CHAR_SIZE);
-    m_newScoreText.setPosition(590, 370);
+    m_newScoreText.setPosition(580, 365);
     m_newScoreText.setColor(sf::Color::Black);
 
     m_loseText.setFont(*Resources::instance().getFont());
     m_loseText.setCharacterSize(CHAR_SIZE);
-    m_loseText.setPosition(640, 300);
+    m_loseText.setPosition(645, 295);
     m_loseText.setColor(sf::Color::Black);
     m_loseText.setString("You lost this level\n    Try again!");
+}
 
+std::string EndLevelScreen::setTimeText(int time)
+{
+    int sec = time, min = 0;
+    calcTime(sec, min);
+
+    std::string timeStr = (min < 10 ? "0" : "") + std::to_string(min) + ":" + (sec < 10 ? "0" : "") + std::to_string(sec);
+
+    return timeStr;
 }
