@@ -12,5 +12,5 @@ public:
 	void setPressed(bool pressed);
 private:
 	Door* m_door = nullptr;
-	//bool m_pressed;
+	bool m_pressed;
 };

@@ -16,6 +16,7 @@ Players::Players(Player type, sf::Vector2u imageCount, b2World* world)
 	//create body in world
 	createBody(world, b2_dynamicBody, sf::Vector2i{ m_animation.m_uvRect.width  , m_animation.m_uvRect.height});
 
+	//IF YOU WANT SHAPE TO BE CIRC
 	//b2BodyDef bodyDef;
 	//bodyDef.type = b2_dynamicBody;
 	//bodyDef.position.Set(getPosition().x, getPosition().y);
