@@ -37,4 +37,6 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE
                                               "MyContactListener.h"
                                               "CollisionHandler.h"
 
+                                              "objectsInclude/Billboard.h"
+                                              "objectsInclude/Door.h"
                                               )

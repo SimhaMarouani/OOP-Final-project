@@ -14,6 +14,9 @@ configure_file ("images/left_floor_L1.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/right_floor_L1.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/left_floor_L3.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/right_floor_L3.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/door.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/floor_L3.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/floor_L4.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 # bg
 configure_file ("images/home_background.png" ${CMAKE_BINARY_DIR} COPYONLY)
@@ -27,6 +30,8 @@ configure_file ("arrow.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/destination.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/hay.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/rafter.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/switch.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/billboard.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/heavy_player_face.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/simple_player_face.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/light_player_face.png" ${CMAKE_BINARY_DIR} COPYONLY)
@@ -66,6 +71,7 @@ configure_file ("spritesheets/light_spritesheet.png" ${CMAKE_BINARY_DIR} COPYONL
 # files
 configure_file ("files/Level1.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("files/Level2.txt" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("files/Level3.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 
 configure_file ("files/high_score.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 

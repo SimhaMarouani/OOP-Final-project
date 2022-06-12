@@ -38,7 +38,9 @@ enum class Direction
 enum class Objects
 {
 	Hay,
-	Rafter
+	Rafter,
+	Switch,
+	Billboard
 };
 
 enum class Grounds
@@ -48,6 +50,9 @@ enum class Grounds
 	l2,
 	Left_l3,
 	Right_l3,
+	l3,
+	l4,
+	Door
 };
 
 enum class LevelState

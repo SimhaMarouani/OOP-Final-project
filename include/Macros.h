@@ -40,11 +40,8 @@ const float BASE_SPEED = 130.0;
 const std::string PLAYERS[NUM_OF_PLAYERS] = { "Heavy", "Simple", "Light" };
 
 //objects
-const int NUM_OF_OBJS = 2;
-const int NUM_OF_GROUNDS = 5;
-
-//static int numFootContacts; //Tali:To change
-//static bool TOUCHING_GROUND;
+const int NUM_OF_OBJS = 4;
+const int NUM_OF_GROUNDS = 8;
 
 
 // animation data:
