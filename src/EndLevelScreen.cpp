@@ -21,9 +21,9 @@ void EndLevelScreen::createBtns()
     m_menuBtn.setSize(sf::Vector2f(150,70));
     m_nextLevelBtn.setSize(sf::Vector2f(150,70));
 
-    m_retryBtn.setPosition(sf::Vector2f(570, (WINDOW_HEIGHT - END_HEIGHT*1.5)));
-    m_menuBtn.setPosition(sf::Vector2f(720, (WINDOW_HEIGHT - END_HEIGHT*1.5) ));
-    m_nextLevelBtn.setPosition(sf::Vector2f(870,(WINDOW_HEIGHT - END_HEIGHT*1.5) ));
+    m_retryBtn.setPosition(sf::Vector2f(570, (WINDOW_HEIGHT - END_HEIGHT)));
+    m_menuBtn.setPosition(sf::Vector2f(720, (WINDOW_HEIGHT - END_HEIGHT) ));
+    m_nextLevelBtn.setPosition(sf::Vector2f(870,(WINDOW_HEIGHT - END_HEIGHT) ));
 }
 
 void EndLevelScreen::draw(sf::RenderWindow &window, bool status, int levelNum, int time)
@@ -40,7 +40,8 @@ void EndLevelScreen::draw(sf::RenderWindow &window, bool status, int levelNum, i
         window.draw(m_winText);
         window.draw(m_timeText);
 
-        if (time < m_highScore.getLevelScore(levelNum)) {
+        if(/*HighScore::instance().getLevelScore(levelNum) == -1 || */time <= HighScore::instance().getLevelScore(levelNum))
+        {
             m_newScoreText.setString("You set a new score: " + setTimeText(time));
             window.draw(m_newScoreText);
         }
@@ -80,12 +81,12 @@ void EndLevelScreen::createText()
 
     m_timeText.setFont(*Resources::instance().getFont());
     m_timeText.setCharacterSize(CHAR_SIZE);
-    m_timeText.setPosition(650, 365);
+    m_timeText.setPosition(695, 375);
     m_timeText.setColor(sf::Color::Black);
 
     m_newScoreText.setFont(*Resources::instance().getFont());
-    m_newScoreText.setCharacterSize(CHAR_SIZE);
-    m_newScoreText.setPosition(580, 365);
+    m_newScoreText.setCharacterSize(CHAR_SIZE - 5);
+    m_newScoreText.setPosition(595, 375);
     m_newScoreText.setColor(sf::Color::Black);
 
     m_loseText.setFont(*Resources::instance().getFont());
