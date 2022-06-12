@@ -27,15 +27,14 @@ void Switch::setPressed(bool pressed)
 	m_pressed = pressed;
 	if (m_pressed)
 	{
-		std::cout << "pressed down\n";
 		//change photo
+		m_icon.setTexture(*Resources::instance().getObjectTexture(Objects::SwitchOn));
 	}
 	else
 	{
-		std::cout << "switch opened\n";
-
 		//change photo
+		m_icon.setTexture(*Resources::instance().getObjectTexture(Objects::Switch));
 	}
-	//clicking sound
+	//ToDo: possible clicking sound
 	m_door->setOpen(pressed);
 }
