@@ -38,7 +38,7 @@ void GameObjects::createBody(b2World* world, b2BodyType bodyType, sf::Vector2i r
     bodyDef.type = bodyType;
     bodyDef.position.Set(getPosition().x, getPosition().y);
     //bodyDef.linearDamping = 0.0f;
-    bodyDef.angularDamping = 0.01f;
+    //bodyDef.angularDamping = 0.01f;
 
     m_body = world->CreateBody(&bodyDef);
 
@@ -59,6 +59,22 @@ void GameObjects::createBody(b2World* world, b2BodyType bodyType, sf::Vector2i r
     m_body->CreateFixture(&fixtureDef);
     m_body->SetUserData(this);
 }
+
+
+void GameObjects::createSensor(b2World* world, float width, float height, b2Vec2 center, int data)
+{
+    b2PolygonShape shape;
+    shape.SetAsBox(width, height, center, 0);
+
+    b2FixtureDef fixture;
+    fixture.shape = &shape;
+    fixture.density = 1.0f;
+    fixture.friction = 0.1f;
+    fixture.isSensor = true;
+    m_sensor = m_body->CreateFixture(&fixture);
+    m_sensor->SetUserData((void*)data);
+}
+
 
 float GameObjects::getWidth()const
 {

@@ -16,6 +16,9 @@
 #include "objectsInclude/StaticObjects.h"
 #include "objectsInclude/Box.h"
 #include "objectsInclude/Rafter.h"
+#include "objectsInclude/Switch.h"
+#include "objectsInclude/Billboard.h"
+#include "objectsInclude/Door.h"
 #include "objectsInclude/Floor.h"
 
 class ObjectFactory 

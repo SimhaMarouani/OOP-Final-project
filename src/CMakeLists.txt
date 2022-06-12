@@ -37,4 +37,7 @@
                                               "MyContactListener.cpp"
                                               "CollisionHandler.cpp"
 
+                                              "objectsSrc/Billboard.cpp"
+                                              "objectsSrc/Door.cpp"
+
                                               )

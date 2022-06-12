@@ -15,19 +15,9 @@ Players::Players(Player type, sf::Vector2u imageCount, b2World* world)
 
 	//create body in world
 	createBody(world, b2_dynamicBody, sf::Vector2i{ m_animation.m_uvRect.width  , m_animation.m_uvRect.height});
-	m_body->SetFixedRotation(true);
-	
 	//create foot sensor
-	b2PolygonShape shape;
-	shape.SetAsBox(m_animation.m_uvRect.width /4 *0.9, 10, b2Vec2(0, m_animation.m_uvRect.height/4 + 1), 0);
-
-	b2FixtureDef fixture;
-	fixture.shape = &shape;
-	fixture.density = 1.0f;
-	fixture.friction = 0.1f;
-	fixture.isSensor = true;
-	footSensor = m_body->CreateFixture(&fixture);
-	footSensor->SetUserData((void*)1);
+	createSensor(world, m_animation.m_uvRect.width / 4 * 0.9, 10, b2Vec2(0, m_animation.m_uvRect.height / 4 + 1), 1);
+	m_body->SetFixedRotation(true);
 }
 namespace 
 {

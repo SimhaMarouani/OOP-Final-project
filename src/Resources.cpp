@@ -344,8 +344,10 @@ void Resources::loadObjects()
 {
 	m_objects.resize(NUM_OF_OBJS);
 
-	if (!m_objects[(int)Objects::Hay].loadFromFile("hay.png") ||
-		!m_objects[(int)Objects::Rafter].loadFromFile("rafter.png"))
+	if (!m_objects[(int)Objects::Hay].loadFromFile("hay.png") 
+		|| !m_objects[(int)Objects::Rafter].loadFromFile("rafter.png")
+		|| !m_objects[(int)Objects::Switch].loadFromFile("switch.png")
+		|| !m_objects[(int)Objects::Billboard].loadFromFile("billboard.png"))
 	{
 		std::cerr << "error loading object textures from file";
 	}
@@ -359,7 +361,10 @@ void Resources::loadGrounds()
 		!m_grounds[(int)Grounds::Right_l1].loadFromFile("right_floor_L1.png") ||
 		!m_grounds[(int)Grounds::l2].loadFromFile("floor_L2.png") ||
 		!m_grounds[(int)Grounds::Left_l3].loadFromFile("left_floor_L3.png") ||
-		!m_grounds[(int)Grounds::Right_l3].loadFromFile("right_floor_L3.png"))
+		!m_grounds[(int)Grounds::Right_l3].loadFromFile("right_floor_L3.png")
+		|| !m_grounds[(int)Grounds::Door].loadFromFile("door.png")
+		|| !m_grounds[(int)Grounds::l3].loadFromFile("floor_L3.png")
+		|| !m_grounds[(int)Grounds::l4].loadFromFile("floor_L4.png"))
 	{
 		std::cerr << "error loading ground textures from file";
 	}

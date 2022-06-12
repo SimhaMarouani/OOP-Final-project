@@ -1,7 +1,7 @@
-#include "objectsInclude/Switch.h"
+#include "objectsInclude/Billboard.h"
 
-Switch::Switch(sf::Vector2f pos, b2World* world, sf::Vector2f scale)
-	: StaticObjects(Objects::Switch, pos, scale)
+Billboard::Billboard(sf::Vector2f pos, b2World* world, sf::Vector2f scale)
+	: StaticObjects(Objects::Billboard, pos, scale)
 {
 	//BodyDef
 	b2BodyDef bodyDef;
