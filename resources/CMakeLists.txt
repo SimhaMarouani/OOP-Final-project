@@ -50,6 +50,7 @@ configure_file ("images/music_off.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/home_button.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/return_button.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/continue_button.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("images/high_scores_button.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 configure_file ("images/game_icon.jpg" ${CMAKE_BINARY_DIR} COPYONLY)
 

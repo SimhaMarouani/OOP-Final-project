@@ -56,7 +56,6 @@ void Resources::switchMusicStatus(Screen s)
 	default:
 		break;
 	}
-
 }
 
 void Resources::switchAudioStatus()
@@ -89,6 +88,7 @@ Resources::Resources()
     loadNextLevelBtn();
     loadRetryBtn();
     loadMenuBtn();
+	loadHighScoreBtn();
 	loadGameIcon();
 
 	loadAudioClick();
@@ -200,6 +200,11 @@ sf::Texture* Resources::getRetryBtn()
 sf::Texture* Resources::getMenuBtn()
 {
     return &m_menuBtn;
+}
+
+sf::Texture* Resources::getHighScoreBtn()
+{
+	return &m_highScoreBtn;
 }
 
 sf::Image* Resources::getGameIcon()
@@ -375,6 +380,12 @@ void Resources::loadGrounds()
 	{
 		std::cerr << "error loading ground textures from file";
 	}
+}
+
+void Resources::loadHighScoreBtn()
+{
+	if (!m_highScoreBtn.loadFromFile("high_scores_button.png"))
+		std::cerr << "error loading texture file";
 }
 
 void Resources::loadSoundTexture()

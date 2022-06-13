@@ -5,8 +5,7 @@ EndLevelScreen::EndLevelScreen()
 : m_background(sf::Vector2f(END_WIDTH, END_HEIGHT)),
   m_retryBtn(*Resources::instance().getRetryBtn()),
   m_menuBtn(*Resources::instance().getMenuBtn()),
-  m_nextLevelBtn(*Resources::instance().getNextLevelBtn()),
-  m_highScore()
+  m_nextLevelBtn(*Resources::instance().getNextLevelBtn())
 {
     m_background.setTexture(Resources::instance().getWinBackground());
     m_background.setPosition(sf::Vector2f((WINDOW_WIDTH - END_WIDTH) / 2, (WINDOW_HEIGHT - END_HEIGHT) / 3));

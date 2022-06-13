@@ -3,7 +3,7 @@
 
 Window::Window()
     : m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), GAME_TITLE, sf::Style::Close | sf::Style::Titlebar)
-	//: m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT, sf::VideoMode::getDesktopMode().bitsPerPixel), GAME_TITLE,sf::Style::Resize| sf::Style::Close | sf::Style::Titlebar)
+	//: m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT/*, sf::VideoMode::getDesktopMode().bitsPerPixel*/), GAME_TITLE,sf::Style::Resize| sf::Style::Close | sf::Style::Titlebar)
 {
 	m_window.setFramerateLimit(70);
 	auto desktop = sf::VideoMode::getDesktopMode();

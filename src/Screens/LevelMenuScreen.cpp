@@ -9,7 +9,7 @@ LevelMenuScreen::LevelMenuScreen()
       m_homeButton(*Resources::instance().getBackArrowTexture()),
 	  m_btnsAudio(Resources::instance().getAudioClick()),
 	  m_animation(Resources::instance().getPlayerSpriteSheet(Player::Light), sf::Vector2u(5, 8), 0.08f), //animation.
-	  m_highScoreButton(*Resources::instance().getSettingsHomeTexture()),
+	  m_highScoreButton(*Resources::instance().getHighScoreBtn()),
 	m_isScoreOpen(false)
 {
 	m_background.setTexture(Resources::instance().getBackground(Screen::LevelMenu));
@@ -73,26 +73,29 @@ void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)
 		return;
 	}
 
-	for (int i = 0; i < m_levels.size(); i++)
+	else if (!m_isScoreOpen)
 	{
-		if (m_levels[i].isContain(event) && i <= m_numOfLevelsCompleted)
+		for (int i = 0; i < m_levels.size(); i++)
+		{
+			if (m_levels[i].isContain(event) && i <= m_numOfLevelsCompleted)
+			{
+				m_btnsAudio.playMusic();
+				controller.startGame(Screen::Game, i+1);
+			}
+		}
+
+		if (m_homeButton.isContain(event))
 		{
 			m_btnsAudio.playMusic();
-			controller.startGame(Screen::Game, i+1);
+			controller.updatePage(Screen::HomePage);
 		}
-	}
 
-	if (m_homeButton.isContain(event))
-	{
-		m_btnsAudio.playMusic();
-		controller.updatePage(Screen::HomePage);
-	}
-
-	if (m_highScoreButton.isContain(event))
-	{
-		m_btnsAudio.playMusic();
-		m_highScoreView.updateData();
-		m_isScoreOpen = true;
+		if (m_highScoreButton.isContain(event))
+		{
+			m_btnsAudio.playMusic();
+			m_highScoreView.updateData();
+			m_isScoreOpen = true;
+		}
 	}
 }
 

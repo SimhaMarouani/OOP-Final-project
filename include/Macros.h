@@ -31,6 +31,8 @@ const float PLAYER_FACE_SIZE = 100.f;
 //Game title
 const std::string GAME_TITLE = "Home Sheep Home";
 
+const std::string HIGH_SCORE_FILE_NAME = "high_score.txt";
+
 const sf::Vector2f HOME_BTN_SIZE(350, 150);
 
 //players
