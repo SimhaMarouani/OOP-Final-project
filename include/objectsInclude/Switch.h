@@ -1,5 +1,5 @@
 #pragma once
-#include "StaticObjects.h"
+#include "objectsInclude/StaticObjects.h"
 #include "objectsInclude/Door.h"
 
 

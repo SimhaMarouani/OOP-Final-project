@@ -1,5 +1,5 @@
 #pragma once
-#include "StaticObjects.h"
+#include "objectsInclude/StaticObjects.h"
 
 
 class Billboard : public StaticObjects

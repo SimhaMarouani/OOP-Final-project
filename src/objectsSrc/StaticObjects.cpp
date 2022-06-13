@@ -50,10 +50,6 @@ void StaticObjects::update()
 	else if (m_body->GetAngularVelocity() > MAX_SPEED) {
 		m_body->SetAngularVelocity(MAX_SPEED);
 	}
-
-	m_icon.setRotation(m_body->GetAngle());
-	m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
-
 }
 
 
