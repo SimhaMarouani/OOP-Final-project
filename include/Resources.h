@@ -38,6 +38,7 @@ public:
     sf::Texture* getNextLevelBtn();
     sf::Texture* getRetryBtn();
     sf::Texture* getMenuBtn();
+	sf::Texture* getHighScoreBtn();
 	sf::Image* getGameIcon();
 
 	sf::SoundBuffer* getAudioClick();
@@ -76,7 +77,7 @@ private:
 	void loadHomePageBtnsTexture();
 	void loadLevelActionButtonTexture();
 	void loadGrounds();
-
+	void loadHighScoreBtn();
 	void loadSoundTexture();
 	void loadSettingsBackground();
 
@@ -103,7 +104,8 @@ private:
 	sf::Texture m_winBackground;
     sf::Texture m_nextLevelBtn;
     sf::Texture m_retryBtn;
-    sf::Texture m_menuBtn;
+	sf::Texture m_menuBtn;
+	sf::Texture m_highScoreBtn;
 	std::vector<sf::Texture> m_players;
 	std::vector<sf::Texture> m_playersFace;
 	std::vector<sf::Texture> m_objects;
