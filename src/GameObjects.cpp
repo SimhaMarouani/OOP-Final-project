@@ -11,8 +11,10 @@ GameObjects::~GameObjects()
 
 void GameObjects::draw(sf::RenderWindow& window)
 {
-    if (!m_body->IsFixedRotation())
-        m_icon.setRotation(m_body->GetAngle());
+    if (!m_body->IsFixedRotation()) {
+        auto angle = m_body->GetAngle() * 180 / b2_pi;
+        m_icon.setRotation(angle);
+    }
     m_icon.setPosition(convertB2VecToVec2f(m_body->GetPosition()));
     window.draw(m_icon);
 }
@@ -37,8 +39,8 @@ void GameObjects::createBody(b2World* world, b2BodyType bodyType, sf::Vector2i r
     b2BodyDef bodyDef;
     bodyDef.type = bodyType;
     bodyDef.position.Set(getPosition().x, getPosition().y);
-    //bodyDef.linearDamping = 0.0f;
-    //bodyDef.angularDamping = 0.01f;
+    bodyDef.linearDamping = 0.0f;
+    bodyDef.angularDamping = 0.1f;
 
     m_body = world->CreateBody(&bodyDef);
 
@@ -54,7 +56,7 @@ void GameObjects::createBody(b2World* world, b2BodyType bodyType, sf::Vector2i r
     if (bodyType == b2_dynamicBody)
     {
         fixtureDef.density = 1.0f;
-        fixtureDef.friction = 0.4f;
+        fixtureDef.friction = 1.0f;
     }
     m_body->CreateFixture(&fixtureDef);
     m_body->SetUserData(this);

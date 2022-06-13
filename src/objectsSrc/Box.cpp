@@ -8,4 +8,5 @@ Box::Box(sf::Vector2f pos, b2World* world, sf::Vector2f scale)
 	mass.mass = 40;
 	mass.I = m_icon.getOrigin().y;
 	m_body->SetMassData(&mass);
+	m_body->GetFixtureList()->SetRestitution(0);
 }
