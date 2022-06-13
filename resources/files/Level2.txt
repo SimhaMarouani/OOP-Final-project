@@ -4,6 +4,6 @@
 Heavy			100		550
 Simple			100		450
 Light			275		540
-Rafter			550		600		0.75		 0.75
-left_floor_L1   300     770        1             1
-right_floor_L1  1390    770        1.1             1.1
+Rafter			450		400		0.75		 0.75
+left_floor_L1   500     770        1.5             1
+right_floor_L1  1290    770        1.1             1.1
