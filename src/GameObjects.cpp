@@ -33,14 +33,14 @@ void GameObjects::setPosition(sf::Vector2f pos)
 }
 
 //
-void GameObjects::createBody(b2World* world, b2BodyType bodyType, sf::Vector2i rect)
+void GameObjects::createSquareBody(b2World* world, b2BodyType bodyType, sf::Vector2i rect)
 { 
     //BodyDef
     b2BodyDef bodyDef;
     bodyDef.type = bodyType;
     bodyDef.position.Set(getPosition().x, getPosition().y);
     bodyDef.linearDamping = 0.0f;
-    bodyDef.angularDamping = 0.1f;
+    bodyDef.angularDamping = 0.4f;
 
     m_body = world->CreateBody(&bodyDef);
 
@@ -48,7 +48,7 @@ void GameObjects::createBody(b2World* world, b2BodyType bodyType, sf::Vector2i r
     float width = rect.x == 0 ? getWidth() : float(rect.x)/2 ;
     float height = rect.y == 0 ? getHeight() : float(rect.y)/2 ;
 
-    boxShape.SetAsBox(width / 2 /* - b2_polygonRadius*/, height / 2 /* - b2_polygonRadius*/);
+    boxShape.SetAsBox(width / 2, height / 2);
 
     // FixtureDef
     b2FixtureDef fixtureDef;
@@ -56,11 +56,36 @@ void GameObjects::createBody(b2World* world, b2BodyType bodyType, sf::Vector2i r
     if (bodyType == b2_dynamicBody)
     {
         fixtureDef.density = 1.0f;
-        fixtureDef.friction = 1.0f;
+        fixtureDef.friction = 0.3f;
     }
     m_body->CreateFixture(&fixtureDef);
     m_body->SetUserData(this);
 }
+
+void GameObjects::createCircleBody(b2World* world, b2BodyType bodyType, float radius)
+{
+    //BodyDef
+    b2BodyDef bodyDef;
+    bodyDef.type = bodyType;
+    bodyDef.position.Set(getPosition().x, getPosition().y);
+    m_body = world->CreateBody(&bodyDef);
+
+    b2CircleShape circle;
+    circle.m_p.Set(0, 0);
+    circle.m_radius = radius;
+
+    // FixtureDef
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &circle;
+    if (bodyType == b2_dynamicBody)
+    {
+        fixtureDef.density = 1.0f;
+        fixtureDef.friction = 0.3f;
+    }
+    m_body->CreateFixture(&fixtureDef);
+    m_body->SetUserData(this);
+}
+
 
 
 void GameObjects::createSensor(b2World* world, float width, float height, b2Vec2 center, int data)

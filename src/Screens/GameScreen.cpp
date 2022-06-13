@@ -6,7 +6,8 @@ GameScreen::GameScreen()
     : m_activePlayer(Player::Heavy),
       m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
       m_btnsClick(Resources::instance().getAudioClick()),
-    m_pageStatus(LevelActions::None)
+    m_pageStatus(LevelActions::None),
+    m_levelNum(1)
 {
     m_background.setTexture(Resources::instance().getBackground(Screen::Game));
     //loadLevel(m_levelNum);
@@ -24,10 +25,6 @@ void GameScreen::draw(sf::RenderWindow& window)
     DebugDraw d(&window);
     uint32 flags = b2Draw::e_shapeBit;
     d.SetFlags(flags);
-    //uint32 flags1 = b2Draw::e_aabbBit;
-    //d.SetFlags(flags1);
-    //uint32 flags2 = b2Draw::e_centerOfMassBit;
-    //d.SetFlags(flags2);
     m_world.getWorld()->SetDebugDraw(&d);
     m_world.getWorld()->DebugDraw();
 
@@ -166,10 +163,6 @@ void GameScreen::loadLevel(int level)
     //m_world.loadLevel(level);
 }
 
-void GameScreen::setDirection(Direction dir)
-{
-    //m_world.setActiveDirection(dir, m_activePlayer);
-}
 
 void GameScreen::updateStatus(LevelActions la)
 {

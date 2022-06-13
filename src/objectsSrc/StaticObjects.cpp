@@ -14,16 +14,14 @@ StaticObjects::StaticObjects(Objects type, b2World* world, sf::Vector2f pos, sf:
 {
 	m_icon.setTexture(*Resources::instance().getObjectTexture(type));
 	initIcon(pos, scale);
-	createBody(world, b2_dynamicBody);
-	//m_body->SetAngularDamping(0.4f);
-
+	createSquareBody(world, b2_dynamicBody);
 }
 
 StaticObjects::StaticObjects(Grounds type, b2World* world, sf::Vector2f pos, sf::Vector2f scale)
 {
 	m_icon.setTexture(*Resources::instance().getGroundTexture(type));
 	initIcon(pos, scale);
-	createBody(world, b2_staticBody);
+	createSquareBody(world, b2_staticBody);
 }
 
 void StaticObjects::initIcon(sf::Vector2f pos, sf::Vector2f scale)

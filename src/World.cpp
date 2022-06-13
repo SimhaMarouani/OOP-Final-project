@@ -42,11 +42,6 @@ void World::draw(sf::RenderWindow& window)
 	window.draw(m_arrow);
 }
 
-void World::setActiveDirection(Direction dir, Player active)
-{
-	m_players[(int)active]->setDirection(dir);
-}
-
 void World::moveActive(float deltaTime, Player active)
 {
 	

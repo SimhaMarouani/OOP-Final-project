@@ -5,8 +5,6 @@
 #include "Utilities.h"
 #include "box2d/box2d.h"
 
-
-
 class GameObjects
 {
 public:
@@ -20,7 +18,8 @@ public:
     virtual void setPosition(sf::Vector2f pos);
     float getWidth()const;
     float getHeight()const;
-    void createBody(b2World* world, b2BodyType bodyType, sf::Vector2i rect = { 0, 0 });
+    void createSquareBody(b2World* world, b2BodyType bodyType, sf::Vector2i rect = { 0, 0 });
+    void createCircleBody(b2World* world, b2BodyType bodyType, float radius);
     void createSensor(b2World* world, float width, float height, b2Vec2 center, int data);
     b2Body* getBody();
 

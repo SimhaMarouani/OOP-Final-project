@@ -14,28 +14,7 @@ Players::Players(Player type, sf::Vector2u imageCount, b2World* world)
 	m_icon.setPosition(sf::Vector2f(0, 600)); //Tali: change to DEFAULT
 
 	//create body in world
-	createBody(world, b2_dynamicBody, sf::Vector2i{ m_animation.m_uvRect.width  , m_animation.m_uvRect.height}); //rectangle
-
-	//IF YOU WANT SHAPE TO BE CIRC
-	//-------------------------- circle ------------------------
-	//b2BodyDef bodyDef;
-	//bodyDef.type = b2_dynamicBody;
-	//bodyDef.position.Set(getPosition().x, getPosition().y);
-	//m_body = world->CreateBody(&bodyDef);
-
-	//b2CircleShape circle;
-	//circle.m_p.Set(0,0);
-	//circle.m_radius = m_animation.m_uvRect.height /4;
-
-	//// FixtureDef
-	//b2FixtureDef fixtureDef;
-	//fixtureDef.shape = &circle;
-
-	//fixtureDef.density = 1.0f;
-	//fixtureDef.friction = 0.4f;
-	//m_body->CreateFixture(&fixtureDef);
-	//m_body->SetUserData(this);
-	//----------------------------------------------------------
+	createCircleBody(world, b2_dynamicBody, m_animation.m_uvRect.height / 4);
 
 	//create foot sensor
 	createSensor(world, m_animation.m_uvRect.width / 4 * 0.5, 10, b2Vec2(0, m_animation.m_uvRect.height / 4 + 1), 1);
@@ -73,7 +52,7 @@ void Players::move(float deltaTime)
 	if ( dirFromKey().y < 0 && m_touchingFloor)
 		m_body->ApplyLinearImpulseToCenter(b2Vec2(0, this->getJumpImpulse()), true);
 
-	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * 300/*m_speedPerSecond*/, 0);
+	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * 500/*m_speedPerSecond*/, 0);
 	m_body->ApplyForceToCenter(step1, true);
 
 	//move to update func
@@ -121,12 +100,6 @@ void Players::updateAnimation(float deltaTime)
 }
 
 
-//Tali: to remove??
-void Players::setDirection(Direction dir)
-{
-	//m_direction = dir;
-}
-
 void Players::update(float deltaTime)
 {
 	float MAX_SPEED = 15.0f;
@@ -138,18 +111,3 @@ void Players::update(float deltaTime)
 	}
 	updateAnimation(deltaTime);
 }
-
-//b2Vec2 Players::getDirection(Direction dir)
-//{
-//    switch (dir)
-//    {
-//    case Direction::Left:
-//        return b2Vec2(-1, 0);
-//    case Direction::Right:
-//        return b2Vec2(1, 0);
-//    case Direction::Up:
-//        return b2Vec2(0, -5);
-//    default:
-//        return b2Vec2(0, 0);
-//    }
-//}

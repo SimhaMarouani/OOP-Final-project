@@ -28,7 +28,6 @@ public:
 	World();
 	~World();
 	void draw(sf::RenderWindow& window);
-	void setActiveDirection(Direction dir, Player active);
 	void moveActive(float deltaTime, Player active);
 	void moveArrow(Player active);
 

@@ -14,8 +14,6 @@
 #include <vector>
 #include <typeinfo>
 
-//class GameScreen;
-
 class Controller
 {
 public:
@@ -33,8 +31,6 @@ private:
 	void update();
 	void render();
 	void drawCurrPage();
-
-	void handleKeyboardPress();
 
 	Window m_window;
 	sf::Clock m_timer;
