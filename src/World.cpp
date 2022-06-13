@@ -8,9 +8,9 @@ World::World()
 	m_box2dWorld = std::make_unique<b2World>(gravity);
 	m_box2dWorld->SetContactListener(&contactListener);
 
+	createBorders();
 	initSymbols();
 	initPlayers();
-	//createLevel(1);   //simha: i moved it to game screen constructor
 }
 
 World::~World()
@@ -19,6 +19,20 @@ World::~World()
 	m_objects.clear();
 }
 
+void World::createBorders()
+{
+	m_borders.emplace_back(std::make_unique<Border>(getWorld(), sf::Vector2f(-30, WINDOW_HEIGHT / 2), 10, WINDOW_HEIGHT));
+	m_borders.emplace_back(std::make_unique<Border>(getWorld(), sf::Vector2f(WINDOW_WIDTH/2,-30), WINDOW_WIDTH, 10));
+	m_borders.emplace_back(std::make_unique<Border>(getWorld(), sf::Vector2f(WINDOW_WIDTH+30, WINDOW_HEIGHT / 2), 10, WINDOW_HEIGHT));
+}
+
+void World::initPlayers()
+{
+	//Players (amount and type) is constant!
+	m_players.emplace_back(std::make_unique<Heavy>(getWorld()));
+	m_players.emplace_back(std::make_unique<Simple>(getWorld()));
+	m_players.emplace_back(std::make_unique<Light>(getWorld()));
+}
 void World::initSymbols()
 {
 	m_arrow.setTexture(*Resources::instance().getPlayerArrowTexture());
@@ -27,22 +41,25 @@ void World::initSymbols()
 	m_sign.setOrigin(m_sign.getGlobalBounds().width, m_sign.getGlobalBounds().height);
 }
 
-void World::draw(sf::RenderWindow& window)
+void World::draw(sf::RenderWindow& window, const Player activePlayer)
 {
 	window.draw(m_sign);
 	for (auto& object : m_objects)
 	{
 		object->draw(window);
 	}
-	for (auto& movable : m_players)
+	for (int i = 0; i < m_players.size(); i++)
 	{
-		movable->draw(window);
+		if (i != (int)activePlayer)
+		{
+			m_players[i]->draw(window);
+		}
 	}
-	
+	m_players[(int)activePlayer]->draw(window);
 	window.draw(m_arrow);
 }
 
-void World::moveActive(float deltaTime, Player active)
+void World::moveActive(float deltaTime, const Player active)
 {
 	
 	m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
@@ -111,13 +128,6 @@ bool World::playerLost()
 	return false;
 }
 
-void World::initPlayers()
-{
-	//Players (amount and type) is constant!
-	m_players.emplace_back(std::make_unique<Heavy>(getWorld()));
-	m_players.emplace_back(std::make_unique<Simple>(getWorld()));
-	m_players.emplace_back(std::make_unique<Light>(getWorld()));
-}
 
 void World::loadLevel(int levelNum)
 {
