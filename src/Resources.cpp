@@ -11,6 +11,7 @@ void Resources::loadResources()
 
 		loadFont();
 		loadBackgroundTextures();
+		loadHelpBackground();
 		loadSettingsReturnTexture();
 		loadSettingsHomeTexture();
 		loadPlayersFace();
@@ -147,6 +148,11 @@ sf::Font* Resources::getFont()
 sf::Texture* Resources::getBackground(Screen index)
 {
 	return &m_backgroundTextures[int(index)];
+}
+
+sf::Texture* Resources::getHelpBackground()
+{
+	return &m_helpBackground;
 }
 
 sf::Texture* Resources::getWinBackground()
@@ -414,6 +420,12 @@ void Resources::loadWinBackground()
 	if (!m_winBackground.loadFromFile("win_background.png"))
 		throw(std::logic_error("Win Background\n"));
 
+}
+
+void Resources::loadHelpBackground()
+{
+	if (!m_helpBackground.loadFromFile("help_background.png"))
+		throw(std::logic_error("Help Background\n"));
 }
 
 void Resources::loadPlayerSpriteSheet()

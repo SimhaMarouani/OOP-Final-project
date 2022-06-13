@@ -22,6 +22,7 @@ configure_file ("images/floor_L4.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/home_background.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/game_background.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/levelmenu_background.png" ${CMAKE_BINARY_DIR} COPYONLY) #dont forget to remove
+configure_file ("images/help_background.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/settings_bg.png" ${CMAKE_BINARY_DIR} COPYONLY) #dont forget to remove
 
 

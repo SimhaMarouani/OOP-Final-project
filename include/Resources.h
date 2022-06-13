@@ -19,6 +19,7 @@ public:
 	//Access Functions
 	sf::Font* getFont();
 	sf::Texture* getBackground(Screen index);
+	sf::Texture* getHelpBackground();
 	sf::Texture* getPlayerTexture(Player player);
 	sf::Texture* getSettingsReturnTexture(Screen s);
 	sf::Texture* getSettingsHomeTexture();
@@ -67,6 +68,7 @@ private:
 	void loadBackArrowTexture();
 
     void loadWinBackground();
+	void loadHelpBackground();
     void loadNextLevelBtn();
     void loadRetryBtn();
     void loadMenuBtn();
@@ -106,6 +108,7 @@ private:
 	std::vector<sf::Texture> m_settingsReturnTexture;
 	sf::Texture m_settingsHomeTexture;
 	sf::Texture m_settingsBackground;
+	sf::Texture m_helpBackground;
 	sf::Texture m_winBackground;
     sf::Texture m_nextLevelBtn;
     sf::Texture m_retryBtn;

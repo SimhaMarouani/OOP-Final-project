@@ -130,7 +130,8 @@ void HomePageScreen::setHelpScreen()
 	auto offset_x = (WINDOW_HEIGHT - HELP_HEIGHT) / 2;
 	auto offset_y = (WINDOW_WIDTH - HELP_WIDTH) / 2;
 	m_helpBackground.setPosition(offset_y, offset_x);
-	m_helpBackground.setFillColor(sf::Color(164, 220, 224, 250));
+	m_helpBackground.setTexture(Resources::instance().getHelpBackground());
+	m_helpBackground.setFillColor(sf::Color({ 255,255,255,250 }));
 }
 
 void HomePageScreen::initButtons()
