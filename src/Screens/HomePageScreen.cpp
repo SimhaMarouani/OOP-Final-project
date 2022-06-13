@@ -48,10 +48,9 @@ void HomePageScreen::processEvents(sf::Event event, Controller& controller)
 	}
 	case sf::Event::MouseMoved:
 	{
-		/*sf::Vector2f location = window.mapPixelToCoords(
-			{ event.mouseMove.x, event.mouseMove.y });
-		gameBoard.handleHover(location);*/
-		break;
+		/*sf::Vector2f location = window.mapPixelToCoords({ event.mouseMove.x, event.mouseMove.y });
+		handleHover(location);
+		break;*/
 	}
 	default:
 		break;
@@ -156,3 +155,19 @@ void HomePageScreen::drawMenu(sf::RenderWindow& window)
 		b.draw(window);
 	}
 }
+
+/*
+void HomePageScreen::handleHover(const sf::Vector2f& location)
+{
+    for (int i = 0; i < m_buttons.size(); ++i)
+    {
+        if (m_buttons[i].getGlobalBounds().contains(location))
+        {
+            m_buttons[i].setSize(HOVER_HOME_BTN_SIZE);
+        }
+        else
+        {
+            m_buttons[i].setSize(HOME_BTN_SIZE);
+        }
+    }
+}*/

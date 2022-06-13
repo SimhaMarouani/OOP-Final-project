@@ -66,12 +66,14 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
 
             if (m_endLevelView->isContainRetry(event))
             {
+                m_btnsClick.playMusic();
                 retryLevel();
                 updateStatus(LevelActions::None);  
 
             }
             else if (m_endLevelView->isContainNext(event))
             {
+                m_btnsClick.playMusic();
                 ++m_levelNum;
                 m_world.createLevel(m_levelNum);
                 m_dataDisplay.resetTimer();
@@ -82,6 +84,7 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
             }
             else if (m_endLevelView->isContainMenu(event))
             {
+                m_btnsClick.playMusic();
                 controller.updatePage(Screen::HomePage);
                 updateStatus(LevelActions::None);   
             }
