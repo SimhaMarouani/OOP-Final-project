@@ -25,12 +25,15 @@ public:
 	void addScore(int level, int score);
 	int getNumOfCompleteLevels() { return m_levelsScore.size(); };
 	int getLevelScore(int level) const;
+
+	void save();
+
 private:
+	void load();
+	void readFromFile();
+	void writeToFile();
 	HighScore(const HighScore&) = default;
 	HighScore& operator=(const HighScore&) = default;
-
-	void load();
-	void save();
 
 	std::map<int, int, std::less<int>> m_levelsScore;
 };

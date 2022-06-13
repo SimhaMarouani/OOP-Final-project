@@ -40,6 +40,4 @@ private:
     sf::Text m_loseText;
     sf::Text m_timeText;
     sf::Text m_newScoreText;
-
-    HighScore m_highScore;
 };

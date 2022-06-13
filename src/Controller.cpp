@@ -21,14 +21,17 @@ void Controller::run()
 	/*sf::View view;
 	view = m_window.getView();
 	view.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-	view.setCenter(640 / 2, 480 / 2);
+	view.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 	m_window.setView(view);*/
+
 	while (m_window.isOpen())
 	{
 		processEvents(/*view*/); //events
 		update(); //updates of data CLOCK AND DELTA TIME HERE
 		render(); //draw
 	}
+	HighScore::instance().save();
+
 }
 
 void Controller::startGame(Screen page, int level)
@@ -65,10 +68,14 @@ void Controller::processEvents(/*sf::View &view*/)
 		//if (event.type == sf::Event::Resized)
 		//{
 		//	//glViewport(0, 0, 640, 480);
-		//	view = m_window.getView();
 		//	m_window.create(sf::VideoMode(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height, sf::VideoMode::getDesktopMode().bitsPerPixel), "SFML Graphics", sf::Style::Fullscreen);
-		//	view.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-		//	view.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+		//	//view = m_window.getView();
+		//	//view.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		//	//view.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+
+		//	view = sf::View(sf::FloatRect(0.f, 0.f, WINDOW_WIDTH, WINDOW_HEIGHT));
+		//	auto size = sf::VideoMode::getDesktopMode();
+		//	view.setViewport({ 0.f, 0.f, (float)size.width, (float)size.height });
 		//	m_window.setView(view);
 		//}
 
