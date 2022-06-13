@@ -133,55 +133,6 @@ void Resources::switchAudioStatus()
 	m_audioOn = !m_audioOn;
 }
 
-Resources::Resources()
-{
-	//Tali: add exceptions to hereee
-	loadFont();
-	loadBackgroundTextures();
-	loadPlayers();
-	loadSettingsReturnTexture();
-	loadSettingsHomeTexture();
-	loadPlayersFace();
-	loadPlayerArrow();
-	loadSign();
-	loadObjects();
-	loadGrounds();
-	loadLevelMenuIcons();
-	loadHomePageBtnsTexture();
-	loadLevelActionButtonTexture();
-	loadSoundTexture();
-	loadSettingsBackground();
-	loadPlayerSpriteSheet();
-	loadMusic();
-    loadBackArrowTexture();
-    loadWinBackground();
-    loadNextLevelBtn();
-    loadRetryBtn();
-    loadMenuBtn();
-	loadHighScoreBtn();
-	loadGameIcon();
-
-	loadAudioClick();
-	loadAudioWin();
-	loadAudioLose();
-}
-
-
-//-----------------------------------------------------------------
-
-Resources::~Resources()
-{
-}
-
-//-----------------------------------------------------------------
-
-Resources& Resources::instance()
-{
-	static Resources inst;
-	return inst;
-}
-
-
 //===============================================================//
 //							 GET DATA
 //===============================================================//
