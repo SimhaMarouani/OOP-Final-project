@@ -38,7 +38,7 @@ void LevelMenuScreen::draw(sf::RenderWindow& window)
 
 }
 
-void LevelMenuScreen::processEvents(sf::Event event, Controller& controller)
+void LevelMenuScreen::processEvents(sf::Event event, sf::Vector2f& mouseLocation, Controller& controller)
 {
 	switch (event.type)
 	{
@@ -49,9 +49,7 @@ void LevelMenuScreen::processEvents(sf::Event event, Controller& controller)
 	}
 	case sf::Event::MouseMoved:
 	{
-		/*sf::Vector2f location = window.mapPixelToCoords(
-			{ event.mouseMove.x, event.mouseMove.y });
-		gameBoard.handleHover(location);*/
+		handleHover(mouseLocation);
 		break;
 	}
 	default:
@@ -112,6 +110,33 @@ void LevelMenuScreen::updateNumOfLevels()
 		m_highScoreView.setLevelScore(i);
 	}
 	m_numOfLevelsCompleted = curr;
+}
+
+void LevelMenuScreen::handleHover(const sf::Vector2f& location)
+{
+	if (m_isScoreOpen) return;
+
+	for (int i = 0; i <= m_numOfLevelsCompleted; ++i)
+	{
+		if (m_levels[i].isHover(location))
+		{
+			m_levels[i].setColor(sf::Color({ 255, 255, 255, 180 }));
+		}
+		else
+		{
+			m_levels[i].setColor(sf::Color::White);
+		}
+	}
+
+	if (m_homeButton.isHover(location))
+		m_homeButton.setColor(sf::Color({ 255, 255, 255, 180 }));
+	else
+		m_homeButton.setColor(sf::Color::White);
+
+	if (m_highScoreButton.isHover(location))
+		m_highScoreButton.setColor(sf::Color({ 255, 255, 255, 180 }));
+	else
+		m_highScoreButton.setColor(sf::Color::White);
 }
 
 void LevelMenuScreen::initBtns()

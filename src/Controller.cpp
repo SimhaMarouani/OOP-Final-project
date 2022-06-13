@@ -65,7 +65,7 @@ void Controller::processEvents()
 			m_homePageScreen.processEvents(event, ml, *this);
 			break;
 		case Screen::LevelMenu:
-			m_levelMenuScreen.processEvents(event, *this);
+			m_levelMenuScreen.processEvents(event, ml, *this);
 			break;
 		case Screen::Game:
 			m_gameScreen.processEvents(event, ml, *this);
