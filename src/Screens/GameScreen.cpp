@@ -20,11 +20,11 @@ void GameScreen::draw(sf::RenderWindow& window) {
     m_world.draw(window, m_activePlayer);
     m_dataDisplay.draw(window);
 
-    DebugDraw d(&window);
+ /*   DebugDraw d(&window);
     uint32 flags = b2Draw::e_shapeBit;
     d.SetFlags(flags);
     m_world.getWorld()->SetDebugDraw(&d);
-    m_world.getWorld()->DebugDraw();
+    m_world.getWorld()->DebugDraw();*/
 
     if (getPageStatus() == LevelActions::Win)
         m_endLevelView->draw(window, true, m_levelNum, m_dataDisplay.getTime());

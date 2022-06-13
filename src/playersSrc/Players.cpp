@@ -52,7 +52,7 @@ void Players::move(float deltaTime)
 	if ( dirFromKey().y < 0 && m_touchingFloor)
 		m_body->ApplyLinearImpulseToCenter(b2Vec2(0, this->getJumpImpulse()), true);
 
-	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * 500/*m_speedPerSecond*/, 0);
+	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * 300/*m_speedPerSecond*/, 0);
 	m_body->ApplyForceToCenter(step1, true);
 
 	//move to update func
@@ -109,5 +109,7 @@ void Players::update(float deltaTime)
 	else if (m_body->GetLinearVelocity().x > MAX_SPEED) {
 		m_body->SetLinearVelocity(b2Vec2(MAX_SPEED, m_body->GetLinearVelocity().y));
 	}
+	m_body->ApplyForceToCenter(b2Vec2(0,0), true);
+
 	updateAnimation(deltaTime);
 }

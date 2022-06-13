@@ -61,15 +61,6 @@ void World::draw(sf::RenderWindow& window, const Player activePlayer)
 
 void World::moveActive(float deltaTime, const Player active)
 {
-	
-	m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
-	m_players[(int)active]->move(deltaTime);
-
-	for (int i = 0; i < m_players.size(); i++)
-	{
-		m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
-		m_players[i]->update(deltaTime);
-	}
 	for (int i = 0; i < m_objects.size(); i++)
 	{
 		m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
@@ -78,8 +69,17 @@ void World::moveActive(float deltaTime, const Player active)
 		{
 			sw->updateDoorState();
 		}
-
 	}
+
+	m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
+	m_players[(int)active]->move(deltaTime);
+
+	for (int i = 0; i < m_players.size(); i++)
+	{
+		m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
+		m_players[i]->update(deltaTime);
+	}
+	
 }
 
 void World::moveArrow(Player active)
