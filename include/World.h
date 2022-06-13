@@ -28,8 +28,8 @@ class World
 public:
 	World();
 	~World();
-	void draw(sf::RenderWindow& window);
-	void moveActive(float deltaTime, Player active);
+	void draw(sf::RenderWindow& window, const Player activePlayer);
+	void moveActive(float deltaTime, const Player active);
 	void moveArrow(Player active);
 
 	void SetDebugDraw(DebugDraw* d)

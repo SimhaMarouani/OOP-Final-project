@@ -19,7 +19,6 @@ public:
 	void resetTimer();
 	void pauseTimer();
 	void loadLevel(int level);
-	void setDirection(Direction dir);
 	void updateStatus(LevelActions la);
 
 	void initSettings(std::shared_ptr<Settings> s);

@@ -41,22 +41,25 @@ void World::initSymbols()
 	m_sign.setOrigin(m_sign.getGlobalBounds().width, m_sign.getGlobalBounds().height);
 }
 
-void World::draw(sf::RenderWindow& window)
+void World::draw(sf::RenderWindow& window, const Player activePlayer)
 {
 	window.draw(m_sign);
 	for (auto& object : m_objects)
 	{
 		object->draw(window);
 	}
-	for (auto& movable : m_players)
+	for (int i = 0; i < m_players.size(); i++)
 	{
-		movable->draw(window);
+		if (i != (int)activePlayer)
+		{
+			m_players[i]->draw(window);
+		}
 	}
-	
+	m_players[(int)activePlayer]->draw(window);
 	window.draw(m_arrow);
 }
 
-void World::moveActive(float deltaTime, Player active)
+void World::moveActive(float deltaTime, const Player active)
 {
 	
 	m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);

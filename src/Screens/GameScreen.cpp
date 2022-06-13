@@ -19,7 +19,7 @@ GameScreen::GameScreen()
 void GameScreen::draw(sf::RenderWindow& window)
 {
     window.draw(m_background);
-	m_world.draw(window);
+	m_world.draw(window, m_activePlayer);
 	m_dataDisplay.draw(window);
 
     DebugDraw d(&window);
