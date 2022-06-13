@@ -21,11 +21,11 @@ class HomePageScreen
 public:
 	HomePageScreen();
 	void draw(sf::RenderWindow &window);
-	void processEvents(sf::Event event, Controller& controller);
+	void processEvents(sf::Event event, sf::Vector2f& mouseLocation, Controller& controller);
 	void handleClick(sf::Event event, Controller& controller);
 	void initSettings(std::shared_ptr<Settings> s);
 	void update(float deltaTime);  //animation
-    //void handleHover(const sf::Vector2f& location);
+    void handleHover(const sf::Vector2f& location);
 
 private:
 	void setHelpScreen();

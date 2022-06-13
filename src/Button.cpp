@@ -35,6 +35,11 @@ sf::Vector2f Button::getSize() const
 	//return 	sf::Vector2f(m_button.getTexture()->getSize());
 }
 
+bool Button::isHover(sf::Vector2f l) const
+{
+	return m_button.getGlobalBounds().contains(l);
+}
+
 void Button::setPosition(sf::Vector2f pos)
 {
 	m_button.setPosition(pos);

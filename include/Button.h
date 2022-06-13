@@ -18,6 +18,7 @@ public:
 	//get
 	bool isContain(sf::Event event) const;
 	sf::Vector2f getSize()const;
+	bool isHover(sf::Vector2f l) const;
 	//set sprite
 	void setPosition(sf::Vector2f pos);
 	void setTexture(sf::Texture* texture);
