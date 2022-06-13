@@ -12,7 +12,7 @@ class GameScreen {
 public:
 	GameScreen();
 	void draw(sf::RenderWindow& window);
-	void processEvents(sf::Event event, Controller& controller);
+	void processEvents(sf::Event event, sf::Vector2f &mouseLocation, Controller& controller);
 
 	void update(float deltaTime);
 
