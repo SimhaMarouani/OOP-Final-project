@@ -54,11 +54,12 @@ private:
 	Resources(const Resources&) = default;
 	Resources& operator=(const Resources&) = default;
 
+	void loadResources();
+
 	//Load Functions
 	void loadFont();
 
 	//Textures
-	void loadPlayers();
 	void loadSettingsReturnTexture();
 	void loadSettingsHomeTexture();
 	void loadBackArrowTexture();
