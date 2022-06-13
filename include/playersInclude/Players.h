@@ -21,6 +21,7 @@ public:
 private: 
 	float m_speedPerSecond = BASE_SPEED;
 	bool m_touchingFloor;
+	bool m_moveBack;
 	Direction m_direction;
 	void updateAnimation(float deltaTime);
 

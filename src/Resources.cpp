@@ -1,8 +1,78 @@
 #include "Resources.h"
 
+Resources::Resources()
+{
+	loadResources();
+}
+
+void Resources::loadResources()
+{
+	try {
+
+		loadFont();
+		loadBackgroundTextures();
+		loadSettingsReturnTexture();
+		loadSettingsHomeTexture();
+		loadPlayersFace();
+		loadPlayerArrow();
+		loadSign();
+		loadObjects();
+		loadGrounds();
+		loadLevelMenuIcons();
+		loadHomePageBtnsTexture();
+		loadLevelActionButtonTexture();
+		loadSoundTexture();
+		loadSettingsBackground();
+		loadPlayerSpriteSheet();
+		loadMusic();
+		loadBackArrowTexture();
+		loadWinBackground();
+		loadNextLevelBtn();
+		loadRetryBtn();
+		loadMenuBtn();
+		loadHighScoreBtn();
+		loadGameIcon();
+		loadAudioClick();
+        loadAudioWin();
+        loadAudioLose();
+	}
+	catch (const std::logic_error& e)
+	{
+		std::cerr << "Error loading: " << e.what();
+		exit(EXIT_FAILURE);
+	}
+}
+
+
+
+Resources::~Resources()
+{
+}
+
+
+Resources& Resources::instance()
+{
+	static Resources inst;
+	return inst;
+}
+
+//===============================================================//
+//						AUDIO FUNCTIONS
+//===============================================================//
+
 sf::SoundBuffer* Resources::getAudioClick()
 {
 	return &m_audioClick;
+}
+
+sf::SoundBuffer* Resources::getAudioWin()
+{
+	return &m_audioWin;
+}
+
+sf::SoundBuffer* Resources::getAudioLose()
+{
+	return &m_audioLose;
 }
 
 void Resources::playMusic(Screen s)
@@ -62,53 +132,6 @@ void Resources::switchAudioStatus()
 {
 	m_audioOn = !m_audioOn;
 }
-
-Resources::Resources()
-{
-	//Tali: add exceptions to hereee
-	loadFont();
-	loadBackgroundTextures();
-	loadPlayers();
-	loadSettingsReturnTexture();
-	loadSettingsHomeTexture();
-	loadPlayersFace();
-	loadPlayerArrow();
-	loadSign();
-	loadObjects();
-	loadGrounds();
-	loadLevelMenuIcons();
-	loadHomePageBtnsTexture();
-	loadLevelActionButtonTexture();
-	loadSoundTexture();
-	loadSettingsBackground();
-	loadPlayerSpriteSheet();
-	loadMusic();
-    loadBackArrowTexture();
-    loadWinBackground();
-    loadNextLevelBtn();
-    loadRetryBtn();
-    loadMenuBtn();
-	loadHighScoreBtn();
-	loadGameIcon();
-
-	loadAudioClick();
-}
-
-
-//-----------------------------------------------------------------
-
-Resources::~Resources()
-{
-}
-
-//-----------------------------------------------------------------
-
-Resources& Resources::instance()
-{
-	static Resources inst;
-	return inst;
-}
-
 
 //===============================================================//
 //							 GET DATA
@@ -236,12 +259,11 @@ sf::Texture* Resources::getLevelActionButtonTexture(LevelActions la)
 //							 LOAD DATA
 //===============================================================//
 
+
 void Resources::loadFont()
 {
 	if (!m_font.loadFromFile("Font.ttf"))
-	{
-		std::cerr << "error loading font from file";
-	}
+		throw(std::logic_error("Font\n"));
 }
 
 //-----------------------------------------------------------------
@@ -252,9 +274,7 @@ void Resources::loadBackgroundTextures()
 	if (!m_backgroundTextures[(int)Screen::HomePage].loadFromFile("home_background.png")
 		|| !m_backgroundTextures[(int)Screen::LevelMenu].loadFromFile("levelmenu_background.png")
 		|| !m_backgroundTextures[(int)Screen::Game].loadFromFile("game_background.png"))
-	{
-		std::cerr << "error loading bg textures from file\n";
-	}
+		throw(std::logic_error("Background Textures\n"));
 }
 
 void Resources::loadLevelMenuIcons()
@@ -262,9 +282,7 @@ void Resources::loadLevelMenuIcons()
 	m_levelMenuTexture.resize(2);
 	if (!m_levelMenuTexture[(int)LevelState::Lock].loadFromFile("lock_level.png")
 		|| !m_levelMenuTexture[(int)LevelState::Unlock].loadFromFile("unlock_level.png"))
-	{
-		std::cerr << "error loading player textures from file";
-	}
+		throw(std::logic_error("Level Menu Icons\n"));
 }
 
 void Resources::loadHomePageBtnsTexture()
@@ -274,9 +292,7 @@ void Resources::loadHomePageBtnsTexture()
 		|| !m_homePageBtnsTexture[(int)HomeButtonType::Help].loadFromFile("help.png")
 		|| !m_homePageBtnsTexture[(int)HomeButtonType::Settings].loadFromFile("settings.png")
 		|| !m_homePageBtnsTexture[(int)HomeButtonType::Exit].loadFromFile("exit.png"))
-	{
-		std::cerr << "error loading btns textures from file";
-	}
+		throw(std::logic_error("Page Buttons Texture\n"));
 }
 
 void Resources::loadLevelActionButtonTexture()
@@ -284,21 +300,7 @@ void Resources::loadLevelActionButtonTexture()
 	m_levelActionButtonsTexture.resize(2);
 	if (!m_levelActionButtonsTexture[(int)LevelActions::Pause].loadFromFile("pause_button.png")
 		|| !m_levelActionButtonsTexture[(int)LevelActions::Retry].loadFromFile("retry_button.png"))
-	{
-		std::cerr << "error loading btns textures from file";
-	}
-}
-
-//Tali: needed??
-void Resources::loadPlayers()
-{
-	m_players.resize(NUM_OF_PLAYERS);
-	if (!m_players[(int)Player::Heavy].loadFromFile("heavy.png")
-		|| !m_players[(int)Player::Light].loadFromFile("light.png")
-		|| !m_players[(int)Player::Simple].loadFromFile("simple.png"))
-	{
-		std::cerr << "error loading player textures from file";
-	}
+		throw(std::logic_error("Level Action Button Texture\n"));
 }
 
 void Resources::loadSettingsReturnTexture()
@@ -307,37 +309,43 @@ void Resources::loadSettingsReturnTexture()
 	if (!m_settingsReturnTexture[1].loadFromFile("return_button.png")
 		|| !m_settingsReturnTexture[0].loadFromFile("continue_button.png")
 		)
-		std::cerr << "error loading texture file";
+		throw(std::logic_error("Settings Return Texture\n"));
+
 }
 
 void Resources::loadBackArrowTexture()
 {
     if (!m_backArrow.loadFromFile("back_home.png"))
-        std::cerr << "error loading texture file";
+		throw(std::logic_error("Back ArrowTexture\n"));
+
 }
 
 void Resources::loadSettingsHomeTexture()
 {
 	if (!m_settingsHomeTexture.loadFromFile("home_button.png"))
-		std::cerr << "error loading texture file";
+		throw(std::logic_error("Settings Home Texture\n"));
+
 }
 
 void Resources::loadNextLevelBtn()
 {
     if (!m_nextLevelBtn.loadFromFile("next_level_btn.png"))
-        std::cerr << "error loading texture file";
+		throw(std::logic_error("Next Level Button\n"));
+
 }
 
 void Resources::loadRetryBtn()
 {
     if (!m_retryBtn.loadFromFile("retry_btn.png"))
-        std::cerr << "error loading texture file";
+		throw(std::logic_error("Retry Button\n"));
+
 }
 
 void Resources::loadMenuBtn()
 {
     if (!m_menuBtn.loadFromFile("menu_btn.png"))
-        std::cerr << "error loading texture file";
+		throw(std::logic_error("Menu Button\n"));
+
 }
 
 void Resources::loadPlayersFace()
@@ -346,9 +354,7 @@ void Resources::loadPlayersFace()
 	if (!m_playersFace[(int)Player::Heavy].loadFromFile("heavy_player_face.png")
 		|| !m_playersFace[(int)Player::Simple].loadFromFile("simple_player_face.png")
 		|| !m_playersFace[(int)Player::Light].loadFromFile("light_player_face.png"))
-	{
-		std::cerr << "error loading player textures from file";
-	}
+		throw(std::logic_error("Players Face\n"));
 }
 
 void Resources::loadObjects()
@@ -360,9 +366,7 @@ void Resources::loadObjects()
 		|| !m_objects[(int)Objects::Switch].loadFromFile("switch.png")
 		|| !m_objects[(int)Objects::Billboard].loadFromFile("billboard.png")
 		|| !m_objects[(int)Objects::SwitchOn].loadFromFile("switchOn.png"))
-	{
-		std::cerr << "error loading object textures from file";
-	}
+		throw(std::logic_error("Objects Texture\n"));
 }
 
 void Resources::loadGrounds()
@@ -377,15 +381,14 @@ void Resources::loadGrounds()
 		|| !m_grounds[(int)Grounds::Door].loadFromFile("door.png")
 		|| !m_grounds[(int)Grounds::l3].loadFromFile("floor_L3.png")
 		|| !m_grounds[(int)Grounds::l4].loadFromFile("floor_L4.png"))
-	{
-		std::cerr << "error loading ground textures from file";
-	}
+		throw(std::logic_error("Grounds Texture\n"));
 }
 
 void Resources::loadHighScoreBtn()
 {
 	if (!m_highScoreBtn.loadFromFile("high_scores_button.png"))
-		std::cerr << "error loading texture file";
+		throw(std::logic_error("High Score Button\n"));
+
 }
 
 void Resources::loadSoundTexture()
@@ -396,21 +399,21 @@ void Resources::loadSoundTexture()
 		!m_soundTextures[(int)SoundStatus::AudioOff].loadFromFile("audio_off.png") ||
 		!m_soundTextures[(int)SoundStatus::MusicOn].loadFromFile("music_on.png") ||
 		!m_soundTextures[(int)SoundStatus::MusicOff].loadFromFile("music_off.png") )
-	{
-		std::cerr << "error loading ground textures from file";
-	}
+		throw(std::logic_error("Sound Textures\n"));
 }
 
 void Resources::loadSettingsBackground()
 {
 	if (!m_settingsBackground.loadFromFile("settings_bg.png"))
-		std::cerr << "error loading texture file";
+		throw(std::logic_error("Settings Background\n"));
+
 }
 
 void Resources::loadWinBackground()
 {
 	if (!m_winBackground.loadFromFile("win_background.png"))
-		std::cerr << "error loading texture file";
+		throw(std::logic_error("Win Background\n"));
+
 }
 
 void Resources::loadPlayerSpriteSheet()
@@ -420,17 +423,13 @@ void Resources::loadPlayerSpriteSheet()
 	if (!m_playerSpriteSheet[(int)Player::Heavy].loadFromFile("heavy_spritesheet.png") ||
 		!m_playerSpriteSheet[(int)Player::Simple].loadFromFile("simple_spritesheet.png") ||
 		!m_playerSpriteSheet[(int)Player::Light].loadFromFile("light_spritesheet.png"))
-	{
-		std::cerr << "error loading player spritesheet from file";
-	}
+		throw(std::logic_error("Player SpriteSheet\n"));
 }
 
 void Resources::loadGameIcon()
 {
 	if (!m_gameIcon.loadFromFile("Game_icon.jpg"))
-	{
-		std::cerr << "error loading game icon from file";
-	}
+		throw(std::logic_error("Game Icon\n"));
 }
 
 void Resources::loadMusic()
@@ -438,7 +437,8 @@ void Resources::loadMusic()
 	//Noga: try vector with ptr
 	if (!m_gameMusic.openFromFile("birds.wav")
 		|| !m_homeMusic.openFromFile("home_music.wav"))
-		std::cerr << "error loading music from file";
+		throw(std::logic_error("Music\n"));
+
 	
 	m_gameMusic.setVolume(15);
 	m_homeMusic.setVolume(15);
@@ -447,23 +447,33 @@ void Resources::loadMusic()
 void Resources::loadAudioClick()
 {
 	if (!m_audioClick.loadFromFile("click.wav")) 
+		throw(std::logic_error("Audio Click\n"));
+}
+
+void Resources::loadAudioWin()
+{
+	if (!m_audioWin.loadFromFile("win.wav"))
 	{
-		std::cerr << "error loading audio 'click' from file";
+		std::cerr << "error loading audio 'win' from file";
+	}
+}
+
+void Resources::loadAudioLose()
+{
+	if (!m_audioLose.loadFromFile("lose.wav"))
+	{
+		std::cerr << "error loading audio 'lose' from file";
 	}
 }
 
 void Resources::loadPlayerArrow()
 {
 	if (!m_playerArrow.loadFromFile("arrow.png"))
-	{
-		std::cerr << "error loading arrow from file";
-	}
+		throw(std::logic_error("Player arrow\n"));
 }
 void Resources::loadSign()
 {
 	if (!m_sign.loadFromFile("destination.png"))
-	{
-		std::cerr << "error loading sign from file";
-	}
+		throw(std::logic_error("Destination Sign\n"));
 }
 

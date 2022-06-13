@@ -8,6 +8,7 @@
 #include "Macros.h"
 #include "playersInclude/Players.h"
 #include "objectsInclude/StaticObjects.h"
+#include "objectsInclude/Border.h"
 #include "MyContactListener.h"
 
 #include "Factory.h"
@@ -27,8 +28,8 @@ class World
 public:
 	World();
 	~World();
-	void draw(sf::RenderWindow& window);
-	void moveActive(float deltaTime, Player active);
+	void draw(sf::RenderWindow& window, const Player activePlayer);
+	void moveActive(float deltaTime, const Player active);
 	void moveArrow(Player active);
 
 	void SetDebugDraw(DebugDraw* d)
@@ -45,6 +46,7 @@ public:
     void loadLevel(int levelNum);
 
 private:
+	void createBorders();
 	void initPlayers();
 	void initSymbols();
 	bool isPlayer(std::string type)const;
@@ -57,6 +59,7 @@ private:
 	
 	std::vector<std::unique_ptr<Players>> m_players;
 	std::vector<std::unique_ptr<StaticObjects>> m_objects;
+	std::vector<std::unique_ptr<StaticObjects>> m_borders;
 
 	int m_endpoint = 1400;
 	

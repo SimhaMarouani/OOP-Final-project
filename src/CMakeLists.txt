@@ -39,5 +39,6 @@
 
                                               "objectsSrc/Billboard.cpp"
                                               "objectsSrc/Door.cpp"
+                                              "objectsSrc/Border.cpp"
 
                                               )
