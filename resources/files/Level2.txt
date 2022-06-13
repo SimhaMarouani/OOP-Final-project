@@ -1,5 +1,5 @@
-1300
-				1410	760		1.8			1.8
+1200
+				1500	625		1.9			1.9
 				posX	posY	scaleX		scaleY
 Heavy			500		650
 Simple			300		650
