@@ -6,8 +6,7 @@ GameScreen::GameScreen()
     : m_activePlayer(Player::Heavy),
       m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
       m_btnsClick(Resources::instance().getAudioClick()),
-    m_pageStatus(LevelActions::None),
-    m_levelNum(1)
+      m_pageStatus(LevelActions::None), m_levelNum(1)
 {
     m_background.setTexture(Resources::instance().getBackground(Screen::Game));
     //loadLevel(m_levelNum);
@@ -61,15 +60,11 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
     case sf::Event::MouseButtonReleased:
         if (getPageStatus() == LevelActions::Win || getPageStatus() == LevelActions::Lose)
         {
-            //m_win = false;
-            //m_lose = false;
-
             if (m_endLevelView->isContainRetry(event))
             {
                 m_btnsClick.playMusic();
                 retryLevel();
-                updateStatus(LevelActions::None);  
-
+                updateStatus(LevelActions::None);
             }
             else if (m_endLevelView->isContainNext(event))
             {
@@ -79,8 +74,7 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
                 m_dataDisplay.resetTimer();
                 m_activePlayer = Player::Heavy;
                 m_dataDisplay.setCurrPlayer((int)m_activePlayer);
-                updateStatus(LevelActions::None);   
-
+                updateStatus(LevelActions::None);
             }
             else if (m_endLevelView->isContainMenu(event))
             {

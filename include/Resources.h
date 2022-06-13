@@ -42,6 +42,8 @@ public:
 	sf::Image* getGameIcon();
 
 	sf::SoundBuffer* getAudioClick();
+	sf::SoundBuffer* getAudioWin();
+	sf::SoundBuffer* getAudioLose();
 
 	void playMusic(Screen s);
 	bool isMusicOn() const;
@@ -88,6 +90,8 @@ private:
 	//Audio 
 	void loadMusic();
 	void loadAudioClick();
+	void loadAudioWin();
+	void loadAudioLose();
 
 	//======Members==========
 
@@ -122,6 +126,8 @@ private:
 
 	////Audio
 	sf::SoundBuffer m_audioClick;
+	sf::SoundBuffer m_audioWin;
+	sf::SoundBuffer m_audioLose;
 
 	sf::Music m_gameMusic; //game background music
 	sf::Music m_homeMusic; //home background music

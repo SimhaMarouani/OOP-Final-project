@@ -5,6 +5,16 @@ sf::SoundBuffer* Resources::getAudioClick()
 	return &m_audioClick;
 }
 
+sf::SoundBuffer* Resources::getAudioWin()
+{
+	return &m_audioWin;
+}
+
+sf::SoundBuffer* Resources::getAudioLose()
+{
+	return &m_audioLose;
+}
+
 void Resources::playMusic(Screen s)
 {
 	switch (s)
@@ -92,6 +102,8 @@ Resources::Resources()
 	loadGameIcon();
 
 	loadAudioClick();
+	loadAudioWin();
+	loadAudioLose();
 }
 
 
@@ -449,6 +461,22 @@ void Resources::loadAudioClick()
 	if (!m_audioClick.loadFromFile("click.wav")) 
 	{
 		std::cerr << "error loading audio 'click' from file";
+	}
+}
+
+void Resources::loadAudioWin()
+{
+	if (!m_audioWin.loadFromFile("win.wav"))
+	{
+		std::cerr << "error loading audio 'win' from file";
+	}
+}
+
+void Resources::loadAudioLose()
+{
+	if (!m_audioLose.loadFromFile("lose.wav"))
+	{
+		std::cerr << "error loading audio 'lose' from file";
 	}
 }
 

@@ -1,11 +1,13 @@
 #include "EndLevelScreen.h"
 
-
 EndLevelScreen::EndLevelScreen()
 : m_background(sf::Vector2f(END_WIDTH, END_HEIGHT)),
   m_retryBtn(*Resources::instance().getRetryBtn()),
   m_menuBtn(*Resources::instance().getMenuBtn()),
-  m_nextLevelBtn(*Resources::instance().getNextLevelBtn())
+  m_nextLevelBtn(*Resources::instance().getNextLevelBtn()),
+  m_winSound(Resources::instance().getAudioWin()),
+  m_loseSound(Resources::instance().getAudioLose()),
+  m_soundCounter(0)
 {
     m_background.setTexture(Resources::instance().getWinBackground());
     m_background.setPosition(sf::Vector2f((WINDOW_WIDTH - END_WIDTH) / 2, (WINDOW_HEIGHT - END_HEIGHT) / 3));
@@ -27,6 +29,8 @@ void EndLevelScreen::createBtns()
 
 void EndLevelScreen::draw(sf::RenderWindow &window, bool status, int levelNum, int time)
 {
+    playSound(status);
+
     window.draw(m_background);
 
     m_retryBtn.draw(window);
@@ -39,7 +43,7 @@ void EndLevelScreen::draw(sf::RenderWindow &window, bool status, int levelNum, i
         window.draw(m_winText);
         window.draw(m_timeText);
 
-        if(/*HighScore::instance().getLevelScore(levelNum) == -1 || */time <= HighScore::instance().getLevelScore(levelNum))
+        if(time <= HighScore::instance().getLevelScore(levelNum))
         {
             m_newScoreText.setString("You set a new score: " + setTimeText(time));
             window.draw(m_newScoreText);
@@ -49,24 +53,26 @@ void EndLevelScreen::draw(sf::RenderWindow &window, bool status, int levelNum, i
             m_timeText.setString("Time: " + setTimeText(time));
             window.draw(m_timeText);
         }
-
     }
     else
         window.draw(m_loseText);
 }
 
-bool EndLevelScreen::isContainRetry(sf::Event e) const
+bool EndLevelScreen::isContainRetry(sf::Event e)
 {
+    m_soundCounter = 0;
     return m_retryBtn.isContain(e);
 }
 
-bool EndLevelScreen::isContainMenu(sf::Event e) const
+bool EndLevelScreen::isContainMenu(sf::Event e)
 {
+    m_soundCounter = 0;
     return m_menuBtn.isContain(e);
 }
 
-bool EndLevelScreen::isContainNext(sf::Event e) const
+bool EndLevelScreen::isContainNext(sf::Event e)
 {
+    m_soundCounter = 0;
     return m_nextLevelBtn.isContain(e);
 }
 
@@ -104,3 +110,14 @@ std::string EndLevelScreen::setTimeText(int time)
 
     return timeStr;
 }
+
+void EndLevelScreen::playSound(bool status)
+{
+    if (status && m_soundCounter == 0)
+        m_winSound.playMusic();
+    else if (!status && m_soundCounter == 0)
+        m_loseSound.playMusic();
+
+    ++m_soundCounter;
+}
+

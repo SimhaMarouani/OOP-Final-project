@@ -9,6 +9,8 @@
 #include "Macros.h"
 #include "HighScore.h"
 #include "Utilities.h"
+#include "Audio.h"
+
 //#include "Controller.h"
 
 
@@ -22,13 +24,14 @@ public:
     //void handleClick(sf::Event event);
     void createText();
 
-    bool isContainRetry(sf::Event e) const;
-    bool isContainMenu(sf::Event e) const;
-    bool isContainNext(sf::Event e) const;
+    bool isContainRetry(sf::Event e);
+    bool isContainMenu(sf::Event e);
+    bool isContainNext(sf::Event e);
 
 private:
     void createBtns();
     std::string setTimeText(int time);
+    void playSound(bool status);
 
     sf::RectangleShape m_background;
 
@@ -40,4 +43,9 @@ private:
     sf::Text m_loseText;
     sf::Text m_timeText;
     sf::Text m_newScoreText;
+
+    Audio m_winSound;
+    Audio m_loseSound;
+
+    int m_soundCounter;
 };

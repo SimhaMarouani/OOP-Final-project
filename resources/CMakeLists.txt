@@ -87,7 +87,8 @@ configure_file ("audio/birds.wav" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("audio/home_music.wav" ${CMAKE_BINARY_DIR} COPYONLY)
 
 #sound effects
-
 configure_file ("audio/click.wav" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("audio/click2.wav" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("audio/click3.wav" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("audio/lose.wav" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("audio/win.wav" ${CMAKE_BINARY_DIR} COPYONLY)
