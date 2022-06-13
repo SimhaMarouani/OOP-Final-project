@@ -25,6 +25,8 @@ public:
 	void handleClick(sf::Event event, Controller& controller);
 	void initSettings(std::shared_ptr<Settings> s);
 	void update(float deltaTime);  //animation
+    //void handleHover(const sf::Vector2f& location);
+
 private:
 	void setHelpScreen();
 	void initButtons();
