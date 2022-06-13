@@ -39,4 +39,5 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE
 
                                               "objectsInclude/Billboard.h"
                                               "objectsInclude/Door.h"
+                                              "objectsInclude/Border.h"
                                               )
