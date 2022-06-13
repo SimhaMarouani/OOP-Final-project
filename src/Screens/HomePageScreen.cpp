@@ -37,7 +37,7 @@ void HomePageScreen::draw(sf::RenderWindow& window)
 	}
 }
 
-void HomePageScreen::processEvents(sf::Event event, Controller& controller)
+void HomePageScreen::processEvents(sf::Event event, sf::Vector2f &mouseLocation, Controller& controller)
 {
 	switch (event.type)
 	{
@@ -48,9 +48,8 @@ void HomePageScreen::processEvents(sf::Event event, Controller& controller)
 	}
 	case sf::Event::MouseMoved:
 	{
-		/*sf::Vector2f location = window.mapPixelToCoords({ event.mouseMove.x, event.mouseMove.y });
-		handleHover(location);
-		break;*/
+		handleHover(mouseLocation);
+		break;
 	}
 	default:
 		break;
@@ -157,18 +156,17 @@ void HomePageScreen::drawMenu(sf::RenderWindow& window)
 	}
 }
 
-/*
 void HomePageScreen::handleHover(const sf::Vector2f& location)
 {
     for (int i = 0; i < m_buttons.size(); ++i)
     {
-        if (m_buttons[i].getGlobalBounds().contains(location))
+        if (m_buttons[i].isHover(location))
         {
-            m_buttons[i].setSize(HOVER_HOME_BTN_SIZE);
+			m_buttons[i].setColor(sf::Color({ 255, 255, 255, 180}));
         }
         else
         {
-            m_buttons[i].setSize(HOME_BTN_SIZE);
-        }
+			m_buttons[i].setColor(sf::Color::White);
+		}
     }
-}*/
+}

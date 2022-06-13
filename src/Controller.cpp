@@ -1,7 +1,5 @@
 #include "Controller.h"
 
-//bool fullscreen;
-
 
 Controller::Controller() 
 	: m_window(), m_homePageScreen(), m_currPage(Screen::HomePage)
@@ -17,16 +15,10 @@ void Controller::run()
 {
 	srand(time(NULL));
 	Resources::instance().playMusic(m_currPage);
-	//fullscreen = 0;
-	/*sf::View view;
-	view = m_window.getView();
-	view.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-	view.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-	m_window.setView(view);*/
 
 	while (m_window.isOpen())
 	{
-		processEvents(/*view*/); //events
+		processEvents(); //events
 		update(); //updates of data CLOCK AND DELTA TIME HERE
 		render(); //draw
 	}
@@ -58,45 +50,25 @@ void Controller::changeMusic(Screen s)
 		Resources::instance().playMusic(s);
 }
 
-void Controller::processEvents(/*sf::View &view*/)
+void Controller::processEvents()
 {
 	if (auto event = sf::Event{}; m_window.pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
 			m_window.close();
 
-		//if (event.type == sf::Event::Resized)
-		//{
-		//	//glViewport(0, 0, 640, 480);
-		//	m_window.create(sf::VideoMode(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height, sf::VideoMode::getDesktopMode().bitsPerPixel), "SFML Graphics", sf::Style::Fullscreen);
-		//	//view = m_window.getView();
-		//	//view.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-		//	//view.setCenter(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-
-		//	view = sf::View(sf::FloatRect(0.f, 0.f, WINDOW_WIDTH, WINDOW_HEIGHT));
-		//	auto size = sf::VideoMode::getDesktopMode();
-		//	view.setViewport({ 0.f, 0.f, (float)size.width, (float)size.height });
-		//	m_window.setView(view);
-		//}
-
-		/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::F))
-		{
-			if (fullscreen) m_window.create(sf::VideoMode::getFullscreenModes()[0], GAME_TITLE);
-			//if (fullscreen) m_window.create(sf::VideoMode(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height, sf::VideoMode::getDesktopMode().BitsPerPixel), "SFML Graphics", sf::Style::Fullscreen);
-			if (!fullscreen) m_window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_WIDTH), GAME_TITLE);
-			fullscreen = !fullscreen;
-		}*/
+		sf::Vector2f ml = m_window.mapPixelToCoords({ event.mouseMove.x, event.mouseMove.y }); //Noga: for hover
 
 		switch (m_currPage)
 		{
 		case Screen::HomePage:
-			m_homePageScreen.processEvents(event, *this);
+			m_homePageScreen.processEvents(event, ml, *this);
 			break;
 		case Screen::LevelMenu:
 			m_levelMenuScreen.processEvents(event, *this);
 			break;
 		case Screen::Game:
-			m_gameScreen.processEvents(event, *this);
+			m_gameScreen.processEvents(event, ml, *this);
 			break;
 		default:
 			break;

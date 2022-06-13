@@ -120,3 +120,31 @@ void EndLevelScreen::playSound(bool status)
     ++m_soundCounter;
 }
 
+void EndLevelScreen::handleHover(const sf::Vector2f& location)
+{
+    if (m_nextLevelBtn.isHover(location))
+    {
+        m_nextLevelBtn.setColor(sf::Color({ 255, 255, 255, 180}));
+        m_menuBtn.setColor(sf::Color::White);
+        m_retryBtn.setColor(sf::Color::White);
+    }
+    else if (m_menuBtn.isHover(location))
+    {
+        m_menuBtn.setColor(sf::Color({ 255, 255, 255, 180}));
+        m_retryBtn.setColor(sf::Color::White);
+        m_nextLevelBtn.setColor(sf::Color::White);
+
+    }
+    else if (m_retryBtn.isHover(location))
+    {
+        m_retryBtn.setColor(sf::Color({ 255, 255, 255, 180}));
+        m_nextLevelBtn.setColor(sf::Color::White);
+        m_menuBtn.setColor(sf::Color::White);
+    }
+    else
+    {
+        m_retryBtn.setColor(sf::Color::White);
+        m_nextLevelBtn.setColor(sf::Color::White);
+        m_menuBtn.setColor(sf::Color::White);
+    }
+}

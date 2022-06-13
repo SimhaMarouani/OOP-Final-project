@@ -44,9 +44,8 @@ void Window::display()
 	m_window.display();
 }
 
-//TODO: delete style and settings if not in use
-void Window::create(sf::VideoMode mode, const sf::String& title, sf::Uint32 style, const sf::ContextSettings& settings)
+sf::Vector2f Window::mapPixelToCoords(const sf::Vector2i &vec) const
 {
-	m_window.create(mode, title);
+	return m_window.mapPixelToCoords(vec);
 }
 

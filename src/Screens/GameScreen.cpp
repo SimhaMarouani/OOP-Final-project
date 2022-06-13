@@ -15,11 +15,10 @@ GameScreen::GameScreen()
 
 //-----------------------------------------------------------------
 
-void GameScreen::draw(sf::RenderWindow& window)
-{
+void GameScreen::draw(sf::RenderWindow& window) {
     window.draw(m_background);
-	m_world.draw(window, m_activePlayer);
-	m_dataDisplay.draw(window);
+    m_world.draw(window, m_activePlayer);
+    m_dataDisplay.draw(window);
 
     DebugDraw d(&window);
     uint32 flags = b2Draw::e_shapeBit;
@@ -27,7 +26,7 @@ void GameScreen::draw(sf::RenderWindow& window)
     m_world.getWorld()->SetDebugDraw(&d);
     m_world.getWorld()->DebugDraw();
 
-    if(getPageStatus() == LevelActions::Win)
+    if (getPageStatus() == LevelActions::Win)
         m_endLevelView->draw(window, true, m_levelNum, m_dataDisplay.getTime());
     else if(getPageStatus() == LevelActions::Lose)
         m_endLevelView->draw(window, false, m_levelNum, m_dataDisplay.getTime());
@@ -39,7 +38,7 @@ void GameScreen::draw(sf::RenderWindow& window)
 }
 
 //TODO : move part of this to new functions
-void GameScreen::processEvents(sf::Event event, Controller &controller)
+void GameScreen::processEvents(sf::Event event, sf::Vector2f &mouseLocation, Controller &controller)
 {
     switch (event.type)
     {
@@ -80,10 +79,9 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
             {
                 m_btnsClick.playMusic();
                 controller.updatePage(Screen::HomePage);
-                updateStatus(LevelActions::None);   
+                updateStatus(LevelActions::None);
             }
         }
-
         else if(m_pageStatus == LevelActions::None)
             m_dataDisplay.handleClick(event, *this);
         else if( m_pageStatus == LevelActions::Pause)
@@ -112,10 +110,15 @@ void GameScreen::processEvents(sf::Event event, Controller &controller)
             }
         }
         break;
+
+    case sf::Event::MouseMoved:
+    {
+        m_endLevelView->handleHover(mouseLocation);
+        break;
+    }
     default:
         break;
     }
-
 }
 
 //-----------------------------------------------------------------

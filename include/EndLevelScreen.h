@@ -27,6 +27,7 @@ public:
     bool isContainRetry(sf::Event e);
     bool isContainMenu(sf::Event e);
     bool isContainNext(sf::Event e);
+    void handleHover(const sf::Vector2f& location);
 
 private:
     void createBtns();
