@@ -21,8 +21,8 @@ public:
     sf::Vector2f getPosition()const;
     float getWidth()const;
     float getHeight()const;
-protected:
     void updateObj();
+protected:
     b2Body* m_body = nullptr;
     sf::Sprite m_icon;
 };

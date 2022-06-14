@@ -30,9 +30,6 @@ void StaticObjects::initIcon(sf::Vector2f pos, sf::Vector2f scale)
 	m_icon.setPosition(pos);
 	m_icon.setScale(scale);
 }
-void StaticObjects::update()
-{
-	updateObj();
-}
+
 
 

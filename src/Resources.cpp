@@ -160,11 +160,6 @@ sf::Texture* Resources::getWinBackground()
     return &m_winBackground;
 }
 
-sf::Texture* Resources::getPlayerTexture(Player player)
-{
-	return &m_players[(int)player];
-}
-
 sf::Texture* Resources::getSettingsReturnTexture(Screen s)
 {
 	int i = s == Screen::Game ? 0 : 1;
