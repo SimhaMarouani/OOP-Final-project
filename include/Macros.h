@@ -23,7 +23,7 @@ constexpr int CHAR_SIZE = 40;
 // Level Menu 
 constexpr int LEVEL_MENU_COLS = 4;
 constexpr float LEVEL_MENU_BTN_SIZE = 220.f;
-constexpr int NUM_OF_LEVELS = 5;
+constexpr int NUM_OF_LEVELS = 4;
 
 // DataDisplay
 constexpr float PLAYER_FACE_SIZE = 100.f;
@@ -34,7 +34,6 @@ const std::string GAME_TITLE = "Home Sheep Home";
 const std::string HIGH_SCORE_FILE_NAME = "high_score.txt";
 
 const sf::Vector2f HOME_BTN_SIZE(350, 150);
-const sf::Vector2f HOVER_HOME_BTN_SIZE(370, 170);
 
 //players
 constexpr int NUM_OF_PLAYERS = 3;

@@ -35,9 +35,9 @@ void EndLevelScreen::draw(sf::RenderWindow &window, bool status, int levelNum, i
     m_buttons[(int)EndLevelButtonType::Retry].draw(window);
     m_buttons[(int)EndLevelButtonType::Menu].draw(window);
 
-    if (status && levelNum <= NUM_OF_LEVELS)
+    if (status && levelNum < NUM_OF_LEVELS)
     {
-        m_buttons[2].draw(window);
+        m_buttons[(int)EndLevelButtonType::Next].draw(window);
 
         window.draw(m_winText);
         window.draw(m_timeText);
@@ -47,14 +47,19 @@ void EndLevelScreen::draw(sf::RenderWindow &window, bool status, int levelNum, i
             m_newScoreText.setString("You set a new score: " + setTimeText(time));
             window.draw(m_newScoreText);
         }
-        else
+        else if(time > HighScore::instance().getLevelScore(levelNum))
         {
             m_timeText.setString("Time: " + setTimeText(time));
             window.draw(m_timeText);
         }
     }
-    else
+    else if(!status)
         window.draw(m_loseText);
+    else if(levelNum == NUM_OF_LEVELS)
+    {
+        window.draw(m_gameCompText);
+        window.draw(m_gameCompText2);
+    }
 }
 
 bool EndLevelScreen::isContainRetry(sf::Event e)
@@ -107,9 +112,21 @@ void EndLevelScreen::createText()
 
     m_loseText.setFont(*Resources::instance().getFont());
     m_loseText.setCharacterSize(CHAR_SIZE);
-    m_loseText.setPosition(645, 295);
+    m_loseText.setPosition(645, 285);
     m_loseText.setFillColor(sf::Color::Black);
-    m_loseText.setString("You lost this level\n    Try again!");
+    m_loseText.setString("You lost this level\n\n    Try again!");
+
+    m_gameCompText.setFont(*Resources::instance().getFont());
+    m_gameCompText.setCharacterSize(CHAR_SIZE);
+    m_gameCompText.setPosition(625, 260);
+    m_gameCompText.setFillColor(sf::Color::Black);
+    m_gameCompText.setString("     WELL DONE!\nYou beat all the levels!");
+
+    m_gameCompText2.setFont(*Resources::instance().getFont());
+    m_gameCompText2.setCharacterSize(CHAR_SIZE - 10);
+    m_gameCompText2.setPosition(625, 385);
+    m_gameCompText2.setFillColor(sf::Color::Black);
+    m_gameCompText2.setString("Why not play again and see if\nyou can improve your score?");
 }
 
 std::string EndLevelScreen::setTimeText(int time)
