@@ -35,6 +35,7 @@ void Resources::loadResources()
         loadAudioLose();
 		loadDoorSound();
 		loadHaySound();
+		loadJumpSound();
 	}
 	catch (const std::logic_error& e)
 	{
@@ -80,6 +81,11 @@ sf::SoundBuffer* Resources::getDoorSound()
 sf::SoundBuffer* Resources::getHaySound()
 {
 	return &m_haySound;
+}
+
+sf::SoundBuffer* Resources::getJumpSound()
+{
+	return &m_jumpSound;
 }
 
 void Resources::playMusic(ScreenType s)
@@ -461,6 +467,11 @@ void Resources::loadHaySound()
 {
 	if (!m_haySound.loadFromFile("hay.wav"))
 		throw(std::logic_error("Audio hay\n"));
+}
+void Resources::loadJumpSound()
+{
+	if (!m_jumpSound.loadFromFile("jump.wav"))
+		throw(std::logic_error("Audio jump\n"));
 }
 
 void Resources::loadPlayerArrow()

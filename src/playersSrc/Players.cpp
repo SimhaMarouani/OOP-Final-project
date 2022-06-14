@@ -4,14 +4,15 @@ Players::Players(Player type, sf::Vector2u imageCount, b2World* world)
 	:m_touchingFloor(true),
 	m_animation(Resources::instance().getPlayerSpriteSheet(type), imageCount, 0.08f),
 	m_direction(Direction::None),
-	m_isFaceRight(true)
+	m_isFaceRight(true),
+	m_audio(Resources::instance().getJumpSound())
 {
 	//float width = m_animation.m_uvRect.width / 2;
 	//float height = m_animation.m_uvRect.width/2 ;
 	m_icon.setTexture(*Resources::instance().getPlayerSpriteSheet(type));
-	m_icon.setScale(sf::Vector2f(0.5, 0.5)); //Tali: make default
+	m_icon.setScale(sf::Vector2f(DEFAULT_SCALE, DEFAULT_SCALE));
 	m_icon.setOrigin(m_animation.m_uvRect.width/2 , m_animation.m_uvRect.height/2);
-	m_icon.setPosition(sf::Vector2f(0, 600)); //Tali: change to DEFAULT
+	m_icon.setPosition(sf::Vector2f(0, DEFAULT_START_Y));
 
 	//create body in world
 	createCircleBody(world, b2_dynamicBody, m_animation.m_uvRect.height / 4);
@@ -49,8 +50,11 @@ namespace
 
 void Players::move(float deltaTime)
 {
-	if ( dirFromKey().y < 0 && m_touchingFloor)
+	if (dirFromKey().y < 0 && m_touchingFloor)
+	{
 		m_body->ApplyLinearImpulseToCenter(b2Vec2(0, this->getJumpImpulse()), true);
+		m_audio.playAudio();
+	}
 
 	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * m_speedPerSecond, 0);
 	m_body->ApplyForceToCenter(step1, true);
