@@ -84,12 +84,6 @@ void GameScreen::processEvents(sf::Event event, sf::Vector2f &mouseLocation, Con
         {
             m_settingsView->handleClick(event, ScreenType::Game);
 
-            if (!m_settingsView->isContain(event)) //Noga: temp
-            {
-                updateStatus(LevelActions::None);
-                m_dataDisplay.startTimer();
-            }
-
             if (m_settingsView->isContainExit(event))
             {
                 playClickAudio();
