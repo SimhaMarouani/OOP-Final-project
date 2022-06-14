@@ -22,6 +22,7 @@ public:
 	virtual void update(float deltaTime) = 0;
 	virtual void draw(sf::RenderWindow& window);
 
+	void setBackgroundColor(const sf::Color& c) { m_background.setFillColor(c); };
 	void playClickAudio();
 private:
 	sf::RectangleShape m_background;

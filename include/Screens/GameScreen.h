@@ -18,7 +18,6 @@ public:
 	void update(float deltaTime);
 
 	void resetTimer();
-	void pauseTimer();
 	void loadLevel(int level);
 	void updateStatus(LevelActions la);
 

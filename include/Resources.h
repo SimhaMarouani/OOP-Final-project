@@ -43,6 +43,8 @@ public:
 	sf::SoundBuffer* getAudioWin();
 	sf::SoundBuffer* getAudioLose();
 	sf::SoundBuffer* getDoorSound();
+	sf::SoundBuffer* getHaySound();
+	sf::SoundBuffer* getJumpSound();
 
 	void playMusic(ScreenType s);
 	bool isMusicOn() const;
@@ -93,6 +95,8 @@ private:
 	void loadAudioWin();
 	void loadAudioLose();
 	void loadDoorSound();
+	void loadHaySound();
+	void loadJumpSound();
 
 	//======Members==========
 
@@ -131,6 +135,8 @@ private:
 	sf::SoundBuffer m_audioWin;
 	sf::SoundBuffer m_audioLose;
 	sf::SoundBuffer m_doorSound;
+	sf::SoundBuffer m_haySound;
+	sf::SoundBuffer m_jumpSound;
 
 	sf::Music m_gameMusic; //game background music
 	sf::Music m_homeMusic; //home background music

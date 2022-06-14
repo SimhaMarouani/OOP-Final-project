@@ -69,6 +69,7 @@ void HomePageScreen::handleClick(sf::Event event, Controller &controller)
 		else if (m_buttons[(int)HomeButtonType::Help].isContain(event))
 		{
 			playClickAudio();
+			setBackgroundColor(sf::Color(255, 255, 255, 205));
 			m_pageStatus = PageStatus::Help;
 		}
 		else if (m_buttons[(int)HomeButtonType::Settings].isContain(event))
@@ -86,14 +87,16 @@ void HomePageScreen::handleClick(sf::Event event, Controller &controller)
 	case HomePageScreen::PageStatus::Help:
 	{
 		if (!m_helpBackground.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
+		{
+			setBackgroundColor(sf::Color(255, 255, 255));
 			m_pageStatus = PageStatus::Menu;
+
+		}
 		break;
 	}
 	case HomePageScreen::PageStatus::Settings:
 	{
 		m_settingsView->handleClick(event, ScreenType::HomePage);
-		if (!m_settingsView -> isContain(event)) //Noga: delete?
-			m_pageStatus = PageStatus::Menu;
 		if (m_settingsView->isContainExit(event))
 		{
 			playClickAudio();
@@ -159,7 +162,7 @@ void HomePageScreen::handleHover(const sf::Vector2f& location)
     {
         if (m_buttons[i].isHover(location))
         {
-			m_buttons[i].setColor(sf::Color({ 255, 255, 255, 180}));
+			m_buttons[i].setColor(sf::Color({ 240, 240, 240}));
         }
         else
         {

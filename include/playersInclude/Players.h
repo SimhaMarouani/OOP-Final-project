@@ -1,6 +1,10 @@
 #pragma once
 #include "GameObjects.h"
 #include "Animation.h"
+#include "Audio.h"
+
+const float DEFAULT_SCALE = 0.5;
+const float DEFAULT_START_Y = 600;
 
 class Players : public GameObjects
 {
@@ -28,5 +32,8 @@ private:
 
 	Animation m_animation;
 	bool m_isFaceRight;
+
+	Audio m_audio;
+
 
 };

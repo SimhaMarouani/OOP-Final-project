@@ -154,7 +154,7 @@ void EndLevelScreen::handleHover(const sf::Vector2f& location)
     for (int i = 0; i < m_buttons.size(); ++i)
     {
         if (m_buttons[i].isHover(location))
-            m_buttons[i].setColor(sf::Color({ 255, 255, 255, 180}));
+            m_buttons[i].setColor(sf::Color({ 240, 240, 240 }));
         else
             m_buttons[i].setColor(sf::Color::White);
     }

@@ -68,6 +68,11 @@ void CollisionHandler::sheepStatic(GameObjects* sheep, GameObjects* stat, bool f
     }
     else if (footSensor1)
         sh->setTouchingFloor(contact);
+    
+    if (auto b = dynamic_cast<Box*>(stat))
+    {
+        b->playAudio();
+    }
 }
 
 void CollisionHandler::sheepPlayer(GameObjects* sheep, GameObjects* player, bool footSensor1, bool footSensor2, bool contact)
