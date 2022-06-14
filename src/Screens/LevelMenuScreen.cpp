@@ -96,7 +96,7 @@ void LevelMenuScreen::handleClick(const sf::Event& event, Controller& controller
 void LevelMenuScreen::updateNumOfLevels()
 {
 	int curr = HighScore::instance().getNumOfCompleteLevels();
-	for (int i = m_numOfLevelsCompleted + 1; i < curr && i < NUM_OF_LEVELS; i++)
+	for (int i = m_numOfLevelsCompleted + 1; i <= curr && i < NUM_OF_LEVELS; i++)
 	{
 		m_levels[i].setTexture(Resources::instance().getLevelMenuTexture(LevelState::Unlock));
 		m_levels[i].setTextColor(sf::Color(64, 63, 61));
