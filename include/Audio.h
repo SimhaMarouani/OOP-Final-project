@@ -10,12 +10,9 @@ public:
 	Audio(sf::SoundBuffer* soundBuffer);
 	~Audio();
 
-	void playMusic(int volume = 10, bool loop = false);
-	void stopPlayMusic();
+	void playAudio(int volume = 10, bool loop = false);
+	void stop();
 
 private:
-	//functions
-	void initMusic(sf::SoundBuffer* soundBuffer);
-	sf::Sound m_sound; //for use of small sounds like collisions and such
-	//sf::Music m_music; //for use of long term sounds like background music (also allows looping of music)
+	sf::Sound m_sound;
 };
