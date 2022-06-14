@@ -28,7 +28,7 @@ void DataDisplay::createPlayersButtons()
 
 		float size = (i == static_cast<int>(Player::Heavy)) ? PLAYER_FACE_SIZE + 10 : PLAYER_FACE_SIZE;
 
-		m_players[i].setPosition({ offset_x + (size + margin) * float(x), offset_y + (size + margin) * float(y) });
+		m_players[i].setPosition({ offset_x + (size + margin) * static_cast<float>(x), offset_y + (size + margin) * static_cast<float>(y) });
 		m_players[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
 		m_players[i].setTexture(Resources::instance().getPlayerFaceTexture(Player(i)));
 		m_players[i].setColor(i == static_cast<int>(Player::Heavy) ? sf::Color::White : sf::Color(255, 255, 255, 100));

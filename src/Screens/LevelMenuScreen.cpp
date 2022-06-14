@@ -149,10 +149,10 @@ void LevelMenuScreen::initBtns()
 	{
 		auto y = floor(i / LEVEL_MENU_COLS);
 		auto x = i % LEVEL_MENU_COLS;
-		auto posX = offset_x + (LEVEL_MENU_BTN_SIZE + margin) * float(x);
-		auto posY = offset_y + (LEVEL_MENU_BTN_SIZE + margin) * float(y);
+		auto posX = offset_x + (LEVEL_MENU_BTN_SIZE + margin) * static_cast<float>(x);
+		auto posY = offset_y + (LEVEL_MENU_BTN_SIZE + margin) * static_cast<float>(y);
 
-		m_levels[i].setPosition({ offset_x + (LEVEL_MENU_BTN_SIZE + margin) * float(x), offset_y + (LEVEL_MENU_BTN_SIZE + margin) * float(y) });
+		m_levels[i].setPosition({ offset_x + (LEVEL_MENU_BTN_SIZE + margin) * static_cast<float>(x), offset_y + (LEVEL_MENU_BTN_SIZE + margin) * static_cast<float>(y) });
 		m_levels[i].setTextPosition({ posX + (LEVEL_MENU_BTN_SIZE / 3), posY + (LEVEL_MENU_BTN_SIZE / 3) });
 		m_levels[i].setTexture(i <= m_numOfLevelsCompleted ? Resources::instance().getLevelMenuTexture(LevelState::Unlock) : Resources::instance().getLevelMenuTexture(LevelState::Lock));
 		m_levels[i].setTextColor(sf::Color(64, 63, 61));

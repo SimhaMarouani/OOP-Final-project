@@ -22,8 +22,8 @@ void GameObjects::createSquareBody(b2World* world, b2BodyType bodyType, sf::Vect
     m_body = world->CreateBody(&bodyDef);
 
     b2PolygonShape boxShape;
-    float width = rect.x == 0 ? getWidth() : float(rect.x) / 2;
-    float height = rect.y == 0 ? getHeight() : float(rect.y) / 2;
+    float width = rect.x == 0 ? getWidth() : static_cast<float>(rect.x) / 2;
+    float height = rect.y == 0 ? getHeight() : static_cast<float>(rect.y) / 2;
 
     boxShape.SetAsBox(width / 2, height / 2);
 
