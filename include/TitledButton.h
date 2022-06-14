@@ -7,17 +7,18 @@
 class TitledButton : public Button
 {
 public:
-	TitledButton(sf::Texture texture, sf::Vector2f ButtonSize, std::string str, float textSize, sf::Vector2f textPos, sf::Font& font); //Noga: remember to add texture here
+	TitledButton(const sf::Texture &texture, const sf::Vector2f &ButtonSize, 
+				const std::string str, unsigned int textSize, const sf::Vector2f &textPos, const sf::Font& font);
 
-	void setTextString(std::string text); //the content
-	void setTextColor(sf::Color c);
-	void setTextSize(float s);
-	void setTextPosition(sf::Vector2f p);
-	void setTextFont(sf::Font &f);
+	void setTextString(const std::string &text); //the content
+	void setTextColor(const sf::Color &c);
+	void setTextSize(unsigned int s);
+	void setTextPosition(const sf::Vector2f& p);
+	void setTextFont(const sf::Font &f);
 
 	void draw(sf::RenderWindow& window);
 private:
-	void setTextAttributes(std::string str, float textSize, sf::Vector2f textPos, sf::Font &font);
+	void setTextAttributes(const std::string& str, unsigned int textSize, const sf::Vector2f& textPos, const sf::Font &font);
 	sf::Text m_buttonText;
 };
 

@@ -1,18 +1,18 @@
 #include "Button.h"
 
-Button::Button(sf::Texture& texture, float scale)
+Button::Button(const sf::Texture& texture, float scale)
 	: Button(texture)
 {
 	m_button.setScale(scale, scale);
 }
 
-Button::Button(sf::Texture &texture, sf::Vector2f size)
+Button::Button(const sf::Texture &texture, const sf::Vector2f &size)
 	: Button(texture)
 {
 	m_button.setScale(size.x / m_button.getTexture()->getSize().x, size.y / m_button.getTexture()->getSize().y);
 }
 
-Button::Button(sf::Texture& texture)
+Button::Button(const sf::Texture& texture)
 	: m_button(texture)
 {
 }
