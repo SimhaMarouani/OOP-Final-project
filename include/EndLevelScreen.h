@@ -36,6 +36,8 @@ private:
     sf::Text m_loseText;
     sf::Text m_timeText;
     sf::Text m_newScoreText;
+    sf::Text m_gameCompText;
+    sf::Text m_gameCompText2;
 
     Audio m_winSound;
     Audio m_loseSound;
