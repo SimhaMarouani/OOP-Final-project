@@ -1,5 +1,6 @@
 #pragma once
 #include "objectsInclude/StaticObjects.h"
+#include "Audio.h"
 
 
 class Door : public StaticObjects
@@ -12,4 +13,6 @@ public:
 private:
 	bool m_open;
 	bool m_moved;
+
+	Audio m_audio;
 };

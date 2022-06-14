@@ -33,6 +33,7 @@ void Resources::loadResources()
 		loadAudioClick();
         loadAudioWin();
         loadAudioLose();
+		loadDoorSound();
 	}
 	catch (const std::logic_error& e)
 	{
@@ -68,6 +69,11 @@ sf::SoundBuffer* Resources::getAudioWin()
 sf::SoundBuffer* Resources::getAudioLose()
 {
 	return &m_audioLose;
+}
+
+sf::SoundBuffer* Resources::getDoorSound()
+{
+	return &m_doorSound;
 }
 
 void Resources::playMusic(ScreenType s)
@@ -429,17 +435,20 @@ void Resources::loadAudioClick()
 void Resources::loadAudioWin()
 {
 	if (!m_audioWin.loadFromFile("win.wav"))
-	{
-		std::cerr << "error loading audio 'win' from file";
-	}
+		throw(std::logic_error("Audio win\n"));
 }
 
 void Resources::loadAudioLose()
 {
 	if (!m_audioLose.loadFromFile("lose.wav"))
-	{
-		std::cerr << "error loading audio 'lose' from file";
-	}
+		throw(std::logic_error("Audio lose\n"));
+
+}
+
+void Resources::loadDoorSound()
+{
+	if (!m_doorSound.loadFromFile("door.wav"))
+		throw(std::logic_error("Audio door\n"));
 }
 
 void Resources::loadPlayerArrow()
