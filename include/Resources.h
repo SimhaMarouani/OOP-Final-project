@@ -110,7 +110,6 @@ private:
     sf::Texture m_retryBtn;
 	sf::Texture m_menuBtn;
 	sf::Texture m_highScoreBtn;
-	std::vector<sf::Texture> m_players;
 	std::vector<sf::Texture> m_playersFace;
 	std::vector<sf::Texture> m_objects;
 	std::vector<sf::Texture> m_grounds;
@@ -132,8 +131,6 @@ private:
 
 	sf::Music m_gameMusic; //game background music
 	sf::Music m_homeMusic; //home background music
-	//const std::string MUSIC_FILE_NAME[NUM_OF_BG_TEXTURES] = { "home_music.wav", "levelmenu_music.wav", "birds.wav" };
-	//std::vector<sf::Music> m_music;
 
 	bool m_audioOn = true;
 };

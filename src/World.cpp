@@ -64,7 +64,7 @@ void World::moveActive(float deltaTime, const Player active)
 	for (int i = 0; i < m_objects.size(); i++)
 	{
 		m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
-		m_objects[i]->update();
+		m_objects[i]->updateObj();
 		if (auto sw = dynamic_cast<Door*>(m_objects[i].get()))
 		{
 			sw->updateDoorState();
@@ -133,7 +133,7 @@ void World::loadLevel(const int levelNum)
 	std::string levelName = "Level" + std::to_string(levelNum) + ".txt";
 	std::ifstream levelFile;
 	std::string line, objType;
-	int locX, locY;
+	float locX, locY;
 	float scaleX, scaleY;
 	std::stringstream ssline;
 
@@ -162,9 +162,8 @@ void World::loadLevel(const int levelNum)
 	getline(levelFile, line); //Read line of labels in file
 
 	//reading contents of level
-	while (!levelFile.eof())
+	while (getline(levelFile, line))
 	{
-		getline(levelFile, line);
 		ssline.clear();
 		ssline.str(line);
 		ssline >> objType >> locX >> locY;
@@ -189,22 +188,22 @@ void World::loadLevel(const int levelNum)
 			else //wasnt able to create object
 				throw std::invalid_argument("");
 		}
+		if (levelFile.eof()) break;
 	}
 	levelFile.close();
 }
 
 bool World::isPlayer(const std::string type)const
 {
-	//Tali: change to more generic //Noga: we can change this 'if' to .find() or save it as a pair / map i think
 	return type == PLAYERS[0]
 			|| type == PLAYERS[1]
 			|| type == PLAYERS[2];
 }
 
-int World::getIndPlayer(const std::string player)const //might not need in future
+int World::getIndPlayer(const std::string player)const
 {
 	for (int i = 0; i < NUM_OF_PLAYERS; i++)
 		if (PLAYERS[i] == player)
 			return i;
-	return 0; //Tali: maybe change to -1 or exception?
+	return 0;
 }

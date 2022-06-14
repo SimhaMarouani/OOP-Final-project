@@ -1,9 +1,7 @@
 #pragma once
 #include "box2d/box2d.h"
-#include "Macros.h"
 #include <cstdint>
 #include "GameObjects.h"
-
 #include"CollisionHandler.h"
 
 class MyContactListener : public b2ContactListener

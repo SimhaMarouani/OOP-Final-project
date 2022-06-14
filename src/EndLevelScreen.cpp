@@ -18,7 +18,7 @@ void EndLevelScreen::createBtns()
     m_buttons.emplace_back(Button(*Resources::instance().getEndLevelBtnsTexture(EndLevelButtonType::Menu), sf::Vector2f(150,70)));
     m_buttons.emplace_back(Button(*Resources::instance().getEndLevelBtnsTexture(EndLevelButtonType::Next), sf::Vector2f(150,70)));
 
-    auto start_x = 570;
+    auto start_x = 575;
     for (size_t i = 0; i < m_buttons.size(); i++)
     {
         m_buttons[i].setPosition(sf::Vector2f(start_x + 150 * i, WINDOW_HEIGHT - END_HEIGHT));
@@ -59,20 +59,32 @@ void EndLevelScreen::draw(sf::RenderWindow &window, bool status, int levelNum, i
 
 bool EndLevelScreen::isContainRetry(sf::Event e)
 {
-    m_soundCounter = 0;
-    return m_buttons[(int)EndLevelButtonType::Retry].isContain(e);
+    if(m_buttons[(int)EndLevelButtonType::Retry].isContain(e))
+    {
+        m_soundCounter = 0;
+        return true;
+    }
+    return false;
 }
 
 bool EndLevelScreen::isContainMenu(sf::Event e)
 {
-    m_soundCounter = 0;
-    return m_buttons[(int)EndLevelButtonType::Menu].isContain(e);
+    if(m_buttons[(int)EndLevelButtonType::Menu].isContain(e))
+    {
+        m_soundCounter = 0;
+        return true;
+    }
+    return false;
 }
 
 bool EndLevelScreen::isContainNext(sf::Event e)
 {
-    m_soundCounter = 0;
-    return m_buttons[(int)EndLevelButtonType::Next].isContain(e);
+    if(m_buttons[(int)EndLevelButtonType::Next].isContain(e))
+    {
+        m_soundCounter = 0;
+        return true;
+    }
+    return false;
 }
 
 void EndLevelScreen::createText()

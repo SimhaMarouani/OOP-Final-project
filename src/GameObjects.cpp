@@ -102,14 +102,16 @@ void GameObjects::setPosition(sf::Vector2f pos)
 void GameObjects::updateObj()
 {
     if (m_body->GetType() == b2_dynamicBody)
+    {
         m_body->SetAwake(true);
 
-    float MAX_SPEED = 15.0f;
-    if (m_body->GetLinearVelocity().x < -MAX_SPEED) {
-        m_body->SetLinearVelocity(b2Vec2(-MAX_SPEED, m_body->GetLinearVelocity().y));
-    }
-    else if (m_body->GetLinearVelocity().x > MAX_SPEED) {
-        m_body->SetLinearVelocity(b2Vec2(MAX_SPEED, m_body->GetLinearVelocity().y));
+        float MAX_SPEED = 15.0f;
+        if (m_body->GetLinearVelocity().x < -MAX_SPEED) {
+            m_body->SetLinearVelocity(b2Vec2(-MAX_SPEED, m_body->GetLinearVelocity().y));
+        }
+        else if (m_body->GetLinearVelocity().x > MAX_SPEED) {
+            m_body->SetLinearVelocity(b2Vec2(MAX_SPEED, m_body->GetLinearVelocity().y));
+        }
     }
 }
 

@@ -21,16 +21,13 @@ public:
 	~DataDisplay();
 	void draw(sf::RenderWindow& window);
 	void handleClick(sf::Event event, GameScreen &gs);
-	//void handleHover(const sf::Vector2f& location);
+	void handleHover(const sf::Vector2f& location);
 	void setCurrPlayer(int activePlayer);
 
 	//Time functiona
 	void resetTimer();
-	void switchTimer();
-
 	void startTimer();
 	void pauseTimer();
-
     int getTime();
 
 private:

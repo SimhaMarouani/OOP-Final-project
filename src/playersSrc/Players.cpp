@@ -57,7 +57,7 @@ void Players::move(float deltaTime)
 
 	//move to update func
 	sf::Vector2f dir = dirFromKey();
-	m_direction = getDir(dir);	//Tali: needed??
+	m_direction = getDir(dir);
 }
 
 void Players::setTouchingFloor(bool touching)
