@@ -18,10 +18,10 @@ public:
 	Settings();
 	virtual ~Settings() = default;
 
-	void draw(sf::RenderWindow& window, enum class ScreenType s);
-	void update(enum class ScreenType s);
+	void draw(sf::RenderWindow& window, enum ScreenType s);
+	void update(enum ScreenType s);
 
-	void handleClick(const sf::Event& event, enum class ScreenType s);
+	void handleClick(const sf::Event& event, enum ScreenType s);
 
 	bool isContain(const sf::Event& event) const;
 	bool isContainExit(const sf::Event& e) const;
