@@ -5,10 +5,10 @@
 Settings::Settings() //TODO: send current status
 	: m_background(sf::Vector2f(SETTINGS_WIDTH, SETTINGS_HEIGHT)),
 	m_shadow(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
-	m_exitSettingsBtn(*Resources::instance().getSettingsReturnTexture(Screen::HomePage)),
+	m_exitSettingsBtn(*Resources::instance().getSettingsReturnTexture(ScreenType::HomePage)),
 	m_redirectBtn(*Resources::instance().getSettingsHomeTexture()),
 	m_btnsAudio(Resources::instance().getAudioClick()),
-	m_currScreen(Screen::HomePage)
+	m_currScreen(ScreenType::HomePage)
 
 {
 	m_shadow.setFillColor(sf::Color(255, 255, 255, 50));
@@ -17,7 +17,7 @@ Settings::Settings() //TODO: send current status
 	createBtns();
 }
 
-void Settings::draw(sf::RenderWindow& window, enum Screen s)
+void Settings::draw(sf::RenderWindow& window, enum class ScreenType s)
 {
 	window.draw(m_shadow);
 	window.draw(m_background);
@@ -29,11 +29,11 @@ void Settings::draw(sf::RenderWindow& window, enum Screen s)
 
 	m_exitSettingsBtn.draw(window);
 
-	if(s == Screen::Game)
+	if(s == ScreenType::Game)
 		m_redirectBtn.draw(window);
 }
 
-void Settings::update(enum Screen s)
+void Settings::update(enum class ScreenType s)
 {
 	if (m_currScreen != s)
 	{
@@ -48,7 +48,7 @@ bool Settings::isContain(const sf::Event &event) const
 	return m_background.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y);
 }
 
-void Settings::handleClick(const sf::Event &event, enum Screen s)
+void Settings::handleClick(const sf::Event &event, enum class ScreenType s)
 {
 	if (m_soundBtns[(int)Type::Audio].isContain(event))
 	{

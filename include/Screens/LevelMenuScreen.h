@@ -10,12 +10,13 @@
 #include "Button.h"
 #include "Audio.h"
 #include "HighScoreView.h"
+#include "Screen.h"
 
 #include "Macros.h"
 #include "Utilities.h"
 
 
-class LevelMenuScreen
+class LevelMenuScreen : public Screen
 {
 public:
 	LevelMenuScreen();
@@ -30,7 +31,6 @@ private:
 	int m_numOfLevelsCompleted; //Noga: change to read from file which levels the user already complete and the time it took - to know for the level score....
 									// maybe we need to save this in different class but for now, you know
 
-	sf::RectangleShape m_background;
 	std::vector<TitledButton> m_levels;
 
 	Button m_homeButton;

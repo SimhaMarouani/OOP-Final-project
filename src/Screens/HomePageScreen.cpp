@@ -2,14 +2,12 @@
 #include "Controller.h"
 
 HomePageScreen::HomePageScreen()
-	: m_pageStatus(PageStatus::Menu), m_helpBackground(sf::Vector2f(HELP_WIDTH, HELP_HEIGHT)),
+	: Screen(Resources::instance().getBackground(ScreenType::HomePage)),
+	m_pageStatus(PageStatus::Menu), m_helpBackground(sf::Vector2f(HELP_WIDTH, HELP_HEIGHT)),
 	m_animation(Resources::instance().getPlayerSpriteSheet(Player::Heavy), sf::Vector2u(5, 5), 0.08f), //animation
 	m_btnsAudio(Resources::instance().getAudioClick())
 {
 	setHelpScreen();
-
-	m_background.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
-	m_background.setTexture(Resources::instance().getBackground(Screen::HomePage));
 
 	m_heavy.setTexture(*Resources::instance().getPlayerSpriteSheet(Player::Heavy)); //animation
 	m_heavy.setPosition(sf::Vector2f(140, 500)); //animation
@@ -20,7 +18,7 @@ HomePageScreen::HomePageScreen()
 
 void HomePageScreen::draw(sf::RenderWindow& window)
 {
-	window.draw(m_background);
+	Screen::draw(window);
 	window.draw(m_heavy);
 	switch (m_pageStatus)
 	{
@@ -28,7 +26,7 @@ void HomePageScreen::draw(sf::RenderWindow& window)
 		window.draw(m_helpBackground);
 		break;
 	case PageStatus::Settings:
-		m_settingsView->draw(window, Screen::HomePage);
+		m_settingsView->draw(window, ScreenType::HomePage);
 		break;
 	case PageStatus::Menu:
 		drawMenu(window);
@@ -65,7 +63,7 @@ void HomePageScreen::handleClick(sf::Event event, Controller &controller)
 		if (m_buttons[(int)HomeButtonType::Start].isContain(event))
 		{
 			m_btnsAudio.playAudio();
-			controller.updatePage(Screen::LevelMenu);
+			controller.updatePage(ScreenType::LevelMenu);
 			controller.updateNumOfLevels(); //Noga: optional
 		}
 	
@@ -94,7 +92,7 @@ void HomePageScreen::handleClick(sf::Event event, Controller &controller)
 	}
 	case HomePageScreen::PageStatus::Settings:
 	{
-		m_settingsView->handleClick(event, Screen::HomePage);
+		m_settingsView->handleClick(event, ScreenType::HomePage);
 		if (!m_settingsView -> isContain(event)) //Noga: delete?
 			m_pageStatus = PageStatus::Menu;
 		if (m_settingsView->isContainExit(event))
@@ -118,7 +116,7 @@ void HomePageScreen::update(float deltaTime)
 {
 	if (m_pageStatus == PageStatus::Settings)
 	{
-		m_settingsView->update(Screen::HomePage);
+		m_settingsView->update(ScreenType::HomePage);
 	}
 	m_animation.update(1 /*line*/, 5, deltaTime, true); //animation
 	m_heavy.setTextureRect(m_animation.m_uvRect); //animations

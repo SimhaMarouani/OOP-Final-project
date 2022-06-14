@@ -4,11 +4,12 @@
 #include "World.h"
 #include "DataDisplay.h"
 #include "Settings.h"
+#include "Screen.h"
 #include "EndLevelScreen.h"
 #include "HighScore.h"
 #include "Audio.h"
 
-class GameScreen {
+class GameScreen : public Screen {
 public:
 	GameScreen();
 	void draw(sf::RenderWindow& window);
@@ -36,8 +37,6 @@ private:
 
 	LevelActions m_pageStatus;
 	Player m_activePlayer;
-
-	sf::RectangleShape m_background;
 
     int m_levelNum;
     

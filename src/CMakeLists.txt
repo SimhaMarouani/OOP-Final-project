@@ -11,6 +11,7 @@
                                               "HighScoreView.cpp"
                                               "Utilities.cpp"
 
+                                              "Screens/Screen.cpp"
                                               "Screens/HomePageScreen.cpp"
                                               "Screens/GameScreen.cpp"
                                               "Screens/LevelMenuScreen.cpp"

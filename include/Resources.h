@@ -18,9 +18,9 @@ public:
 
 	//Access Functions
 	sf::Font* getFont();
-	sf::Texture* getBackground(Screen index);
+	sf::Texture* getBackground(ScreenType index);
 	sf::Texture* getHelpBackground();
-	sf::Texture* getSettingsReturnTexture(Screen s);
+	sf::Texture* getSettingsReturnTexture(ScreenType s);
 	sf::Texture* getSettingsHomeTexture();
     sf::Texture* getBackArrowTexture();
     sf::Texture* getPlayerFaceTexture(Player player);
@@ -43,11 +43,11 @@ public:
 	sf::SoundBuffer* getAudioWin();
 	sf::SoundBuffer* getAudioLose();
 
-	void playMusic(Screen s);
+	void playMusic(ScreenType s);
 	bool isMusicOn() const;
 	bool isAudioOn() const;
 
-	void switchMusicStatus(Screen s);
+	void switchMusicStatus(ScreenType s);
 	void switchAudioStatus();
 
 private:

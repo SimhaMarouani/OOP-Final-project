@@ -3,8 +3,8 @@
 
 
 LevelMenuScreen::LevelMenuScreen()
-	: m_levels(NUM_OF_LEVELS , TitledButton(*Resources::instance().getLevelMenuTexture(LevelState::Lock), sf::Vector2f(LEVEL_MENU_BTN_SIZE, LEVEL_MENU_BTN_SIZE), "", 50.f, sf::Vector2f(0.f,0.f), *Resources::instance().getFont())),
-	  m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
+	: Screen(Resources::instance().getBackground(ScreenType::LevelMenu)),
+	  m_levels(NUM_OF_LEVELS , TitledButton(*Resources::instance().getLevelMenuTexture(LevelState::Lock), sf::Vector2f(LEVEL_MENU_BTN_SIZE, LEVEL_MENU_BTN_SIZE), "", 50.f, sf::Vector2f(0.f,0.f), *Resources::instance().getFont())),
 	  m_numOfLevelsCompleted(HighScore::instance().getNumOfCompleteLevels()),
       m_homeButton(*Resources::instance().getBackArrowTexture()),
 	  m_btnsAudio(Resources::instance().getAudioClick()),
@@ -12,7 +12,6 @@ LevelMenuScreen::LevelMenuScreen()
 	  m_highScoreButton(*Resources::instance().getHighScoreBtn()),
 	m_isScoreOpen(false)
 {
-	m_background.setTexture(Resources::instance().getBackground(Screen::LevelMenu));
 	initBtns();	
 
 	m_light.setTexture(*Resources::instance().getPlayerSpriteSheet(Player::Light)); //animation
@@ -26,7 +25,7 @@ LevelMenuScreen::LevelMenuScreen()
 
 void LevelMenuScreen::draw(sf::RenderWindow& window)
 {
-	window.draw(m_background);
+	Screen::draw(window);
 	for (auto& l : m_levels)
 	{
 		l.draw(window);
@@ -35,7 +34,6 @@ void LevelMenuScreen::draw(sf::RenderWindow& window)
     m_homeButton.draw((window));
 	m_highScoreButton.draw(window);
 	if (m_isScoreOpen) m_highScoreView.draw(window);
-
 }
 
 void LevelMenuScreen::processEvents(sf::Event event, sf::Vector2f& mouseLocation, Controller& controller)
@@ -78,14 +76,14 @@ void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)
 			if (m_levels[i].isContain(event) && i <= m_numOfLevelsCompleted)
 			{
 				m_btnsAudio.playAudio();
-				controller.startGame(Screen::Game, i+1);
+				controller.startGame(ScreenType::Game, i+1);
 			}
 		}
 
 		if (m_homeButton.isContain(event))
 		{
 			m_btnsAudio.playAudio();
-			controller.updatePage(Screen::HomePage);
+			controller.updatePage(ScreenType::HomePage);
 		}
 
 		if (m_highScoreButton.isContain(event))
