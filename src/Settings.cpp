@@ -42,12 +42,6 @@ void Settings::update(enum ScreenType s)
 	}	
 }
 
-
-bool Settings::isContain(const sf::Event &event) const
-{
-	return m_background.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y);
-}
-
 void Settings::handleClick(const sf::Event &event, enum ScreenType s)
 {
 	if (m_soundBtns[(int)Type::Audio].isContain(event))
@@ -104,4 +98,32 @@ void Settings::initTextButton()
 	//home
 	m_redirectBtn.setScale(sf::Vector2f(0.70f, 0.70f));
 	m_redirectBtn.setPosition(m_background.getPosition() + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_redirectBtn.getSize().x / 2), SETTINGS_HEIGHT * 3 / 6));
+}
+
+
+void Settings::handleHover(const sf::Vector2f& location)
+{
+    for (int i = 0; i < m_soundBtns.size(); ++i)
+    {
+        if (m_soundBtns[i].isHover(location))
+            m_soundBtns[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE + 15, PLAYER_FACE_SIZE + 15));
+        else
+            m_soundBtns[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
+    }
+
+    if (m_exitSettingsBtn.isHover(location))
+    {
+        m_exitSettingsBtn.setScale(sf::Vector2f (0.90f, 0.90f));
+        m_redirectBtn.setScale(sf::Vector2f(0.70f, 0.70f));
+    }
+    else if (m_redirectBtn.isHover(location))
+    {
+        m_exitSettingsBtn.setScale(sf::Vector2f (0.70f, 0.70f));
+        m_redirectBtn.setScale(sf::Vector2f(0.90f,0.90f));
+    }
+    else
+    {
+        m_exitSettingsBtn.setScale(sf::Vector2f(0.70f, 0.70f));
+        m_redirectBtn.setScale(sf::Vector2f(0.70f, 0.70f));
+    }
 }

@@ -46,6 +46,7 @@ void HomePageScreen::processEvents(sf::Event event, sf::Vector2f &mouseLocation,
 	case sf::Event::MouseMoved:
 	{
 		handleHover(mouseLocation);
+        m_settingsView->handleHover(mouseLocation);
 		break;
 	}
 	default:

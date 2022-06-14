@@ -105,6 +105,7 @@ void GameScreen::processEvents(sf::Event event, sf::Vector2f &mouseLocation, Con
     {
         m_dataDisplay.handleHover(mouseLocation);
         m_endLevelView->handleHover(mouseLocation);
+        m_settingsView->handleHover(mouseLocation);
         break;
     }
     default:

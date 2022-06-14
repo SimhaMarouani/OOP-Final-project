@@ -22,10 +22,11 @@ public:
 	void update(enum ScreenType s);
 
 	void handleClick(const sf::Event& event, enum ScreenType s);
+    void handleHover(const sf::Vector2f& location);
 
-	bool isContain(const sf::Event& event) const;
 	bool isContainExit(const sf::Event& e) const;
 	bool isContainHome(const sf::Event& e) const;
+
 private:
 	void createBtns();
 	void initSoundButton();
