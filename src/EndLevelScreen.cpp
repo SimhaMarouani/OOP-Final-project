@@ -113,9 +113,9 @@ std::string EndLevelScreen::setTimeText(int time)
 void EndLevelScreen::playSound(bool status)
 {
     if (status && m_soundCounter == 0)
-        m_winSound.playMusic();
+        m_winSound.playAudio();
     else if (!status && m_soundCounter == 0)
-        m_loseSound.playMusic();
+        m_loseSound.playAudio();
 
     ++m_soundCounter;
 }
