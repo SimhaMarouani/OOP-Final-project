@@ -8,7 +8,6 @@ Resources::Resources()
 void Resources::loadResources()
 {
 	try {
-
 		loadFont();
 		loadBackgroundTextures();
 		loadHelpBackground();
@@ -28,9 +27,7 @@ void Resources::loadResources()
 		loadMusic();
 		loadBackArrowTexture();
 		loadWinBackground();
-		loadNextLevelBtn();
-		loadRetryBtn();
-		loadMenuBtn();
+        loadEndLevelBtnsTexture();
 		loadHighScoreBtn();
 		loadGameIcon();
 		loadAudioClick();
@@ -44,12 +41,9 @@ void Resources::loadResources()
 	}
 }
 
-
-
 Resources::~Resources()
 {
 }
-
 
 Resources& Resources::instance()
 {
@@ -211,19 +205,9 @@ sf::Texture* Resources::getSettingsBackground()
 	return &m_settingsBackground;
 }
 
-sf::Texture* Resources::getNextLevelBtn()
+sf::Texture* Resources::getEndLevelBtnsTexture(EndLevelButtonType b)
 {
-    return &m_nextLevelBtn;
-}
-
-sf::Texture* Resources::getRetryBtn()
-{
-    return &m_retryBtn;
-}
-
-sf::Texture* Resources::getMenuBtn()
-{
-    return &m_menuBtn;
+    return &m_endLevelBtnsTexture[(int)b];
 }
 
 sf::Texture* Resources::getHighScoreBtn()
@@ -260,7 +244,6 @@ sf::Texture* Resources::getLevelActionButtonTexture(LevelActions la)
 //							 LOAD DATA
 //===============================================================//
 
-
 void Resources::loadFont()
 {
 	if (!m_font.loadFromFile("Font.ttf"))
@@ -296,6 +279,15 @@ void Resources::loadHomePageBtnsTexture()
 		throw(std::logic_error("Page Buttons Texture\n"));
 }
 
+void Resources::loadEndLevelBtnsTexture()
+{
+	m_endLevelBtnsTexture.resize(3);
+	if (!m_endLevelBtnsTexture[(int)EndLevelButtonType::Retry].loadFromFile("retry_btn.png")
+		|| !m_endLevelBtnsTexture[(int)EndLevelButtonType::Menu].loadFromFile("menu_btn.png")
+		|| !m_endLevelBtnsTexture[(int)EndLevelButtonType::Next].loadFromFile("next_level_btn.png"))
+		throw(std::logic_error("End Buttons Texture\n"));
+}
+
 void Resources::loadLevelActionButtonTexture()
 {
 	m_levelActionButtonsTexture.resize(2);
@@ -325,27 +317,6 @@ void Resources::loadSettingsHomeTexture()
 {
 	if (!m_settingsHomeTexture.loadFromFile("home_button.png"))
 		throw(std::logic_error("Settings Home Texture\n"));
-
-}
-
-void Resources::loadNextLevelBtn()
-{
-    if (!m_nextLevelBtn.loadFromFile("next_level_btn.png"))
-		throw(std::logic_error("Next Level Button\n"));
-
-}
-
-void Resources::loadRetryBtn()
-{
-    if (!m_retryBtn.loadFromFile("retry_btn.png"))
-		throw(std::logic_error("Retry Button\n"));
-
-}
-
-void Resources::loadMenuBtn()
-{
-    if (!m_menuBtn.loadFromFile("menu_btn.png"))
-		throw(std::logic_error("Menu Button\n"));
 
 }
 
@@ -483,4 +454,3 @@ void Resources::loadSign()
 	if (!m_sign.loadFromFile("destination.png"))
 		throw(std::logic_error("Destination Sign\n"));
 }
-

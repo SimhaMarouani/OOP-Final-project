@@ -11,8 +11,6 @@
 #include "Utilities.h"
 #include "Audio.h"
 
-//#include "Controller.h"
-
 
 class EndLevelScreen{
 public:
@@ -20,25 +18,19 @@ public:
     virtual ~EndLevelScreen() = default;
 
     void draw(sf::RenderWindow& window, bool status, int levelNum, int time);
-
-    //void handleClick(sf::Event event);
-    void createText();
-
     bool isContainRetry(sf::Event e);
     bool isContainMenu(sf::Event e);
     bool isContainNext(sf::Event e);
     void handleHover(const sf::Vector2f& location);
 
 private:
+    void createText();
     void createBtns();
     std::string setTimeText(int time);
     void playSound(bool status);
 
     sf::RectangleShape m_background;
-
-    Button m_retryBtn;
-    Button m_nextLevelBtn;
-    Button m_menuBtn;
+    std::vector<Button> m_buttons;
 
     sf::Text m_winText;
     sf::Text m_loseText;

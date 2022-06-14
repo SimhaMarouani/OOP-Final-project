@@ -6,7 +6,6 @@ DataDisplay::DataDisplay(/*int level*/)
 	: m_players(NUM_OF_PLAYERS, Button(*Resources::instance().getPlayerFaceTexture(Player::Heavy), sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE))), 
 	  m_levelActions(2, Button(*Resources::instance().getLevelActionButtonTexture(LevelActions::Pause), sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE))),
       m_btnsAudio(Resources::instance().getAudioClick())
-
 {
 	createPlayersButtons();
 	initActionsButtons();
@@ -64,11 +63,6 @@ void DataDisplay::draw(sf::RenderWindow& window)
 void DataDisplay::resetTimer()
 {
 	m_timer.startClock();
-}
-
-void DataDisplay::switchTimer()
-{
-	m_timer.switchTimer();
 }
 
 void DataDisplay::startTimer()
@@ -136,18 +130,14 @@ void DataDisplay::pauseTimer()
 {
     m_timer.pause();
 }
-//TODO: add to retry and pause buttins 
-//void DataDisplay::handleHover(const sf::Vector2f& location)
-//{
-//	for (int i = 0; i < m_players.size(); i++)
-//	{
-//		if (this->m_players[i].isContain(location))
-//		{
-//			m_players[i].setOutline(sf::Color::Black);
-//		}
-//		else
-//		{
-//			m_players[i].setOutline(WHITE_COLOR);
-//		}
-//	}
-//}
+
+void DataDisplay::handleHover(const sf::Vector2f& location)
+{
+    for (int i = 0; i < m_levelActions.size(); ++i)
+    {
+        if (m_levelActions[i].isHover(location))
+            m_levelActions[i].setColor(sf::Color({ 255, 255, 255, 180}));
+        else
+            m_levelActions[i].setColor(sf::Color::White);
+    }
+}

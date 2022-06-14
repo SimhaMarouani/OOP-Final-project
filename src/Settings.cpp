@@ -3,7 +3,7 @@
 
 
 Settings::Settings() //TODO: send current status
-	:m_background(sf::Vector2f(SETTINGS_WIDTH, SETTINGS_HEIGHT)),
+	: m_background(sf::Vector2f(SETTINGS_WIDTH, SETTINGS_HEIGHT)),
 	m_shadow(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
 	m_exitSettingsBtn(*Resources::instance().getSettingsReturnTexture(Screen::HomePage)),
 	m_redirectBtn(*Resources::instance().getSettingsHomeTexture()),
@@ -15,16 +15,9 @@ Settings::Settings() //TODO: send current status
 	m_background.setTexture(Resources::instance().getSettingsBackground());
 	m_background.setPosition(sf::Vector2f((WINDOW_WIDTH - SETTINGS_WIDTH) / 2, (WINDOW_HEIGHT - SETTINGS_HEIGHT) / 2));
 	createBtns();
-
-	//return
-	m_exitSettingsBtn.setScale(sf::Vector2f(0.70f, 0.70f));
-	m_exitSettingsBtn.setPosition(m_background.getPosition() + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_exitSettingsBtn.getSize().x / 2), SETTINGS_HEIGHT * 4 /6));
-	//home
-	m_redirectBtn.setScale(sf::Vector2f(0.70f, 0.70f));
-	m_redirectBtn.setPosition(m_background.getPosition() + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_redirectBtn.getSize().x / 2), SETTINGS_HEIGHT * 3 / 6));
 }
 
-void Settings::draw(sf::RenderWindow& window, Screen s)
+void Settings::draw(sf::RenderWindow& window, enum Screen s)
 {
 	window.draw(m_shadow);
 	window.draw(m_background);
@@ -40,7 +33,7 @@ void Settings::draw(sf::RenderWindow& window, Screen s)
 		m_redirectBtn.draw(window);
 }
 
-void Settings::update(Screen s)
+void Settings::update(enum Screen s)
 {
 	if (m_currScreen != s)
 	{
@@ -50,12 +43,12 @@ void Settings::update(Screen s)
 }
 
 
-bool Settings::isContain(sf::Event event) const
+bool Settings::isContain(const sf::Event &event) const
 {
 	return m_background.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y);
 }
 
-void Settings::handleClick(sf::Event event, Screen s)
+void Settings::handleClick(const sf::Event &event, enum Screen s)
 {
 	if (m_soundBtns[(int)Type::Audio].isContain(event))
 	{
@@ -71,17 +64,23 @@ void Settings::handleClick(sf::Event event, Screen s)
 	}
 }
 
-bool Settings::isContainExit(sf::Event e) const
+bool Settings::isContainExit(const sf::Event& e) const
 {
 	return m_exitSettingsBtn.isContain(e);
 }
 
-bool Settings::isContainHome(sf::Event e) const
+bool Settings::isContainHome(const sf::Event& e) const
 {
 	return m_redirectBtn.isContain(e);
 }
 
 void Settings::createBtns()
+{
+	initSoundButton();
+	initTextButton();
+}
+
+void Settings::initSoundButton()
 {
 	auto startPos = m_background.getPosition();
 	int i = (int)Type::Audio;
@@ -90,9 +89,19 @@ void Settings::createBtns()
 	m_soundBtns.resize(2);
 	m_soundBtns[i].setTexture(Resources::instance().getSoundTexture(SoundStatus::AudioOn));
 	m_soundBtns[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
-	m_soundBtns[i].setPosition(startPos + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_soundBtns[i].getSize().x  ), SETTINGS_HEIGHT /6));
+	m_soundBtns[i].setPosition(startPos + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_soundBtns[i].getSize().x), SETTINGS_HEIGHT / 6));
 
 	m_soundBtns[j].setTexture(Resources::instance().getSoundTexture(SoundStatus::MusicOn));
 	m_soundBtns[j].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
-	m_soundBtns[j].setPosition(startPos + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_soundBtns[j].getSize().x  - PLAYER_FACE_SIZE ), SETTINGS_HEIGHT / 6));
+	m_soundBtns[j].setPosition(startPos + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_soundBtns[j].getSize().x - PLAYER_FACE_SIZE), SETTINGS_HEIGHT / 6));
+}
+
+void Settings::initTextButton()
+{
+	//return
+	m_exitSettingsBtn.setScale(sf::Vector2f(0.70f, 0.70f));
+	m_exitSettingsBtn.setPosition(m_background.getPosition() + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_exitSettingsBtn.getSize().x / 2), SETTINGS_HEIGHT * 4 /6));
+	//home
+	m_redirectBtn.setScale(sf::Vector2f(0.70f, 0.70f));
+	m_redirectBtn.setPosition(m_background.getPosition() + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_redirectBtn.getSize().x / 2), SETTINGS_HEIGHT * 3 / 6));
 }
