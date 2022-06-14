@@ -35,7 +35,7 @@ void EndLevelScreen::draw(sf::RenderWindow &window, bool status, int levelNum, i
     m_buttons[(int)EndLevelButtonType::Retry].draw(window);
     m_buttons[(int)EndLevelButtonType::Menu].draw(window);
 
-    if (status && levelNum < NUM_OF_LEVELS)
+    if (status && levelNum <= NUM_OF_LEVELS)
     {
         m_buttons[2].draw(window);
 
