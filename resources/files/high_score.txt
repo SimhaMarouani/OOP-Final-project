@@ -2,3 +2,4 @@ level    score = time(sec)
 1		140
 2		300
 3		600
+4		600
