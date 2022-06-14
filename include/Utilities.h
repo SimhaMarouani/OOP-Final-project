@@ -11,7 +11,6 @@ enum class ScreenType
 	Game
 };
 
-//buttons in home page = HomePageScreen
 enum class HomeButtonType
 {
 	Start = 0,

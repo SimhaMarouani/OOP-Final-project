@@ -9,10 +9,8 @@
 #include <fstream> //
 #include <exception> //
 
-
 #include "Resources.h"
 #include "Macros.h"
-
 
 class HighScore
 {
@@ -23,15 +21,15 @@ public:
     ~HighScore();
 
 	void addScore(int level, int score);
-	int getNumOfCompleteLevels() { return static_cast<int>(m_levelsScore.size()); };
+	int getNumOfCompleteLevels()const { return static_cast<int>(m_levelsScore.size()); };
 	int getLevelScore(int level) const;
 
-	void save();
+	void save() const;
 
 private:
 	void load();
 	void readFromFile();
-	void writeToFile();
+	void writeToFile() const;
 	HighScore(const HighScore&) = default;
 	HighScore& operator=(const HighScore&) = default;
 

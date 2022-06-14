@@ -13,7 +13,7 @@ class GameScreen : public Screen {
 public:
 	GameScreen();
 	void draw(sf::RenderWindow& window);
-	void processEvents(sf::Event event, sf::Vector2f &mouseLocation, Controller& controller);
+	void processEvents(const sf::Event& event, sf::Vector2f &mouseLocation, Controller& controller);
 
 	void update(float deltaTime);
 
@@ -28,6 +28,10 @@ public:
 	LevelActions getPageStatus() const;
 
 private:
+	void handleKeyRelased(sf::Keyboard::Key keyCode, Controller& controller);
+	void endLevelHandleClick(const sf::Event& e, Controller& controller);
+	void settingsHandleClick(const sf::Event& e, Controller& controller);
+
 	World m_world;
 	DataDisplay m_dataDisplay;
 

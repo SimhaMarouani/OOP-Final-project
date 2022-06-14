@@ -34,7 +34,7 @@ void HomePageScreen::draw(sf::RenderWindow& window)
 	}
 }
 
-void HomePageScreen::processEvents(sf::Event event, sf::Vector2f &mouseLocation, Controller& controller)
+void HomePageScreen::processEvents(const sf::Event& event, sf::Vector2f &mouseLocation, Controller& controller)
 {
 	switch (event.type)
 	{
@@ -54,35 +54,13 @@ void HomePageScreen::processEvents(sf::Event event, sf::Vector2f &mouseLocation,
 	}
 }
 
-void HomePageScreen::handleClick(sf::Event event, Controller &controller)
+void HomePageScreen::handleClick(const sf::Event &event, Controller &controller)
 {
 	switch (m_pageStatus)
 	{
 	case HomePageScreen::PageStatus::Menu:
 	{
-		if (m_buttons[(int)HomeButtonType::Start].isContain(event))
-		{
-			playClickAudio();
-			controller.updatePage(ScreenType::LevelMenu);
-			controller.updateNumOfLevels(); //Noga: optional
-		}
-	
-		else if (m_buttons[(int)HomeButtonType::Help].isContain(event))
-		{
-			playClickAudio();
-			setBackgroundColor(sf::Color(255, 255, 255, 205));
-			m_pageStatus = PageStatus::Help;
-		}
-		else if (m_buttons[(int)HomeButtonType::Settings].isContain(event))
-		{
-			playClickAudio();
-			m_pageStatus = PageStatus::Settings;
-		}
-		else if (m_buttons[(int)HomeButtonType::Exit].isContain(event))
-		{
-			playClickAudio();
-			controller.exit();
-		}
+		handleMenuClick(event, controller);
 		break;
 	}
 	case HomePageScreen::PageStatus::Help:
@@ -91,7 +69,6 @@ void HomePageScreen::handleClick(sf::Event event, Controller &controller)
 		{
 			setBackgroundColor(sf::Color(255, 255, 255));
 			m_pageStatus = PageStatus::Menu;
-
 		}
 		break;
 	}
@@ -123,6 +100,33 @@ void HomePageScreen::update(float deltaTime)
 	}
 	m_animation.update(1 /*line*/, 5, deltaTime, true); //animation
 	m_heavy.setTextureRect(m_animation.m_uvRect); //animations
+}
+
+void HomePageScreen::handleMenuClick(const sf::Event& event, Controller& controller)
+{
+	if (m_buttons[(int)HomeButtonType::Start].isContain(event))
+	{
+		playClickAudio();
+		controller.updatePage(ScreenType::LevelMenu);
+		controller.updateNumOfLevels();
+	}
+
+	else if (m_buttons[(int)HomeButtonType::Help].isContain(event))
+	{
+		playClickAudio();
+		setBackgroundColor(sf::Color(255, 255, 255, 205));
+		m_pageStatus = PageStatus::Help;
+	}
+	else if (m_buttons[(int)HomeButtonType::Settings].isContain(event))
+	{
+		playClickAudio();
+		m_pageStatus = PageStatus::Settings;
+	}
+	else if (m_buttons[(int)HomeButtonType::Exit].isContain(event))
+	{
+		playClickAudio();
+		controller.exit();
+	}
 }
 
 void HomePageScreen::setHelpScreen()

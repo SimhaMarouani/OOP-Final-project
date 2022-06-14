@@ -18,7 +18,7 @@ public:
 	Screen() = default;
 	virtual ~Screen() = default;
 	
-	virtual void processEvents(sf::Event event, sf::Vector2f& mouseLocation, Controller& controller) = 0;
+	virtual void processEvents(const sf::Event& event, sf::Vector2f& mouseLocation, Controller& controller) = 0;
 	virtual void update(float deltaTime) = 0;
 	virtual void draw(sf::RenderWindow& window);
 

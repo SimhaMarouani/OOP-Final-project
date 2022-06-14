@@ -91,7 +91,7 @@ void DataDisplay::setTimeText()
 	m_timerText.setString("Time: " + time);
 }
 
-void DataDisplay::handleClick(sf::Event event , GameScreen& gs)
+void DataDisplay::handleClick(const sf::Event &event , GameScreen& gs)
 {
 	if (m_levelActions[int(LevelActions::Pause)].isContain(event))
 	{

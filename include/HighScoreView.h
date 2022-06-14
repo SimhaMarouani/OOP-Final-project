@@ -6,11 +6,8 @@
 #include "Utilities.h"
 #include "HighScore.h"
 
-
-#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
-#include <string>
 
 class HighScoreView {
 public:
@@ -18,11 +15,10 @@ public:
 	void draw(sf::RenderWindow& window);
 
 	//get
-	bool isContain(sf::Event event) const;
+	bool isContain(const sf::Event& event) const;
 	void setLevelScore(int level);
 
 	void updateData();
-
 
 private:
 	sf::RectangleShape m_shadow; //Noga: optional

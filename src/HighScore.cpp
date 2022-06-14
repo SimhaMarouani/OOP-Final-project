@@ -54,15 +54,12 @@ void HighScore::load()
 	}
 }
 
-void HighScore::writeToFile()
+void HighScore::writeToFile() const
 {
 	std::ofstream outputScoreFile;
 	outputScoreFile.open(HIGH_SCORE_FILE_NAME, std::ofstream::out | std::ofstream::trunc);
 
 	outputScoreFile.exceptions(std::ofstream::badbit | std::ofstream::failbit);
-
-	/*if (!outputScoreFile)
-		std::cout << "cannot open score file to write\n";*/
 
 	outputScoreFile << "level\tscore=time(sec)\n";
 	for (std::map<int, int, std::less<int>>::const_iterator iter = m_levelsScore.begin();
@@ -91,11 +88,9 @@ void HighScore::readFromFile()
 	getline(scoreFile, line);
 	ssline.clear();
 
-	//reading contents of level
 	int count = 0;
 	while (count < NUM_OF_LEVELS && getline(scoreFile, line))
 	{
-		//getline(scoreFile, line);
 		ssline.clear();
 		ssline.str(line);
 		ssline >> level >> score;
@@ -108,7 +103,7 @@ void HighScore::readFromFile()
 	scoreFile.close();
 }
 
-void HighScore::save()
+void HighScore::save() const
 {
 	try
 	{
@@ -117,7 +112,6 @@ void HighScore::save()
 	catch (...)
 	{
 		std::cerr << "unable writing the score file\n";
-			
 	}
 }
 

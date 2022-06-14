@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Timer.h"
-//#include "TitledButton.h"
 #include "Button.h"
 #include "Audio.h"
 
@@ -19,8 +18,9 @@ class DataDisplay
 public:
 	DataDisplay();
 	~DataDisplay();
+
 	void draw(sf::RenderWindow& window);
-	void handleClick(sf::Event event, GameScreen &gs);
+	void handleClick(const sf::Event &event, GameScreen &gs);
 	void handleHover(const sf::Vector2f& location);
 	void setCurrPlayer(int activePlayer);
 

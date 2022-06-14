@@ -13,11 +13,11 @@ class Window
 {
 public:
     Window();
-    void update();
-    bool isOpen();
+
+    bool isOpen() const;
     bool pollEvent(sf::Event& event);
     void close();
-    void clear(sf::Color color = sf::Color::Color::White);
+    void clear(const sf::Color& color = sf::Color::Color::White);
     void display();
     sf::Vector2f mapPixelToCoords(const sf::Vector2i &vec) const;
 

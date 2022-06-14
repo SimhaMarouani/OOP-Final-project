@@ -9,7 +9,7 @@ LevelMenuScreen::LevelMenuScreen()
       m_homeButton(*Resources::instance().getBackArrowTexture()),
 	  m_animation(Resources::instance().getPlayerSpriteSheet(Player::Light), sf::Vector2u(5, 8), 0.08f), //animation.
 	  m_highScoreButton(*Resources::instance().getHighScoreBtn()),
-	m_isScoreOpen(false)
+	  m_isScoreOpen(false)
 {
 	initBtns();	
 
@@ -17,9 +17,7 @@ LevelMenuScreen::LevelMenuScreen()
 	m_light.setScale(sf::Vector2f(0.6, 0.6)); //animation
 	m_light.setPosition(sf::Vector2f(1430, 339)); //animation
 
-
 	m_highScoreButton.setPosition(sf::Vector2f((WINDOW_WIDTH - m_highScoreButton.getSize().x) / 2, WINDOW_HEIGHT - m_highScoreButton.getSize().y - 100));
-
 }
 
 void LevelMenuScreen::draw(sf::RenderWindow& window)
@@ -32,10 +30,11 @@ void LevelMenuScreen::draw(sf::RenderWindow& window)
 	window.draw(m_light);
     m_homeButton.draw((window));
 	m_highScoreButton.draw(window);
+
 	if (m_isScoreOpen) m_highScoreView.draw(window);
 }
 
-void LevelMenuScreen::processEvents(sf::Event event, sf::Vector2f& mouseLocation, Controller& controller)
+void LevelMenuScreen::processEvents(const sf::Event &event, sf::Vector2f& mouseLocation, Controller& controller)
 {
 	switch (event.type)
 	{
@@ -60,7 +59,7 @@ void LevelMenuScreen::update(float deltaTime)
 	m_light.setTextureRect(m_animation.m_uvRect); //animations
 }
 
-void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)
+void LevelMenuScreen::handleClick(const sf::Event& event, Controller& controller)
 {
 	if (m_isScoreOpen && !m_highScoreView.isContain(event))
 	{
@@ -74,7 +73,6 @@ void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)
 		{
 			if (m_levels[i].isContain(event) && i <= m_numOfLevelsCompleted)
 			{
-				//m_btnsAudio.playAudio();
 				playClickAudio();
 				controller.startGame(ScreenType::Game, i+1);
 			}
@@ -155,7 +153,6 @@ void LevelMenuScreen::initBtns()
 		auto posY = offset_y + (LEVEL_MENU_BTN_SIZE + margin) * float(y);
 
 		m_levels[i].setPosition({ offset_x + (LEVEL_MENU_BTN_SIZE + margin) * float(x), offset_y + (LEVEL_MENU_BTN_SIZE + margin) * float(y) });
-		//m_levels[i].setTextPosition({ offset_x + (size + margin) * float(x), offset_y + (size + margin) * float(y) });
 		m_levels[i].setTextPosition({ posX + (LEVEL_MENU_BTN_SIZE / 3), posY + (LEVEL_MENU_BTN_SIZE / 3) });
 		m_levels[i].setTexture(i <= m_numOfLevelsCompleted ? Resources::instance().getLevelMenuTexture(LevelState::Unlock) : Resources::instance().getLevelMenuTexture(LevelState::Lock));
 		m_levels[i].setTextColor(sf::Color(64, 63, 61));

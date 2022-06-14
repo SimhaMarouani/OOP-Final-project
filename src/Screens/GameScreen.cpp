@@ -16,12 +16,14 @@ void GameScreen::draw(sf::RenderWindow& window) {
     m_world.draw(window, m_activePlayer);
     m_dataDisplay.draw(window);
 
- /*   DebugDraw d(&window);
-    uint32 flags = b2Draw::e_shapeBit;
-    d.SetFlags(flags);
-    m_world.getWorld()->SetDebugDraw(&d);
-    m_world.getWorld()->DebugDraw();*/
+    ////== Box2d debugger view ==
+    //DebugDraw d(&window);
+    //uint32 flags = b2Draw::e_shapeBit;
+    //d.SetFlags(flags);
+    //m_world.getWorld()->SetDebugDraw(&d);
+    //m_world.getWorld()->DebugDraw();
 
+    //win/lose view
     if (getPageStatus() == LevelActions::Win)
         m_endLevelView->draw(window, true, m_levelNum, m_dataDisplay.getTime());
     else if(getPageStatus() == LevelActions::Lose)
@@ -33,71 +35,27 @@ void GameScreen::draw(sf::RenderWindow& window) {
     }    
 }
 
-//TODO : move part of this to new functions
-void GameScreen::processEvents(sf::Event event, sf::Vector2f &mouseLocation, Controller &controller)
+void GameScreen::processEvents(const sf::Event& event, sf::Vector2f &mouseLocation, Controller &controller)
 {
     switch (event.type)
     {
     case sf::Event::KeyReleased:
     {
-        if (event.key.code == sf::Keyboard::A && m_pageStatus == LevelActions::None)
-        {
-            m_activePlayer = Player((int(m_activePlayer) + 1) % 3);
-            m_dataDisplay.setCurrPlayer(int(m_activePlayer));
-        }
-        else if (event.key.code == sf::Keyboard::Escape && m_pageStatus == LevelActions::None)
-        {
-            m_pageStatus = LevelActions::None;
-            controller.updatePage(ScreenType::HomePage);
-        }
+        handleKeyRelased(event.key.code, controller);   
         break;
     }
     case sf::Event::MouseButtonReleased:
         if (getPageStatus() == LevelActions::Win || getPageStatus() == LevelActions::Lose)
         {
-            if (m_endLevelView->isContainRetry(event))
-            {
-                playClickAudio();
-                retryLevel();
-                updateStatus(LevelActions::None);
-            }
-            else if (m_endLevelView->isContainNext(event))
-            {
-                playClickAudio();
-                ++m_levelNum;
-                m_world.createLevel(m_levelNum);
-                m_dataDisplay.resetTimer();
-                m_activePlayer = Player::Heavy;
-                m_dataDisplay.setCurrPlayer((int)m_activePlayer);
-                updateStatus(LevelActions::None);
-            }
-            else if (m_endLevelView->isContainMenu(event))
-            {
-                playClickAudio();
-                controller.updatePage(ScreenType::HomePage);
-                updateStatus(LevelActions::None);
-            }
+            endLevelHandleClick(event, controller);
         }
-        else if(m_pageStatus == LevelActions::None)
-            m_dataDisplay.handleClick(event, *this);
-        else if( m_pageStatus == LevelActions::Pause)
+        else if (m_pageStatus == LevelActions::None)
         {
-            m_settingsView->handleClick(event, ScreenType::Game);
-
-            if (m_settingsView->isContainExit(event))
-            {
-                playClickAudio();
-                updateStatus(LevelActions::None);
-                m_dataDisplay.startTimer();
-            }
-
-            if (m_settingsView->isContainHome(event))
-            {
-                playClickAudio();
-                updateStatus(LevelActions::None);
-                m_dataDisplay.startTimer();
-                controller.updatePage(ScreenType::HomePage);
-            }
+            m_dataDisplay.handleClick(event, *this);
+        }
+        else if(m_pageStatus == LevelActions::Pause)
+        {
+            settingsHandleClick(event, controller);
         }
         break;
 
@@ -179,6 +137,66 @@ void GameScreen::retryLevel()
 LevelActions GameScreen::getPageStatus() const
 {
     return m_pageStatus;
+}
+
+void GameScreen::handleKeyRelased(sf::Keyboard::Key keyCode, Controller& controller)
+{
+    if (keyCode == sf::Keyboard::A && m_pageStatus == LevelActions::None)
+    {
+        m_activePlayer = Player((int(m_activePlayer) + 1) % NUM_OF_PLAYERS);
+        m_dataDisplay.setCurrPlayer(int(m_activePlayer));
+    }
+    else if (keyCode == sf::Keyboard::Escape && m_pageStatus == LevelActions::None)
+    {
+        m_pageStatus = LevelActions::None;
+        controller.updatePage(ScreenType::HomePage);
+    }
+}
+
+void GameScreen::endLevelHandleClick(const sf::Event& e, Controller& controller)
+{
+    if (m_endLevelView->isContainRetry(e))
+    {
+        playClickAudio();
+        retryLevel();
+        updateStatus(LevelActions::None);
+    }
+    else if (m_endLevelView->isContainNext(e))
+    {
+        playClickAudio();
+        ++m_levelNum;
+        m_world.createLevel(m_levelNum);
+        m_dataDisplay.resetTimer();
+        m_activePlayer = Player::Heavy;
+        m_dataDisplay.setCurrPlayer((int)m_activePlayer);
+        updateStatus(LevelActions::None);
+    }
+    else if (m_endLevelView->isContainMenu(e))
+    {
+        playClickAudio();
+        controller.updatePage(ScreenType::HomePage);
+        updateStatus(LevelActions::None);
+    }
+}
+
+void GameScreen::settingsHandleClick(const sf::Event& e, Controller& controller)
+{
+    m_settingsView->handleClick(e, ScreenType::Game);
+
+    if (m_settingsView->isContainExit(e))
+    {
+        playClickAudio();
+        updateStatus(LevelActions::None);
+        m_dataDisplay.startTimer();
+    }
+
+    if (m_settingsView->isContainHome(e))
+    {
+        playClickAudio();
+        updateStatus(LevelActions::None);
+        m_dataDisplay.startTimer();
+        controller.updatePage(ScreenType::HomePage);
+    }
 }
 
 

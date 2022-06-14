@@ -16,13 +16,6 @@ void Timer::startClock()
 
 //-----------------------------------------------------------------
 
-void Timer::switchTimer()
-{
-	m_pauseTimer = !m_pauseTimer;
-}
-
-//-----------------------------------------------------------------
-
 bool Timer::isTimerPaused()
 {
 	return m_pauseTimer;

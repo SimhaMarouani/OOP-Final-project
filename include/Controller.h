@@ -21,13 +21,13 @@ public:
 
 	void run();
 	
-	void startGame(ScreenType page, int level);
+	void startGame(ScreenType page, unsigned int level);
 	void updatePage(ScreenType page);
 	void exit();
-	void changeMusic(ScreenType s);
+	void changeMusic(ScreenType s) const;
 	void updateNumOfLevels();
 private:
-	void processEvents(/*sf::View &v*/);
+	void processEvents();
 	void update();
 	void render();
 	void drawCurrPage();
@@ -38,8 +38,4 @@ private:
 	
 	//=== Screens
 	std::vector<std::unique_ptr<Screen>> m_screens;
-
-	HomePageScreen m_homePageScreen;
-	LevelMenuScreen m_levelMenuScreen;
-	GameScreen m_gameScreen;
 };
