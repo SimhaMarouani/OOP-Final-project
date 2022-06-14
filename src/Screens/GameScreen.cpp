@@ -150,10 +150,7 @@ void GameScreen::loadLevel(int level)
     m_levelNum = level;
     m_world.createLevel(level);
     m_dataDisplay.resetTimer();
-    //m_dataDisplay.startTimer();
-    //m_world.loadLevel(level);
 }
-
 
 void GameScreen::updateStatus(LevelActions la)
 {
@@ -165,7 +162,7 @@ void GameScreen::initSettings(std::shared_ptr<Settings> s)
     m_settingsView = move(s);
 }
 
-void GameScreen::initEndLevelScreen(std::shared_ptr<EndLevelScreen> s)
+void GameScreen::initEndLevelScreen(std::shared_ptr<EndLevelView> s)
 {
     m_endLevelView = move(s);
 }

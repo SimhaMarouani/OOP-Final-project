@@ -12,10 +12,10 @@
 #include "Audio.h"
 
 
-class EndLevelScreen{
+class EndLevelView{
 public:
-    EndLevelScreen();
-    virtual ~EndLevelScreen() = default;
+    EndLevelView();
+    virtual ~EndLevelView() = default;
 
     void draw(sf::RenderWindow& window, bool status, int levelNum, int time);
     bool isContainRetry(sf::Event e);

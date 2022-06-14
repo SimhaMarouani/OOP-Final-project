@@ -16,7 +16,7 @@
                                               "Screens/GameScreen.cpp"
                                               "Screens/LevelMenuScreen.cpp"
                                               "Settings.cpp"
-                                              "EndLevelScreen.cpp"
+                                              "EndLevelView.cpp"
 
                                               "Resources.cpp"
                                               "Timer.cpp"

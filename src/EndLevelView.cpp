@@ -1,6 +1,6 @@
-#include "EndLevelScreen.h"
+#include "EndLevelView.h"
 
-EndLevelScreen::EndLevelScreen()
+EndLevelView::EndLevelView()
 : m_background(sf::Vector2f(END_WIDTH, END_HEIGHT)),
   m_winSound(Resources::instance().getAudioWin()),
   m_loseSound(Resources::instance().getAudioLose()),
@@ -12,7 +12,7 @@ EndLevelScreen::EndLevelScreen()
     createBtns();
 }
 
-void EndLevelScreen::createBtns()
+void EndLevelView::createBtns()
 {
     m_buttons.emplace_back(Button(*Resources::instance().getEndLevelBtnsTexture(EndLevelButtonType::Retry), sf::Vector2f(150,70)));
     m_buttons.emplace_back(Button(*Resources::instance().getEndLevelBtnsTexture(EndLevelButtonType::Menu), sf::Vector2f(150,70)));
@@ -26,7 +26,7 @@ void EndLevelScreen::createBtns()
     }
 }
 
-void EndLevelScreen::draw(sf::RenderWindow &window, bool status, int levelNum, int time)
+void EndLevelView::draw(sf::RenderWindow &window, bool status, int levelNum, int time)
 {
     playSound(status);
 
@@ -40,7 +40,6 @@ void EndLevelScreen::draw(sf::RenderWindow &window, bool status, int levelNum, i
         m_buttons[(int)EndLevelButtonType::Next].draw(window);
 
         window.draw(m_winText);
-        window.draw(m_timeText);
 
         if(time <= HighScore::instance().getLevelScore(levelNum))
         {
@@ -62,7 +61,7 @@ void EndLevelScreen::draw(sf::RenderWindow &window, bool status, int levelNum, i
     }
 }
 
-bool EndLevelScreen::isContainRetry(sf::Event e)
+bool EndLevelView::isContainRetry(sf::Event e)
 {
     if(m_buttons[(int)EndLevelButtonType::Retry].isContain(e))
     {
@@ -72,7 +71,7 @@ bool EndLevelScreen::isContainRetry(sf::Event e)
     return false;
 }
 
-bool EndLevelScreen::isContainMenu(sf::Event e)
+bool EndLevelView::isContainMenu(sf::Event e)
 {
     if(m_buttons[(int)EndLevelButtonType::Menu].isContain(e))
     {
@@ -82,7 +81,7 @@ bool EndLevelScreen::isContainMenu(sf::Event e)
     return false;
 }
 
-bool EndLevelScreen::isContainNext(sf::Event e)
+bool EndLevelView::isContainNext(sf::Event e)
 {
     if(m_buttons[(int)EndLevelButtonType::Next].isContain(e))
     {
@@ -92,7 +91,7 @@ bool EndLevelScreen::isContainNext(sf::Event e)
     return false;
 }
 
-void EndLevelScreen::createText()
+void EndLevelView::createText()
 {
     m_winText.setFont(*Resources::instance().getFont());
     m_winText.setCharacterSize(CHAR_SIZE);
@@ -129,7 +128,7 @@ void EndLevelScreen::createText()
     m_gameCompText2.setString("Why not play again and see if\nyou can improve your score?");
 }
 
-std::string EndLevelScreen::setTimeText(int time)
+std::string EndLevelView::setTimeText(int time)
 {
     int sec = time, min = 0;
     calcTime(sec, min);
@@ -139,7 +138,7 @@ std::string EndLevelScreen::setTimeText(int time)
     return timeStr;
 }
 
-void EndLevelScreen::playSound(bool status)
+void EndLevelView::playSound(bool status)
 {
     if (status && m_soundCounter == 0)
         m_winSound.playAudio();
@@ -149,7 +148,7 @@ void EndLevelScreen::playSound(bool status)
     ++m_soundCounter;
 }
 
-void EndLevelScreen::handleHover(const sf::Vector2f& location)
+void EndLevelView::handleHover(const sf::Vector2f& location)
 {
     for (int i = 0; i < m_buttons.size(); ++i)
     {

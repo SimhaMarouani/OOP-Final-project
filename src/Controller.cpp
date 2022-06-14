@@ -5,7 +5,7 @@ Controller::Controller()
 	: m_window(), m_homePageScreen(), m_currPage(ScreenType::HomePage)
 {
 	std::shared_ptr s = std::make_shared<Settings>();
-	std::shared_ptr w = std::make_shared<EndLevelScreen>();
+	std::shared_ptr w = std::make_shared<EndLevelView>();
 
 	m_screens.resize(NUM_OF_BG_TEXTURES);
 	m_screens[(int)ScreenType::HomePage] = std::make_unique<HomePageScreen>();

@@ -5,7 +5,7 @@
 #include "DataDisplay.h"
 #include "Settings.h"
 #include "Screen.h"
-#include "EndLevelScreen.h"
+#include "EndLevelView.h"
 #include "HighScore.h"
 #include "Audio.h"
 
@@ -22,7 +22,7 @@ public:
 	void updateStatus(LevelActions la);
 
 	void initSettings(std::shared_ptr<Settings> s);
-	void initEndLevelScreen(std::shared_ptr<EndLevelScreen> s);
+	void initEndLevelScreen(std::shared_ptr<EndLevelView> s);
 	void retryLevel();
 
 	LevelActions getPageStatus() const;
@@ -32,7 +32,7 @@ private:
 	DataDisplay m_dataDisplay;
 
 	std::shared_ptr<Settings> m_settingsView;
-	std::shared_ptr<EndLevelScreen> m_endLevelView;
+	std::shared_ptr<EndLevelView> m_endLevelView;
 
 	LevelActions m_pageStatus;
 	Player m_activePlayer;
