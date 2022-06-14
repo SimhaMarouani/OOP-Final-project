@@ -30,27 +30,27 @@ public:
 	~World();
 	void draw(sf::RenderWindow& window, const Player activePlayer);
 	void moveActive(float deltaTime, const Player active);
-	void moveArrow(Player active);
+	void moveArrow(const Player active);
 
 	void SetDebugDraw(DebugDraw* d)
 	{
 		m_box2dWorld->SetDebugDraw(d);
 	}
 
-	void createLevel(int level);
+	void createLevel(const int level);
 	b2World* getWorld() { return m_box2dWorld.get(); }
 
-	bool allPlayersReachedEnd();
-    bool playerLost();
+	bool allPlayersReachedEnd()const;
+    bool playerLost()const;
 
-    void loadLevel(int levelNum);
 
 private:
+    void loadLevel(const int levelNum);
 	void createBorders();
 	void initPlayers();
 	void initSymbols();
-	bool isPlayer(std::string type)const;
-	int getIndPlayer(std::string player)const;
+	bool isPlayer(const std::string type)const;
+	int getIndPlayer(const std::string player)const;
 
 
 	std::unique_ptr<b2World> m_box2dWorld;

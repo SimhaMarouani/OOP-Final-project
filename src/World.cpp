@@ -82,7 +82,7 @@ void World::moveActive(float deltaTime, const Player active)
 	
 }
 
-void World::moveArrow(Player active)
+void World::moveArrow(const Player active)
 {
 	float x = m_players[(int)active]->getPosition().x + 80;
 	float y = m_players[(int)active]->getPosition().y - m_players[(int)active]->getHeight() / 2;
@@ -90,11 +90,10 @@ void World::moveArrow(Player active)
 }
 
 
-void World::createLevel(int level)
+void World::createLevel(const int level)
 {
-	//init players positions based on level file
 	try {
-		loadLevel(level); //Tali: change to const
+		loadLevel(level);
 	}
 	catch (const std::ifstream::failure& e) //catches fstream error and sstream
 	{
@@ -108,7 +107,7 @@ void World::createLevel(int level)
 	}
 }
 
-bool World::allPlayersReachedEnd()
+bool World::allPlayersReachedEnd()const
 {
 	for (auto& player : m_players)
 	{
@@ -118,7 +117,7 @@ bool World::allPlayersReachedEnd()
 	return true;
 }
 
-bool World::playerLost()
+bool World::playerLost()const
 {
 	for (auto& player : m_players)
 	{
@@ -129,7 +128,7 @@ bool World::playerLost()
 }
 
 
-void World::loadLevel(int levelNum)
+void World::loadLevel(const int levelNum)
 {
 	std::string levelName = "Level" + std::to_string(levelNum) + ".txt";
 	std::ifstream levelFile;
@@ -160,7 +159,7 @@ void World::loadLevel(int levelNum)
 	m_sign.setPosition(sf::Vector2f(locX, locY));
 	m_sign.setScale(sf::Vector2f(scaleX, scaleY));
 
-	getline(levelFile, line);
+	getline(levelFile, line); //Read line of labels in file
 
 	//reading contents of level
 	while (!levelFile.eof())
@@ -170,7 +169,7 @@ void World::loadLevel(int levelNum)
 		ssline.str(line);
 		ssline >> objType >> locX >> locY;
 
-		if (isPlayer(objType)) //Tali:change to static cast
+		if (isPlayer(objType))
 		{
 			m_players[getIndPlayer(objType)]->setPosition(sf::Vector2f(locX, locY));
 			m_players[getIndPlayer(objType)]->setFaceRight(true);
@@ -194,7 +193,7 @@ void World::loadLevel(int levelNum)
 	levelFile.close();
 }
 
-bool World::isPlayer(std::string type)const
+bool World::isPlayer(const std::string type)const
 {
 	//Tali: change to more generic //Noga: we can change this 'if' to .find() or save it as a pair / map i think
 	return type == PLAYERS[0]
@@ -202,7 +201,7 @@ bool World::isPlayer(std::string type)const
 			|| type == PLAYERS[2];
 }
 
-int World::getIndPlayer(std::string player)const //might not need in future
+int World::getIndPlayer(const std::string player)const //might not need in future
 {
 	for (int i = 0; i < NUM_OF_PLAYERS; i++)
 		if (PLAYERS[i] == player)
