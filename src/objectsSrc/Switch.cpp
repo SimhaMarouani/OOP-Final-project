@@ -15,7 +15,7 @@ Switch::Switch(sf::Vector2f pos, b2World* world, sf::Vector2f scale)
 
 void Switch::setDoor(StaticObjects* dr)
 {
-	if(auto obj = static_cast<Door*>(dr))
+	if(auto obj = dynamic_cast<Door*>(dr))
 		m_door = obj;
 }
 
