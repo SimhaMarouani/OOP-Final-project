@@ -98,7 +98,7 @@ void LevelMenuScreen::handleClick(sf::Event event, Controller& controller)
 void LevelMenuScreen::updateNumOfLevels()
 {
 	int curr = HighScore::instance().getNumOfCompleteLevels();
-	for (int i = m_numOfLevelsCompleted + 1; i < curr; i++)
+	for (int i = m_numOfLevelsCompleted + 1; i < curr && i < NUM_OF_LEVELS; i++)
 	{
 		m_levels[i].setTexture(Resources::instance().getLevelMenuTexture(LevelState::Unlock));
 		m_levels[i].setTextColor(sf::Color(64, 63, 61));
@@ -114,7 +114,7 @@ void LevelMenuScreen::handleHover(const sf::Vector2f& location)
 {
 	if (m_isScoreOpen) return;
 
-	for (int i = 0; i <= m_numOfLevelsCompleted; ++i)
+	for (int i = 0; i <= m_numOfLevelsCompleted && i < NUM_OF_LEVELS; ++i)
 	{
 		if (m_levels[i].isHover(location))
 		{

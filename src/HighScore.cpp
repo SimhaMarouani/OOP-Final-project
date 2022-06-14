@@ -92,7 +92,8 @@ void HighScore::readFromFile()
 	ssline.clear();
 
 	//reading contents of level
-	while (getline(scoreFile, line))
+	int count = 0;
+	while (count < NUM_OF_LEVELS && getline(scoreFile, line))
 	{
 		//getline(scoreFile, line);
 		ssline.clear();
@@ -101,6 +102,7 @@ void HighScore::readFromFile()
 		
 		m_levelsScore.insert(std::pair<int, int>(level, score));
 
+		count++;
 		if (scoreFile.eof()) break;
 	}
 	scoreFile.close();
