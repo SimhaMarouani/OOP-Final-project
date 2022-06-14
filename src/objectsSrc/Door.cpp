@@ -12,29 +12,18 @@ void Door::setOpen(bool open)
 		m_moved = false;
 
 	m_open = open;
-	//if (open)
-	//{
-	//	//transform door up constant amount
-	//	m_body->SetTransform(b2Vec2(m_body->GetPosition().x, m_body->GetPosition().y + 200), 0);
-	//}
-	//else
-	//{
-	//	//transform door down constant amount
-	//	m_body->SetTransform(b2Vec2(m_body->GetPosition().x, m_body->GetPosition().y - 200), 0);
-
-	//}
 }
 
 void Door::updateDoorState()
 {
 	if (m_open && !m_moved)
 	{
-		m_body->SetTransform(b2Vec2(m_body->GetPosition().x, m_body->GetPosition().y - 300), 0);
+		setPosition(sf::Vector2f(m_body->GetPosition().x, m_body->GetPosition().y - 300));
 		m_moved = true;
 	}
 	else if (!m_open && !m_moved)
 	{
-		m_body->SetTransform(b2Vec2(m_body->GetPosition().x, m_body->GetPosition().y + 300), 0);
+		setPosition(sf::Vector2f(m_body->GetPosition().x, m_body->GetPosition().y + 300));
 		m_moved = true;	
 	}
 }

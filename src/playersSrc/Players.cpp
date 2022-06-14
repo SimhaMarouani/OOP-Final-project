@@ -57,7 +57,7 @@ void Players::move(float deltaTime)
 
 	//move to update func
 	sf::Vector2f dir = dirFromKey();
-	m_direction = getDir(dir);
+	m_direction = getDir(dir);	//Tali: needed??
 }
 
 void Players::setTouchingFloor(bool touching)
@@ -102,16 +102,6 @@ void Players::updateAnimation(float deltaTime)
 
 void Players::update(float deltaTime)
 {
-	if (m_body->GetType() == b2_dynamicBody)
-		m_body->SetAwake(true);
-
-	//Tali: move to gameObject for both player and 
-	float MAX_SPEED = 15.0f;
-	if (m_body->GetLinearVelocity().x < -MAX_SPEED) {
-		m_body->SetLinearVelocity(b2Vec2(-MAX_SPEED, m_body->GetLinearVelocity().y));
-	}
-	else if (m_body->GetLinearVelocity().x > MAX_SPEED) {
-		m_body->SetLinearVelocity(b2Vec2(MAX_SPEED, m_body->GetLinearVelocity().y));
-	}
+	updateObj();
 	updateAnimation(deltaTime);
 }

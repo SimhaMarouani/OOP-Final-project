@@ -123,7 +123,6 @@ CollisionHandler& CollisionHandler::instance()
 
 void CollisionHandler::processCollision(GameObjects* object1, GameObjects* object2 ,bool footSensor1, bool footSensor2, bool contact)
 {
-    //std::cout << typeid(*object1).name() << " " << typeid(*object2).name() << std::endl;
     auto hit = m_hitMap.find(Key(typeid(*object1), typeid(*object2)));
     if (hit != m_hitMap.end())
     {
