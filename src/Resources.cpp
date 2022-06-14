@@ -70,17 +70,17 @@ sf::SoundBuffer* Resources::getAudioLose()
 	return &m_audioLose;
 }
 
-void Resources::playMusic(Screen s)
+void Resources::playMusic(ScreenType s)
 {
 	switch (s)
 	{
-	case Screen::Game:
+	case ScreenType::Game:
 		m_gameMusic.setLoop(true);
 		m_gameMusic.play();
 		m_homeMusic.pause();
 		break;
-	case Screen::HomePage:
-	case Screen::LevelMenu:
+	case ScreenType::HomePage:
+	case ScreenType::LevelMenu:
 	{
 		if (m_homeMusic.getStatus() == sf::SoundSource::Status::Playing) break;
 		m_homeMusic.setLoop(true);
@@ -103,17 +103,17 @@ bool Resources::isAudioOn() const
 	return m_audioOn;
 }
 
-void Resources::switchMusicStatus(Screen s)
+void Resources::switchMusicStatus(ScreenType s)
 {
 	switch (s)
 	{
-	case Screen::Game:
+	case ScreenType::Game:
 	{
 		isMusicOn() ? m_gameMusic.pause() : m_gameMusic.play();
 		break;
 	}
-	case Screen::HomePage:
-	case Screen::LevelMenu:
+	case ScreenType::HomePage:
+	case ScreenType::LevelMenu:
 	{
 		isMusicOn() ? m_homeMusic.pause() : m_homeMusic.play();
 		break;
@@ -139,7 +139,7 @@ sf::Font* Resources::getFont()
 
 //-----------------------------------------------------------------
 	
-sf::Texture* Resources::getBackground(Screen index)
+sf::Texture* Resources::getBackground(ScreenType index)
 {
 	return &m_backgroundTextures[int(index)];
 }
@@ -154,9 +154,9 @@ sf::Texture* Resources::getWinBackground()
     return &m_winBackground;
 }
 
-sf::Texture* Resources::getSettingsReturnTexture(Screen s)
+sf::Texture* Resources::getSettingsReturnTexture(ScreenType s)
 {
-	int i = s == Screen::Game ? 0 : 1;
+	int i = s == ScreenType::Game ? 0 : 1;
 	return &m_settingsReturnTexture[i];
 }
 
@@ -255,9 +255,9 @@ void Resources::loadFont()
 void Resources::loadBackgroundTextures()
 {
 	m_backgroundTextures.resize(NUM_OF_BG_TEXTURES);
-	if (!m_backgroundTextures[(int)Screen::HomePage].loadFromFile("home_background.png")
-		|| !m_backgroundTextures[(int)Screen::LevelMenu].loadFromFile("levelmenu_background.png")
-		|| !m_backgroundTextures[(int)Screen::Game].loadFromFile("game_background.png"))
+	if (!m_backgroundTextures[(int)ScreenType::HomePage].loadFromFile("home_background.png")
+		|| !m_backgroundTextures[(int)ScreenType::LevelMenu].loadFromFile("levelmenu_background.png")
+		|| !m_backgroundTextures[(int)ScreenType::Game].loadFromFile("game_background.png"))
 		throw(std::logic_error("Background Textures\n"));
 }
 

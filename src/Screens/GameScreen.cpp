@@ -3,20 +3,17 @@
 
 
 GameScreen::GameScreen()
-    : m_activePlayer(Player::Heavy),
-      m_background(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
+    : Screen(Resources::instance().getBackground(ScreenType::Game)),
+      m_activePlayer(Player::Heavy),
       m_btnsClick(Resources::instance().getAudioClick()),
       m_pageStatus(LevelActions::None), m_levelNum(1)
 {
-    m_background.setTexture(Resources::instance().getBackground(Screen::Game));
-    //loadLevel(m_levelNum);
-    //m_world.createLevel(m_levelNum);
 }
 
 //-----------------------------------------------------------------
 
 void GameScreen::draw(sf::RenderWindow& window) {
-    window.draw(m_background);
+    Screen::draw(window);
     m_world.draw(window, m_activePlayer);
     m_dataDisplay.draw(window);
 
@@ -33,7 +30,7 @@ void GameScreen::draw(sf::RenderWindow& window) {
 
     if (m_pageStatus == LevelActions::Pause)
     {
-        m_settingsView->draw(window, Screen::Game);
+        m_settingsView->draw(window, ScreenType::Game);
     }    
 }
 
@@ -52,7 +49,7 @@ void GameScreen::processEvents(sf::Event event, sf::Vector2f &mouseLocation, Con
         else if (event.key.code == sf::Keyboard::Escape && m_pageStatus == LevelActions::None)
         {
             m_pageStatus = LevelActions::None;
-            controller.updatePage(Screen::HomePage);
+            controller.updatePage(ScreenType::HomePage);
         }
         break;
     }
@@ -78,7 +75,7 @@ void GameScreen::processEvents(sf::Event event, sf::Vector2f &mouseLocation, Con
             else if (m_endLevelView->isContainMenu(event))
             {
                 m_btnsClick.playAudio();
-                controller.updatePage(Screen::HomePage);
+                controller.updatePage(ScreenType::HomePage);
                 updateStatus(LevelActions::None);
             }
         }
@@ -86,7 +83,7 @@ void GameScreen::processEvents(sf::Event event, sf::Vector2f &mouseLocation, Con
             m_dataDisplay.handleClick(event, *this);
         else if( m_pageStatus == LevelActions::Pause)
         {
-            m_settingsView->handleClick(event, Screen::Game);
+            m_settingsView->handleClick(event, ScreenType::Game);
 
             if (!m_settingsView->isContain(event)) //Noga: temp
             {
@@ -106,7 +103,7 @@ void GameScreen::processEvents(sf::Event event, sf::Vector2f &mouseLocation, Con
                 m_btnsClick.playAudio();
                 updateStatus(LevelActions::None);
                 m_dataDisplay.startTimer();
-                controller.updatePage(Screen::HomePage);
+                controller.updatePage(ScreenType::HomePage);
             }
         }
         break;
@@ -131,7 +128,7 @@ void GameScreen::update(float deltaTime)
         m_world.moveArrow(m_activePlayer);
     }
     else if(m_pageStatus == LevelActions::Pause)
-        m_settingsView->update(Screen::Game);
+        m_settingsView->update(ScreenType::Game);
 
     if (m_world.allPlayersReachedEnd())
     {

@@ -2,7 +2,7 @@
 
 
 Controller::Controller() 
-	: m_window(), m_homePageScreen(), m_currPage(Screen::HomePage)
+	: m_window(), m_homePageScreen(), m_currPage(ScreenType::HomePage)
 {
 	std::shared_ptr s = std::make_shared<Settings>();
 	std::shared_ptr w = std::make_shared<EndLevelScreen>();
@@ -26,14 +26,14 @@ void Controller::run()
 
 }
 
-void Controller::startGame(Screen page, int level)
+void Controller::startGame(ScreenType page, int level)
 {
 	m_gameScreen.resetTimer();
 	m_gameScreen.loadLevel(level);
 	updatePage(page);
 }
 
-void Controller::updatePage(Screen page)
+void Controller::updatePage(ScreenType page)
 {
 	m_currPage = page;
 	changeMusic(page);
@@ -44,7 +44,7 @@ void Controller::exit()
 	m_window.close();
 }
 
-void Controller::changeMusic(Screen s)
+void Controller::changeMusic(ScreenType s)
 {
 	if (Resources::instance().isMusicOn())
 		Resources::instance().playMusic(s);
@@ -61,13 +61,13 @@ void Controller::processEvents()
 
 		switch (m_currPage)
 		{
-		case Screen::HomePage:
+		case ScreenType::HomePage:
 			m_homePageScreen.processEvents(event, ml, *this);
 			break;
-		case Screen::LevelMenu:
+		case ScreenType::LevelMenu:
 			m_levelMenuScreen.processEvents(event, ml, *this);
 			break;
-		case Screen::Game:
+		case ScreenType::Game:
 			m_gameScreen.processEvents(event, ml, *this);
 			break;
 		default:
@@ -84,13 +84,13 @@ void Controller::update()
 	//move, update etc.etc.etc.
 	switch (m_currPage)
 	{
-	case Screen::HomePage:
+	case ScreenType::HomePage:
 		m_homePageScreen.update(deltaTime); //animation
 		break;
-	case Screen::LevelMenu:
+	case ScreenType::LevelMenu:
 		m_levelMenuScreen.update(deltaTime);
 		break;
-	case Screen::Game:
+	case ScreenType::Game:
 		m_gameScreen.update(deltaTime);
 		break;
 	default:
@@ -110,13 +110,13 @@ void Controller::drawCurrPage()
 	//Noga: maybe we can put all the screens class in vector or something and then we wont need all the switch case ? 
 	switch (m_currPage)
 	{
-	case Screen::HomePage:
+	case ScreenType::HomePage:
 		m_window.drawScreen(m_homePageScreen);
 		break;
-	case Screen::LevelMenu:
+	case ScreenType::LevelMenu:
 		m_window.drawScreen(m_levelMenuScreen); 
 		break;
-	case Screen::Game:
+	case ScreenType::Game:
 		m_window.drawScreen(m_gameScreen); 
 		break;
 	default:

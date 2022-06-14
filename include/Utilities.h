@@ -4,7 +4,7 @@
 
 void calcTime(int&, int&);
 
-enum class Screen
+enum class ScreenType
 {
 	HomePage = 0,
 	LevelMenu,

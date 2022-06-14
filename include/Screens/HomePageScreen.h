@@ -8,6 +8,7 @@
 #include "Settings.h"
 #include "Animation.h"
 #include "Audio.h"
+#include "Screen.h"
 
 #include "Macros.h"
 #include "Utilities.h"
@@ -16,7 +17,7 @@
 class Window;
 
 //HomeMenu
-class HomePageScreen
+class HomePageScreen : public Screen
 {
 public:
 	HomePageScreen();
@@ -34,8 +35,6 @@ private:
 
 	sf::RectangleShape m_helpBackground;
 	std::vector<Button> m_buttons; //Noga: unique ptr?
-
-	sf::RectangleShape m_background;
 
 	enum class PageStatus
 	{
