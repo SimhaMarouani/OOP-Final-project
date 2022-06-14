@@ -17,6 +17,7 @@ public:
 	sf::IntRect getheight()const;*/
 	virtual int getJumpImpulse() = 0;
 	void setFaceRight(bool f);
+	void setDirection(Direction dir);
 
 private: 
 	float m_speedPerSecond = BASE_SPEED;

@@ -173,6 +173,7 @@ void World::loadLevel(const int levelNum)
 		{
 			m_players[getIndPlayer(objType)]->setPosition(sf::Vector2f(locX, locY));
 			m_players[getIndPlayer(objType)]->setFaceRight(true);
+			m_players[getIndPlayer(objType)]->setDirection(Direction::None);
 		}
 		else //create the object
 		{

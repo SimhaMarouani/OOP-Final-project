@@ -57,7 +57,7 @@ void Players::move(float deltaTime)
 
 	//move to update func
 	sf::Vector2f dir = dirFromKey();
-	m_direction = getDir(dir);
+	setDirection(getDir(dir));
 }
 
 void Players::setTouchingFloor(bool touching)
@@ -89,6 +89,11 @@ Direction Players::getDir(sf::Vector2f dir)
 void Players::setFaceRight(bool f)
 {
 	m_isFaceRight = f;
+}
+
+void Players::setDirection(Direction dir)
+{
+	m_direction = dir;
 }
 
 void Players::updateAnimation(float deltaTime)
