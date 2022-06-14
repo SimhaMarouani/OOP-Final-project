@@ -18,7 +18,7 @@ void EndLevelScreen::createBtns()
     m_buttons.emplace_back(Button(*Resources::instance().getEndLevelBtnsTexture(EndLevelButtonType::Menu), sf::Vector2f(150,70)));
     m_buttons.emplace_back(Button(*Resources::instance().getEndLevelBtnsTexture(EndLevelButtonType::Next), sf::Vector2f(150,70)));
 
-    auto start_x = 570;
+    auto start_x = 575;
     for (size_t i = 0; i < m_buttons.size(); i++)
     {
         m_buttons[i].setPosition(sf::Vector2f(start_x + 150 * i, WINDOW_HEIGHT - END_HEIGHT));
