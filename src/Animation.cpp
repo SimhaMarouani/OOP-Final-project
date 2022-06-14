@@ -44,7 +44,6 @@ void Animation::update(int row, int totalImages, float deltaTime, bool isFaceRig
         }
 	}
 	
-	//m_uvRect.left = m_currentImage.x * m_uvRect.width;
 	m_uvRect.top = m_currentImage.y * m_uvRect.height;
 
 	if (isFaceRight)

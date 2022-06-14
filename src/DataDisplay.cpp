@@ -101,13 +101,13 @@ void DataDisplay::handleClick(sf::Event event , GameScreen& gs)
 {
 	if (m_levelActions[int(LevelActions::Pause)].isContain(event))
 	{
-		m_btnsAudio.playMusic();
+		m_btnsAudio.playAudio();
 		gs.updateStatus(LevelActions::Pause);
 		pauseTimer();
 	}
 	else if (m_levelActions[int(LevelActions::Retry)].isContain(event))
 	{
-		m_btnsAudio.playMusic();
+		m_btnsAudio.playAudio();
 		gs.retryLevel();
 	}
 }

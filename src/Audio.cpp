@@ -2,7 +2,7 @@
 
 Audio::Audio(sf::SoundBuffer* soundBuffer)
 {
-	initMusic(soundBuffer);
+	m_sound.setBuffer(*soundBuffer);
 }
 
 //-----------------------------------------------------------------
@@ -13,24 +13,17 @@ Audio::~Audio()
 
 //-----------------------------------------------------------------
 
-void Audio::stopPlayMusic()
+void Audio::stop()
 {
 	m_sound.pause();
 }
 
 //-----------------------------------------------------------------
 
-void Audio::playMusic(int volume, bool loop)
+void Audio::playAudio(int volume, bool loop)
 {
 	if (!Resources::instance().isAudioOn()) return;
 	m_sound.setLoop(loop);
 	m_sound.setVolume(volume);
 	m_sound.play();
-}
-
-//-----------------------------------------------------------------
-
-void Audio::initMusic(sf::SoundBuffer* soundBuffer)
-{
-	m_sound.setBuffer(*soundBuffer);
 }

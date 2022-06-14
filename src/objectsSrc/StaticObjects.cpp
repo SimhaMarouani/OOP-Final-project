@@ -32,16 +32,7 @@ void StaticObjects::initIcon(sf::Vector2f pos, sf::Vector2f scale)
 }
 void StaticObjects::update()
 {
-	if(m_body->GetType() == b2_dynamicBody)
-		m_body->SetAwake(true);
-	//Tali: same in player
-	float MAX_SPEED = 15.0f;
-	if (m_body->GetLinearVelocity().x < -MAX_SPEED) {
-		m_body->SetLinearVelocity(b2Vec2(-MAX_SPEED, m_body->GetLinearVelocity().y));
-	}
-	else if (m_body->GetLinearVelocity().x > MAX_SPEED) {
-		m_body->SetLinearVelocity(b2Vec2(MAX_SPEED, m_body->GetLinearVelocity().y));
-	}
+	updateObj();
 }
 
 
