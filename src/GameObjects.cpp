@@ -98,8 +98,9 @@ void GameObjects::createSensor(b2World* world, float width, float height, b2Vec2
     fixture.density = 1.0f;
     fixture.friction = 0.1f;
     fixture.isSensor = true;
-    m_sensor = m_body->CreateFixture(&fixture);
-    m_sensor->SetUserData((void*)data);
+    m_body->CreateFixture(&fixture)->SetUserData((void*)data);
+    //m_sensor = m_body->CreateFixture(&fixture);
+    //m_sensor->SetUserData((void*)data);
 }
 
 
@@ -118,7 +119,7 @@ sf::Vector2f GameObjects::getPosition()const
     return m_icon.getPosition();
 }
 
-b2Body* GameObjects::getBody()
-{
-    return m_body;
-}
+//b2Body* GameObjects::getBody()
+//{
+//    return m_body;
+//}

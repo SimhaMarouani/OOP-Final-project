@@ -10,7 +10,7 @@ Players::Players(Player type, sf::Vector2u imageCount, b2World* world)
 	//float height = m_animation.m_uvRect.width/2 ;
 	m_icon.setTexture(*Resources::instance().getPlayerSpriteSheet(type));
 	m_icon.setScale(sf::Vector2f(0.5, 0.5)); //Tali: make default
-	m_icon.setOrigin(m_animation.m_uvRect.width/2 , m_animation.m_uvRect.height/2); //m_icon.getGlobalBounds().width, m_icon.getGlobalBounds().height);
+	m_icon.setOrigin(m_animation.m_uvRect.width/2 , m_animation.m_uvRect.height/2);
 	m_icon.setPosition(sf::Vector2f(0, 600)); //Tali: change to DEFAULT
 
 	//create body in world
@@ -52,7 +52,7 @@ void Players::move(float deltaTime)
 	if ( dirFromKey().y < 0 && m_touchingFloor)
 		m_body->ApplyLinearImpulseToCenter(b2Vec2(0, this->getJumpImpulse()), true);
 
-	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * 300/*m_speedPerSecond*/, 0);
+	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * m_speedPerSecond, 0);
 	m_body->ApplyForceToCenter(step1, true);
 
 	//move to update func
@@ -102,6 +102,10 @@ void Players::updateAnimation(float deltaTime)
 
 void Players::update(float deltaTime)
 {
+	if (m_body->GetType() == b2_dynamicBody)
+		m_body->SetAwake(true);
+
+	//Tali: move to gameObject for both player and 
 	float MAX_SPEED = 15.0f;
 	if (m_body->GetLinearVelocity().x < -MAX_SPEED) {
 		m_body->SetLinearVelocity(b2Vec2(-MAX_SPEED, m_body->GetLinearVelocity().y));
@@ -109,7 +113,5 @@ void Players::update(float deltaTime)
 	else if (m_body->GetLinearVelocity().x > MAX_SPEED) {
 		m_body->SetLinearVelocity(b2Vec2(MAX_SPEED, m_body->GetLinearVelocity().y));
 	}
-	m_body->ApplyForceToCenter(b2Vec2(0,0), true);
-
 	updateAnimation(deltaTime);
 }

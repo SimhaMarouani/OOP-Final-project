@@ -21,10 +21,8 @@ public:
     void createSquareBody(b2World* world, b2BodyType bodyType, sf::Vector2i rect = { 0, 0 });
     void createCircleBody(b2World* world, b2BodyType bodyType, float radius);
     void createSensor(b2World* world, float width, float height, b2Vec2 center, int data);
-    b2Body* getBody();
 
 protected:
     b2Body* m_body = nullptr;
-    b2Fixture* m_sensor = nullptr;
     sf::Sprite m_icon;
 };
