@@ -27,12 +27,11 @@ bool Button::isContain(sf::Event event) const
 	return m_button.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y);
 }
 
-sf::Vector2f Button::getSize() const
+const sf::Vector2f &Button::getSize() const
 {
 	sf::Vector2f textureSize = sf::Vector2f(m_button.getTexture()->getSize());
 	sf::Vector2f scale = m_button.getScale();
 	return 	sf::Vector2f(textureSize.x * scale.x, textureSize.y * scale.y);
-	//return 	sf::Vector2f(m_button.getTexture()->getSize());
 }
 
 bool Button::isHover(sf::Vector2f l) const
@@ -40,27 +39,27 @@ bool Button::isHover(sf::Vector2f l) const
 	return m_button.getGlobalBounds().contains(l);
 }
 
-void Button::setPosition(sf::Vector2f pos)
+void Button::setPosition(const sf::Vector2f& pos)
 {
 	m_button.setPosition(pos);
 }
 
-void Button::setTexture(sf::Texture *texture)
+void Button::setTexture(const sf::Texture *texture)
 {
 	m_button.setTexture(*texture);
 }
 
-void Button::setColor(sf::Color color)
+void Button::setColor(const sf::Color& color)
 {
 	m_button.setColor(color);
 }
 
-void Button::setSize(sf::Vector2f size)
+void Button::setSize(const sf::Vector2f &size)
 {
 	m_button.setScale(size.x / m_button.getTexture()->getSize().x, size.y / m_button.getTexture()->getSize().y);
 }
 
-void Button::setScale(sf::Vector2f scale)
+void Button::setScale(const sf::Vector2f& scale)
 {
 	m_button.setScale(scale);
 }

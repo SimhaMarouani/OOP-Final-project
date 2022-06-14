@@ -13,18 +13,20 @@ public:
 	Button(sf::Texture &texture);
 	Button() {};
 	virtual ~Button() = default;
+
 	void draw(sf::RenderWindow& window);
 
-	//get
-	bool isContain(sf::Event event) const;
-	sf::Vector2f getSize()const;
-	bool isHover(sf::Vector2f l) const;
+	//get data
+	bool isContain(const sf::Event event) const;
+	const sf::Vector2f& getSize() const;
+	bool isHover(const sf::Vector2f l) const;
+
 	//set sprite
-	void setPosition(sf::Vector2f pos);
-	void setTexture(sf::Texture* texture);
-	void setColor(sf::Color color);
-	void setSize(sf::Vector2f size);
-	void setScale(sf::Vector2f scale);
+	void setPosition(const sf::Vector2f &pos);
+	void setTexture(const sf::Texture* texture);
+	void setColor(const sf::Color &color);
+	void setSize(const sf::Vector2f &size);
+	void setScale(const sf::Vector2f &scale);
 
 private:
 	sf::Sprite m_button;
