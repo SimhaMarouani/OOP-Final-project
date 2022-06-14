@@ -53,7 +53,7 @@ void Players::move(float deltaTime)
 	if (dirFromKey().y < 0 && m_touchingFloor)
 	{
 		m_body->ApplyLinearImpulseToCenter(b2Vec2(0, this->getJumpImpulse()), true);
-		m_audio.playAudio();
+		m_audio.playAudio(20);
 	}
 
 	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * m_speedPerSecond, 0);
