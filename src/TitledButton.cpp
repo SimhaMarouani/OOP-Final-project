@@ -14,7 +14,7 @@ void TitledButton::setTextString(std::string text)
 
 void TitledButton::setTextColor(sf::Color c)
 {
-	m_buttonText.setColor(c);
+	m_buttonText.setFillColor(c);
 }
 
 void TitledButton::setTextSize(float s)

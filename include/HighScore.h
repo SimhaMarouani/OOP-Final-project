@@ -23,7 +23,7 @@ public:
     ~HighScore();
 
 	void addScore(int level, int score);
-	int getNumOfCompleteLevels() { return m_levelsScore.size(); };
+	int getNumOfCompleteLevels() { return static_cast<int>(m_levelsScore.size()); };
 	int getLevelScore(int level) const;
 
 	void save();

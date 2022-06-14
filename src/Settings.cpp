@@ -17,10 +17,10 @@ Settings::Settings() //TODO: send current status
 	createBtns();
 
 	//return
-	m_exitSettingsBtn.setScale(sf::Vector2f(0.7, 0.7));
+	m_exitSettingsBtn.setScale(sf::Vector2f(0.70f, 0.70f));
 	m_exitSettingsBtn.setPosition(m_background.getPosition() + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_exitSettingsBtn.getSize().x / 2), SETTINGS_HEIGHT * 4 /6));
 	//home
-	m_redirectBtn.setScale(sf::Vector2f(0.7, 0.7));
+	m_redirectBtn.setScale(sf::Vector2f(0.70f, 0.70f));
 	m_redirectBtn.setPosition(m_background.getPosition() + sf::Vector2f((SETTINGS_WIDTH / 2) - (m_redirectBtn.getSize().x / 2), SETTINGS_HEIGHT * 3 / 6));
 }
 

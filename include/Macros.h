@@ -9,11 +9,11 @@ constexpr int WINDOW_HEIGHT = 900;
 constexpr int DATA_DISPLAY_WIDTH = 1600; //Noga same as WINDOW_WIDTH maybe we can save only one of them?
 constexpr int DATA_DISPLAY_HEIGHT = 150;
 
-constexpr int SETTINGS_WIDTH = WINDOW_WIDTH * 0.4;
-constexpr int SETTINGS_HEIGHT = WINDOW_HEIGHT * 0.6;
+constexpr int SETTINGS_WIDTH = static_cast<int>(WINDOW_WIDTH * 0.4);
+constexpr int SETTINGS_HEIGHT = static_cast<int>(WINDOW_HEIGHT * 0.6);
 
-constexpr int END_WIDTH = WINDOW_WIDTH * 0.4;
-constexpr int END_HEIGHT = WINDOW_HEIGHT * 0.4;
+constexpr int END_WIDTH = static_cast<int>(WINDOW_WIDTH * 0.4);
+constexpr int END_HEIGHT =static_cast<int>(WINDOW_HEIGHT * 0.4);
 
 constexpr int HELP_WIDTH = WINDOW_WIDTH - (WINDOW_WIDTH / 8);
 constexpr int HELP_HEIGHT = WINDOW_HEIGHT - (WINDOW_HEIGHT / 8);

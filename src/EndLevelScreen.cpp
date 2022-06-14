@@ -80,23 +80,23 @@ void EndLevelScreen::createText()
     m_winText.setFont(*Resources::instance().getFont());
     m_winText.setCharacterSize(CHAR_SIZE);
     m_winText.setPosition(590, 295);
-    m_winText.setColor(sf::Color::Black);
+    m_winText.setFillColor(sf::Color::Black);
     m_winText.setString("Great! you won this level");
 
     m_timeText.setFont(*Resources::instance().getFont());
     m_timeText.setCharacterSize(CHAR_SIZE);
     m_timeText.setPosition(695, 375);
-    m_timeText.setColor(sf::Color::Black);
+    m_timeText.setFillColor(sf::Color::Black);
 
     m_newScoreText.setFont(*Resources::instance().getFont());
     m_newScoreText.setCharacterSize(CHAR_SIZE - 5);
     m_newScoreText.setPosition(595, 375);
-    m_newScoreText.setColor(sf::Color::Black);
+    m_newScoreText.setFillColor(sf::Color::Black);
 
     m_loseText.setFont(*Resources::instance().getFont());
     m_loseText.setCharacterSize(CHAR_SIZE);
     m_loseText.setPosition(645, 295);
-    m_loseText.setColor(sf::Color::Black);
+    m_loseText.setFillColor(sf::Color::Black);
     m_loseText.setString("You lost this level\n    Try again!");
 }
 
