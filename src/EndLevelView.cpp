@@ -32,12 +32,12 @@ void EndLevelView::draw(sf::RenderWindow &window, bool status, int levelNum, int
 
     window.draw(m_background);
 
-    m_buttons[(int)EndLevelButtonType::Retry].draw(window);
-    m_buttons[(int)EndLevelButtonType::Menu].draw(window);
+    m_buttons[static_cast<int>(EndLevelButtonType::Retry)].draw(window);
+    m_buttons[static_cast<int>(EndLevelButtonType::Menu)].draw(window);
 
     if (status && levelNum < NUM_OF_LEVELS)
     {
-        m_buttons[(int)EndLevelButtonType::Next].draw(window);
+        m_buttons[static_cast<int>(EndLevelButtonType::Next)].draw(window);
 
         window.draw(m_winText);
 
@@ -63,7 +63,7 @@ void EndLevelView::draw(sf::RenderWindow &window, bool status, int levelNum, int
 
 bool EndLevelView::isContainRetry(sf::Event e)
 {
-    if(m_buttons[(int)EndLevelButtonType::Retry].isContain(e))
+    if(m_buttons[static_cast<int>(EndLevelButtonType::Retry)].isContain(e))
     {
         m_soundCounter = 0;
         return true;
@@ -73,7 +73,7 @@ bool EndLevelView::isContainRetry(sf::Event e)
 
 bool EndLevelView::isContainMenu(sf::Event e)
 {
-    if(m_buttons[(int)EndLevelButtonType::Menu].isContain(e))
+    if(m_buttons[static_cast<int>(EndLevelButtonType::Menu)].isContain(e))
     {
         m_soundCounter = 0;
         return true;
@@ -83,7 +83,7 @@ bool EndLevelView::isContainMenu(sf::Event e)
 
 bool EndLevelView::isContainNext(sf::Event e)
 {
-    if(m_buttons[(int)EndLevelButtonType::Next].isContain(e))
+    if(m_buttons[static_cast<int>(EndLevelButtonType::Next)].isContain(e))
     {
         m_soundCounter = 0;
         return true;

@@ -104,25 +104,25 @@ void HomePageScreen::update(float deltaTime)
 
 void HomePageScreen::handleMenuClick(const sf::Event& event, Controller& controller)
 {
-	if (m_buttons[(int)HomeButtonType::Start].isContain(event))
+	if (m_buttons[static_cast<int>(HomeButtonType::Start)].isContain(event))
 	{
 		playClickAudio();
 		controller.updatePage(ScreenType::LevelMenu);
 		controller.updateNumOfLevels();
 	}
 
-	else if (m_buttons[(int)HomeButtonType::Help].isContain(event))
+	else if (m_buttons[static_cast<int>(HomeButtonType::Help)].isContain(event))
 	{
 		playClickAudio();
 		setBackgroundColor(sf::Color(255, 255, 255, 205));
 		m_pageStatus = PageStatus::Help;
 	}
-	else if (m_buttons[(int)HomeButtonType::Settings].isContain(event))
+	else if (m_buttons[static_cast<int>(HomeButtonType::Settings)].isContain(event))
 	{
 		playClickAudio();
 		m_pageStatus = PageStatus::Settings;
 	}
-	else if (m_buttons[(int)HomeButtonType::Exit].isContain(event))
+	else if (m_buttons[static_cast<int>(HomeButtonType::Exit)].isContain(event))
 	{
 		playClickAudio();
 		controller.exit();

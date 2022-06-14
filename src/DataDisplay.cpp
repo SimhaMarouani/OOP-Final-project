@@ -26,22 +26,22 @@ void DataDisplay::createPlayersButtons()
 		auto y = floor(i / m_players.size());
 		auto x = i % m_players.size();
 
-		float size = (i == int(Player::Heavy)) ? PLAYER_FACE_SIZE + 10 : PLAYER_FACE_SIZE;
+		float size = (i == static_cast<int>(Player::Heavy)) ? PLAYER_FACE_SIZE + 10 : PLAYER_FACE_SIZE;
 
 		m_players[i].setPosition({ offset_x + (size + margin) * float(x), offset_y + (size + margin) * float(y) });
 		m_players[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
 		m_players[i].setTexture(Resources::instance().getPlayerFaceTexture(Player(i)));
-		m_players[i].setColor(i == (int)Player::Heavy ? sf::Color::White : sf::Color(255, 255, 255, 100));
+		m_players[i].setColor(i == static_cast<int>(Player::Heavy) ? sf::Color::White : sf::Color(255, 255, 255, 100));
 	}
 }
 
 void DataDisplay::initActionsButtons()
 {
-	m_levelActions[int(LevelActions::Retry)].setPosition(sf::Vector2f(30, 30));
-	m_levelActions[int(LevelActions::Retry)].setTexture(Resources::instance().getLevelActionButtonTexture(LevelActions::Retry));
+	m_levelActions[static_cast<int>(LevelActions::Retry)].setPosition(sf::Vector2f(30, 30));
+	m_levelActions[static_cast<int>(LevelActions::Retry)].setTexture(Resources::instance().getLevelActionButtonTexture(LevelActions::Retry));
 
-	m_levelActions[int(LevelActions::Pause)].setPosition(sf::Vector2f(130, 30));
-	m_levelActions[int(LevelActions::Pause)].setTexture(Resources::instance().getLevelActionButtonTexture(LevelActions::Pause));
+	m_levelActions[static_cast<int>(LevelActions::Pause)].setPosition(sf::Vector2f(130, 30));
+	m_levelActions[static_cast<int>(LevelActions::Pause)].setTexture(Resources::instance().getLevelActionButtonTexture(LevelActions::Pause));
 }
 
 void DataDisplay::createTexts()
@@ -84,7 +84,7 @@ void DataDisplay::drawBtns(sf::RenderWindow &window)
 
 void DataDisplay::setTimeText()
 {
-	int sec = int(m_timer.getTime()), min = 0;
+	int sec = static_cast<int>(m_timer.getTime()), min = 0;
 	calcTime(sec, min);
 
 	std::string time = (min < 10 ? "0" : "") + std::to_string(min) + ":" + (sec < 10 ? "0" : "") + std::to_string(sec);
@@ -93,13 +93,13 @@ void DataDisplay::setTimeText()
 
 void DataDisplay::handleClick(const sf::Event &event , GameScreen& gs)
 {
-	if (m_levelActions[int(LevelActions::Pause)].isContain(event))
+	if (m_levelActions[static_cast<int>(LevelActions::Pause)].isContain(event))
 	{
 		m_btnsAudio.playAudio();
 		gs.updateStatus(LevelActions::Pause);
 		pauseTimer();
 	}
-	else if (m_levelActions[int(LevelActions::Retry)].isContain(event))
+	else if (m_levelActions[static_cast<int>(LevelActions::Retry)].isContain(event))
 	{
 		m_btnsAudio.playAudio();
 		gs.retryLevel();
@@ -123,7 +123,7 @@ void DataDisplay::setCurrPlayer(int activePlayer)
 
 int DataDisplay::getTime()
 {
-    return  int(m_timer.getTime());
+    return  static_cast<int>(m_timer.getTime());
 }
 
 void DataDisplay::pauseTimer()

@@ -8,7 +8,7 @@ public:
 	std::pair<int, int> getAnimationData() {
 
 		Direction dir = Players::getCurrDirection();
-		return std::pair<int, int>(simpleAnimationRow[int(dir)]);
+		return std::pair<int, int>(simpleAnimationRow[static_cast<int>(dir)]);
 	};
 	//void update(float deltaTime)
 	//{

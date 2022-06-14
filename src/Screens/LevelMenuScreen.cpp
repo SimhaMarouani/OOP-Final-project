@@ -139,7 +139,7 @@ void LevelMenuScreen::initBtns()
 {
 	const float margin = 20.f;
 
-	int num_of_rows = floor(int(m_levels.size()) / LEVEL_MENU_COLS);
+	int num_of_rows = floor(static_cast<int>(m_levels.size()) / LEVEL_MENU_COLS);
 	auto offset_x = (WINDOW_WIDTH - (LEVEL_MENU_BTN_SIZE + margin) * LEVEL_MENU_COLS) / 2;
 	auto offset_y = (WINDOW_HEIGHT - (LEVEL_MENU_BTN_SIZE + margin) * num_of_rows) / 3;
 

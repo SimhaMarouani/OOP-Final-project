@@ -9,14 +9,14 @@ Controller::Controller()
 
 	//init screens
 	m_screens.resize(NUM_OF_BG_TEXTURES);
-	m_screens[(int)ScreenType::HomePage] = std::make_unique<HomePageScreen>();
-	m_screens[(int)ScreenType::LevelMenu] = std::make_unique<LevelMenuScreen>();
-	m_screens[(int)ScreenType::Game] = std::make_unique<GameScreen>();
+	m_screens[static_cast<int>(ScreenType::HomePage)] = std::make_unique<HomePageScreen>();
+	m_screens[static_cast<int>(ScreenType::LevelMenu)] = std::make_unique<LevelMenuScreen>();
+	m_screens[static_cast<int>(ScreenType::Game)] = std::make_unique<GameScreen>();
 
 	//init 
-	dynamic_cast<HomePageScreen*>(m_screens[(int)ScreenType::HomePage].get())->initSettings(s);
-	dynamic_cast<GameScreen*>(m_screens[(int)ScreenType::Game].get())->initSettings(s);
-	dynamic_cast<GameScreen*>(m_screens[(int)ScreenType::Game].get())->initEndLevelScreen(w);
+	dynamic_cast<HomePageScreen*>(m_screens[static_cast<int>(ScreenType::HomePage)].get())->initSettings(s);
+	dynamic_cast<GameScreen*>(m_screens[static_cast<int>(ScreenType::Game)].get())->initSettings(s);
+	dynamic_cast<GameScreen*>(m_screens[static_cast<int>(ScreenType::Game)].get())->initEndLevelScreen(w);
 }
 
 void Controller::run()
@@ -35,8 +35,8 @@ void Controller::run()
 
 void Controller::startGame(ScreenType page, unsigned int level)
 {
-	dynamic_cast<GameScreen*>(m_screens[(int)ScreenType::Game].get())->resetTimer();
-	dynamic_cast<GameScreen*>(m_screens[(int)ScreenType::Game].get())->loadLevel(level);
+	dynamic_cast<GameScreen*>(m_screens[static_cast<int>(ScreenType::Game)].get())->resetTimer();
+	dynamic_cast<GameScreen*>(m_screens[static_cast<int>(ScreenType::Game)].get())->loadLevel(level);
 	updatePage(page);
 }
 
@@ -65,14 +65,14 @@ void Controller::processEvents()
 			this->exit();
 
 		sf::Vector2f ml = m_window.mapPixelToCoords({ event.mouseMove.x, event.mouseMove.y }); //get mouse location
-		m_screens[(int)m_currPage]->processEvents(event, ml, *this);
+		m_screens[static_cast<int>(m_currPage)]->processEvents(event, ml, *this);
 	}
 }
 
 void Controller::update()
 {
 	float deltaTime = m_timer.restart().asSeconds();
-	m_screens[(int)m_currPage]->update(deltaTime);
+	m_screens[static_cast<int>(m_currPage)]->update(deltaTime);
 }
 
 void Controller::render()
@@ -87,13 +87,13 @@ void Controller::drawCurrPage()
 	switch (m_currPage)
 	{
 	case ScreenType::HomePage:
-		m_window.drawScreen(dynamic_cast<HomePageScreen*>(m_screens[(int)ScreenType::HomePage].get()));
+		m_window.drawScreen(dynamic_cast<HomePageScreen*>(m_screens[static_cast<int>(ScreenType::HomePage)].get()));
 		break;
 	case ScreenType::LevelMenu:
-		m_window.drawScreen(dynamic_cast<LevelMenuScreen*>(m_screens[(int)ScreenType::LevelMenu].get()));
+		m_window.drawScreen(dynamic_cast<LevelMenuScreen*>(m_screens[static_cast<int>(ScreenType::LevelMenu)].get()));
 		break;
 	case ScreenType::Game:
-		m_window.drawScreen(dynamic_cast<GameScreen*>(m_screens[(int)ScreenType::Game].get()));
+		m_window.drawScreen(dynamic_cast<GameScreen*>(m_screens[static_cast<int>(ScreenType::Game)].get()));
 		break;
 	default:
 		break;
@@ -103,5 +103,5 @@ void Controller::drawCurrPage()
 
 void Controller::updateNumOfLevels()
 {
-	dynamic_cast<LevelMenuScreen*>(m_screens[(int)ScreenType::LevelMenu].get())->updateNumOfLevels();
+	dynamic_cast<LevelMenuScreen*>(m_screens[static_cast<int>(ScreenType::LevelMenu)].get())->updateNumOfLevels();
 }

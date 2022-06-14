@@ -44,16 +44,16 @@ void Settings::update(enum ScreenType s)
 
 void Settings::handleClick(const sf::Event &event, enum ScreenType s)
 {
-	if (m_soundBtns[(int)Type::Audio].isContain(event))
+	if (m_soundBtns[static_cast<int>(Type::Audio)].isContain(event))
 	{
 		SoundStatus type = Resources::instance().isAudioOn() ? SoundStatus::AudioOff : SoundStatus::AudioOn;
-		m_soundBtns[(int)Type::Audio].setTexture(Resources::instance().getSoundTexture(type));
+		m_soundBtns[static_cast<int>(Type::Audio)].setTexture(Resources::instance().getSoundTexture(type));
 		Resources::instance().switchAudioStatus();
 	}
-	else if (m_soundBtns[(int)Type::Music].isContain(event))
+	else if (m_soundBtns[static_cast<int>(Type::Music)].isContain(event))
 	{
 		SoundStatus type = Resources::instance().isMusicOn() ? SoundStatus::MusicOff : SoundStatus::MusicOn;
-		m_soundBtns[(int)Type::Music].setTexture(Resources::instance().getSoundTexture(type));
+		m_soundBtns[static_cast<int>(Type::Music)].setTexture(Resources::instance().getSoundTexture(type));
 		Resources::instance().switchMusicStatus(s);
 	}
 }
@@ -77,8 +77,8 @@ void Settings::createBtns()
 void Settings::initSoundButton()
 {
 	auto startPos = m_background.getPosition();
-	int i = (int)Type::Audio;
-	int j = (int)Type::Music;
+	int i = static_cast<int>(Type::Audio);
+	int j = static_cast<int>(Type::Music);
 
 	m_soundBtns.resize(2);
 	m_soundBtns[i].setTexture(Resources::instance().getSoundTexture(SoundStatus::AudioOn));

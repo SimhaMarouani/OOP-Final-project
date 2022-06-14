@@ -9,7 +9,7 @@ public:
 	std::pair<int, int> getAnimationData() {
 
 		Direction dir = Players::getCurrDirection();
-		return std::pair<int, int>(heavyAnimationRow[int(dir)]);
+		return std::pair<int, int>(heavyAnimationRow[static_cast<int>(dir)]);
 	};
 	int getJumpImpulse();
 

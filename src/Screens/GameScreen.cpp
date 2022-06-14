@@ -131,7 +131,7 @@ void GameScreen::retryLevel()
     m_world.createLevel(m_levelNum);
     m_dataDisplay.resetTimer();
     m_activePlayer = Player::Heavy;
-    m_dataDisplay.setCurrPlayer((int)m_activePlayer);
+    m_dataDisplay.setCurrPlayer(static_cast<int>(m_activePlayer));
 }
 
 LevelActions GameScreen::getPageStatus() const
@@ -143,8 +143,8 @@ void GameScreen::handleKeyRelased(sf::Keyboard::Key keyCode, Controller& control
 {
     if (keyCode == sf::Keyboard::A && m_pageStatus == LevelActions::None)
     {
-        m_activePlayer = Player((int(m_activePlayer) + 1) % NUM_OF_PLAYERS);
-        m_dataDisplay.setCurrPlayer(int(m_activePlayer));
+        m_activePlayer = Player((static_cast<int>(m_activePlayer) + 1) % NUM_OF_PLAYERS);
+        m_dataDisplay.setCurrPlayer(static_cast<int>(m_activePlayer));
     }
     else if (keyCode == sf::Keyboard::Escape && m_pageStatus == LevelActions::None)
     {
@@ -168,7 +168,7 @@ void GameScreen::endLevelHandleClick(const sf::Event& e, Controller& controller)
         m_world.createLevel(m_levelNum);
         m_dataDisplay.resetTimer();
         m_activePlayer = Player::Heavy;
-        m_dataDisplay.setCurrPlayer((int)m_activePlayer);
+        m_dataDisplay.setCurrPlayer(static_cast<int>(m_activePlayer));
         updateStatus(LevelActions::None);
     }
     else if (m_endLevelView->isContainMenu(e))

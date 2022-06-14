@@ -51,12 +51,12 @@ void World::draw(sf::RenderWindow& window, const Player activePlayer)
 	}
 	for (int i = 0; i < m_players.size(); i++)
 	{
-		if (i != (int)activePlayer)
+		if (i != static_cast<int>(activePlayer))
 		{
 			m_players[i]->draw(window);
 		}
 	}
-	m_players[(int)activePlayer]->draw(window);
+	m_players[static_cast<int>(activePlayer)]->draw(window);
 	window.draw(m_arrow);
 }
 
@@ -73,7 +73,7 @@ void World::moveActive(float deltaTime, const Player active)
 	}
 
 	m_box2dWorld->Step(timeStep, velocityIterations, positionIterations);
-	m_players[(int)active]->move(deltaTime);
+	m_players[static_cast<int>(active)]->move(deltaTime);
 
 	for (int i = 0; i < m_players.size(); i++)
 	{
@@ -85,8 +85,8 @@ void World::moveActive(float deltaTime, const Player active)
 
 void World::moveArrow(const Player active)
 {
-	float x = m_players[(int)active]->getPosition().x + 80;
-	float y = m_players[(int)active]->getPosition().y - m_players[(int)active]->getHeight() / 2;
+	float x = m_players[static_cast<int>(active)]->getPosition().x + 80;
+	float y = m_players[static_cast<int>(active)]->getPosition().y - m_players[static_cast<int>(active)]->getHeight() / 2;
 	m_arrow.setPosition(x, y);
 }
 

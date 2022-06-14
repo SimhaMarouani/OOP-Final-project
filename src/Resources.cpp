@@ -158,7 +158,7 @@ sf::Font* Resources::getFont()
 	
 sf::Texture* Resources::getBackground(ScreenType index)
 {
-	return &m_backgroundTextures[int(index)];
+	return &m_backgroundTextures[static_cast<int>(index)];
 }
 
 sf::Texture* Resources::getHelpBackground()
@@ -184,7 +184,7 @@ sf::Texture* Resources::getSettingsHomeTexture()
 
 sf::Texture* Resources::getPlayerFaceTexture(Player player)
 {
-	return &m_playersFace[(int)player];
+	return &m_playersFace[static_cast<int>(player)];
 }
 
 sf::Texture* Resources::getPlayerArrowTexture()
@@ -204,17 +204,17 @@ sf::Texture* Resources::getBackArrowTexture()
 
 sf::Texture* Resources::getObjectTexture(Objects obj)
 {
-	return &m_objects[(int)obj];
+	return &m_objects[static_cast<int>(obj)];
 }
 
 sf::Texture* Resources::getGroundTexture(Grounds obj)
 {
-	return &m_grounds[(int)obj];
+	return &m_grounds[static_cast<int>(obj)];
 }
 
 sf::Texture* Resources::getSoundTexture(SoundStatus s)
 {
-	return &m_soundTextures[(int)s];
+	return &m_soundTextures[static_cast<int>(s)];
 }
 
 sf::Texture* Resources::getSettingsBackground()
@@ -224,7 +224,7 @@ sf::Texture* Resources::getSettingsBackground()
 
 sf::Texture* Resources::getEndLevelBtnsTexture(EndLevelButtonType b)
 {
-    return &m_endLevelBtnsTexture[(int)b];
+    return &m_endLevelBtnsTexture[static_cast<int>(b)];
 }
 
 sf::Texture* Resources::getHighScoreBtn()
@@ -239,22 +239,22 @@ sf::Image* Resources::getGameIcon()
 
 sf::Texture* Resources::getPlayerSpriteSheet(Player p)
 {
-	return &m_playerSpriteSheet[(int)p];
+	return &m_playerSpriteSheet[static_cast<int>(p)];
 }
 
 sf::Texture* Resources::getLevelMenuTexture(LevelState l)
 {
-	return &m_levelMenuTexture[(int)l];
+	return &m_levelMenuTexture[static_cast<int>(l)];
 }
 
 sf::Texture* Resources::getHomePageBtnsTexture(HomeButtonType b)
 {
-	return &m_homePageBtnsTexture[(int)b];
+	return &m_homePageBtnsTexture[static_cast<int>(b)];
 }
 
 sf::Texture* Resources::getLevelActionButtonTexture(LevelActions la)
 {
-	return &m_levelActionButtonsTexture[int(la)];
+	return &m_levelActionButtonsTexture[static_cast<int>(la)];
 }
 
 //===============================================================//
@@ -271,44 +271,44 @@ void Resources::loadFont()
 void Resources::loadBackgroundTextures()
 {
 	m_backgroundTextures.resize(NUM_OF_BG_TEXTURES);
-	if (!m_backgroundTextures[(int)ScreenType::HomePage].loadFromFile("home_background.png")
-		|| !m_backgroundTextures[(int)ScreenType::LevelMenu].loadFromFile("levelmenu_background.png")
-		|| !m_backgroundTextures[(int)ScreenType::Game].loadFromFile("game_background.png"))
+	if (!m_backgroundTextures[static_cast<int>(ScreenType::HomePage)].loadFromFile("home_background.png")
+		|| !m_backgroundTextures[static_cast<int>(ScreenType::LevelMenu)].loadFromFile("levelmenu_background.png")
+		|| !m_backgroundTextures[static_cast<int>(ScreenType::Game)].loadFromFile("game_background.png"))
 		throw(std::logic_error("Background Textures\n"));
 }
 
 void Resources::loadLevelMenuIcons()
 {
 	m_levelMenuTexture.resize(2);
-	if (!m_levelMenuTexture[(int)LevelState::Lock].loadFromFile("lock_level.png")
-		|| !m_levelMenuTexture[(int)LevelState::Unlock].loadFromFile("unlock_level.png"))
+	if (!m_levelMenuTexture[static_cast<int>(LevelState::Lock)].loadFromFile("lock_level.png")
+		|| !m_levelMenuTexture[static_cast<int>(LevelState::Unlock)].loadFromFile("unlock_level.png"))
 		throw(std::logic_error("Level Menu Icons\n"));
 }
 
 void Resources::loadHomePageBtnsTexture()
 {
 	m_homePageBtnsTexture.resize(4);
-	if (!m_homePageBtnsTexture[(int)HomeButtonType::Start].loadFromFile("start.png")
-		|| !m_homePageBtnsTexture[(int)HomeButtonType::Help].loadFromFile("help.png")
-		|| !m_homePageBtnsTexture[(int)HomeButtonType::Settings].loadFromFile("settings.png")
-		|| !m_homePageBtnsTexture[(int)HomeButtonType::Exit].loadFromFile("exit.png"))
+	if (!m_homePageBtnsTexture[static_cast<int>(HomeButtonType::Start)].loadFromFile("start.png")
+		|| !m_homePageBtnsTexture[static_cast<int>(HomeButtonType::Help)].loadFromFile("help.png")
+		|| !m_homePageBtnsTexture[static_cast<int>(HomeButtonType::Settings)].loadFromFile("settings.png")
+		|| !m_homePageBtnsTexture[static_cast<int>(HomeButtonType::Exit)].loadFromFile("exit.png"))
 		throw(std::logic_error("Page Buttons Texture\n"));
 }
 
 void Resources::loadEndLevelBtnsTexture()
 {
 	m_endLevelBtnsTexture.resize(3);
-	if (!m_endLevelBtnsTexture[(int)EndLevelButtonType::Retry].loadFromFile("retry_btn.png")
-		|| !m_endLevelBtnsTexture[(int)EndLevelButtonType::Menu].loadFromFile("menu_btn.png")
-		|| !m_endLevelBtnsTexture[(int)EndLevelButtonType::Next].loadFromFile("next_level_btn.png"))
+	if (!m_endLevelBtnsTexture[static_cast<int>(EndLevelButtonType::Retry)].loadFromFile("retry_btn.png")
+		|| !m_endLevelBtnsTexture[static_cast<int>(EndLevelButtonType::Menu)].loadFromFile("menu_btn.png")
+		|| !m_endLevelBtnsTexture[static_cast<int>(EndLevelButtonType::Next)].loadFromFile("next_level_btn.png"))
 		throw(std::logic_error("End Buttons Texture\n"));
 }
 
 void Resources::loadLevelActionButtonTexture()
 {
 	m_levelActionButtonsTexture.resize(2);
-	if (!m_levelActionButtonsTexture[(int)LevelActions::Pause].loadFromFile("pause_button.png")
-		|| !m_levelActionButtonsTexture[(int)LevelActions::Retry].loadFromFile("retry_button.png"))
+	if (!m_levelActionButtonsTexture[static_cast<int>(LevelActions::Pause)].loadFromFile("pause_button.png")
+		|| !m_levelActionButtonsTexture[static_cast<int>(LevelActions::Retry)].loadFromFile("retry_button.png"))
 		throw(std::logic_error("Level Action Button Texture\n"));
 }
 
@@ -339,9 +339,9 @@ void Resources::loadSettingsHomeTexture()
 void Resources::loadPlayersFace()
 {
 	m_playersFace.resize(NUM_OF_PLAYERS);
-	if (!m_playersFace[(int)Player::Heavy].loadFromFile("heavy_player_face.png")
-		|| !m_playersFace[(int)Player::Simple].loadFromFile("simple_player_face.png")
-		|| !m_playersFace[(int)Player::Light].loadFromFile("light_player_face.png"))
+	if (!m_playersFace[static_cast<int>(Player::Heavy)].loadFromFile("heavy_player_face.png")
+		|| !m_playersFace[static_cast<int>(Player::Simple)].loadFromFile("simple_player_face.png")
+		|| !m_playersFace[static_cast<int>(Player::Light)].loadFromFile("light_player_face.png"))
 		throw(std::logic_error("Players Face\n"));
 }
 
@@ -349,11 +349,11 @@ void Resources::loadObjects()
 {
 	m_objects.resize(NUM_OF_OBJS);
 
-	if (!m_objects[(int)Objects::Hay].loadFromFile("hay.png") 
-		|| !m_objects[(int)Objects::Rafter].loadFromFile("rafter.png")
-		|| !m_objects[(int)Objects::Switch].loadFromFile("switch.png")
-		|| !m_objects[(int)Objects::Billboard].loadFromFile("billboard.png")
-		|| !m_objects[(int)Objects::SwitchOn].loadFromFile("switchOn.png"))
+	if (!m_objects[static_cast<int>(Objects::Hay)].loadFromFile("hay.png") 
+		|| !m_objects[static_cast<int>(Objects::Rafter)].loadFromFile("rafter.png")
+		|| !m_objects[static_cast<int>(Objects::Switch)].loadFromFile("switch.png")
+		|| !m_objects[static_cast<int>(Objects::Billboard)].loadFromFile("billboard.png")
+		|| !m_objects[static_cast<int>(Objects::SwitchOn)].loadFromFile("switchOn.png"))
 		throw(std::logic_error("Objects Texture\n"));
 }
 
@@ -361,14 +361,14 @@ void Resources::loadGrounds()
 {
 	m_grounds.resize(NUM_OF_GROUNDS);
 
-	if (!m_grounds[(int)Grounds::Left_l1].loadFromFile("left_floor_L1.png") ||
-		!m_grounds[(int)Grounds::Right_l1].loadFromFile("right_floor_L1.png") ||
-		!m_grounds[(int)Grounds::l2].loadFromFile("floor_L2.png") ||
-		!m_grounds[(int)Grounds::Left_l3].loadFromFile("left_floor_L3.png") ||
-		!m_grounds[(int)Grounds::Right_l3].loadFromFile("right_floor_L3.png")
-		|| !m_grounds[(int)Grounds::Door].loadFromFile("door.png")
-		|| !m_grounds[(int)Grounds::l3].loadFromFile("floor_L3.png")
-		|| !m_grounds[(int)Grounds::l4].loadFromFile("floor_L4.png"))
+	if (!m_grounds[static_cast<int>(Grounds::Left_l1)].loadFromFile("left_floor_L1.png") ||
+		!m_grounds[static_cast<int>(Grounds::Right_l1)].loadFromFile("right_floor_L1.png") ||
+		!m_grounds[static_cast<int>(Grounds::l2)].loadFromFile("floor_L2.png") ||
+		!m_grounds[static_cast<int>(Grounds::Left_l3)].loadFromFile("left_floor_L3.png") ||
+		!m_grounds[static_cast<int>(Grounds::Right_l3)].loadFromFile("right_floor_L3.png")
+		|| !m_grounds[static_cast<int>(Grounds::Door)].loadFromFile("door.png")
+		|| !m_grounds[static_cast<int>(Grounds::l3)].loadFromFile("floor_L3.png")
+		|| !m_grounds[static_cast<int>(Grounds::l4)].loadFromFile("floor_L4.png"))
 		throw(std::logic_error("Grounds Texture\n"));
 }
 
@@ -383,10 +383,10 @@ void Resources::loadSoundTexture()
 {
 	m_soundTextures.resize(4);
 
-	if (!m_soundTextures[(int)SoundStatus::AudioOn].loadFromFile("audio_on.png") ||
-		!m_soundTextures[(int)SoundStatus::AudioOff].loadFromFile("audio_off.png") ||
-		!m_soundTextures[(int)SoundStatus::MusicOn].loadFromFile("music_on.png") ||
-		!m_soundTextures[(int)SoundStatus::MusicOff].loadFromFile("music_off.png") )
+	if (!m_soundTextures[static_cast<int>(SoundStatus::AudioOn)].loadFromFile("audio_on.png") ||
+		!m_soundTextures[static_cast<int>(SoundStatus::AudioOff)].loadFromFile("audio_off.png") ||
+		!m_soundTextures[static_cast<int>(SoundStatus::MusicOn)].loadFromFile("music_on.png") ||
+		!m_soundTextures[static_cast<int>(SoundStatus::MusicOff)].loadFromFile("music_off.png") )
 		throw(std::logic_error("Sound Textures\n"));
 }
 
@@ -414,9 +414,9 @@ void Resources::loadPlayerSpriteSheet()
 {
 	m_playerSpriteSheet.resize(NUM_OF_PLAYERS);
 
-	if (!m_playerSpriteSheet[(int)Player::Heavy].loadFromFile("heavy_spritesheet.png") ||
-		!m_playerSpriteSheet[(int)Player::Simple].loadFromFile("simple_spritesheet.png") ||
-		!m_playerSpriteSheet[(int)Player::Light].loadFromFile("light_spritesheet.png"))
+	if (!m_playerSpriteSheet[static_cast<int>(Player::Heavy)].loadFromFile("heavy_spritesheet.png") ||
+		!m_playerSpriteSheet[static_cast<int>(Player::Simple)].loadFromFile("simple_spritesheet.png") ||
+		!m_playerSpriteSheet[static_cast<int>(Player::Light)].loadFromFile("light_spritesheet.png"))
 		throw(std::logic_error("Player SpriteSheet\n"));
 }
 
