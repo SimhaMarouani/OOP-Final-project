@@ -17,7 +17,7 @@ Settings::Settings() //TODO: send current status
 	createBtns();
 }
 
-void Settings::draw(sf::RenderWindow& window, enum class Screen s)
+void Settings::draw(sf::RenderWindow& window, enum Screen s)
 {
 	window.draw(m_shadow);
 	window.draw(m_background);
@@ -33,7 +33,7 @@ void Settings::draw(sf::RenderWindow& window, enum class Screen s)
 		m_redirectBtn.draw(window);
 }
 
-void Settings::update(enum class Screen s)
+void Settings::update(enum Screen s)
 {
 	if (m_currScreen != s)
 	{
@@ -48,7 +48,7 @@ bool Settings::isContain(const sf::Event &event) const
 	return m_background.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y);
 }
 
-void Settings::handleClick(const sf::Event &event, enum class Screen s)
+void Settings::handleClick(const sf::Event &event, enum Screen s)
 {
 	if (m_soundBtns[(int)Type::Audio].isContain(event))
 	{

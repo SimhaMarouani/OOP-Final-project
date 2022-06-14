@@ -59,20 +59,32 @@ void EndLevelScreen::draw(sf::RenderWindow &window, bool status, int levelNum, i
 
 bool EndLevelScreen::isContainRetry(sf::Event e)
 {
-    m_soundCounter = 0;
-    return m_buttons[(int)EndLevelButtonType::Retry].isContain(e);
+    if(m_buttons[(int)EndLevelButtonType::Retry].isContain(e))
+    {
+        m_soundCounter = 0;
+        return true;
+    }
+    return false;
 }
 
 bool EndLevelScreen::isContainMenu(sf::Event e)
 {
-    m_soundCounter = 0;
-    return m_buttons[(int)EndLevelButtonType::Menu].isContain(e);
+    if(m_buttons[(int)EndLevelButtonType::Menu].isContain(e))
+    {
+        m_soundCounter = 0;
+        return true;
+    }
+    return false;
 }
 
 bool EndLevelScreen::isContainNext(sf::Event e)
 {
-    m_soundCounter = 0;
-    return m_buttons[(int)EndLevelButtonType::Next].isContain(e);
+    if(m_buttons[(int)EndLevelButtonType::Next].isContain(e))
+    {
+        m_soundCounter = 0;
+        return true;
+    }
+    return false;
 }
 
 void EndLevelScreen::createText()
