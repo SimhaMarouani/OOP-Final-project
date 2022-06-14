@@ -39,6 +39,4 @@ private:
 	Player m_activePlayer;
 
     int m_levelNum;
-    
-	Audio m_btnsClick;
 };

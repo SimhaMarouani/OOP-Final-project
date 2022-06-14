@@ -15,6 +15,7 @@ class Controller;
 class Screen {
 public:
 	Screen(const sf::Texture *t);
+	Screen() = default;
 	virtual ~Screen() = default;
 	
 	virtual void processEvents(sf::Event event, sf::Vector2f& mouseLocation, Controller& controller) = 0;

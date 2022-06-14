@@ -37,6 +37,8 @@ private:
 	ScreenType m_currPage;
 	
 	//=== Screens
+	std::vector<std::unique_ptr<Screen>> m_screens;
+
 	HomePageScreen m_homePageScreen;
 	LevelMenuScreen m_levelMenuScreen;
 	GameScreen m_gameScreen;

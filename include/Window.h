@@ -22,7 +22,7 @@ public:
     sf::Vector2f mapPixelToCoords(const sf::Vector2i &vec) const;
 
     template <class T>
-    void drawScreen(T& t) { t.draw(m_window); }
+    void drawScreen(T* t) { t->draw(m_window); }
 
 
 private:

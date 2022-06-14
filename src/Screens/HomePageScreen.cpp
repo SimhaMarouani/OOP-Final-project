@@ -4,8 +4,7 @@
 HomePageScreen::HomePageScreen()
 	: Screen(Resources::instance().getBackground(ScreenType::HomePage)),
 	m_pageStatus(PageStatus::Menu), m_helpBackground(sf::Vector2f(HELP_WIDTH, HELP_HEIGHT)),
-	m_animation(Resources::instance().getPlayerSpriteSheet(Player::Heavy), sf::Vector2u(5, 5), 0.08f), //animation
-	m_btnsAudio(Resources::instance().getAudioClick())
+	m_animation(Resources::instance().getPlayerSpriteSheet(Player::Heavy), sf::Vector2u(5, 5), 0.08f) //animation
 {
 	setHelpScreen();
 
@@ -62,24 +61,24 @@ void HomePageScreen::handleClick(sf::Event event, Controller &controller)
 	{
 		if (m_buttons[(int)HomeButtonType::Start].isContain(event))
 		{
-			m_btnsAudio.playAudio();
+			playClickAudio();
 			controller.updatePage(ScreenType::LevelMenu);
 			controller.updateNumOfLevels(); //Noga: optional
 		}
 	
 		else if (m_buttons[(int)HomeButtonType::Help].isContain(event))
 		{
-			m_btnsAudio.playAudio();
+			playClickAudio();
 			m_pageStatus = PageStatus::Help;
 		}
 		else if (m_buttons[(int)HomeButtonType::Settings].isContain(event))
 		{
-			m_btnsAudio.playAudio();
+			playClickAudio();
 			m_pageStatus = PageStatus::Settings;
 		}
 		else if (m_buttons[(int)HomeButtonType::Exit].isContain(event))
 		{
-			m_btnsAudio.playAudio();
+			playClickAudio();
 			controller.exit();
 		}
 		break;
@@ -97,7 +96,7 @@ void HomePageScreen::handleClick(sf::Event event, Controller &controller)
 			m_pageStatus = PageStatus::Menu;
 		if (m_settingsView->isContainExit(event))
 		{
-			m_btnsAudio.playAudio();
+			playClickAudio();
 			m_pageStatus = PageStatus::Menu;
 		}
 		break;

@@ -35,7 +35,7 @@ private:
 
 	Button m_homeButton;
 	Button m_highScoreButton;
-	Audio m_btnsAudio;
+	//Audio m_btnsAudio;
 
 	bool m_isScoreOpen;
 	//

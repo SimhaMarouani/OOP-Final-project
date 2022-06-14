@@ -6,9 +6,15 @@ Controller::Controller()
 {
 	std::shared_ptr s = std::make_shared<Settings>();
 	std::shared_ptr w = std::make_shared<EndLevelScreen>();
-	m_homePageScreen.initSettings(s);
-	m_gameScreen.initSettings(s);
-	m_gameScreen.initEndLevelScreen(w);
+
+	m_screens.resize(NUM_OF_BG_TEXTURES);
+	m_screens[(int)ScreenType::HomePage] = std::make_unique<HomePageScreen>();
+	m_screens[(int)ScreenType::LevelMenu] = std::make_unique<LevelMenuScreen>();
+	m_screens[(int)ScreenType::Game] = std::make_unique<GameScreen>();
+
+	dynamic_cast<HomePageScreen*>(m_screens[(int)ScreenType::HomePage].get())->initSettings(s);
+	dynamic_cast<GameScreen*>(m_screens[(int)ScreenType::Game].get())->initSettings(s);
+	dynamic_cast<GameScreen*>(m_screens[(int)ScreenType::Game].get())->initEndLevelScreen(w);
 }
 
 void Controller::run()
@@ -28,8 +34,9 @@ void Controller::run()
 
 void Controller::startGame(ScreenType page, int level)
 {
-	m_gameScreen.resetTimer();
-	m_gameScreen.loadLevel(level);
+	dynamic_cast<GameScreen*>(m_screens[(int)ScreenType::Game].get())->resetTimer();
+	dynamic_cast<GameScreen*>(m_screens[(int)ScreenType::Game].get())->loadLevel(level);
+
 	updatePage(page);
 }
 
@@ -59,7 +66,7 @@ void Controller::processEvents()
 
 		sf::Vector2f ml = m_window.mapPixelToCoords({ event.mouseMove.x, event.mouseMove.y }); //Noga: for hover
 
-		switch (m_currPage)
+		/*switch (m_currPage)
 		{
 		case ScreenType::HomePage:
 			m_homePageScreen.processEvents(event, ml, *this);
@@ -72,7 +79,8 @@ void Controller::processEvents()
 			break;
 		default:
 			break;
-		}
+		}*/
+		m_screens[(int)m_currPage]->processEvents(event, ml, *this);
 	}
 }
 
@@ -82,20 +90,21 @@ void Controller::update()
 	//Tali:maybe here step
 	float deltaTime = m_timer.restart().asSeconds();
 	//move, update etc.etc.etc.
-	switch (m_currPage)
-	{
-	case ScreenType::HomePage:
-		m_homePageScreen.update(deltaTime); //animation
-		break;
-	case ScreenType::LevelMenu:
-		m_levelMenuScreen.update(deltaTime);
-		break;
-	case ScreenType::Game:
-		m_gameScreen.update(deltaTime);
-		break;
-	default:
-		break;
-	}
+	//switch (m_currPage)
+	//{
+	//case ScreenType::HomePage:
+	//	m_homePageScreen.update(deltaTime); //animation
+	//	break;
+	//case ScreenType::LevelMenu:
+	//	m_levelMenuScreen.update(deltaTime);
+	//	break;
+	//case ScreenType::Game:
+	//	m_gameScreen.update(deltaTime);
+	//	break;
+	//default:
+	//	break;
+	//}
+	m_screens[(int)m_currPage]->update(deltaTime);
 }
 
 void Controller::render()
@@ -107,25 +116,26 @@ void Controller::render()
 
 void Controller::drawCurrPage()
 {
-	//Noga: maybe we can put all the screens class in vector or something and then we wont need all the switch case ? 
 	switch (m_currPage)
 	{
 	case ScreenType::HomePage:
-		m_window.drawScreen(m_homePageScreen);
+		m_window.drawScreen(dynamic_cast<HomePageScreen*>(m_screens[(int)ScreenType::HomePage].get()));
 		break;
 	case ScreenType::LevelMenu:
-		m_window.drawScreen(m_levelMenuScreen); 
+		m_window.drawScreen(dynamic_cast<LevelMenuScreen*>(m_screens[(int)ScreenType::LevelMenu].get()));
 		break;
 	case ScreenType::Game:
-		m_window.drawScreen(m_gameScreen); 
+		m_window.drawScreen(dynamic_cast<GameScreen*>(m_screens[(int)ScreenType::Game].get()));
 		break;
 	default:
 		break;
 	}
+
+	//m_window.drawScreen(m_screens[(int)m_currPage]);
 }
 
 
 void Controller::updateNumOfLevels()
 {
-	m_levelMenuScreen.updateNumOfLevels();
+	dynamic_cast<LevelMenuScreen*>(m_screens[(int)ScreenType::LevelMenu].get())->updateNumOfLevels();
 }

@@ -8,6 +8,7 @@
 class Audio {
 public:
 	Audio(sf::SoundBuffer* soundBuffer);
+	Audio() = default;
 	~Audio();
 
 	void playAudio(int volume = 10, bool loop = false);

@@ -5,7 +5,6 @@
 GameScreen::GameScreen()
     : Screen(Resources::instance().getBackground(ScreenType::Game)),
       m_activePlayer(Player::Heavy),
-      m_btnsClick(Resources::instance().getAudioClick()),
       m_pageStatus(LevelActions::None), m_levelNum(1)
 {
 }
@@ -58,13 +57,13 @@ void GameScreen::processEvents(sf::Event event, sf::Vector2f &mouseLocation, Con
         {
             if (m_endLevelView->isContainRetry(event))
             {
-                m_btnsClick.playAudio();
+                playClickAudio();
                 retryLevel();
                 updateStatus(LevelActions::None);
             }
             else if (m_endLevelView->isContainNext(event))
             {
-                m_btnsClick.playAudio();
+                playClickAudio();
                 ++m_levelNum;
                 m_world.createLevel(m_levelNum);
                 m_dataDisplay.resetTimer();
@@ -74,7 +73,7 @@ void GameScreen::processEvents(sf::Event event, sf::Vector2f &mouseLocation, Con
             }
             else if (m_endLevelView->isContainMenu(event))
             {
-                m_btnsClick.playAudio();
+                playClickAudio();
                 controller.updatePage(ScreenType::HomePage);
                 updateStatus(LevelActions::None);
             }
@@ -93,14 +92,14 @@ void GameScreen::processEvents(sf::Event event, sf::Vector2f &mouseLocation, Con
 
             if (m_settingsView->isContainExit(event))
             {
-                m_btnsClick.playAudio();
+                playClickAudio();
                 updateStatus(LevelActions::None);
                 m_dataDisplay.startTimer();
             }
 
             if (m_settingsView->isContainHome(event))
             {
-                m_btnsClick.playAudio();
+                playClickAudio();
                 updateStatus(LevelActions::None);
                 m_dataDisplay.startTimer();
                 controller.updatePage(ScreenType::HomePage);

@@ -49,6 +49,4 @@ private:
 	//Noga: need to add light + simple and save as vector or something
 	sf::Sprite m_heavy;  //animation
 	Animation m_animation;  //animation
-
-	Audio m_btnsAudio;
 };
