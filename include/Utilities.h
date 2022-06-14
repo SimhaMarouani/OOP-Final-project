@@ -21,6 +21,13 @@ enum class HomeButtonType
 	None
 };
 
+enum class EndLevelButtonType
+{
+	Retry = 0,
+	Menu,
+	Next
+};
+
 enum class Player
 {
 	Heavy = 0,
