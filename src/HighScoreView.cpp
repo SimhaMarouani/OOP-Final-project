@@ -13,7 +13,7 @@ HighScoreView::HighScoreView()
 	for (int i = 0 ; i < m_levelsScoreText.size(); i++)
 	{
 		m_levelsScoreText[i].setFont(*Resources::instance().getFont());
-		m_levelsScoreText[i].setColor(sf::Color::Black);
+		m_levelsScoreText[i].setFillColor(sf::Color::Black);
 
 		m_levelsScoreText[i].setCharacterSize(CHAR_SIZE);
 		std::string scoreStr;
@@ -63,7 +63,7 @@ void HighScoreView::updateData()
 	for (int i = 0; i < m_levelsScoreText.size(); i++)
 	{
 		m_levelsScoreText[i].setFont(*Resources::instance().getFont());
-		m_levelsScoreText[i].setColor(sf::Color::Black);
+		m_levelsScoreText[i].setFillColor(sf::Color::Black);
 
 		m_levelsScoreText[i].setCharacterSize(CHAR_SIZE);
 		std::string scoreStr;

@@ -9,7 +9,7 @@ class GameObjects
 {
 public:
     GameObjects();
-    ~GameObjects();
+    virtual ~GameObjects();
 
     void draw(sf::RenderWindow& window);
 

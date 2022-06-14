@@ -3,30 +3,30 @@
 #include <string>
 
 //grapics
-const int WINDOW_WIDTH = 1600;
-const int WINDOW_HEIGHT = 900;
+constexpr int WINDOW_WIDTH = 1600;
+constexpr int WINDOW_HEIGHT = 900;
 
-const int DATA_DISPLAY_WIDTH = 1600; //Noga same as WINDOW_WIDTH maybe we can save only one of them?
-const int DATA_DISPLAY_HEIGHT = 150;
+constexpr int DATA_DISPLAY_WIDTH = 1600; //Noga same as WINDOW_WIDTH maybe we can save only one of them?
+constexpr int DATA_DISPLAY_HEIGHT = 150;
 
-const int SETTINGS_WIDTH = WINDOW_WIDTH * 0.4;
-const int SETTINGS_HEIGHT = WINDOW_HEIGHT * 0.6;
+constexpr int SETTINGS_WIDTH = static_cast<int>(WINDOW_WIDTH * 0.4);
+constexpr int SETTINGS_HEIGHT = static_cast<int>(WINDOW_HEIGHT * 0.6);
 
-const int END_WIDTH = WINDOW_WIDTH * 0.4;
-const int END_HEIGHT = WINDOW_HEIGHT * 0.4;
+constexpr int END_WIDTH = static_cast<int>(WINDOW_WIDTH * 0.4);
+constexpr int END_HEIGHT =static_cast<int>(WINDOW_HEIGHT * 0.4);
 
-const int HELP_WIDTH = WINDOW_WIDTH - (WINDOW_WIDTH / 8);
-const int HELP_HEIGHT = WINDOW_HEIGHT - (WINDOW_HEIGHT / 8);
+constexpr int HELP_WIDTH = WINDOW_WIDTH - (WINDOW_WIDTH / 8);
+constexpr int HELP_HEIGHT = WINDOW_HEIGHT - (WINDOW_HEIGHT / 8);
 
-const int CHAR_SIZE = 40;
+constexpr int CHAR_SIZE = 40;
 
 // Level Menu 
-const int LEVEL_MENU_COLS = 4;
-const float LEVEL_MENU_BTN_SIZE = 220.f;
-const int NUM_OF_LEVELS = 5;
+constexpr int LEVEL_MENU_COLS = 4;
+constexpr float LEVEL_MENU_BTN_SIZE = 220.f;
+constexpr int NUM_OF_LEVELS = 5;
 
 // DataDisplay
-const float PLAYER_FACE_SIZE = 100.f;
+constexpr float PLAYER_FACE_SIZE = 100.f;
 
 //Game title
 const std::string GAME_TITLE = "Home Sheep Home";
@@ -37,18 +37,18 @@ const sf::Vector2f HOME_BTN_SIZE(350, 150);
 const sf::Vector2f HOVER_HOME_BTN_SIZE(370, 170);
 
 //players
-const int NUM_OF_PLAYERS = 3;
-const int NUM_OF_BG_TEXTURES = 3;
-const float BASE_SPEED = 130.0;
-const std::string PLAYERS[NUM_OF_PLAYERS] = { "Heavy", "Simple", "Light" };
+constexpr int NUM_OF_PLAYERS = 3;
+constexpr int NUM_OF_BG_TEXTURES = 3;
+constexpr float BASE_SPEED = 130.0;
+constexpr std::string_view PLAYERS[NUM_OF_PLAYERS] = { "Heavy", "Simple", "Light" };
 
 //objects
-const int NUM_OF_OBJS = 5;
-const int NUM_OF_GROUNDS = 8;
+constexpr int NUM_OF_OBJS = 5;
+constexpr int NUM_OF_GROUNDS = 8;
 
 
 // animation data:
-const std::pair<int, int> lightAnimationRow[4] =
+constexpr std::pair<int, int> lightAnimationRow[4] =
 {
 	{ 6, 12 }, //jump 
 	{ 2, 8 }, //walk
@@ -56,7 +56,7 @@ const std::pair<int, int> lightAnimationRow[4] =
 	{ 1, 5 } //stand
 };
 
-const std::pair<int, int> simpleAnimationRow[4] =
+constexpr std::pair<int, int> simpleAnimationRow[4] =
 {
 	{ 6, 7 }, //jump
 	{ 4, 8 }, //walk
@@ -64,7 +64,7 @@ const std::pair<int, int> simpleAnimationRow[4] =
 	{ 1, 15 } //stand
 };
 
-const std::pair<int, int> heavyAnimationRow[4] =
+constexpr std::pair<int, int> heavyAnimationRow[4] =
 {
 	{ 4, 7 }, //jump
 	{ 2, 8 }, //walk
