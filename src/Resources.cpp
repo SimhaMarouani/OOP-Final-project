@@ -137,7 +137,6 @@ sf::Font* Resources::getFont()
 	return &m_font;
 }
 
-//-----------------------------------------------------------------
 	
 sf::Texture* Resources::getBackground(Screen index)
 {
@@ -250,7 +249,6 @@ void Resources::loadFont()
 		throw(std::logic_error("Font\n"));
 }
 
-//-----------------------------------------------------------------
 
 void Resources::loadBackgroundTextures()
 {

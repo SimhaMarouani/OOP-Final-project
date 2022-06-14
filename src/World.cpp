@@ -21,6 +21,7 @@ World::~World()
 
 void World::createBorders()
 {
+	//Borders are constant
 	m_borders.emplace_back(std::make_unique<Border>(getWorld(), sf::Vector2f(-30, WINDOW_HEIGHT / 2), 10, WINDOW_HEIGHT));
 	m_borders.emplace_back(std::make_unique<Border>(getWorld(), sf::Vector2f(WINDOW_WIDTH/2,-30), WINDOW_WIDTH, 10));
 	m_borders.emplace_back(std::make_unique<Border>(getWorld(), sf::Vector2f(WINDOW_WIDTH+30, WINDOW_HEIGHT / 2), 10, WINDOW_HEIGHT));
@@ -28,7 +29,7 @@ void World::createBorders()
 
 void World::initPlayers()
 {
-	//Players (amount and type) is constant!
+	//Players (amount and type) are constant
 	m_players.emplace_back(std::make_unique<Heavy>(getWorld()));
 	m_players.emplace_back(std::make_unique<Simple>(getWorld()));
 	m_players.emplace_back(std::make_unique<Light>(getWorld()));
