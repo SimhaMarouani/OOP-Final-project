@@ -118,7 +118,7 @@ void LevelMenuScreen::handleHover(const sf::Vector2f& location)
 	{
 		if (m_levels[i].isHover(location))
 		{
-			m_levels[i].setColor(sf::Color({ 255, 255, 255, 180 }));
+			m_levels[i].setColor(sf::Color({ 240, 240, 240 }));
 		}
 		else
 		{
@@ -127,12 +127,12 @@ void LevelMenuScreen::handleHover(const sf::Vector2f& location)
 	}
 
 	if (m_homeButton.isHover(location))
-		m_homeButton.setColor(sf::Color({ 255, 255, 255, 180 }));
+		m_homeButton.setColor(sf::Color({ 240, 240, 240 }));
 	else
 		m_homeButton.setColor(sf::Color::White);
 
 	if (m_highScoreButton.isHover(location))
-		m_highScoreButton.setColor(sf::Color({ 255, 255, 255, 180 }));
+		m_highScoreButton.setColor(sf::Color({ 240, 240, 240 }));
 	else
 		m_highScoreButton.setColor(sf::Color::White);
 }
