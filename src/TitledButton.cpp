@@ -1,33 +1,34 @@
 #include "TitledButton.h"
 
 
-TitledButton::TitledButton(sf::Texture texture, sf::Vector2f ButtonSize, std::string str, float textSize, sf::Vector2f textPos, sf::Font &font)
+TitledButton::TitledButton(const sf::Texture& texture, const sf::Vector2f &ButtonSize,
+						const std::string str, unsigned int textSize,const sf::Vector2f &textPos,const sf::Font &font)
 	: Button(texture, ButtonSize)
 {
 	setTextAttributes(str, textSize, textPos, font);
 }
 
-void TitledButton::setTextString(std::string text)
+void TitledButton::setTextString(const std::string &text)
 {
 	m_buttonText.setString(text);
 }
 
-void TitledButton::setTextColor(sf::Color c)
+void TitledButton::setTextColor(const sf::Color &c)
 {
 	m_buttonText.setFillColor(c);
 }
 
-void TitledButton::setTextSize(float s)
+void TitledButton::setTextSize(unsigned int s)
 {
 	m_buttonText.setCharacterSize(s);
 }
 
-void TitledButton::setTextPosition(sf::Vector2f p)
+void TitledButton::setTextPosition(const sf::Vector2f &p)
 {
 	m_buttonText.setPosition(p);
 }
 
-void TitledButton::setTextFont(sf::Font &f)
+void TitledButton::setTextFont(const sf::Font &f)
 {
 	m_buttonText.setFont(f);
 }
@@ -38,7 +39,7 @@ void TitledButton::draw(sf::RenderWindow& window)
 	window.draw(m_buttonText);
 }
 
-void TitledButton::setTextAttributes(std::string str, float textSize, sf::Vector2f textPos, sf::Font &font)
+void TitledButton::setTextAttributes(const std::string& str, unsigned int textSize, const sf::Vector2f &textPos, const sf::Font &font)
 {
 	setTextString(str);
 	setTextFont(font);
