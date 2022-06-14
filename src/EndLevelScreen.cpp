@@ -2,9 +2,6 @@
 
 EndLevelScreen::EndLevelScreen()
 : m_background(sf::Vector2f(END_WIDTH, END_HEIGHT)),
-  m_retryBtn(*Resources::instance().getRetryBtn()),
-  m_menuBtn(*Resources::instance().getMenuBtn()),
-  m_nextLevelBtn(*Resources::instance().getNextLevelBtn()),
   m_winSound(Resources::instance().getAudioWin()),
   m_loseSound(Resources::instance().getAudioLose()),
   m_soundCounter(0)
@@ -17,13 +14,16 @@ EndLevelScreen::EndLevelScreen()
 
 void EndLevelScreen::createBtns()
 {
-    m_retryBtn.setSize(sf::Vector2f(150,70));
-    m_menuBtn.setSize(sf::Vector2f(150,70));
-    m_nextLevelBtn.setSize(sf::Vector2f(150,70));
+    m_buttons.emplace_back(Button(*Resources::instance().getEndLevelBtnsTexture(EndLevelButtonType::Retry), sf::Vector2f(150,70)));
+    m_buttons.emplace_back(Button(*Resources::instance().getEndLevelBtnsTexture(EndLevelButtonType::Menu), sf::Vector2f(150,70)));
+    m_buttons.emplace_back(Button(*Resources::instance().getEndLevelBtnsTexture(EndLevelButtonType::Next), sf::Vector2f(150,70)));
 
-    m_retryBtn.setPosition(sf::Vector2f(570, (WINDOW_HEIGHT - END_HEIGHT)));
-    m_menuBtn.setPosition(sf::Vector2f(720, (WINDOW_HEIGHT - END_HEIGHT) ));
-    m_nextLevelBtn.setPosition(sf::Vector2f(870,(WINDOW_HEIGHT - END_HEIGHT) ));
+    auto start_x = 570;
+    for (size_t i = 0; i < m_buttons.size(); i++)
+    {
+        m_buttons[i].setPosition(sf::Vector2f(start_x + 150 * i, WINDOW_HEIGHT - END_HEIGHT));
+        m_buttons[i].setColor(sf::Color::White);
+    }
 }
 
 void EndLevelScreen::draw(sf::RenderWindow &window, bool status, int levelNum, int time)
@@ -32,12 +32,12 @@ void EndLevelScreen::draw(sf::RenderWindow &window, bool status, int levelNum, i
 
     window.draw(m_background);
 
-    m_retryBtn.draw(window);
-    m_menuBtn.draw(window);
+    m_buttons[(int)EndLevelButtonType::Retry].draw(window);
+    m_buttons[(int)EndLevelButtonType::Menu].draw(window);
 
     if (status && levelNum < NUM_OF_LEVELS)
     {
-        m_nextLevelBtn.draw(window);
+        m_buttons[2].draw(window);
 
         window.draw(m_winText);
         window.draw(m_timeText);
@@ -60,19 +60,19 @@ void EndLevelScreen::draw(sf::RenderWindow &window, bool status, int levelNum, i
 bool EndLevelScreen::isContainRetry(sf::Event e)
 {
     m_soundCounter = 0;
-    return m_retryBtn.isContain(e);
+    return m_buttons[(int)EndLevelButtonType::Retry].isContain(e);
 }
 
 bool EndLevelScreen::isContainMenu(sf::Event e)
 {
     m_soundCounter = 0;
-    return m_menuBtn.isContain(e);
+    return m_buttons[(int)EndLevelButtonType::Menu].isContain(e);
 }
 
 bool EndLevelScreen::isContainNext(sf::Event e)
 {
     m_soundCounter = 0;
-    return m_nextLevelBtn.isContain(e);
+    return m_buttons[(int)EndLevelButtonType::Next].isContain(e);
 }
 
 void EndLevelScreen::createText()
@@ -122,29 +122,11 @@ void EndLevelScreen::playSound(bool status)
 
 void EndLevelScreen::handleHover(const sf::Vector2f& location)
 {
-    if (m_nextLevelBtn.isHover(location))
+    for (int i = 0; i < m_buttons.size(); ++i)
     {
-        m_nextLevelBtn.setColor(sf::Color({ 255, 255, 255, 180}));
-        m_menuBtn.setColor(sf::Color::White);
-        m_retryBtn.setColor(sf::Color::White);
-    }
-    else if (m_menuBtn.isHover(location))
-    {
-        m_menuBtn.setColor(sf::Color({ 255, 255, 255, 180}));
-        m_retryBtn.setColor(sf::Color::White);
-        m_nextLevelBtn.setColor(sf::Color::White);
-
-    }
-    else if (m_retryBtn.isHover(location))
-    {
-        m_retryBtn.setColor(sf::Color({ 255, 255, 255, 180}));
-        m_nextLevelBtn.setColor(sf::Color::White);
-        m_menuBtn.setColor(sf::Color::White);
-    }
-    else
-    {
-        m_retryBtn.setColor(sf::Color::White);
-        m_nextLevelBtn.setColor(sf::Color::White);
-        m_menuBtn.setColor(sf::Color::White);
+        if (m_buttons[i].isHover(location))
+            m_buttons[i].setColor(sf::Color({ 255, 255, 255, 180}));
+        else
+            m_buttons[i].setColor(sf::Color::White);
     }
 }

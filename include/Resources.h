@@ -20,7 +20,6 @@ public:
 	sf::Font* getFont();
 	sf::Texture* getBackground(Screen index);
 	sf::Texture* getHelpBackground();
-	sf::Texture* getPlayerTexture(Player player);
 	sf::Texture* getSettingsReturnTexture(Screen s);
 	sf::Texture* getSettingsHomeTexture();
     sf::Texture* getBackArrowTexture();
@@ -36,11 +35,9 @@ public:
 	sf::Texture* getSettingsBackground();
 	sf::Texture* getPlayerSpriteSheet(Player p);
     sf::Texture* getWinBackground();
-    sf::Texture* getNextLevelBtn();
-    sf::Texture* getRetryBtn();
-    sf::Texture* getMenuBtn();
 	sf::Texture* getHighScoreBtn();
 	sf::Image* getGameIcon();
+    sf::Texture* getEndLevelBtnsTexture(EndLevelButtonType b);
 
 	sf::SoundBuffer* getAudioClick();
 	sf::SoundBuffer* getAudioWin();
@@ -52,6 +49,7 @@ public:
 
 	void switchMusicStatus(Screen s);
 	void switchAudioStatus();
+
 private:
 	Resources();
 	Resources(const Resources&) = default;
@@ -69,9 +67,7 @@ private:
 
     void loadWinBackground();
 	void loadHelpBackground();
-    void loadNextLevelBtn();
-    void loadRetryBtn();
-    void loadMenuBtn();
+    void loadEndLevelBtnsTexture();
 
 	void loadPlayersFace();
 	void loadObjects();
@@ -120,6 +116,7 @@ private:
 	std::vector<sf::Texture> m_grounds;
 	std::vector<sf::Texture> m_levelMenuTexture;
 	std::vector<sf::Texture> m_homePageBtnsTexture;
+	std::vector<sf::Texture> m_endLevelBtnsTexture;
 	std::vector<sf::Texture> m_levelActionButtonsTexture;
 	std::vector<sf::Texture> m_backgroundTextures;
 	std::vector<sf::Texture> m_playerSpriteSheet;
