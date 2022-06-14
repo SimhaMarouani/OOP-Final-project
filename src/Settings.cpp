@@ -105,25 +105,31 @@ void Settings::handleHover(const sf::Vector2f& location)
 {
     for (int i = 0; i < m_soundBtns.size(); ++i)
     {
-        if (m_soundBtns[i].isHover(location))
-            m_soundBtns[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE + 15, PLAYER_FACE_SIZE + 15));
-        else
+		if (m_soundBtns[i].isHover(location))
+		{
+
+			m_soundBtns[i].setColor(sf::Color::Black);
+            m_soundBtns[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE + 1, PLAYER_FACE_SIZE + 1));
+		}
+		else
+		{
+
+			m_soundBtns[i].setColor(sf::Color::White);
             m_soundBtns[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE));
+		}
     }
 
     if (m_exitSettingsBtn.isHover(location))
     {
-        m_exitSettingsBtn.setScale(sf::Vector2f (0.90f, 0.90f));
-        m_redirectBtn.setScale(sf::Vector2f(0.70f, 0.70f));
+		m_exitSettingsBtn.setColor(sf::Color::Black);
     }
     else if (m_redirectBtn.isHover(location))
     {
-        m_exitSettingsBtn.setScale(sf::Vector2f (0.70f, 0.70f));
-        m_redirectBtn.setScale(sf::Vector2f(0.90f,0.90f));
+		m_redirectBtn.setColor(sf::Color::Black);
     }
     else
     {
-        m_exitSettingsBtn.setScale(sf::Vector2f(0.70f, 0.70f));
-        m_redirectBtn.setScale(sf::Vector2f(0.70f, 0.70f));
+		m_exitSettingsBtn.setColor(sf::Color::White);
+		m_redirectBtn.setColor(sf::Color::White);
     }
 }

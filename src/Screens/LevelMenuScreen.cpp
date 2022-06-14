@@ -130,7 +130,7 @@ void LevelMenuScreen::handleHover(const sf::Vector2f& location)
 		m_homeButton.setColor(sf::Color::White);
 
 	if (m_highScoreButton.isHover(location))
-		m_highScoreButton.setColor(sf::Color({ 240, 240, 240 }));
+		m_highScoreButton.setColor(sf::Color::Black);
 	else
 		m_highScoreButton.setColor(sf::Color::White);
 }
