@@ -181,7 +181,7 @@ void GameScreen::initEndLevelScreen(std::shared_ptr<EndLevelScreen> s)
 
 void GameScreen::retryLevel()
 {
-    m_world.loadLevel(m_levelNum);
+    m_world.createLevel(m_levelNum);
     m_dataDisplay.resetTimer();
     m_activePlayer = Player::Heavy;
     m_dataDisplay.setCurrPlayer((int)m_activePlayer);
