@@ -13,7 +13,6 @@
 #include "playersInclude/Light.h"
 
 #include "objectsInclude/Box.h"
-#include "objectsInclude/Rafter.h"
 #include "objectsInclude/Switch.h"
 #include "objectsInclude/Billboard.h"
 #include "objectsInclude/Door.h"

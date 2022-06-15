@@ -1,19 +1,15 @@
-1200
-				1500	625		1.9			1.9
+1300
+				1410	762		1.9			1.9
 				posX	posY	scaleX		scaleY
-Heavy			100		550
-Simple			100		450
-Light			275		540
-left_floor_L3   170     770      1          1
-Hay				170     550       0.45		 0.45
-floor_l3		720		720		0.5			1.2
-floor_l3		720		770		0.5			1.2
-floor_l3		720		790		0.5			1.2
-floor_l3		720		820		0.5			1.2
-floor_l3		720		880		0.5			1.2
-floor_l3		1000		720		0.5			1.2
-floor_l3		1000		770		0.5			1.2
-floor_l3		1000		790		0.5			1.2
-floor_l3		1000		820		0.5			1.2
-floor_l3		1000		880		0.5			1.2
-right_floor_L1  1390    770     1.1         1.1
+Heavy			500		650
+Simple			300		650
+Light			600		650
+floor			800		865		1			1
+Billboard		1500	410		1			1
+Billboard		1370	410		1			1
+Door			1245	490		1			1
+Switch			150		732		0.9			0.9
+Billboard		100		410		-1			1
+Door			225		490		-1			1
+Switch			1120	732		0.9			0.9
+Hay				1350	650		0.45		0.45

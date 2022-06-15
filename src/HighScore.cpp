@@ -72,14 +72,13 @@ void HighScore::writeToFile() const
 
 void HighScore::readFromFile()
 {
-	std::string filneName = HIGH_SCORE_FILE_NAME; //TODO: add to const
+	std::string filneName = HIGH_SCORE_FILE_NAME;
 	std::ifstream scoreFile;
 	std::string line;
 	int level, score;
 	std::stringstream ssline;
 
 	scoreFile.exceptions(std::ifstream::badbit);
-	//ssline.exceptions(ssline.failbit | ssline.badbit);
 
 	scoreFile.open(filneName);
 	scoreFile.seekg(0);

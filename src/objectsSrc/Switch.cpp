@@ -35,6 +35,5 @@ void Switch::setPressed(bool pressed)
 		//change photo
 		m_icon.setTexture(*Resources::instance().getObjectTexture(Objects::Switch));
 	}
-	//ToDo: possible clicking sound
 	m_door->setOpen(pressed);
 }

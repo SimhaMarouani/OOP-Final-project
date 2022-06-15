@@ -11,6 +11,12 @@ Simple::Simple(b2World* world)
 	m_body->SetMassData(&mass);
 }
 
+std::pair<int, int> Simple::getAnimationData()
+{
+	Direction dir = Players::getCurrDirection();
+	return std::pair<int, int>(simpleAnimationRow[static_cast<int>(dir)]);
+}
+
 int Simple::getJumpImpulse()
 {
 	return m_body->GetMass() * (-24);

@@ -3,11 +3,11 @@
 #include <iostream> 
 #include <string> 
 #include <map>
-#include <memory> //
-#include <vector> //
-#include <sstream> //
-#include <fstream> //
-#include <exception> //
+#include <memory> 
+#include <vector> 
+#include <sstream> 
+#include <fstream> 
+#include <exception> 
 
 #include "Resources.h"
 #include "Macros.h"

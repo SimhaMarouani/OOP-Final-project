@@ -31,7 +31,6 @@
                                               "objectsSrc/Box.cpp"
                                               "objectsSrc/Floor.cpp"
                                               "objectsSrc/StaticObjects.cpp"
-                                              "objectsSrc/Rafter.cpp"
                                               "objectsSrc/Switch.cpp"
 
                                               "Factory.cpp"

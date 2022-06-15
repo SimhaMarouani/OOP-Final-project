@@ -7,8 +7,6 @@ Players::Players(Player type, sf::Vector2u imageCount, b2World* world)
 	m_isFaceRight(true),
 	m_audio(Resources::instance().getJumpSound())
 {
-	//float width = m_animation.m_uvRect.width / 2;
-	//float height = m_animation.m_uvRect.width/2 ;
 	m_icon.setTexture(*Resources::instance().getPlayerSpriteSheet(type));
 	m_icon.setScale(sf::Vector2f(DEFAULT_SCALE, DEFAULT_SCALE));
 	m_icon.setOrigin(m_animation.m_uvRect.width/2 , m_animation.m_uvRect.height/2);
@@ -53,13 +51,12 @@ void Players::move(float deltaTime)
 	if (dirFromKey().y < 0 && m_touchingFloor)
 	{
 		m_body->ApplyLinearImpulseToCenter(b2Vec2(0, this->getJumpImpulse()), true);
-		m_audio.playAudio(20);
+		m_audio.playAudio(30);
 	}
 
 	auto step1 = b2Vec2(dirFromKey().x * m_body->GetMass() * m_speedPerSecond, 0);
 	m_body->ApplyForceToCenter(step1, true);
 
-	//move to update func
 	sf::Vector2f dir = dirFromKey();
 	setDirection(getDir(dir));
 }

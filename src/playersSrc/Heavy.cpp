@@ -11,6 +11,12 @@ Heavy::Heavy(b2World* world)
 	m_body->SetMassData(&mass);
 }
 
+std::pair<int, int> Heavy::getAnimationData()
+{
+	Direction dir = Players::getCurrDirection();
+	return std::pair<int, int>(heavyAnimationRow[static_cast<int>(dir)]);
+}
+
 int Heavy::getJumpImpulse()
 {
 	return m_body->GetMass() * (-21);

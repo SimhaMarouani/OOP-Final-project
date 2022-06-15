@@ -6,7 +6,7 @@
 constexpr int WINDOW_WIDTH = 1600;
 constexpr int WINDOW_HEIGHT = 900;
 
-constexpr int DATA_DISPLAY_WIDTH = 1600; //Noga same as WINDOW_WIDTH maybe we can save only one of them?
+constexpr int DATA_DISPLAY_WIDTH = WINDOW_WIDTH;
 constexpr int DATA_DISPLAY_HEIGHT = 150;
 
 constexpr int SETTINGS_WIDTH = static_cast<int>(WINDOW_WIDTH * 0.4);
@@ -70,10 +70,3 @@ constexpr std::pair<int, int> heavyAnimationRow[4] =
 	{ 2, 8 }, //walk
 	{ 1, 5 } //stand
 };
-
-//std::vector<std::pair<Direction, int>> simpleAnimationCount =
-//{
-//	{Direction::Up, 7},
-//	{Direction::Right, 8 },
-//	{Direction::None , 15}
-//}

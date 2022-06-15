@@ -28,7 +28,6 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE
                                               "objectsInclude/Box.h"
                                               "objectsInclude/Floor.h"
                                               "objectsInclude/StaticObjects.h"
-                                              "objectsInclude/Rafter.h"
                                               "objectsInclude/Switch.h"
                                                 
                                               "Macros.h"

@@ -16,9 +16,6 @@ void CollisionHandler::intializeMap()
     m_hitMap[Key(typeid(Light), typeid(Box))] = &CollisionHandler::sheepStatic;
     m_hitMap[Key(typeid(Simple), typeid(Box))] = &CollisionHandler::sheepStatic;
     m_hitMap[Key(typeid(Heavy), typeid(Box))] = &CollisionHandler::sheepStatic;
-    m_hitMap[Key(typeid(Light), typeid(Rafter))] = &CollisionHandler::sheepStatic;
-    m_hitMap[Key(typeid(Simple), typeid(Rafter))] = &CollisionHandler::sheepStatic;
-    m_hitMap[Key(typeid(Heavy), typeid(Rafter))] = &CollisionHandler::sheepStatic;
     m_hitMap[Key(typeid(Light), typeid(Switch))] = &CollisionHandler::sheepStatic;
     m_hitMap[Key(typeid(Simple), typeid(Switch))] = &CollisionHandler::sheepStatic;
     m_hitMap[Key(typeid(Heavy), typeid(Switch))] = &CollisionHandler::sheepStatic;
@@ -38,18 +35,13 @@ void CollisionHandler::intializeMap()
     m_hitMap[Key(typeid(Box), typeid(Light))] = &CollisionHandler::staticSheep;
     m_hitMap[Key(typeid(Box), typeid(Simple))] = &CollisionHandler::staticSheep;
     m_hitMap[Key(typeid(Box), typeid(Heavy))] = &CollisionHandler::staticSheep;
-    m_hitMap[Key(typeid(Rafter), typeid(Light))] = &CollisionHandler::staticSheep;
-    m_hitMap[Key(typeid(Rafter), typeid(Simple))] = &CollisionHandler::staticSheep;
-    m_hitMap[Key(typeid(Rafter), typeid(Heavy))] = &CollisionHandler::staticSheep;
     m_hitMap[Key(typeid(Switch), typeid(Light))] = &CollisionHandler::staticSheep;
     m_hitMap[Key(typeid(Switch), typeid(Simple))] = &CollisionHandler::staticSheep;
     m_hitMap[Key(typeid(Switch), typeid(Heavy))] = &CollisionHandler::staticSheep;
 
     //Object with Object
     m_hitMap[Key(typeid(Switch), typeid(Box))] = &CollisionHandler::switchStatic;
-    m_hitMap[Key(typeid(Switch), typeid(Rafter))] = &CollisionHandler::switchStatic;
     m_hitMap[Key(typeid(Box), typeid(Switch))] = &CollisionHandler::staticSwitch;
-    m_hitMap[Key(typeid(Rafter), typeid(Switch))] = &CollisionHandler::staticSwitch;
 }
 
 

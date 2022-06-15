@@ -2,7 +2,7 @@
 #include "Controller.h"
 
 
-Settings::Settings() //TODO: send current status
+Settings::Settings()
 	: m_background(sf::Vector2f(SETTINGS_WIDTH, SETTINGS_HEIGHT)),
 	m_shadow(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)),
 	m_exitSettingsBtn(*Resources::instance().getSettingsReturnTexture(ScreenType::HomePage)),

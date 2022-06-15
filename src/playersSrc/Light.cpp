@@ -11,6 +11,12 @@ Light::Light(b2World* world)
 	m_body->SetMassData(&mass);
 }
 
+std::pair<int, int> Light::getAnimationData()
+{
+	Direction dir = Players::getCurrDirection();
+	return std::pair<int, int>(lightAnimationRow[static_cast<int>(dir)]);
+}
+
 int Light::getJumpImpulse()
 {
 	return m_body->GetMass() * (-31);

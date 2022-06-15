@@ -2,6 +2,7 @@
 #include "objectsInclude/StaticObjects.h"
 #include "Audio.h"
 
+constexpr int DOOR_OFFSET = 300;
 
 class Door : public StaticObjects
 {

@@ -71,7 +71,6 @@ void GameScreen::processEvents(const sf::Event& event, sf::Vector2f &mouseLocati
     }
 }
 
-//-----------------------------------------------------------------
 
 void GameScreen::update(float deltaTime)
 {
@@ -139,7 +138,7 @@ LevelActions GameScreen::getPageStatus() const
     return m_pageStatus;
 }
 
-void GameScreen::handleKeyRelased(sf::Keyboard::Key keyCode, Controller& controller)
+void GameScreen::handleKeyRelased(enum sf::Keyboard::Key keyCode, Controller& controller)
 {
     if (keyCode == sf::Keyboard::A && m_pageStatus == LevelActions::None)
     {

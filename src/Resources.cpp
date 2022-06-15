@@ -350,7 +350,6 @@ void Resources::loadObjects()
 	m_objects.resize(NUM_OF_OBJS);
 
 	if (!m_objects[static_cast<int>(Objects::Hay)].loadFromFile("hay.png") 
-		|| !m_objects[static_cast<int>(Objects::Rafter)].loadFromFile("rafter.png")
 		|| !m_objects[static_cast<int>(Objects::Switch)].loadFromFile("switch.png")
 		|| !m_objects[static_cast<int>(Objects::Billboard)].loadFromFile("billboard.png")
 		|| !m_objects[static_cast<int>(Objects::SwitchOn)].loadFromFile("switchOn.png"))
@@ -367,8 +366,7 @@ void Resources::loadGrounds()
 		!m_grounds[static_cast<int>(Grounds::Left_l3)].loadFromFile("left_floor_L3.png") ||
 		!m_grounds[static_cast<int>(Grounds::Right_l3)].loadFromFile("right_floor_L3.png")
 		|| !m_grounds[static_cast<int>(Grounds::Door)].loadFromFile("door.png")
-		|| !m_grounds[static_cast<int>(Grounds::l3)].loadFromFile("floor_L3.png")
-		|| !m_grounds[static_cast<int>(Grounds::l4)].loadFromFile("floor_L4.png"))
+		|| !m_grounds[static_cast<int>(Grounds::l3)].loadFromFile("floor_L3.png"))
 		throw(std::logic_error("Grounds Texture\n"));
 }
 
@@ -428,7 +426,6 @@ void Resources::loadGameIcon()
 
 void Resources::loadMusic()
 {
-	//Noga: try vector with ptr
 	if (!m_gameMusic.openFromFile("birds.wav")
 		|| !m_homeMusic.openFromFile("home_music.wav"))
 		throw(std::logic_error("Music\n"));

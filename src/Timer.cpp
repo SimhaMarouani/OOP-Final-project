@@ -5,8 +5,6 @@ Timer::Timer()
 {
 }
 
-//-----------------------------------------------------------------
-
 void Timer::startClock()
 {
 	m_clock.restart();
@@ -14,14 +12,10 @@ void Timer::startClock()
 	m_pauseTimer = false;
 }
 
-//-----------------------------------------------------------------
-
 bool Timer::isTimerPaused()
 {
 	return m_pauseTimer;
 }
-
-//-----------------------------------------------------------------
 
 void Timer::pause()
 {
@@ -30,16 +24,12 @@ void Timer::pause()
 	m_pauseTimer = true;
 }
 
-//-----------------------------------------------------------------
-
 void Timer::start()
 {
 	if (m_pauseTimer)
 		m_clock.restart();
 	m_pauseTimer = false;
 }
-
-//-----------------------------------------------------------------
 
 float Timer::getTime()const
 {

@@ -21,7 +21,7 @@ public:
 	void updateData();
 
 private:
-	sf::RectangleShape m_shadow; //Noga: optional
+	sf::RectangleShape m_shadow;
 	sf::RectangleShape m_background;
 
 	std::vector<sf::Text> m_levelsScoreText;

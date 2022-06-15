@@ -1,12 +1,9 @@
 ﻿
 # fonts
-configure_file ("Font.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("fonts/Font.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
 
 # textures
 
-configure_file ("spritesheets/heavy.png" ${CMAKE_BINARY_DIR} COPYONLY) #needed?
-configure_file ("spritesheets/simple.png" ${CMAKE_BINARY_DIR} COPYONLY)
-configure_file ("spritesheets/light.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 #floors
 configure_file ("images/floor_L2.png" ${CMAKE_BINARY_DIR} COPYONLY)
@@ -16,21 +13,19 @@ configure_file ("images/left_floor_L3.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/right_floor_L3.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/door.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/floor_L3.png" ${CMAKE_BINARY_DIR} COPYONLY)
-configure_file ("images/floor_L4.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 # bg
 configure_file ("images/home_background.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/game_background.png" ${CMAKE_BINARY_DIR} COPYONLY)
-configure_file ("images/levelmenu_background.png" ${CMAKE_BINARY_DIR} COPYONLY) #dont forget to remove
+configure_file ("images/levelmenu_background.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/help_background.png" ${CMAKE_BINARY_DIR} COPYONLY)
-configure_file ("images/settings_bg.png" ${CMAKE_BINARY_DIR} COPYONLY) #dont forget to remove
+configure_file ("images/settings_bg.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 
 # icons
 configure_file ("images/arrow.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/destination.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/hay.png" ${CMAKE_BINARY_DIR} COPYONLY)
-configure_file ("images/rafter.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/switch.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/switchOn.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("images/billboard.png" ${CMAKE_BINARY_DIR} COPYONLY)
@@ -77,7 +72,6 @@ configure_file ("spritesheets/light_spritesheet.png" ${CMAKE_BINARY_DIR} COPYONL
 configure_file ("files/Level1.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("files/Level2.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("files/Level3.txt" ${CMAKE_BINARY_DIR} COPYONLY)
-
 configure_file ("files/Level4.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("files/Level5.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 
@@ -90,8 +84,6 @@ configure_file ("audio/home_music.wav" ${CMAKE_BINARY_DIR} COPYONLY)
 
 #sound effects
 configure_file ("audio/click.wav" ${CMAKE_BINARY_DIR} COPYONLY)
-configure_file ("audio/click2.wav" ${CMAKE_BINARY_DIR} COPYONLY)
-configure_file ("audio/click3.wav" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("audio/lose.wav" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("audio/win.wav" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("audio/door.wav" ${CMAKE_BINARY_DIR} COPYONLY)

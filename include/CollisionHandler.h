@@ -5,7 +5,6 @@
 #include "playersInclude/Heavy.h"
 #include "objectsInclude/Floor.h"
 #include "objectsInclude/Box.h"
-#include "objectsInclude/Rafter.h"
 #include "objectsInclude/Switch.h"
 
 #include <iostream>

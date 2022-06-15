@@ -2,7 +2,7 @@
 #include "Controller.h"
 
 
-DataDisplay::DataDisplay(/*int level*/)
+DataDisplay::DataDisplay()
 	: m_players(NUM_OF_PLAYERS, Button(*Resources::instance().getPlayerFaceTexture(Player::Heavy), sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE))), 
 	  m_levelActions(2, Button(*Resources::instance().getLevelActionButtonTexture(LevelActions::Pause), sf::Vector2f(PLAYER_FACE_SIZE, PLAYER_FACE_SIZE))),
       m_btnsAudio(Resources::instance().getAudioClick())

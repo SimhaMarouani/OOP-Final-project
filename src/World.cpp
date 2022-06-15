@@ -6,7 +6,7 @@
 World::World()
 {
 	m_box2dWorld = std::make_unique<b2World>(gravity);
-	m_box2dWorld->SetContactListener(&contactListener);
+	m_box2dWorld->SetContactListener(&m_contactListener);
 
 	createBorders();
 	initSymbols();

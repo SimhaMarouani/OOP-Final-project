@@ -28,7 +28,7 @@ public:
 	LevelActions getPageStatus() const;
 
 private:
-	void handleKeyRelased(sf::Keyboard::Key keyCode, Controller& controller);
+	void handleKeyRelased(enum sf::Keyboard::Key keyCode, Controller& controller);
 	void endLevelHandleClick(const sf::Event& e, Controller& controller);
 	void settingsHandleClick(const sf::Event& e, Controller& controller);
 

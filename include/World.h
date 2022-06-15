@@ -16,10 +16,10 @@
 
 //box2d
 const float timeStep = 1.0f / 60.0f;
-const int32 velocityIterations = 6,
-positionIterations = 2;
+const int32 velocityIterations = 6, positionIterations = 2;
 const b2Vec2 gravity = b2Vec2(0.0f, 10.0f);
 const sf::Vector2f initVec = sf::Vector2f(0.f, 0.f);
+constexpr int DEFAULT_ENDPOINT = 1400;
 
 class Controller;
 
@@ -61,7 +61,7 @@ private:
 	std::vector<std::unique_ptr<StaticObjects>> m_objects;
 	std::vector<std::unique_ptr<StaticObjects>> m_borders;
 
-	int m_endpoint = 1400;
+	int m_endpoint = DEFAULT_ENDPOINT;
 	
-	MyContactListener contactListener;
+	MyContactListener m_contactListener;
 };

@@ -17,8 +17,6 @@ public:
 	Direction getDir(sf::Vector2f dir) ;
 	Direction getCurrDirection()const { return m_direction; };
 	virtual std::pair<int, int> getAnimationData() = 0;
-	/*sf::IntRect getWidth()const;
-	sf::IntRect getheight()const;*/
 	virtual int getJumpImpulse() = 0;
 	void setFaceRight(bool f);
 	void setDirection(Direction dir);
@@ -26,7 +24,6 @@ public:
 private: 
 	float m_speedPerSecond = BASE_SPEED;
 	bool m_touchingFloor;
-	//bool m_moveBack; //Tali:needed?
 	Direction m_direction;
 	void updateAnimation(float deltaTime);
 
