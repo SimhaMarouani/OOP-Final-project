@@ -1,3 +1,1 @@
 level    score = time(sec)
-1		140
-2		140
