@@ -21,7 +21,7 @@ constexpr int HELP_HEIGHT = WINDOW_HEIGHT - (WINDOW_HEIGHT / 8);
 constexpr int CHAR_SIZE = 40;
 
 // Level Menu 
-constexpr int LEVEL_MENU_COLS = 4;
+constexpr int LEVEL_MENU_COLS = 3;
 constexpr float LEVEL_MENU_BTN_SIZE = 220.f;
 constexpr int NUM_OF_LEVELS = 5;
 
