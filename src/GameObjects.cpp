@@ -33,7 +33,7 @@ void GameObjects::createSquareBody(b2World* world, b2BodyType bodyType, sf::Vect
     if (bodyType == b2_dynamicBody)
     {
         fixtureDef.density = 1.0f;
-        fixtureDef.friction = 0.3f;
+        fixtureDef.friction = 0.2f;
     }
     m_body->CreateFixture(&fixtureDef);
     m_body->SetUserData(this);
