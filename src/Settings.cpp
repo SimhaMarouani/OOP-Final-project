@@ -109,7 +109,7 @@ void Settings::handleHover(const sf::Vector2f& location)
 		{
 
 			m_soundBtns[i].setColor(sf::Color::Black);
-            m_soundBtns[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE + 1, PLAYER_FACE_SIZE + 1));
+            m_soundBtns[i].setSize(sf::Vector2f(PLAYER_FACE_SIZE + 5.f, PLAYER_FACE_SIZE + 5.f));
 		}
 		else
 		{
@@ -122,14 +122,18 @@ void Settings::handleHover(const sf::Vector2f& location)
     if (m_exitSettingsBtn.isHover(location))
     {
 		m_exitSettingsBtn.setColor(sf::Color::Black);
+		m_exitSettingsBtn.setScale(sf::Vector2f(0.74f, 0.74f));
     }
     else if (m_redirectBtn.isHover(location))
     {
 		m_redirectBtn.setColor(sf::Color::Black);
+		m_redirectBtn.setScale(sf::Vector2f(0.74f, 0.74f));
     }
     else
     {
 		m_exitSettingsBtn.setColor(sf::Color::White);
 		m_redirectBtn.setColor(sf::Color::White);
+		m_exitSettingsBtn.setScale(sf::Vector2f(0.70f, 0.70f));
+		m_redirectBtn.setScale(sf::Vector2f(0.70f, 0.70f));
     }
 }
